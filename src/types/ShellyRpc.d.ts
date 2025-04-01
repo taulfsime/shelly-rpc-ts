@@ -1,4 +1,5 @@
 import { shelly_device_rpc_method_map_t } from './Shelly';
+import { shelly_sys_rpc_method_map_t } from './Sys';
 
 export type shelly_rpc_msg_out_t = {
   id: number;
@@ -66,7 +67,8 @@ export type shelly_component_key_t =
   | shelly_component_single_instance_t
   | `${shelly_component_multi_instance_t}:${shelly_component_id_t}`;
 
-type shelly_rpc_method_map_t = shelly_device_rpc_method_map_t;
+type shelly_rpc_method_map_t = shelly_device_rpc_method_map_t &
+  shelly_sys_rpc_method_map_t;
 
 type shelly_rpc_method_t = keyof shelly_rpc_method_map_t;
 

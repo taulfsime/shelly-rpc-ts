@@ -8,7 +8,7 @@ import {
 export type shelly_device_info_data_t = {
   name: string | null;
   id: shelly_device_id_t;
-  mac: string;
+  mac: shelly_device_mac_t;
   slot: number;
   model: string;
   gen: 2 | 3 | 4;
@@ -41,9 +41,16 @@ export type shelly_device_info_data_t = {
   };
 };
 
+export type shelly_device_mac_t =
+  `${string}:${string}:${string}:${string}:${string}:${string}`;
 export type shelly_device_profile_t = string;
-
 export type shelly_device_timezone_t = string;
+
+export type shelly_device_location_t = {
+  tz: shelly_device_timezone_t | null;
+  lat: number | null;
+  lon: number | null;
+};
 
 export type shelly_device_update_stage_t = 'beta' | 'stable' | 'test';
 export type shelly_device_update_info_t = {
@@ -114,11 +121,7 @@ export type shelly_device_rpc_method_map_t = {
   };
   'Shelly.DetectLocation': {
     params: never;
-    result: {
-      tz: shelly_device_timezone_t | null;
-      lat: number | null;
-      lon: number | null;
-    };
+    result: shelly_device_location_t;
   };
   'Shelly.CheckForUpdate': {
     params: never;
