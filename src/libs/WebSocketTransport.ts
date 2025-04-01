@@ -19,12 +19,12 @@ export class WebSocketTransport {
       this.socket = new WebSocket(this.url);
 
       this.socket.onopen = () => {
-        this.reconnectAttempts = 0; 
+        this.reconnectAttempts = 0;
         console.log('WebSocket connected.');
         resolve();
       };
 
-      this.socket.onerror = (err) => {
+      this.socket.onerror = err => {
         console.error('WebSocket error:', err);
         this.handleReconnect(reject);
       };
@@ -34,7 +34,7 @@ export class WebSocketTransport {
         this.handleReconnect(reject);
       };
 
-      this.socket.onmessage = (event) => {
+      this.socket.onmessage = event => {
         this.msgListenersManager.notifyListeners(event.data.toString());
       };
     });
@@ -48,7 +48,7 @@ export class WebSocketTransport {
     if (!this.isConnected) {
       console.warn('WebSocket is not connected or closed.');
       return;
-    } 
+    }
 
     this.socket?.send(msg);
   }
@@ -66,8 +66,10 @@ export class WebSocketTransport {
 
   private handleReconnect(reject: (reason?: any) => void) {
     if (this.reconnectAttempts >= this.maxReconnectAttempts) {
-      reject(`Failed to reconnect after ${this.maxReconnectAttempts} attempts.`);
-    } 
+      reject(
+        `Failed to reconnect after ${this.maxReconnectAttempts} attempts.`
+      );
+    }
 
     this.reconnectAttempts++;
     setTimeout(() => {
