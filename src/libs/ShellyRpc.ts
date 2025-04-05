@@ -15,7 +15,7 @@ export class ShellyRpc {
   private requestQueue: {
     params: shelly_rpc_request_t<any>;
     resolve: (response: shelly_rpc_method_result_t<any>) => void;
-    reject: (code: number, message: string) => void;
+    reject: (reason: ErrorShellyRpc) => void;
   }[] = [];
   private responseQueue: Map<
     shelly_rpc_request_id_t,
@@ -94,7 +94,16 @@ export class ShellyRpc {
   }
 
   protected onMessageSend(msg: shelly_rpc_request_t<any>): void {
-    return; // dummy implementation
+    // dummy implementation, message send is not implemented.
+    this.onMessageReceive({
+      dst: msg.src,
+      src: this.clientId,
+      id: msg.id,
+      error: {
+        code: -999,
+        message: 'Sending message is not implemented',
+      },
+    });
   }
 
   private processRequestQueue(): void {
@@ -111,7 +120,9 @@ export class ShellyRpc {
       msg.params.id,
       (msgContent: shelly_rpc_method_response_t<any>) => {
         if ('error' in msgContent) {
-          msg.reject(msgContent.error.code, msgContent.error.message);
+          msg.reject(
+            new ErrorShellyRpc(msgContent.error.code, msgContent.error.message)
+          );
         }
 
         if ('result' in msgContent) {
@@ -125,5 +136,24 @@ export class ShellyRpc {
     this.onMessageSend(msg.params);
     this.processRequestQueue();
     // TODO: (k.todorov) add timeout
+  }
+}
+
+export class ErrorShellyRpc extends Error {
+  private _code: number;
+  private _message: string;
+
+  constructor(code: number, message: string) {
+    super(`RPC error: ${message} (code: ${code})`);
+    this._code = code;
+    this._message = message;
+  }
+
+  get code(): number {
+    return this._code;
+  }
+
+  get message(): string {
+    return this._message;
   }
 }
