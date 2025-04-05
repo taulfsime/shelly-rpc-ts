@@ -8,14 +8,19 @@ export class WebSocketTransport {
   private readonly maxReconnectAttempts = 10;
   private readonly reconnectTimeoutMs = 1000;
   private readonly msgListenersManager = new MessageListener<string>();
+  private connectingPromise: Promise<void> | null = null;
 
   constructor(url: string) {
     this.url = url;
   }
 
   connect(): Promise<void> {
+    if (this.connectingPromise) {
+      return this.connectingPromise;
+    }
+
     console.log('Connecting to WebSocket:', this.url);
-    return new Promise((resolve, reject) => {
+    this.connectingPromise = new Promise((resolve, reject) => {
       this.socket = new WebSocket(this.url);
 
       this.socket.onopen = () => {
@@ -38,6 +43,8 @@ export class WebSocketTransport {
         this.msgListenersManager.notifyListeners(event.data.toString());
       };
     });
+
+    return this.connectingPromise;
   }
 
   addListener(callback: (msg: string) => void): void {
