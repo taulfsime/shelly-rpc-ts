@@ -1,5 +1,6 @@
 import { shelly_device_rpc_method_map_t } from './Shelly';
-import { shelly_sys_rpc_method_map_t } from './Sys';
+import { shelly_sys_rpc_method_map_t } from './components/Sys';
+import { shelly_wifi_rpc_method_map_t } from './components/WiFi';
 
 export type shelly_rpc_request_id_t = number | string;
 
@@ -70,7 +71,8 @@ export type shelly_component_key_t =
   | `${shelly_component_multi_instance_t}:${shelly_component_id_t}`;
 
 type shelly_rpc_method_map_t = shelly_device_rpc_method_map_t &
-  shelly_sys_rpc_method_map_t;
+  shelly_sys_rpc_method_map_t &
+  shelly_wifi_rpc_method_map_t;
 
 type shelly_rpc_method_t = keyof shelly_rpc_method_map_t;
 

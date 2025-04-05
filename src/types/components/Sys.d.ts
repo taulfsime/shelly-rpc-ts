@@ -4,7 +4,7 @@ import {
   shelly_device_profile_t,
   shelly_device_update_info_t,
   shelly_device_update_stage_t,
-} from './Shelly';
+} from '../Shelly';
 
 type shelly_addon_type_t = 'sensor' | 'prooutput' | 'LoRa' | null; //XXX: move to addon types
 type shelly_sys_wakeup_reason_boot_t =
@@ -100,7 +100,7 @@ export type shelly_sys_rpc_method_map_t = {
       config: Partial<shelly_sys_config_t>;
     };
     result: {
-      restart_required: false;
+      restart_required: boolean;
     };
   };
   'Sys.GetConfig': {
