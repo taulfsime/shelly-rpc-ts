@@ -1,4 +1,3 @@
-import { MessageListener } from './MsgListeners';
 import WebSocket from 'ws';
 
 export class WebSocketTransport {
@@ -7,11 +6,12 @@ export class WebSocketTransport {
   private reconnectAttempts = 0;
   private readonly maxReconnectAttempts = 10;
   private readonly reconnectTimeoutMs = 1000;
-  private readonly msgListenersManager = new MessageListener<string>();
   private connectingPromise: Promise<void> | null = null;
+  private onIncomingData: (msg: string) => void;
 
-  constructor(url: string) {
+  constructor(url: string, onIncomingData: (msg: string) => void) {
     this.url = url;
+    this.onIncomingData = onIncomingData;
   }
 
   connect(): Promise<void> {
@@ -40,15 +40,11 @@ export class WebSocketTransport {
       };
 
       this.socket.onmessage = event => {
-        this.msgListenersManager.notifyListeners(event.data.toString());
+        this.onIncomingData(event.data.toString());
       };
     });
 
     return this.connectingPromise;
-  }
-
-  addListener(callback: (msg: string) => void): void {
-    this.msgListenersManager.addListener(callback);
   }
 
   sendMessage(msg: string): void {
