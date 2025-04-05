@@ -1,142 +1,116 @@
-import { WebSocketTransport } from './WebSocketTransport';
-import { MessageListener } from './MsgListeners';
-
-type msg_out_t = {
-  id: number;
-  src: string;
-  method: string;
-  params?: Record<string, any>;
-};
-
-type notif_t = {
-  method: 'NotifyStatus' | 'NotifyEvent';
-  params?: Record<string, any>;
-};
+import {
+  shelly_rpc_method_params_t,
+  shelly_rpc_method_response_t,
+  shelly_rpc_method_result_t,
+  shelly_rpc_method_t,
+  shelly_rpc_notification_event_t,
+  shelly_rpc_notification_status_t,
+  shelly_rpc_request_id_t,
+  shelly_rpc_request_t,
+} from '../types/ShellyRpc';
 
 export class ShellyRpc {
-  private ip: string;
   private clientId: string;
-  private readonly transport: WebSocketTransport;
-  private callbacksQueue = new Map<
-    number,
-    { reject: (reason?: any) => void; resolve: (value?: any) => void }
-  >([]);
-  private messageQueue: msg_out_t[] = [];
-  private nextMessageId = 1;
-  private connectedPromise: Promise<void>;
-  private messagesInFlight = 0;
-  private readonly listenersManager = new MessageListener<notif_t>();
+  private msgCounter: number = 1;
+  private requestQueue: {
+    params: shelly_rpc_request_t<any>;
+    resolve: (response: shelly_rpc_method_result_t<any>) => void;
+    reject: (code: number, message: string) => void;
+  }[] = [];
+  private responseQueue: Map<
+    shelly_rpc_request_id_t,
+    (response: shelly_rpc_method_response_t<any>) => void
+  > = new Map();
 
-  constructor(ip: string, clientId?: string) {
-    this.ip = ip;
-    this.transport = new WebSocketTransport(`ws://${this.ip}/rpc`);
-    this.clientId = clientId || crypto.randomUUID();
-
-    this.transport.addListener((msg: string) => this.onMessage(msg));
-
-    this.connectedPromise = this.transport.connect();
-    this.connectedPromise.then(() => {
-      this.processMessageQueue();
-    });
+  constructor(clientId: string) {
+    this.clientId = clientId;
   }
 
-  rpcRequest<T = any | null>(
-    method: string,
-    params?: Record<string, any>
-  ): Promise<T> {
-    const id = this.nextMessageId++;
-    method = method.toLowerCase();
+  async rpcRequest<T extends shelly_rpc_method_t = any>(
+    method: T,
+    params: shelly_rpc_method_params_t<T>
+  ): Promise<shelly_rpc_method_result_t<T>> {
+    await this.connected;
 
-    const promise = new Promise<T>((resolve, reject) => {
-      this.callbacksQueue.set(id, { resolve, reject });
-    });
-
-    const msg: msg_out_t = {
+    const id = this.msgCounter++;
+    const requestParams: shelly_rpc_request_t<T> = {
+      jsonrpc: '2.0',
       id,
-      src: this.clientId,
       method,
       params,
+      src: this.clientId,
     };
 
-    this.messageQueue.push(msg);
-    this.processMessageQueue();
+    const responsePromise = new Promise<shelly_rpc_method_result_t<T>>(
+      (resolve, reject) => {
+        this.requestQueue.push({
+          params: requestParams,
+          resolve,
+          reject,
+        });
+        this.processRequestQueue();
+      }
+    );
 
-    // this.transport.sendMessage(JSON.stringify(msg));
-    //TODO: (k.todorov) add timeout
-
-    return promise;
+    return responsePromise;
   }
 
-  connected(): Promise<void> {
-    return this.connectedPromise;
+  protected onMessageReceive(
+    msg:
+      | shelly_rpc_notification_status_t
+      | shelly_rpc_notification_event_t
+      | shelly_rpc_method_response_t<any>
+  ): void {
+    if (
+      'id' in msg &&
+      msg.dst === this.clientId &&
+      this.responseQueue.has(msg.id)
+    ) {
+      const callback = this.responseQueue.get(msg.id);
+      this.responseQueue.delete(msg.id);
+
+      if (typeof callback === 'function') {
+        callback(msg);
+      }
+    }
   }
 
-  addNotificationListener(listener: (notif: notif_t) => void): void {
-    this.listenersManager.addListener(listener);
+  protected onMessageSend(msg: shelly_rpc_request_t<any>): void {
+    return; // dummy implementation
   }
 
-  // {"src":"shellyi4g3-54320455c858","dst":"ee390919-eb15-4b0d-acdc-226faa31afe4","method":"NotifyEvent","params":{"ts":1735821119.25,"events":[{"component":"sys","event":"config_changed","restart_required":false,"ts":1735821119.25,"cfg_rev":20}]}}	1735821119.3472958
-  // {"src":"shellyi4g3-54320455c858","dst":"ee390919-eb15-4b0d-acdc-226faa31afe4","method":"NotifyStatus","params":{"ts":1735821119.25,"sys":{"cfg_rev":20}}}	1735821119.3482728
+  get connected(): Promise<void> {
+    return Promise.resolve(); // dummy implementation, always connected
+  }
 
-  private onMessage(msgRaw: string): void {
-    const msg = JSON.parse(msgRaw) as {
-      id: number;
-      dst: string;
-      result?: any;
-      error?: any;
-      method?: string;
-      params?: Record<string, any>;
-    };
-
-    if (msg.dst !== this.clientId) {
-      console.warn('Received message from unknown client:', msg);
+  private processRequestQueue(): void {
+    // always have 1 request in flight at a time
+    if (this.responseQueue.size > 1) {
       return;
     }
 
-    switch (msg.method) {
-      case 'NotifyEvent':
-        return this.listenersManager.notifyListeners({
-          method: 'NotifyEvent',
-          params: msg.params,
-        });
-      case 'NotifyStatus':
-        return this.listenersManager.notifyListeners({
-          method: 'NotifyStatus',
-          params: msg.params,
-        });
-      default:
-        break;
-    }
-
-    const callback = this.callbacksQueue.get(msg.id);
-    if (!callback) {
-      console.warn('Received response for unknown message:', msg);
-      return;
-    }
-
-    if (msg.error) {
-      callback.reject(msg.error);
-    } else {
-      callback.resolve(msg.result);
-    }
-    this.callbacksQueue.delete(msg.id);
-
-    this.messagesInFlight--;
-    this.processMessageQueue();
-  }
-
-  private processMessageQueue(): void {
-    const msg = this.messageQueue.shift();
+    const msg = this.requestQueue.shift();
     if (!msg) {
       return;
     }
 
-    if (this.messagesInFlight > 1) {
-      return;
-    }
+    this.responseQueue.set(
+      msg.params.id,
+      (msgContent: shelly_rpc_method_response_t<any>) => {
+        if ('error' in msgContent) {
+          msg.reject(msgContent.error.code, msgContent.error.message);
+          return;
+        }
 
-    this.transport.sendMessage(JSON.stringify(msg));
-    this.messagesInFlight++;
+        if ('result' in msgContent) {
+          msg.resolve(msgContent.result);
+        }
+
+        this.processRequestQueue();
+      }
+    );
+
+    this.onMessageSend(msg.params);
     // TODO: (k.todorov) add timeout
   }
 }

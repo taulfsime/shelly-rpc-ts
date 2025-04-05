@@ -1,8 +1,10 @@
 import { shelly_device_rpc_method_map_t } from './Shelly';
 import { shelly_sys_rpc_method_map_t } from './Sys';
 
+export type shelly_rpc_request_id_t = number | string;
+
 export type shelly_rpc_msg_out_t = {
-  id: number;
+  id: shelly_rpc_request_id_t;
   src: string;
   method: shelly_rpc_method_t;
   params?: Record<string, unknown>; //XXX: Change to specific types
@@ -86,25 +88,34 @@ export type shelly_rpc_method_result_t<K extends shelly_rpc_method_t> =
     ? shelly_rpc_method_map_t[K]['result']
     : null;
 
+// export type shelly_rpc_request_t<K extends shelly_rpc_method_t> = {
+//   jsonrpc: '2.0';
+//   id: shelly_rpc_request_id_t;
+//   method: K;
+//   src: string;
+// } & ({} extends shelly_rpc_method_params_t<K>
+//   ? { params?: shelly_rpc_method_params_t<K> }
+//   : shelly_rpc_method_params_t<K> extends undefined | never
+//     ? { params?: shelly_rpc_method_params_t<K> }
+//     : { params: shelly_rpc_method_params_t<K> });
+
 export type shelly_rpc_request_t<K extends shelly_rpc_method_t> = {
   jsonrpc: '2.0';
-  id: number;
+  id: shelly_rpc_request_id_t;
   method: K;
-} & ({} extends shelly_rpc_method_params_t<K>
-  ? { params?: shelly_rpc_method_params_t<K> }
-  : shelly_rpc_method_params_t<K> extends undefined | never
-    ? { params?: shelly_rpc_method_params_t<K> }
-    : { params: shelly_rpc_method_params_t<K> });
+  src: string;
+  params: shelly_rpc_method_params_t<K>;
+};
 
 export type shelly_rpc_method_response_t<K extends shelly_rpc_method_t> =
   | {
-      id: number;
+      id: shelly_rpc_request_id_t;
       src: string;
       dst: string;
       result: shelly_rpc_method_result_t<K>;
     }
   | {
-      id: number;
+      id: shelly_rpc_request_id_t;
       src: string;
       dst: string;
       error: {
