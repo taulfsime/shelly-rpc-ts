@@ -60,6 +60,14 @@ export class WebSocketTransport {
     this.socket = null;
   }
 
+  get connected(): Promise<void> {
+    if (this.isConnected) {
+      return Promise.resolve();
+    }
+
+    return this.connect();
+  }
+
   get isConnected(): boolean {
     return Boolean(this.socket && this.socket?.readyState === WebSocket.OPEN);
   }
