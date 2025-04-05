@@ -17,7 +17,6 @@ export class ShellyWs extends ShellyRpc {
   }
 
   protected onMessageSend(msg: shelly_rpc_request_t<any>): void {
-    console.log(`Sending message: ${JSON.stringify(msg)}`);
     this.transport.sendMessage(JSON.stringify(msg));
   }
 

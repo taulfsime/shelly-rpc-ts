@@ -22,8 +22,22 @@ export class ShellyRpc {
     (response: shelly_rpc_method_response_t<any>) => void
   > = new Map();
 
-  constructor(clientId: string) {
+  private limitRequestsInFlight: number = 1;
+
+  constructor(
+    clientId: string,
+    options?: {
+      limitRequestsInFlight?: number;
+    }
+  ) {
     this.clientId = clientId;
+
+    if (options?.limitRequestsInFlight) {
+      this.limitRequestsInFlight = Math.max(
+        options.limitRequestsInFlight,
+        this.limitRequestsInFlight
+      );
+    }
   }
 
   async rpcRequest<T extends shelly_rpc_method_t = any>(
@@ -75,17 +89,16 @@ export class ShellyRpc {
     }
   }
 
-  protected onMessageSend(msg: shelly_rpc_request_t<any>): void {
-    return; // dummy implementation
-  }
-
   get connected(): Promise<void> {
     return Promise.resolve(); // dummy implementation, always connected
   }
 
+  protected onMessageSend(msg: shelly_rpc_request_t<any>): void {
+    return; // dummy implementation
+  }
+
   private processRequestQueue(): void {
-    // always have 1 request in flight at a time
-    if (this.responseQueue.size > 1) {
+    if (this.responseQueue.size > this.limitRequestsInFlight) {
       return;
     }
 
@@ -99,7 +112,6 @@ export class ShellyRpc {
       (msgContent: shelly_rpc_method_response_t<any>) => {
         if ('error' in msgContent) {
           msg.reject(msgContent.error.code, msgContent.error.message);
-          return;
         }
 
         if ('result' in msgContent) {
@@ -111,6 +123,7 @@ export class ShellyRpc {
     );
 
     this.onMessageSend(msg.params);
+    this.processRequestQueue();
     // TODO: (k.todorov) add timeout
   }
 }
