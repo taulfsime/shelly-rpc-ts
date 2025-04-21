@@ -1,32 +1,34 @@
 {
-  "name": "shelly-js",
+  "name": "shelly-rpc-types",
   "version": "0.0.1",
-  "description": "Shelly transport lib",
+  "description": "Shelly RPC types",
   "keywords": [
-    "shelly"
+    "shelly",
+    "typescript"
   ],
-  "homepage": "https://github.com/taulfsime/shelly-js#readme",
+  "homepage": "https://github.com/taulfsime/shelly-rpc-types#readme",
   "bugs": {
-    "url": "https://github.com/taulfsime/shelly-js/issues"
+    "url": "https://github.com/taulfsime/shelly-rpc-types/issues"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/taulfsime/shelly-js.git"
+    "url": "git+https://github.com/taulfsime/shelly-rpc-types.git"
   },
   "license": "MIT",
   "author": "taulfsime",
   "type": "module",
-  "main": "src/index.ts",
+  "main": "src/Shelly.d.ts",
+  "types": "src/Shelly.d.ts",
+  "files": [
+    "src/Shelly.d.ts"
+  ],
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "prettier . --check",
-    "lint:fix": "prettier . --write --list-different"
+    "lint:fix": "prettier . --write --list-different",
+    "types": "tsc --noEmit"
   },
   "devDependencies": {
-    "@types/node": "^22.13.14",
-    "@types/ws": "^8.18.0",
     "prettier": "^3.5.3",
-    "typescript": "^5.8.2",
-    "ws": "^8.18.1"
+    "typescript": "^5.8.2"
   }
 }

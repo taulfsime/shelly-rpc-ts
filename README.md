@@ -1,3 +1,3 @@
-# shelly-js
+# shelly-rpc-types
 
-Shelly transport lib
+Type definitions for the Shelly RPC interface.
