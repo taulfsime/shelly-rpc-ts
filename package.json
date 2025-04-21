@@ -23,9 +23,9 @@
     "src/Shelly.d.ts"
   ],
   "scripts": {
-    "lint": "prettier . --check",
-    "lint:fix": "prettier . --write --list-different",
-    "types": "tsc --noEmit"
+    "format:check": "prettier . --check",
+    "format": "prettier . --write --list-different",
+    "types:check": "tsc --noEmit"
   },
   "devDependencies": {
     "prettier": "^3.5.3",
