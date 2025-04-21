@@ -1,6 +1,7 @@
 import { shelly_device_rpc_method_map_t } from './Shelly';
 import { shelly_sys_rpc_method_map_t } from './components/Sys';
 import { shelly_wifi_rpc_method_map_t } from './components/WiFi';
+import { shelly_mqtt_rpc_method_map_t } from './components/MQTT';
 
 type shelly_component_single_instance_t = 'sys' | 'wifi' | 'mqtt';
 
@@ -33,7 +34,8 @@ export type shelly_component_key_t =
 
 type shelly_rpc_method_map_t = shelly_device_rpc_method_map_t &
   shelly_sys_rpc_method_map_t &
-  shelly_wifi_rpc_method_map_t;
+  shelly_wifi_rpc_method_map_t &
+  shelly_mqtt_rpc_method_map_t;
 
 type shelly_rpc_method_t = keyof shelly_rpc_method_map_t;
 
