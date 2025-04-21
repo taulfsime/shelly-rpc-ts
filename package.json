@@ -17,10 +17,10 @@
   "license": "MIT",
   "author": "taulfsime",
   "type": "module",
-  "main": "src/Shelly.d.ts",
-  "types": "src/Shelly.d.ts",
+  "main": "src/index.d.ts",
+  "types": "src/index.d.ts",
   "files": [
-    "src/Shelly.d.ts"
+    "src/index.d.ts"
   ],
   "scripts": {
     "format:check": "prettier . --check",

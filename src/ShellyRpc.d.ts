@@ -2,45 +2,6 @@ import { shelly_device_rpc_method_map_t } from './Shelly';
 import { shelly_sys_rpc_method_map_t } from './components/Sys';
 import { shelly_wifi_rpc_method_map_t } from './components/WiFi';
 
-export type shelly_rpc_request_id_t = number | string;
-
-export type shelly_rpc_msg_out_t = {
-  id: shelly_rpc_request_id_t;
-  src: string;
-  method: shelly_rpc_method_t;
-  params?: Record<string, unknown>; //XXX: Change to specific types
-};
-
-type shelly_rpc_notification_event_t = {
-  dst: string;
-  src: string;
-  method: 'NotifyEvent';
-  params: {
-    ts: number;
-    events: {
-      component: shelly_component_key_t;
-      id?: shelly_component_id_t;
-      event: string; //XXX: Change to specific types
-      ts: number;
-    }[];
-  };
-};
-
-type shelly_rpc_notification_status_t = {
-  dst: string;
-  src: string;
-  method: 'NotifyStatus';
-  params: {
-    ts: number;
-  } & {
-    [key in shelly_component_key_t]?: shelly_rpc_method_result_t<shelly_rpc_method_t>;
-  };
-};
-
-export type shelly_rpc_notification_t =
-  | shelly_rpc_notification_event_t
-  | shelly_rpc_notification_status_t;
-
 type shelly_component_single_instance_t = 'sys' | 'wifi' | 'mqtt';
 
 type shelly_component_multi_instance_t =
@@ -89,25 +50,6 @@ export type shelly_rpc_method_result_t<K extends shelly_rpc_method_t> =
   K extends keyof shelly_rpc_method_map_t
     ? shelly_rpc_method_map_t[K]['result']
     : null;
-
-// export type shelly_rpc_request_t<K extends shelly_rpc_method_t> = {
-//   jsonrpc: '2.0';
-//   id: shelly_rpc_request_id_t;
-//   method: K;
-//   src: string;
-// } & ({} extends shelly_rpc_method_params_t<K>
-//   ? { params?: shelly_rpc_method_params_t<K> }
-//   : shelly_rpc_method_params_t<K> extends undefined | never
-//     ? { params?: shelly_rpc_method_params_t<K> }
-//     : { params: shelly_rpc_method_params_t<K> });
-
-export type shelly_rpc_request_t<K extends shelly_rpc_method_t> = {
-  jsonrpc: '2.0';
-  id: shelly_rpc_request_id_t;
-  method: K;
-  src: string;
-  params: shelly_rpc_method_params_t<K>;
-};
 
 export type shelly_rpc_method_response_t<K extends shelly_rpc_method_t> =
   | {
