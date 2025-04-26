@@ -11,7 +11,7 @@ export type shelly_device_info_data_t = {
   mac: shelly_device_mac_t;
   slot: number;
   model: string;
-  gen: 2 | 3 | 4;
+  gen: number;
   fw_id: string;
   ver: string;
   app: string;
