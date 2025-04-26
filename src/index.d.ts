@@ -5,6 +5,7 @@ export * from './components/MQTT';
 export * from './components/Switch';
 export * from './components/Cover';
 export * from './components/Light';
+export * from './components/Service';
 
 // Shelly device types
 export * from './Shelly';
