@@ -7,6 +7,7 @@ export * from './components/Cover';
 export * from './components/Light';
 export * from './components/Service';
 export * from './components/Number';
+export * from './components/Boolean';
 
 // Shelly device types
 export * from './Shelly';
