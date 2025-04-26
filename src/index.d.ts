@@ -9,6 +9,7 @@ export * from './components/Service';
 export * from './components/Number';
 export * from './components/Boolean';
 export * from './components/Text';
+export * from './components/Enum';
 
 // Shelly device types
 export * from './Shelly';
