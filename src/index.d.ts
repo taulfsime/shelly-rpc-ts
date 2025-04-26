@@ -11,6 +11,7 @@ export * from './components/Boolean';
 export * from './components/Text';
 export * from './components/Enum';
 export * from './components/Button';
+export * from './components/Group';
 
 // Shelly device types
 export * from './Shelly';
