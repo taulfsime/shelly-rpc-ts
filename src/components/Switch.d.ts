@@ -62,7 +62,7 @@ export type shelly_switch_rpc_method_map_t = {
       config: shelly_switch_config_t;
     };
     result: {
-      restart_required: false;
+      restart_required: boolean;
     };
   };
   'Switch.GetConfig': {

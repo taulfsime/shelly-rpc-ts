@@ -96,7 +96,7 @@ export type shelly_light_rpc_method_map_t = {
       config: shelly_light_config_t;
     };
     result: {
-      restart_required: false;
+      restart_required: boolean;
     };
   };
   'Light.Set': {

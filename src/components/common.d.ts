@@ -9,3 +9,9 @@ export type shelly_output_component_status_counter_t = {
   by_minute?: [number, number, number];
   minute_ts: number;
 };
+
+export type shelly_virtual_component_status_source_t =
+  | ''
+  | 'rpc'
+  | 'sys'
+  | 'err';
