@@ -8,6 +8,7 @@ import { shelly_light_rpc_method_map_t } from './components/Light';
 import { shelly_service_rpc_method_map_t } from './components/Service';
 import { shelly_number_rpc_method_map_t } from './components/Number';
 import { shelly_boolean_rpc_method_map_t } from './components/Boolean';
+import { shelly_text_rpc_method_map_t } from './components/Text';
 
 type shelly_component_single_instance_t = 'sys' | 'wifi' | 'mqtt';
 
@@ -47,7 +48,8 @@ type shelly_rpc_method_map_t = shelly_device_rpc_method_map_t &
   shelly_light_rpc_method_map_t &
   shelly_service_rpc_method_map_t &
   shelly_number_rpc_method_map_t &
-  shelly_boolean_rpc_method_map_t;
+  shelly_boolean_rpc_method_map_t &
+  shelly_text_rpc_method_map_t;
 
 type shelly_rpc_method_t = keyof shelly_rpc_method_map_t;
 
