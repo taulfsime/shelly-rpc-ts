@@ -14,6 +14,7 @@ export * from './components/Button';
 export * from './components/Group';
 export * from './components/Script';
 export * from './components/Temperature';
+export * from './components/Humidity';
 
 // Shelly device types
 export * from './Shelly';

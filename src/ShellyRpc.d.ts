@@ -14,6 +14,7 @@ import { shelly_button_rpc_method_map_t } from './components/Button';
 import { shelly_group_rpc_method_map_t } from './components/Group';
 import { shelly_script_rpc_method_map_t } from './components/Script';
 import { shelly_temperature_rpc_method_map_t } from './components/Temperature';
+import { shelly_humidity_rpc_method_map_t } from './components/Humidity';
 
 type shelly_component_single_instance_t = 'sys' | 'wifi' | 'mqtt';
 
@@ -60,7 +61,8 @@ type shelly_rpc_method_map_t = shelly_device_rpc_method_map_t &
   shelly_button_rpc_method_map_t &
   shelly_group_rpc_method_map_t &
   shelly_script_rpc_method_map_t &
-  shelly_temperature_rpc_method_map_t;
+  shelly_temperature_rpc_method_map_t &
+  shelly_humidity_rpc_method_map_t;
 
 type shelly_rpc_method_t = keyof shelly_rpc_method_map_t;
 
