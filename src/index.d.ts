@@ -12,6 +12,7 @@ export * from './components/Text';
 export * from './components/Enum';
 export * from './components/Button';
 export * from './components/Group';
+export * from './components/Script';
 
 // Shelly device types
 export * from './Shelly';

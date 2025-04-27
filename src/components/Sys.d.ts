@@ -97,7 +97,7 @@ export type shelly_sys_rpc_method_map_t = {
   };
   'Sys.SetConfig': {
     params: {
-      config: Partial<shelly_sys_config_t>;
+      config: shelly_sys_config_t;
     };
     result: {
       restart_required: boolean;

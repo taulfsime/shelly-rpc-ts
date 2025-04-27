@@ -53,7 +53,7 @@ export type shelly_cover_status_t = {
     tF: null | number;
   };
   slat_pos?: number | null;
-  errors: shelly_cover_status_errors_t[];
+  errors?: shelly_cover_status_errors_t[];
 };
 
 export type shelly_cover_config_t = {
