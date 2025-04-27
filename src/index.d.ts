@@ -16,6 +16,7 @@ export * from './components/Script';
 export * from './components/Temperature';
 export * from './components/Humidity';
 export * from './components/Input';
+export * from './components/BTHomeSensor';
 
 // Shelly device types
 export * from './Shelly';
