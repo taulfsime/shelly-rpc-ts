@@ -207,4 +207,11 @@ export type shelly_device_rpc_method_map_t = {
       total: number;
     };
   };
+  'Shelly.InstallAlt': {
+    params: {
+      stage: shelly_device_update_stage_t;
+      app: string;
+    };
+    result: null;
+  };
 };

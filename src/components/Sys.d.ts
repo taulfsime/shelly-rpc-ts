@@ -68,6 +68,7 @@ export type shelly_sys_status_t = {
   uptime: number;
   ram_size: number;
   ram_free: number;
+  ram_min_free: number;
   fs_size: number;
   fs_free: number;
   cfg_rev: number;
@@ -82,11 +83,21 @@ export type shelly_sys_status_t = {
       Pick<shelly_device_update_info_t, 'version'>
     >
   >;
+  alt?: {
+    [key: string]: {
+      name: string;
+      desc: string;
+    } & Partial<
+      Record<shelly_device_update_stage_t, shelly_device_update_info_t>
+    >;
+  };
   wakeup_reason?: {
     boot: shelly_sys_wakeup_reason_boot_t;
     cause: shelly_sys_wakeup_reason_cause_t;
   };
   wakeup_period?: number;
+  utc_offset: number;
+  reset_reason?: number;
   utc_offset: number;
 };
 
