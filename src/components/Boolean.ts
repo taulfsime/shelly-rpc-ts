@@ -1,24 +1,22 @@
-import { shelly_virtual_component_status_source_t } from './common';
+import { shelly_component_id_t, shelly_component_key_t } from '../ShellyRpc.js';
+import { shelly_virtual_component_status_source_t } from './common.js';
 
-type shelly_enum_option_t = string;
-
-export type shelly_enum_status_t = {
-  value: shelly_enum_option_t | null;
-  last_update_ts: number;
+export type shelly_boolean_status_t = {
   source: shelly_virtual_component_status_source_t;
+  value: boolean;
+  last_update_ts: number;
 };
 
-export type shelly_enum_config_t = {
+export type shelly_boolean_config_t = {
   id: shelly_component_id_t;
   name: string | null;
   persisted: boolean;
-  options: shelly_enum_option_t[];
-  default_value: shelly_enum_option_t | null;
+  default_value: boolean;
   meta: null | Record<string, unknown>;
 };
 
-export type shelly_enum_rpc_method_map_t = {
-  'Enum.GetStatus': {
+export type shelly_boolean_rpc_method_map_t = {
+  'Boolean.GetStatus': {
     params:
       | {
           id: shelly_component_id_t;
@@ -27,24 +25,24 @@ export type shelly_enum_rpc_method_map_t = {
           role: string;
           owner: shelly_component_key_t;
         };
-    result: shelly_enum_status_t;
+    result: shelly_boolean_status_t;
   };
-  'Enum.SetConfig': {
+  'Boolean.SetConfig': {
     params:
       | {
           id: shelly_component_id_t;
-          config: shelly_enum_config_t;
+          config: shelly_boolean_config_t;
         }
       | {
           role: string;
           owner: shelly_component_key_t;
-          config: shelly_enum_config_t;
+          config: shelly_boolean_config_t;
         };
     result: {
       restart_required: boolean;
     };
   };
-  'Enum.GetConfig': {
+  'Boolean.GetConfig': {
     params:
       | {
           id: shelly_component_id_t;
@@ -53,18 +51,18 @@ export type shelly_enum_rpc_method_map_t = {
           role: string;
           owner: shelly_component_key_t;
         };
-    result: shelly_enum_config_t;
+    result: shelly_boolean_config_t;
   };
-  'Enum.Set': {
+  'Boolean.Set': {
     params:
       | {
           id: shelly_component_id_t;
-          value: shelly_enum_option_t | null;
+          value: boolean;
         }
       | {
           role: string;
           owner: shelly_component_key_t;
-          value: shelly_enum_option_t | null;
+          value: boolean;
         };
     result: null;
   };

@@ -1,5 +1,5 @@
 {
-  "name": "shelly-rpc-types",
+  "name": "@taulfsime/shelly-rpc-types",
   "version": "0.0.1",
   "description": "Shelly RPC types",
   "keywords": [
@@ -17,15 +17,22 @@
   "license": "MIT",
   "author": "taulfsime",
   "type": "module",
-  "main": "src/index.d.ts",
-  "types": "src/index.d.ts",
+  "main": "",
+  "types": "dist/index.d.ts",
   "files": [
-    "src/index.d.ts"
+    "dist/",
+    "README.md"
   ],
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts"
+    }
+  },
   "scripts": {
     "format:check": "prettier . --check",
     "format": "prettier . --write --list-different",
-    "types:check": "tsc --noEmit"
+    "types:check": "tsc --noEmit",
+    "build": "tsc"
   },
   "devDependencies": {
     "prettier": "^3.5.3",

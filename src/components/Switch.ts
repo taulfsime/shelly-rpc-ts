@@ -1,8 +1,8 @@
-import { shelly_component_id_t } from '../ShellyRpc';
+import { shelly_component_id_t } from '../ShellyRpc.js';
 import {
   shelly_output_component_status_source_t,
   shelly_output_component_status_counter_t,
-} from './ShellyOutputComponent';
+} from './common.js';
 
 type shelly_switch_status_errors_t =
   | 'overtemp'

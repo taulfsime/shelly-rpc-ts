@@ -1,23 +1,23 @@
-import { shelly_device_rpc_method_map_t } from './Shelly';
-import { shelly_sys_rpc_method_map_t } from './components/Sys';
-import { shelly_wifi_rpc_method_map_t } from './components/WiFi';
-import { shelly_mqtt_rpc_method_map_t } from './components/MQTT';
-import { shelly_switch_rpc_method_map_t } from './components/Switch';
-import { shelly_cover_rpc_method_map_t } from './components/Cover';
-import { shelly_light_rpc_method_map_t } from './components/Light';
-import { shelly_service_rpc_method_map_t } from './components/Service';
-import { shelly_number_rpc_method_map_t } from './components/Number';
-import { shelly_boolean_rpc_method_map_t } from './components/Boolean';
-import { shelly_text_rpc_method_map_t } from './components/Text';
-import { shelly_enum_rpc_method_map_t } from './components/Enum';
-import { shelly_button_rpc_method_map_t } from './components/Button';
-import { shelly_group_rpc_method_map_t } from './components/Group';
-import { shelly_script_rpc_method_map_t } from './components/Script';
-import { shelly_temperature_rpc_method_map_t } from './components/Temperature';
-import { shelly_humidity_rpc_method_map_t } from './components/Humidity';
-import { shelly_input_rpc_method_map_t } from './components/Input';
-import { shelly_bthomesensor_rpc_method_map_t } from './components/BTHomeSensor';
-import { shelly_bthomedevice_rpc_method_map_t } from './components/BTHomeDevice';
+import { shelly_boolean_rpc_method_map_t } from './components/Boolean.js';
+import { shelly_bthomedevice_rpc_method_map_t } from './components/BTHomeDevice.js';
+import { shelly_bthomesensor_rpc_method_map_t } from './components/BTHomeSensor.js';
+import { shelly_button_rpc_method_map_t } from './components/Button.js';
+import { shelly_cover_rpc_method_map_t } from './components/Cover.js';
+import { shelly_enum_rpc_method_map_t } from './components/Enum.js';
+import { shelly_group_rpc_method_map_t } from './components/Group.js';
+import { shelly_humidity_rpc_method_map_t } from './components/Humidity.js';
+import { shelly_input_rpc_method_map_t } from './components/Input.js';
+import { shelly_light_rpc_method_map_t } from './components/Light.js';
+import { shelly_mqtt_rpc_method_map_t } from './components/MQTT.js';
+import { shelly_number_rpc_method_map_t } from './components/Number.js';
+import { shelly_script_rpc_method_map_t } from './components/Script.js';
+import { shelly_service_rpc_method_map_t } from './components/Service.js';
+import { shelly_switch_rpc_method_map_t } from './components/Switch.js';
+import { shelly_sys_rpc_method_map_t } from './components/Sys.js';
+import { shelly_temperature_rpc_method_map_t } from './components/Temperature.js';
+import { shelly_text_rpc_method_map_t } from './components/Text.js';
+import { shelly_wifi_rpc_method_map_t } from './components/WiFi.js';
+import { shelly_device_rpc_method_map_t } from './Shelly.js';
 
 type shelly_component_single_instance_t = 'sys' | 'wifi' | 'mqtt';
 
@@ -70,9 +70,9 @@ type shelly_rpc_method_map_t = shelly_device_rpc_method_map_t &
   shelly_bthomesensor_rpc_method_map_t &
   shelly_bthomedevice_rpc_method_map_t;
 
-type shelly_rpc_method_t = keyof shelly_rpc_method_map_t;
+export type shelly_rpc_method_t = keyof shelly_rpc_method_map_t;
 
-type shelly_rpc_method_params_t<K extends shelly_rpc_method_t> =
+export type shelly_rpc_method_params_t<K extends shelly_rpc_method_t> =
   K extends keyof shelly_rpc_method_map_t
     ? shelly_rpc_method_map_t[K] extends { params: infer P }
       ? P
@@ -83,18 +83,20 @@ type shelly_rpc_method_params_t<K extends shelly_rpc_method_t> =
 
 export type shelly_rpc_method_result_t<K extends shelly_rpc_method_t> =
   K extends keyof shelly_rpc_method_map_t
-    ? shelly_rpc_method_map_t[K]['result']
-    : null;
+    ? shelly_rpc_method_map_t[K] extends { result: infer R }
+      ? R
+      : unknown
+    : unknown;
 
 export type shelly_rpc_method_response_t<K extends shelly_rpc_method_t> =
   | {
-      id: shelly_rpc_request_id_t;
+      id: string | number;
       src: string;
       dst: string;
       result: shelly_rpc_method_result_t<K>;
     }
   | {
-      id: shelly_rpc_request_id_t;
+      id: string | number;
       src: string;
       dst: string;
       error: {

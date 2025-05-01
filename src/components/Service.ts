@@ -1,4 +1,4 @@
-import { shelly_component_id_t, shelly_component_key_t } from '../ShellyRpc';
+import { shelly_component_id_t, shelly_component_key_t } from '../ShellyRpc.js';
 
 type shelly_service_status_state_t =
   | 'init'
@@ -6,6 +6,8 @@ type shelly_service_status_state_t =
   | 'restarting'
   | 'terminated'
   | 'disabled';
+
+type shelly_service_rpc_method_custom_name_t = `Service.${string}`;
 
 export type shelly_service_status_t = {
   etag: string;
@@ -64,7 +66,7 @@ export type shelly_service_rpc_method_map_t = {
       vc?: Record<string, shelly_component_key_t>;
     };
   };
-  [`Service.${any}`]: {
+  [key: `Service.${string}`]: {
     params: {
       id: shelly_component_id_t;
     };

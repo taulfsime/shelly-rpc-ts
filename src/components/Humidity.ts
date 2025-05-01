@@ -1,4 +1,4 @@
-import { shelly_component_id_t } from '../ShellyRpc';
+import { shelly_component_id_t } from '../ShellyRpc.js';
 
 type shelly_humidity_status_errors_t = 'out_of_range' | 'read';
 
@@ -35,6 +35,6 @@ export type shelly_humidity_rpc_method_map_t = {
     params: {
       id: shelly_component_id_t;
     };
-    result: shelly_temperature_config_t;
+    result: shelly_humidity_config_t;
   };
 };

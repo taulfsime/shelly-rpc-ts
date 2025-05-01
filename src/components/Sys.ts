@@ -4,7 +4,7 @@ import {
   shelly_device_profile_t,
   shelly_device_update_info_t,
   shelly_device_update_stage_t,
-} from '../Shelly';
+} from '../Shelly.js';
 
 type shelly_addon_type_t = 'sensor' | 'prooutput' | 'LoRa' | null; //XXX: move to addon types
 type shelly_sys_wakeup_reason_boot_t =
@@ -96,7 +96,6 @@ export type shelly_sys_status_t = {
     cause: shelly_sys_wakeup_reason_cause_t;
   };
   wakeup_period?: number;
-  utc_offset: number;
   reset_reason?: number;
   utc_offset: number;
 };

@@ -1,23 +1,25 @@
-import { shelly_component_id_t, shelly_component_key_t } from '../ShellyRpc';
-import { shelly_virtual_component_status_source_t } from './ShellyVirtualComponent';
+import { shelly_component_id_t, shelly_component_key_t } from '../ShellyRpc.js';
+import { shelly_virtual_component_status_source_t } from './common.js';
 
-export type shelly_text_status_t = {
-  source: shelly_virtual_component_status_source_t;
-  value: string;
+type shelly_enum_option_t = string;
+
+export type shelly_enum_status_t = {
+  value: shelly_enum_option_t | null;
   last_update_ts: number;
+  source: shelly_virtual_component_status_source_t;
 };
 
-export type shelly_text_config_t = {
+export type shelly_enum_config_t = {
   id: shelly_component_id_t;
   name: string | null;
   persisted: boolean;
-  default_value: string;
+  options: shelly_enum_option_t[];
+  default_value: shelly_enum_option_t | null;
   meta: null | Record<string, unknown>;
-  max_len: number;
 };
 
-export type shelly_text_rpc_method_map_t = {
-  'Text.GetStatus': {
+export type shelly_enum_rpc_method_map_t = {
+  'Enum.GetStatus': {
     params:
       | {
           id: shelly_component_id_t;
@@ -26,24 +28,24 @@ export type shelly_text_rpc_method_map_t = {
           role: string;
           owner: shelly_component_key_t;
         };
-    result: shelly_text_status_t;
+    result: shelly_enum_status_t;
   };
-  'Text.SetConfig': {
+  'Enum.SetConfig': {
     params:
       | {
           id: shelly_component_id_t;
-          config: shelly_text_config_t;
+          config: shelly_enum_config_t;
         }
       | {
           role: string;
           owner: shelly_component_key_t;
-          config: shelly_text_config_t;
+          config: shelly_enum_config_t;
         };
     result: {
       restart_required: boolean;
     };
   };
-  'Text.GetConfig': {
+  'Enum.GetConfig': {
     params:
       | {
           id: shelly_component_id_t;
@@ -52,18 +54,18 @@ export type shelly_text_rpc_method_map_t = {
           role: string;
           owner: shelly_component_key_t;
         };
-    result: shelly_text_config_t;
+    result: shelly_enum_config_t;
   };
-  'Text.Set': {
+  'Enum.Set': {
     params:
       | {
           id: shelly_component_id_t;
-          value: string;
+          value: shelly_enum_option_t | null;
         }
       | {
           role: string;
           owner: shelly_component_key_t;
-          value: string;
+          value: shelly_enum_option_t | null;
         };
     result: null;
   };

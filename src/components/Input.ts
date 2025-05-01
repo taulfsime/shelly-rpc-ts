@@ -1,4 +1,4 @@
-import { shelly_component_id_t } from '../ShellyRpc';
+import { shelly_component_id_t } from '../ShellyRpc.js';
 
 type shelly_input_status_errors_t = 'out_of_range' | 'read';
 

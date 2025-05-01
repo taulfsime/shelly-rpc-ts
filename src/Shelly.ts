@@ -3,7 +3,7 @@ import {
   shelly_component_key_t,
   shelly_component_type_t,
   shelly_rpc_method_t,
-} from './ShellyRpc';
+} from './ShellyRpc.js';
 
 export type shelly_device_info_data_t = {
   name: string | null;
