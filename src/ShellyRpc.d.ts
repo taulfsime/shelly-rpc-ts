@@ -17,6 +17,7 @@ import { shelly_temperature_rpc_method_map_t } from './components/Temperature';
 import { shelly_humidity_rpc_method_map_t } from './components/Humidity';
 import { shelly_input_rpc_method_map_t } from './components/Input';
 import { shelly_bthomesensor_rpc_method_map_t } from './components/BTHomeSensor';
+import { shelly_bthomedevice_rpc_method_map_t } from './components/BTHomeDevice';
 
 type shelly_component_single_instance_t = 'sys' | 'wifi' | 'mqtt';
 
@@ -66,7 +67,8 @@ type shelly_rpc_method_map_t = shelly_device_rpc_method_map_t &
   shelly_temperature_rpc_method_map_t &
   shelly_humidity_rpc_method_map_t &
   shelly_input_rpc_method_map_t &
-  shelly_bthomesensor_rpc_method_map_t;
+  shelly_bthomesensor_rpc_method_map_t &
+  shelly_bthomedevice_rpc_method_map_t;
 
 type shelly_rpc_method_t = keyof shelly_rpc_method_map_t;
 
