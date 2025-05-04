@@ -46,6 +46,7 @@ import {
   shelly_object_config_t,
   shelly_object_status_t,
 } from './components/Object.js';
+import { shelly_pm1_config_t, shelly_pm1_status_t } from './components/PM1.js';
 import {
   shelly_script_config_t,
   shelly_script_status_t,
@@ -137,7 +138,7 @@ export type shelly_component_status_map_t = {
   ]: shelly_temperature_status_t;
   [key: shelly_component_key_helper<'humidity'>]: shelly_humidity_status_t;
   [key: shelly_component_key_helper<'input'>]: shelly_input_status_t;
-  // [key: shelly_component_key_helper<'pm1'>]: shelly_pm1_status_t;
+  [key: shelly_component_key_helper<'pm1'>]: shelly_pm1_status_t;
 };
 
 export type shelly_component_config_map_t = {
@@ -167,7 +168,7 @@ export type shelly_component_config_map_t = {
   ]: shelly_temperature_config_t;
   [key: shelly_component_key_helper<'humidity'>]: shelly_humidity_config_t;
   [key: shelly_component_key_helper<'input'>]: shelly_input_config_t;
-  // [key: shelly_component_key_helper<'pm1'>]: shelly_pm1_config_t;
+  [key: shelly_component_key_helper<'pm1'>]: shelly_pm1_config_t;
 };
 
 // vasi haly

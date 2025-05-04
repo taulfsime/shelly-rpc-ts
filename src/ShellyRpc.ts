@@ -24,6 +24,7 @@ import {
   shelly_component_key_t,
   shelly_component_status_map_t,
 } from './ShellyComponents.js';
+import { shelly_pm1_rpc_method_map_t } from './components/PM1.js';
 
 type shelly_rpc_method_map_t = shelly_device_rpc_method_map_t &
   shelly_sys_rpc_method_map_t &
@@ -45,7 +46,8 @@ type shelly_rpc_method_map_t = shelly_device_rpc_method_map_t &
   shelly_input_rpc_method_map_t &
   shelly_bthomesensor_rpc_method_map_t &
   shelly_bthomedevice_rpc_method_map_t &
-  shelly_object_rpc_method_map_t;
+  shelly_object_rpc_method_map_t &
+  shelly_pm1_rpc_method_map_t;
 
 export type shelly_rpc_method_t = keyof shelly_rpc_method_map_t;
 

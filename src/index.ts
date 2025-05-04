@@ -78,6 +78,8 @@ export {
   shelly_object_status_t,
 } from './components/Object.js';
 
+export { shelly_pm1_config_t, shelly_pm1_status_t } from './components/PM1.js';
+
 // Shelly device types
 export { shelly_device_info_data_t } from './components/Shelly.js';
 
