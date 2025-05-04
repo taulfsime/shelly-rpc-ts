@@ -12,6 +12,10 @@ import {
   shelly_bthomesensor_status_t,
 } from './components/BTHomeSensor.js';
 import {
+  shelly_cloud_config_t,
+  shelly_cloud_status_t,
+} from './components/Cloud.js';
+import {
   shelly_cover_config_t,
   shelly_cover_status_t,
 } from './components/Cover.js';
@@ -87,7 +91,8 @@ type shelly_component_single_instance_t =
   | 'wifi'
   | 'mqtt'
   | 'ethernet'
-  | 'ble';
+  | 'ble'
+  | 'cloud';
 
 type shelly_component_virtual_instance_t =
   | 'number'
@@ -132,6 +137,7 @@ export type shelly_component_status_map_t = {
   mqtt: shelly_mqtt_status_t;
   ethernet: shelly_ethernet_status_t;
   ble: shelly_ble_status_t;
+  config: shelly_cloud_status_t;
 } & {
   [key: shelly_component_key_helper<'number'>]: shelly_number_status_t;
   [key: shelly_component_key_helper<'boolean'>]: shelly_boolean_status_t;
@@ -167,6 +173,7 @@ export type shelly_component_config_map_t = {
   mqtt: shelly_mqtt_config_t;
   ethernet: shelly_ethernet_config_t;
   ble: shelly_ble_config_t;
+  cloud: shelly_cloud_config_t;
 } & {
   [key: shelly_component_key_helper<'number'>]: shelly_number_config_t;
   [key: shelly_component_key_helper<'boolean'>]: shelly_boolean_config_t;

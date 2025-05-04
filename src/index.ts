@@ -92,6 +92,11 @@ export {
 
 export { shelly_ble_config_t, shelly_ble_status_t } from './components/BLE.js';
 
+export {
+  shelly_cloud_config_t,
+  shelly_cloud_status_t,
+} from './components/Cloud.js';
+
 // Shelly device types
 export { shelly_device_info_data_t } from './components/Shelly.js';
 
