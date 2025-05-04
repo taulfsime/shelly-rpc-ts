@@ -35,6 +35,7 @@ import { shelly_modbus_rpc_method_map_t } from './components/Modbus.js';
 import { shelly_voltmeter_rpc_method_map_t } from './components/Voltmeter.js';
 import { shelly_smoke_rpc_method_map_t } from './components/Smoke.js';
 import { shelly_dali_rpc_method_map_t } from './components/DALI.js';
+import { shelly_cct_rpc_method_map_t } from './components/CCT.js';
 
 type shelly_rpc_method_map_t = shelly_device_rpc_method_map_t &
   shelly_sys_rpc_method_map_t &
@@ -67,7 +68,8 @@ type shelly_rpc_method_map_t = shelly_device_rpc_method_map_t &
   shelly_modbus_rpc_method_map_t &
   shelly_voltmeter_rpc_method_map_t &
   shelly_smoke_rpc_method_map_t &
-  shelly_dali_rpc_method_map_t;
+  shelly_dali_rpc_method_map_t &
+  shelly_cct_rpc_method_map_t;
 
 export type shelly_rpc_method_t = keyof shelly_rpc_method_map_t;
 

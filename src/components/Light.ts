@@ -1,5 +1,6 @@
 import { shelly_component_id_t } from '../ShellyComponents.js';
 import {
+  shelly_light_config_fade_rate_t,
   shelly_output_component_status_counter_t,
   shelly_output_component_status_source_t,
 } from './common.js';
@@ -20,8 +21,6 @@ type shelly_light_status_errors_t =
   | 'cal_abort:unsupported_load';
 
 type shelly_light_status_flags_t = 'no_load' | 'uncalibrated';
-
-type shelly_light_config_fade_rate_t = 1 | 2 | 3 | 4 | 5;
 
 export type shelly_light_status_t = {
   id: shelly_component_id_t;

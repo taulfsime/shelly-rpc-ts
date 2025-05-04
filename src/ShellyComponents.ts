@@ -11,6 +11,7 @@ import {
   shelly_bthomesensor_config_t,
   shelly_bthomesensor_status_t,
 } from './components/BTHomeSensor.js';
+import { shelly_cct_config_t, shelly_cct_status_t } from './components/CCT.js';
 import {
   shelly_cloud_config_t,
   shelly_cloud_status_t,
@@ -142,7 +143,8 @@ type shelly_component_multi_instance_t =
   | 'pm1'
   | 'devicepower'
   | 'voltmeter'
-  | 'smoke';
+  | 'smoke'
+  | 'cct';
 
 type shelly_component_key_helper<K extends shelly_component_type_t> =
   K extends shelly_component_single_instance_t
@@ -198,6 +200,7 @@ export type shelly_component_status_map_t = {
   ]: shelly_devicepower_status_t;
   [key: shelly_component_key_helper<'voltmeter'>]: shelly_voltmeter_status_t;
   [key: shelly_component_key_helper<'smoke'>]: shelly_smoke_status_t;
+  [key: shelly_component_key_helper<'cct'>]: shelly_cct_status_t;
 };
 
 export type shelly_component_config_map_t = {
@@ -240,6 +243,7 @@ export type shelly_component_config_map_t = {
   ]: shelly_devicepower_config_t;
   [key: shelly_component_key_helper<'voltmeter'>]: shelly_voltmeter_config_t;
   [key: shelly_component_key_helper<'smoke'>]: shelly_smoke_config_t;
+  [key: shelly_component_key_helper<'cct'>]: shelly_cct_config_t;
 };
 
 // vasi haly
