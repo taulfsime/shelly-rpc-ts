@@ -5,6 +5,7 @@ import {
   shelly_device_update_info_t,
   shelly_device_update_stage_t,
 } from './Shelly.js';
+import { shelly_webhook_rev_t } from './Webhook.js';
 
 type shelly_addon_type_t = 'sensor' | 'prooutput' | 'LoRa' | null; //XXX: move to addon types
 type shelly_sys_wakeup_reason_boot_t =
@@ -74,7 +75,7 @@ export type shelly_sys_status_t = {
   cfg_rev: number;
   kvs_rev?: number;
   schedule_rev?: number;
-  webhook_rev: number; //XXX: all devices have webhooks?
+  webhook_rev: shelly_webhook_rev_t;
   knx_rev?: number;
   btrelay_rev?: number;
   available_updates: Partial<
