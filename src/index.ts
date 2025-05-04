@@ -103,6 +103,10 @@ export {
   shelly_matter_config_t,
   shelly_matter_status_t,
 } from './components/Matter.js';
+export {
+  shelly_modbus_status_t,
+  shelly_modbus_config_t,
+} from './components/Modbus.js';
 
 // Shelly device types
 export { shelly_device_info_data_t } from './components/Shelly.js';
