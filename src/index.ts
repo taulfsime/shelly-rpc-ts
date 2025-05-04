@@ -85,6 +85,11 @@ export {
   shelly_devicepower_status_t,
 } from './components/DevicePower.js';
 
+export {
+  shelly_ethernet_config_t,
+  shelly_ethernet_status_t,
+} from './components/Ethernet.js';
+
 // Shelly device types
 export { shelly_device_info_data_t } from './components/Shelly.js';
 

@@ -26,6 +26,7 @@ import {
 } from './ShellyComponents.js';
 import { shelly_pm1_rpc_method_map_t } from './components/PM1.js';
 import { shelly_devicepower_rpc_method_map_t } from './components/DevicePower.js';
+import { shelly_ethernet_rpc_method_map_t } from './components/Ethernet.js';
 
 type shelly_rpc_method_map_t = shelly_device_rpc_method_map_t &
   shelly_sys_rpc_method_map_t &
@@ -49,7 +50,8 @@ type shelly_rpc_method_map_t = shelly_device_rpc_method_map_t &
   shelly_bthomedevice_rpc_method_map_t &
   shelly_object_rpc_method_map_t &
   shelly_pm1_rpc_method_map_t &
-  shelly_devicepower_rpc_method_map_t;
+  shelly_devicepower_rpc_method_map_t &
+  shelly_ethernet_rpc_method_map_t;
 
 export type shelly_rpc_method_t = keyof shelly_rpc_method_map_t;
 

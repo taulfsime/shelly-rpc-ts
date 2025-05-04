@@ -23,6 +23,10 @@ import {
   shelly_enum_status_t,
 } from './components/Enum.js';
 import {
+  shelly_ethernet_config_t,
+  shelly_ethernet_status_t,
+} from './components/Ethernet.js';
+import {
   shelly_group_config_t,
   shelly_group_status_t,
 } from './components/Group.js';
@@ -77,7 +81,7 @@ import {
   shelly_wifi_status_t,
 } from './components/WiFi.js';
 
-type shelly_component_single_instance_t = 'sys' | 'wifi' | 'mqtt';
+type shelly_component_single_instance_t = 'sys' | 'wifi' | 'mqtt' | 'ethernet';
 
 type shelly_component_virtual_instance_t =
   | 'number'
@@ -120,6 +124,7 @@ export type shelly_component_status_map_t = {
   sys: shelly_sys_status_t;
   wifi: shelly_wifi_status_t;
   mqtt: shelly_mqtt_status_t;
+  ethernet: shelly_ethernet_status_t;
 } & {
   [key: shelly_component_key_helper<'number'>]: shelly_number_status_t;
   [key: shelly_component_key_helper<'boolean'>]: shelly_boolean_status_t;
@@ -153,6 +158,7 @@ export type shelly_component_config_map_t = {
   sys: shelly_sys_config_t;
   wifi: shelly_wifi_config_t;
   mqtt: shelly_mqtt_config_t;
+  ethernet: shelly_ethernet_config_t;
 } & {
   [key: shelly_component_key_helper<'number'>]: shelly_number_config_t;
   [key: shelly_component_key_helper<'boolean'>]: shelly_boolean_config_t;
