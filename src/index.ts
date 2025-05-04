@@ -97,6 +97,8 @@ export {
   shelly_cloud_status_t,
 } from './components/Cloud.js';
 
+export { shelly_ws_config_t, shelly_ws_status_t } from './components/WS.js';
+
 // Shelly device types
 export { shelly_device_info_data_t } from './components/Shelly.js';
 
