@@ -31,6 +31,10 @@ import {
 import { shelly_em_config_t, shelly_em_status_t } from './components/EM.js';
 import { shelly_em1_config_t, shelly_em1_status_t } from './components/EM1.js';
 import {
+  shelly_emdata_config_t,
+  shelly_emdata_status_t,
+} from './components/EMData.js';
+import {
   shelly_enum_config_t,
   shelly_enum_status_t,
 } from './components/Enum.js';
@@ -153,7 +157,8 @@ type shelly_component_multi_instance_t =
   | 'smoke'
   | 'cct'
   | 'em'
-  | 'em1';
+  | 'em1'
+  | 'emdata';
 
 type shelly_component_key_helper<K extends shelly_component_type_t> =
   K extends shelly_component_single_instance_t
@@ -213,6 +218,7 @@ export type shelly_component_status_map_t = {
   [key: shelly_component_key_helper<'cct'>]: shelly_cct_status_t;
   [key: shelly_component_key_helper<'em'>]: shelly_em_status_t;
   [key: shelly_component_key_helper<'em1'>]: shelly_em1_status_t;
+  [key: shelly_component_key_helper<'emdata'>]: shelly_emdata_status_t;
 };
 
 export type shelly_component_config_map_t = {
@@ -259,6 +265,7 @@ export type shelly_component_config_map_t = {
   [key: shelly_component_key_helper<'cct'>]: shelly_cct_config_t;
   [key: shelly_component_key_helper<'em'>]: shelly_em_config_t;
   [key: shelly_component_key_helper<'em1'>]: shelly_em1_config_t;
+  [key: shelly_component_key_helper<'emdata'>]: shelly_emdata_config_t;
 };
 
 // vasi haly
