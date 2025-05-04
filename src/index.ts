@@ -89,4 +89,5 @@ export {
   shelly_rpc_msg_response_t,
   shelly_rpc_msg_response_error_t,
   shelly_rpc_msg_response_result_t,
+  isRpcResponse,
 } from './ShellyRpc.js';

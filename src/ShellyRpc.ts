@@ -119,3 +119,26 @@ export type shelly_rpc_msg_response_error_t = shelly_rpc_msg_response_base_t & {
 export type shelly_rpc_msg_response_t<K extends shelly_rpc_method_t> =
   | shelly_rpc_msg_response_result_t<K>
   | shelly_rpc_msg_response_error_t;
+
+export function isRpcResponse(data: any) {
+  if (typeof data !== 'object' || Array.isArray(data) || data == null) {
+    return false;
+  }
+
+  if (
+    !Object.hasOwn(data, 'id') ||
+    (typeof data.id !== 'string' && typeof data.id !== 'number')
+  ) {
+    return false;
+  }
+
+  if (!Object.hasOwn(data, 'src') || typeof data.src !== 'string') {
+    return false;
+  }
+
+  if (!Object.hasOwn(data, 'dst') || typeof data.dst !== 'string') {
+    return false;
+  }
+
+  return Object.hasOwn(data, 'result') || Object.hasOwn(data, 'error');
+}
