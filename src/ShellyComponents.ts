@@ -48,6 +48,10 @@ import {
   shelly_light_status_t,
 } from './components/Light.js';
 import {
+  shelly_matter_config_t,
+  shelly_matter_status_t,
+} from './components/Matter.js';
+import {
   shelly_mqtt_config_t,
   shelly_mqtt_status_t,
 } from './components/MQTT.js';
@@ -94,7 +98,8 @@ type shelly_component_single_instance_t =
   | 'ethernet'
   | 'ble'
   | 'cloud'
-  | 'ws';
+  | 'ws'
+  | 'matter';
 
 type shelly_component_virtual_instance_t =
   | 'number'
@@ -141,6 +146,7 @@ export type shelly_component_status_map_t = {
   ble: shelly_ble_status_t;
   config: shelly_cloud_status_t;
   ws: shelly_ws_status_t;
+  matter: shelly_matter_status_t;
 } & {
   [key: shelly_component_key_helper<'number'>]: shelly_number_status_t;
   [key: shelly_component_key_helper<'boolean'>]: shelly_boolean_status_t;
@@ -178,6 +184,7 @@ export type shelly_component_config_map_t = {
   ble: shelly_ble_config_t;
   cloud: shelly_cloud_config_t;
   ws: shelly_ws_config_t;
+  matter: shelly_matter_config_t;
 } & {
   [key: shelly_component_key_helper<'number'>]: shelly_number_config_t;
   [key: shelly_component_key_helper<'boolean'>]: shelly_boolean_config_t;

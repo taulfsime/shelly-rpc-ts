@@ -1,0 +1,34 @@
+export type shelly_matter_config_t = {
+  enable: boolean;
+};
+
+export type shelly_matter_status_t = {
+  num_fabrics: number;
+  commissionable: boolean;
+};
+
+export type shelly_matter_rpc_method_map_t = {
+  'Matter.GetConfig': {
+    params: never;
+    result: shelly_matter_config_t;
+  };
+  'Matter.SetConfig': {
+    params: {
+      config: shelly_matter_config_t;
+    };
+    result: {
+      restart_required: boolean;
+    };
+  };
+  'Matter.GetStatus': {
+    params: never;
+    result: shelly_matter_status_t;
+  };
+  'Matter.GetSetupCode': {
+    params: never;
+    result: {
+      qr_code: string;
+      manual_code: string;
+    };
+  };
+};

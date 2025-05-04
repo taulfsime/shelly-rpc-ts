@@ -99,6 +99,11 @@ export {
 
 export { shelly_ws_config_t, shelly_ws_status_t } from './components/WS.js';
 
+export {
+  shelly_matter_config_t,
+  shelly_matter_status_t,
+} from './components/Matter.js';
+
 // Shelly device types
 export { shelly_device_info_data_t } from './components/Shelly.js';
 
