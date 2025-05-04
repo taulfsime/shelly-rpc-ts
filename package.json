@@ -1,7 +1,7 @@
 {
-  "name": "@taulfsime/shelly-rpc-types",
+  "name": "@taulfsime/shelly-rpc-ts",
   "version": "0.0.1",
-  "description": "Shelly RPC types",
+  "description": "Type definitions for the Shelly RPC interface and helper functions and classes",
   "keywords": [
     "shelly",
     "typescript"
