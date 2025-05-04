@@ -130,6 +130,7 @@ export {
   shelly_emdata_status_t,
   shelly_emdata_config_t,
 } from './components/EMData.js';
+export { shelly_schedule_job_t } from './components/Schedule.js';
 
 // Shelly device types
 export { shelly_device_info_data_t } from './components/Shelly.js';

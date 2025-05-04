@@ -40,6 +40,7 @@ import { shelly_zigbee_rpc_method_map_t } from './components/Zigbee.js';
 import { shelly_em_rpc_method_map_t } from './components/EM.js';
 import { shelly_em1_rpc_method_map_t } from './components/EM1.js';
 import { shelly_emdata_rpc_method_map_t } from './components/EMData.js';
+import { shelly_schedule_rpc_method_map_t } from './components/Schedule.js';
 
 type shelly_rpc_method_map_t = shelly_device_rpc_method_map_t &
   shelly_sys_rpc_method_map_t &
@@ -77,7 +78,8 @@ type shelly_rpc_method_map_t = shelly_device_rpc_method_map_t &
   shelly_zigbee_rpc_method_map_t &
   shelly_em_rpc_method_map_t &
   shelly_em1_rpc_method_map_t &
-  shelly_emdata_rpc_method_map_t;
+  shelly_emdata_rpc_method_map_t &
+  shelly_schedule_rpc_method_map_t;
 
 export type shelly_rpc_method_t = keyof shelly_rpc_method_map_t;
 
