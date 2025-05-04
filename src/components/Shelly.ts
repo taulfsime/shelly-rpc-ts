@@ -1,9 +1,10 @@
+import { shelly_rpc_method_t } from '../ShellyRpc.js';
+
 import {
   shelly_component_id_t,
   shelly_component_key_t,
   shelly_component_type_t,
-  shelly_rpc_method_t,
-} from './ShellyRpc.js';
+} from '../ShellyComponents.js';
 
 export type shelly_device_info_data_t = {
   name: string | null;

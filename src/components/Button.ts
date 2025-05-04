@@ -1,4 +1,7 @@
-import { shelly_component_id_t, shelly_component_key_t } from '../ShellyRpc.js';
+import {
+  shelly_component_id_t,
+  shelly_component_key_t,
+} from '../ShellyComponents.js';
 
 export type shelly_button_event_t =
   | 'single_push'

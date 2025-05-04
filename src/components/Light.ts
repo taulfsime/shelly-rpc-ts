@@ -1,4 +1,4 @@
-import { shelly_component_id_t } from '../ShellyRpc.js';
+import { shelly_component_id_t } from '../ShellyComponents.js';
 import {
   shelly_output_component_status_counter_t,
   shelly_output_component_status_source_t,

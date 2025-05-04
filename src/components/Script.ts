@@ -1,4 +1,4 @@
-import { shelly_component_id_t } from '../ShellyRpc.js';
+import { shelly_component_id_t } from '../ShellyComponents.js';
 
 type shelly_script_status_errors_t =
   | 'crashed'

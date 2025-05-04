@@ -1,4 +1,4 @@
-import { shelly_component_id_t } from '../ShellyRpc.js';
+import { shelly_component_id_t } from '../ShellyComponents.js';
 
 export type shelly_bthomesensor_status_t = {
   id: shelly_component_id_t;

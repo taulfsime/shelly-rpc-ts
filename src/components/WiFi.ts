@@ -1,4 +1,4 @@
-import { shelly_device_mac_t } from '../Shelly.js';
+import { shelly_device_mac_t } from './Shelly.js';
 
 type shelly_wifi_config_sta_static_t = {
   ipv4mode: 'static';

@@ -74,13 +74,10 @@ export {
 } from './components/BTHomeDevice.js';
 
 // Shelly device types
-export { shelly_device_info_data_t } from './Shelly.js';
+export { shelly_device_info_data_t } from './components/Shelly.js';
 
 // Shelly RPC-related types
 export {
-  shelly_component_id_t,
-  shelly_component_type_t,
-  shelly_component_key_t,
   shelly_rpc_method_t,
   shelly_rpc_method_params_t,
   shelly_rpc_method_result_t,
@@ -91,3 +88,9 @@ export {
   shelly_rpc_msg_response_result_t,
   isRpcResponse,
 } from './ShellyRpc.js';
+
+export {
+  shelly_component_id_t,
+  shelly_component_type_t,
+  shelly_component_key_t,
+} from './ShellyComponents.js';

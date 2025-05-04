@@ -17,37 +17,7 @@ import { shelly_sys_rpc_method_map_t } from './components/Sys.js';
 import { shelly_temperature_rpc_method_map_t } from './components/Temperature.js';
 import { shelly_text_rpc_method_map_t } from './components/Text.js';
 import { shelly_wifi_rpc_method_map_t } from './components/WiFi.js';
-import { shelly_device_rpc_method_map_t } from './Shelly.js';
-
-type shelly_component_single_instance_t = 'sys' | 'wifi' | 'mqtt';
-
-type shelly_component_multi_instance_t =
-  | 'switch'
-  | 'cover'
-  | 'light'
-  | 'service'
-  | 'number'
-  | 'boolean'
-  | 'text'
-  | 'object'
-  | 'enum'
-  | 'script'
-  | 'temperature'
-  | 'humidity'
-  | 'input'
-  | 'bthomesensor'
-  | 'bthomedevice'
-  | 'pm1'
-  | 'group';
-
-export type shelly_component_id_t = number;
-export type shelly_component_type_t =
-  | shelly_component_single_instance_t
-  | shelly_component_multi_instance_t;
-
-export type shelly_component_key_t =
-  | shelly_component_single_instance_t
-  | `${shelly_component_multi_instance_t}:${shelly_component_id_t}`;
+import { shelly_device_rpc_method_map_t } from './components/Shelly.js';
 
 type shelly_rpc_method_map_t = shelly_device_rpc_method_map_t &
   shelly_sys_rpc_method_map_t &
