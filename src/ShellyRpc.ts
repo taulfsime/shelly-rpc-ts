@@ -18,6 +18,11 @@ import { shelly_temperature_rpc_method_map_t } from './components/Temperature.js
 import { shelly_text_rpc_method_map_t } from './components/Text.js';
 import { shelly_wifi_rpc_method_map_t } from './components/WiFi.js';
 import { shelly_device_rpc_method_map_t } from './components/Shelly.js';
+import {
+  shelly_component_id_t,
+  shelly_component_key_t,
+  shelly_component_status_map_t,
+} from './ShellyComponents.js';
 
 type shelly_rpc_method_map_t = shelly_device_rpc_method_map_t &
   shelly_sys_rpc_method_map_t &
@@ -75,6 +80,8 @@ type shelly_rpc_msg_response_base_t = {
   id: string | number;
   src: string;
   dst: string;
+  result: never;
+  error: never;
 };
 
 export type shelly_rpc_msg_response_result_t<K extends shelly_rpc_method_t> =
@@ -89,6 +96,42 @@ export type shelly_rpc_msg_response_error_t = shelly_rpc_msg_response_base_t & {
 export type shelly_rpc_msg_response_t<K extends shelly_rpc_method_t> =
   | shelly_rpc_msg_response_result_t<K>
   | shelly_rpc_msg_response_error_t;
+
+type shelly_rpc_notification_base_t = {
+  src: string;
+  dist: string;
+  method: 'NotifyStatus' | 'NotifyFullStatus' | 'NotifyEvent';
+  params: unknown;
+};
+
+type shelly_rpc_notification_notify_status_t =
+  shelly_rpc_notification_base_t & {
+    method: 'NotifyStatus' | 'NotifyFullStatus';
+    params: {
+      ts: number;
+    } & {
+      [K in keyof shelly_component_status_map_t]: Partial<
+        shelly_component_status_map_t[K]
+      >;
+    };
+  };
+
+type shelly_rpc_notification_notify_event_t = shelly_rpc_notification_base_t & {
+  method: 'NotifyEvent';
+  params: {
+    ts: number;
+    events: {
+      ts: number;
+      component: shelly_component_key_t;
+      id: shelly_component_id_t;
+      event: string; // XXX:
+    }[];
+  };
+};
+
+export type shelly_rpc_notification_t =
+  | shelly_rpc_notification_notify_status_t
+  | shelly_rpc_notification_notify_event_t;
 
 export function isRpcResponse(data: any) {
   if (typeof data !== 'object' || Array.isArray(data) || data == null) {
@@ -111,4 +154,32 @@ export function isRpcResponse(data: any) {
   }
 
   return Object.hasOwn(data, 'result') || Object.hasOwn(data, 'error');
+}
+
+export function isRpcNotification(data: any) {
+  if (typeof data !== 'object' || Array.isArray(data) || data == null) {
+    return false;
+  }
+
+  if (!Object.hasOwn(data, 'src') || typeof data.src !== 'string') {
+    return false;
+  }
+
+  if (!Object.hasOwn(data, 'dst') || typeof data.dst !== 'string') {
+    return false;
+  }
+
+  if (!Object.hasOwn(data, 'method') || typeof data.method !== 'string') {
+    return false;
+  }
+
+  if (!Object.hasOwn(data, 'params')) {
+    return false;
+  }
+
+  return (
+    data.method === 'NotifyStatus' ||
+    data.method === 'NotifyFullStatus' ||
+    data.method === 'NotifyEvent'
+  );
 }
