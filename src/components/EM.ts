@@ -1,6 +1,6 @@
 import { shelly_component_id_t } from '../ShellyComponents.js';
 
-type shelly_em_config_ct_type_t =
+export type shelly_em_config_ct_type_t =
   | '50A'
   | '80A'
   | '3x63A'

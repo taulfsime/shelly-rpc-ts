@@ -29,6 +29,7 @@ import {
   shelly_devicepower_status_t,
 } from './components/DevicePower.js';
 import { shelly_em_config_t, shelly_em_status_t } from './components/EM.js';
+import { shelly_em1_config_t, shelly_em1_status_t } from './components/EM1.js';
 import {
   shelly_enum_config_t,
   shelly_enum_status_t,
@@ -151,7 +152,8 @@ type shelly_component_multi_instance_t =
   | 'voltmeter'
   | 'smoke'
   | 'cct'
-  | 'em';
+  | 'em'
+  | 'em1';
 
 type shelly_component_key_helper<K extends shelly_component_type_t> =
   K extends shelly_component_single_instance_t
@@ -210,6 +212,7 @@ export type shelly_component_status_map_t = {
   [key: shelly_component_key_helper<'smoke'>]: shelly_smoke_status_t;
   [key: shelly_component_key_helper<'cct'>]: shelly_cct_status_t;
   [key: shelly_component_key_helper<'em'>]: shelly_em_status_t;
+  [key: shelly_component_key_helper<'em1'>]: shelly_em1_status_t;
 };
 
 export type shelly_component_config_map_t = {
@@ -255,6 +258,7 @@ export type shelly_component_config_map_t = {
   [key: shelly_component_key_helper<'smoke'>]: shelly_smoke_config_t;
   [key: shelly_component_key_helper<'cct'>]: shelly_cct_config_t;
   [key: shelly_component_key_helper<'em'>]: shelly_em_config_t;
+  [key: shelly_component_key_helper<'em1'>]: shelly_em1_config_t;
 };
 
 // vasi haly
