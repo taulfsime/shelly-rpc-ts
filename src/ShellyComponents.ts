@@ -15,6 +15,10 @@ import {
   shelly_cover_status_t,
 } from './components/Cover.js';
 import {
+  shelly_devicepower_config_t,
+  shelly_devicepower_status_t,
+} from './components/DevicePower.js';
+import {
   shelly_enum_config_t,
   shelly_enum_status_t,
 } from './components/Enum.js';
@@ -95,7 +99,8 @@ type shelly_component_multi_instance_t =
   | 'temperature'
   | 'humidity'
   | 'input'
-  | 'pm1';
+  | 'pm1'
+  | 'devicepower';
 
 type shelly_component_key_helper<K extends shelly_component_type_t> =
   K extends shelly_component_single_instance_t
@@ -139,6 +144,9 @@ export type shelly_component_status_map_t = {
   [key: shelly_component_key_helper<'humidity'>]: shelly_humidity_status_t;
   [key: shelly_component_key_helper<'input'>]: shelly_input_status_t;
   [key: shelly_component_key_helper<'pm1'>]: shelly_pm1_status_t;
+  [
+    key: shelly_component_key_helper<'devicepower'>
+  ]: shelly_devicepower_status_t;
 };
 
 export type shelly_component_config_map_t = {
@@ -169,6 +177,9 @@ export type shelly_component_config_map_t = {
   [key: shelly_component_key_helper<'humidity'>]: shelly_humidity_config_t;
   [key: shelly_component_key_helper<'input'>]: shelly_input_config_t;
   [key: shelly_component_key_helper<'pm1'>]: shelly_pm1_config_t;
+  [
+    key: shelly_component_key_helper<'devicepower'>
+  ]: shelly_devicepower_config_t;
 };
 
 // vasi haly

@@ -80,6 +80,11 @@ export {
 
 export { shelly_pm1_config_t, shelly_pm1_status_t } from './components/PM1.js';
 
+export {
+  shelly_devicepower_config_t,
+  shelly_devicepower_status_t,
+} from './components/DevicePower.js';
+
 // Shelly device types
 export { shelly_device_info_data_t } from './components/Shelly.js';
 
