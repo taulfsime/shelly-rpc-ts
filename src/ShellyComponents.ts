@@ -1,3 +1,4 @@
+import { shelly_ble_config_t, shelly_ble_status_t } from './components/BLE.js';
 import {
   shelly_boolean_config_t,
   shelly_boolean_status_t,
@@ -81,7 +82,12 @@ import {
   shelly_wifi_status_t,
 } from './components/WiFi.js';
 
-type shelly_component_single_instance_t = 'sys' | 'wifi' | 'mqtt' | 'ethernet';
+type shelly_component_single_instance_t =
+  | 'sys'
+  | 'wifi'
+  | 'mqtt'
+  | 'ethernet'
+  | 'ble';
 
 type shelly_component_virtual_instance_t =
   | 'number'
@@ -125,6 +131,7 @@ export type shelly_component_status_map_t = {
   wifi: shelly_wifi_status_t;
   mqtt: shelly_mqtt_status_t;
   ethernet: shelly_ethernet_status_t;
+  ble: shelly_ble_status_t;
 } & {
   [key: shelly_component_key_helper<'number'>]: shelly_number_status_t;
   [key: shelly_component_key_helper<'boolean'>]: shelly_boolean_status_t;
@@ -159,6 +166,7 @@ export type shelly_component_config_map_t = {
   wifi: shelly_wifi_config_t;
   mqtt: shelly_mqtt_config_t;
   ethernet: shelly_ethernet_config_t;
+  ble: shelly_ble_config_t;
 } & {
   [key: shelly_component_key_helper<'number'>]: shelly_number_config_t;
   [key: shelly_component_key_helper<'boolean'>]: shelly_boolean_config_t;

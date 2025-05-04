@@ -90,6 +90,8 @@ export {
   shelly_ethernet_status_t,
 } from './components/Ethernet.js';
 
+export { shelly_ble_config_t, shelly_ble_status_t } from './components/BLE.js';
+
 // Shelly device types
 export { shelly_device_info_data_t } from './components/Shelly.js';
 
