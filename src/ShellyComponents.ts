@@ -20,6 +20,10 @@ import {
   shelly_cover_status_t,
 } from './components/Cover.js';
 import {
+  shelly_dali_config_t,
+  shelly_dali_status_t,
+} from './components/DALI.js';
+import {
   shelly_devicepower_config_t,
   shelly_devicepower_status_t,
 } from './components/DevicePower.js';
@@ -112,7 +116,8 @@ type shelly_component_single_instance_t =
   | 'cloud'
   | 'ws'
   | 'matter'
-  | 'modbus';
+  | 'modbus'
+  | 'dali';
 
 type shelly_component_virtual_instance_t =
   | 'number'
@@ -163,6 +168,7 @@ export type shelly_component_status_map_t = {
   ws: shelly_ws_status_t;
   matter: shelly_matter_status_t;
   modbus: shelly_modbus_status_t;
+  dali: shelly_dali_status_t;
 } & {
   [key: shelly_component_key_helper<'number'>]: shelly_number_status_t;
   [key: shelly_component_key_helper<'boolean'>]: shelly_boolean_status_t;
@@ -204,6 +210,7 @@ export type shelly_component_config_map_t = {
   ws: shelly_ws_config_t;
   matter: shelly_matter_config_t;
   modbus: shelly_modbus_config_t;
+  dali: shelly_dali_config_t;
 } & {
   [key: shelly_component_key_helper<'number'>]: shelly_number_config_t;
   [key: shelly_component_key_helper<'boolean'>]: shelly_boolean_config_t;

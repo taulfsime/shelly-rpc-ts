@@ -115,6 +115,10 @@ export {
   shelly_smoke_status_t,
   shelly_smoke_config_t,
 } from './components/Smoke.js';
+export {
+  shelly_dali_status_t,
+  shelly_dali_config_t,
+} from './components/DALI.js';
 
 // Shelly device types
 export { shelly_device_info_data_t } from './components/Shelly.js';
