@@ -120,6 +120,10 @@ export {
   shelly_dali_config_t,
 } from './components/DALI.js';
 export { shelly_cct_status_t, shelly_cct_config_t } from './components/CCT.js';
+export {
+  shelly_zigbee_status_t,
+  shelly_zigbee_config_t,
+} from './components/Zigbee.js';
 
 // Shelly device types
 export { shelly_device_info_data_t } from './components/Shelly.js';
