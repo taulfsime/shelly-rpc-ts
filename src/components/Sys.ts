@@ -1,3 +1,4 @@
+import { shelly_schedule_rev_t } from './Schedule.js';
 import {
   shelly_device_location_t,
   shelly_device_mac_t,
@@ -74,7 +75,7 @@ export type shelly_sys_status_t = {
   fs_free: number;
   cfg_rev: number;
   kvs_rev?: number;
-  schedule_rev?: number;
+  schedule_rev?: shelly_schedule_rev_t;
   webhook_rev: shelly_webhook_rev_t;
   knx_rev?: number;
   btrelay_rev?: number;
