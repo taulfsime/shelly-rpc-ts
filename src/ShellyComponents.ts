@@ -90,6 +90,10 @@ import {
   shelly_text_status_t,
 } from './components/Text.js';
 import {
+  shelly_voltmeter_config_t,
+  shelly_voltmeter_status_t,
+} from './components/Voltmeter.js';
+import {
   shelly_wifi_config_t,
   shelly_wifi_status_t,
 } from './components/WiFi.js';
@@ -127,7 +131,8 @@ type shelly_component_multi_instance_t =
   | 'humidity'
   | 'input'
   | 'pm1'
-  | 'devicepower';
+  | 'devicepower'
+  | 'voltmeter';
 
 type shelly_component_key_helper<K extends shelly_component_type_t> =
   K extends shelly_component_single_instance_t
@@ -180,6 +185,7 @@ export type shelly_component_status_map_t = {
   [
     key: shelly_component_key_helper<'devicepower'>
   ]: shelly_devicepower_status_t;
+  [key: shelly_component_key_helper<'voltmeter'>]: shelly_voltmeter_status_t;
 };
 
 export type shelly_component_config_map_t = {
@@ -219,6 +225,7 @@ export type shelly_component_config_map_t = {
   [
     key: shelly_component_key_helper<'devicepower'>
   ]: shelly_devicepower_config_t;
+  [key: shelly_component_key_helper<'voltmeter'>]: shelly_voltmeter_config_t;
 };
 
 // vasi haly

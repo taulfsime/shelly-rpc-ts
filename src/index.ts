@@ -107,6 +107,10 @@ export {
   shelly_modbus_status_t,
   shelly_modbus_config_t,
 } from './components/Modbus.js';
+export {
+  shelly_voltmeter_config_t,
+  shelly_voltmeter_status_t,
+} from './components/Voltmeter.js';
 
 // Shelly device types
 export { shelly_device_info_data_t } from './components/Shelly.js';

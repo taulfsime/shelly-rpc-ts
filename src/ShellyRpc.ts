@@ -32,6 +32,7 @@ import { shelly_cloud_rpc_method_map_t } from './components/Cloud.js';
 import { shelly_ws_rpc_method_map_t } from './components/WS.js';
 import { shelly_matter_rpc_method_map_t } from './components/Matter.js';
 import { shelly_modbus_rpc_method_map_t } from './components/Modbus.js';
+import { shelly_voltmeter_rpc_method_map_t } from './components/Voltmeter.js';
 
 type shelly_rpc_method_map_t = shelly_device_rpc_method_map_t &
   shelly_sys_rpc_method_map_t &
@@ -61,7 +62,8 @@ type shelly_rpc_method_map_t = shelly_device_rpc_method_map_t &
   shelly_cloud_rpc_method_map_t &
   shelly_ws_rpc_method_map_t &
   shelly_matter_rpc_method_map_t &
-  shelly_modbus_rpc_method_map_t;
+  shelly_modbus_rpc_method_map_t &
+  shelly_voltmeter_rpc_method_map_t;
 
 export type shelly_rpc_method_t = keyof shelly_rpc_method_map_t;
 
