@@ -73,6 +73,11 @@ export {
   shelly_bthomedevice_status_t,
 } from './components/BTHomeDevice.js';
 
+export {
+  shelly_object_config_t,
+  shelly_object_status_t,
+} from './components/Object.js';
+
 // Shelly device types
 export { shelly_device_info_data_t } from './components/Shelly.js';
 

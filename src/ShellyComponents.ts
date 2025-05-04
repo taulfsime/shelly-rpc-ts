@@ -43,6 +43,10 @@ import {
   shelly_number_status_t,
 } from './components/Number.js';
 import {
+  shelly_object_config_t,
+  shelly_object_status_t,
+} from './components/Object.js';
+import {
   shelly_script_config_t,
   shelly_script_status_t,
 } from './components/Script.js';
@@ -114,7 +118,7 @@ export type shelly_component_status_map_t = {
   [key: shelly_component_key_helper<'number'>]: shelly_number_status_t;
   [key: shelly_component_key_helper<'boolean'>]: shelly_boolean_status_t;
   [key: shelly_component_key_helper<'text'>]: shelly_text_status_t;
-  // [key: shelly_component_key_helper<'object'>]: shelly_object_status_t;
+  [key: shelly_component_key_helper<'object'>]: shelly_object_status_t;
   [key: shelly_component_key_helper<'enum'>]: shelly_enum_status_t;
   [
     key: shelly_component_key_helper<'bthomesensor'>
@@ -144,7 +148,7 @@ export type shelly_component_config_map_t = {
   [key: shelly_component_key_helper<'number'>]: shelly_number_config_t;
   [key: shelly_component_key_helper<'boolean'>]: shelly_boolean_config_t;
   [key: shelly_component_key_helper<'text'>]: shelly_text_config_t;
-  // [key: shelly_component_key_helper<'object'>]: shelly_object_config_t;
+  [key: shelly_component_key_helper<'object'>]: shelly_object_config_t;
   [key: shelly_component_key_helper<'enum'>]: shelly_enum_config_t;
   [
     key: shelly_component_key_helper<'bthomesensor'>

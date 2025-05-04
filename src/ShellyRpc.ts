@@ -18,6 +18,7 @@ import { shelly_temperature_rpc_method_map_t } from './components/Temperature.js
 import { shelly_text_rpc_method_map_t } from './components/Text.js';
 import { shelly_wifi_rpc_method_map_t } from './components/WiFi.js';
 import { shelly_device_rpc_method_map_t } from './components/Shelly.js';
+import { shelly_object_rpc_method_map_t } from './components/Object.js';
 import {
   shelly_component_id_t,
   shelly_component_key_t,
@@ -43,7 +44,8 @@ type shelly_rpc_method_map_t = shelly_device_rpc_method_map_t &
   shelly_humidity_rpc_method_map_t &
   shelly_input_rpc_method_map_t &
   shelly_bthomesensor_rpc_method_map_t &
-  shelly_bthomedevice_rpc_method_map_t;
+  shelly_bthomedevice_rpc_method_map_t &
+  shelly_object_rpc_method_map_t;
 
 export type shelly_rpc_method_t = keyof shelly_rpc_method_map_t;
 
