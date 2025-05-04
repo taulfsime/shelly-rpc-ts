@@ -77,6 +77,10 @@ import {
   shelly_service_status_t,
 } from './components/Service.js';
 import {
+  shelly_smoke_config_t,
+  shelly_smoke_status_t,
+} from './components/Smoke.js';
+import {
   shelly_switch_config_t,
   shelly_switch_status_t,
 } from './components/Switch.js';
@@ -132,7 +136,8 @@ type shelly_component_multi_instance_t =
   | 'input'
   | 'pm1'
   | 'devicepower'
-  | 'voltmeter';
+  | 'voltmeter'
+  | 'smoke';
 
 type shelly_component_key_helper<K extends shelly_component_type_t> =
   K extends shelly_component_single_instance_t
@@ -186,6 +191,7 @@ export type shelly_component_status_map_t = {
     key: shelly_component_key_helper<'devicepower'>
   ]: shelly_devicepower_status_t;
   [key: shelly_component_key_helper<'voltmeter'>]: shelly_voltmeter_status_t;
+  [key: shelly_component_key_helper<'smoke'>]: shelly_smoke_status_t;
 };
 
 export type shelly_component_config_map_t = {
@@ -226,6 +232,7 @@ export type shelly_component_config_map_t = {
     key: shelly_component_key_helper<'devicepower'>
   ]: shelly_devicepower_config_t;
   [key: shelly_component_key_helper<'voltmeter'>]: shelly_voltmeter_config_t;
+  [key: shelly_component_key_helper<'smoke'>]: shelly_smoke_config_t;
 };
 
 // vasi haly
