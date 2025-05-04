@@ -37,6 +37,7 @@ import { shelly_smoke_rpc_method_map_t } from './components/Smoke.js';
 import { shelly_dali_rpc_method_map_t } from './components/DALI.js';
 import { shelly_cct_rpc_method_map_t } from './components/CCT.js';
 import { shelly_zigbee_rpc_method_map_t } from './components/Zigbee.js';
+import { shelly_em_rpc_method_map_t } from './components/EM.js';
 
 type shelly_rpc_method_map_t = shelly_device_rpc_method_map_t &
   shelly_sys_rpc_method_map_t &
@@ -71,7 +72,8 @@ type shelly_rpc_method_map_t = shelly_device_rpc_method_map_t &
   shelly_smoke_rpc_method_map_t &
   shelly_dali_rpc_method_map_t &
   shelly_cct_rpc_method_map_t &
-  shelly_zigbee_rpc_method_map_t;
+  shelly_zigbee_rpc_method_map_t &
+  shelly_em_rpc_method_map_t;
 
 export type shelly_rpc_method_t = keyof shelly_rpc_method_map_t;
 

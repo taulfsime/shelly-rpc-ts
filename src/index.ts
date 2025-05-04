@@ -124,6 +124,7 @@ export {
   shelly_zigbee_status_t,
   shelly_zigbee_config_t,
 } from './components/Zigbee.js';
+export { shelly_em_status_t, shelly_em_config_t } from './components/EM.js';
 
 // Shelly device types
 export { shelly_device_info_data_t } from './components/Shelly.js';
