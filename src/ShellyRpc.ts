@@ -88,19 +88,34 @@ export type shelly_rpc_method_result_t<K extends shelly_rpc_method_t> =
       : unknown
     : unknown;
 
-export type shelly_rpc_method_response_t<K extends shelly_rpc_method_t> =
-  | {
-      id: string | number;
-      src: string;
-      dst: string;
-      result: shelly_rpc_method_result_t<K>;
-    }
-  | {
-      id: string | number;
-      src: string;
-      dst: string;
-      error: {
-        code: number;
-        message: string;
-      };
-    };
+export type shelly_rpc_method_error_t = {
+  code: number;
+  message: string;
+};
+
+export type shelly_rpc_msg_request_t<K extends shelly_rpc_method_t = any> = {
+  jsonrpc: '2.0';
+  id: string | number;
+  src: string;
+  method: K;
+  params: shelly_rpc_method_params_t<K>;
+};
+
+type shelly_rpc_msg_response_base_t = {
+  id: string | number;
+  src: string;
+  dst: string;
+};
+
+export type shelly_rpc_msg_response_result_t<K extends shelly_rpc_method_t> =
+  shelly_rpc_msg_response_base_t & {
+    result: shelly_rpc_method_result_t<K>;
+  };
+
+export type shelly_rpc_msg_response_error_t = shelly_rpc_msg_response_base_t & {
+  error: shelly_rpc_method_error_t;
+};
+
+export type shelly_rpc_msg_response_t<K extends shelly_rpc_method_t> =
+  | shelly_rpc_msg_response_result_t<K>
+  | shelly_rpc_msg_response_error_t;
