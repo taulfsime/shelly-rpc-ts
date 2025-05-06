@@ -49,6 +49,7 @@ import { shelly_bthome_rpc_method_map_t } from './components/BTHome.js';
 import { shelly_em1data_rpc_method_map_t } from './components/EM1Data.js';
 import { shelly_http_rpc_method_map_t } from './components/HTTP.js';
 import { shelly_rgb_rpc_method_map_t } from './components/RGB.js';
+import { shelly_rgbw_rpc_method_map_t } from './components/RGBW.js';
 
 type shelly_rpc_method_map_t = shelly_device_rpc_method_map_t &
   shelly_sys_rpc_method_map_t &
@@ -95,7 +96,8 @@ type shelly_rpc_method_map_t = shelly_device_rpc_method_map_t &
   shelly_bthome_rpc_method_map_t &
   shelly_em1data_rpc_method_map_t &
   shelly_http_rpc_method_map_t &
-  shelly_rgb_rpc_method_map_t;
+  shelly_rgb_rpc_method_map_t &
+  shelly_rgbw_rpc_method_map_t;
 
 export type shelly_rpc_method_t = keyof shelly_rpc_method_map_t;
 

@@ -129,6 +129,10 @@ import {
   shelly_em1data_status_t,
 } from './components/EM1Data.js';
 import { shelly_rgb_config_t, shelly_rgb_status_t } from './components/RGB.js';
+import {
+  shelly_rgbw_config_t,
+  shelly_rgbw_status_t,
+} from './components/RGBW.js';
 
 type shelly_component_single_instance_t =
   | 'sys'
@@ -165,7 +169,8 @@ type shelly_component_multi_instance_t =
   | 'em1'
   | 'emdata'
   | 'em1data'
-  | 'rgb';
+  | 'rgb'
+  | 'rgbw';
 
 type shelly_component_key_helper_t<K extends shelly_component_type_t> =
   K extends shelly_component_single_instance_t
@@ -229,6 +234,7 @@ export type shelly_component_status_map_t = {
   [key: shelly_component_key_helper_t<'emdata'>]: shelly_emdata_status_t;
   [key: shelly_component_key_helper_t<'em1data'>]: shelly_em1data_status_t;
   [key: shelly_component_key_helper_t<'rgb'>]: shelly_rgb_status_t;
+  [key: shelly_component_key_helper_t<'rgbw'>]: shelly_rgbw_status_t;
 };
 
 export type shelly_component_config_map_t = {
@@ -280,6 +286,7 @@ export type shelly_component_config_map_t = {
   [key: shelly_component_key_helper_t<'emdata'>]: shelly_emdata_config_t;
   [key: shelly_component_key_helper_t<'em1data'>]: shelly_em1data_config_t;
   [key: shelly_component_key_helper_t<'rgb'>]: shelly_rgb_config_t;
+  [key: shelly_component_key_helper_t<'rgbw'>]: shelly_rgbw_config_t;
 };
 
 // vasi haly
