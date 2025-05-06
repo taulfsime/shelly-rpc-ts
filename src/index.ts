@@ -145,6 +145,7 @@ export {
   shelly_em1data_status_t,
   shelly_em1data_config_t,
 } from './components/EM1Data.js';
+export { shelly_rgb_status_t, shelly_rgb_config_t } from './components/RGB.js';
 
 // Shelly device types
 export { shelly_device_info_data_t } from './components/Shelly.js';
