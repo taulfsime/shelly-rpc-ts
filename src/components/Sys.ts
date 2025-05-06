@@ -1,3 +1,4 @@
+import { shelly_knx_rev_t } from './KNX.js';
 import { shelly_kvs_rev_t } from './KVS.js';
 import { shelly_schedule_rev_t } from './Schedule.js';
 import {
@@ -78,7 +79,7 @@ export type shelly_sys_status_t = {
   kvs_rev?: shelly_kvs_rev_t;
   schedule_rev?: shelly_schedule_rev_t;
   webhook_rev: shelly_webhook_rev_t;
-  knx_rev?: number;
+  knx_rev?: shelly_knx_rev_t;
   btrelay_rev?: number;
   available_updates: Partial<
     Record<

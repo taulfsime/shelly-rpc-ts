@@ -132,6 +132,11 @@ export {
 } from './components/EMData.js';
 export { shelly_schedule_job_t } from './components/Schedule.js';
 export { shelly_webhook_hook_t } from './components/Webhook.js';
+export { shelly_knx_input_config_t } from './components/KNXComponents/KNXInput.js';
+export { shelly_knx_switch_config_t } from './components/KNXComponents/KNXSwitch.js';
+export { shelly_knx_light_config_t } from './components/KNXComponents/KNXLight.js';
+export { shelly_knx_cover_config_t } from './components/KNXComponents/KNXCover.js';
+export { shelly_knx_config_t, shelly_knx_status_t } from './components/KNX.js';
 
 // Shelly device types
 export { shelly_device_info_data_t } from './components/Shelly.js';

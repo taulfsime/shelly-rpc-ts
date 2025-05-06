@@ -54,6 +54,7 @@ import {
   shelly_input_config_t,
   shelly_input_status_t,
 } from './components/Input.js';
+import { shelly_knx_config_t, shelly_knx_status_t } from './components/KNX.js';
 import {
   shelly_light_config_t,
   shelly_light_status_t,
@@ -129,7 +130,8 @@ type shelly_component_single_instance_t =
   | 'matter'
   | 'modbus'
   | 'dali'
-  | 'zigbee';
+  | 'zigbee'
+  | 'knx';
 
 type shelly_component_virtual_instance_t =
   | 'number'
@@ -160,7 +162,7 @@ type shelly_component_multi_instance_t =
   | 'em1'
   | 'emdata';
 
-type shelly_component_key_helper<K extends shelly_component_type_t> =
+type shelly_component_key_helper_t<K extends shelly_component_type_t> =
   K extends shelly_component_single_instance_t
     ? K
     : `${K}:${shelly_component_id_t}`;
@@ -170,9 +172,8 @@ export type shelly_component_type_t =
   | shelly_component_single_instance_t
   | shelly_component_multi_instance_t;
 
-export type shelly_component_key_t = shelly_component_key_helper<
-  shelly_component_multi_instance_t | shelly_component_single_instance_t
->;
+export type shelly_component_key_t =
+  shelly_component_key_helper_t<shelly_component_type_t>;
 
 export type shelly_component_status_map_t = {
   sys: shelly_sys_status_t;
@@ -186,39 +187,40 @@ export type shelly_component_status_map_t = {
   modbus: shelly_modbus_status_t;
   dali: shelly_dali_status_t;
   zigbee: shelly_zigbee_status_t;
+  knx: shelly_knx_status_t;
 } & {
-  [key: shelly_component_key_helper<'number'>]: shelly_number_status_t;
-  [key: shelly_component_key_helper<'boolean'>]: shelly_boolean_status_t;
-  [key: shelly_component_key_helper<'text'>]: shelly_text_status_t;
-  [key: shelly_component_key_helper<'object'>]: shelly_object_status_t;
-  [key: shelly_component_key_helper<'enum'>]: shelly_enum_status_t;
+  [key: shelly_component_key_helper_t<'number'>]: shelly_number_status_t;
+  [key: shelly_component_key_helper_t<'boolean'>]: shelly_boolean_status_t;
+  [key: shelly_component_key_helper_t<'text'>]: shelly_text_status_t;
+  [key: shelly_component_key_helper_t<'object'>]: shelly_object_status_t;
+  [key: shelly_component_key_helper_t<'enum'>]: shelly_enum_status_t;
   [
-    key: shelly_component_key_helper<'bthomesensor'>
+    key: shelly_component_key_helper_t<'bthomesensor'>
   ]: shelly_bthomesensor_status_t;
   [
-    key: shelly_component_key_helper<'bthomedevice'>
+    key: shelly_component_key_helper_t<'bthomedevice'>
   ]: shelly_bthomedevice_status_t;
-  [key: shelly_component_key_helper<'group'>]: shelly_group_status_t;
-  [key: shelly_component_key_helper<'switch'>]: shelly_switch_status_t;
-  [key: shelly_component_key_helper<'cover'>]: shelly_cover_status_t;
-  [key: shelly_component_key_helper<'light'>]: shelly_light_status_t;
-  [key: shelly_component_key_helper<'service'>]: shelly_service_status_t;
-  [key: shelly_component_key_helper<'script'>]: shelly_script_status_t;
+  [key: shelly_component_key_helper_t<'group'>]: shelly_group_status_t;
+  [key: shelly_component_key_helper_t<'switch'>]: shelly_switch_status_t;
+  [key: shelly_component_key_helper_t<'cover'>]: shelly_cover_status_t;
+  [key: shelly_component_key_helper_t<'light'>]: shelly_light_status_t;
+  [key: shelly_component_key_helper_t<'service'>]: shelly_service_status_t;
+  [key: shelly_component_key_helper_t<'script'>]: shelly_script_status_t;
   [
-    key: shelly_component_key_helper<'temperature'>
+    key: shelly_component_key_helper_t<'temperature'>
   ]: shelly_temperature_status_t;
-  [key: shelly_component_key_helper<'humidity'>]: shelly_humidity_status_t;
-  [key: shelly_component_key_helper<'input'>]: shelly_input_status_t;
-  [key: shelly_component_key_helper<'pm1'>]: shelly_pm1_status_t;
+  [key: shelly_component_key_helper_t<'humidity'>]: shelly_humidity_status_t;
+  [key: shelly_component_key_helper_t<'input'>]: shelly_input_status_t;
+  [key: shelly_component_key_helper_t<'pm1'>]: shelly_pm1_status_t;
   [
-    key: shelly_component_key_helper<'devicepower'>
+    key: shelly_component_key_helper_t<'devicepower'>
   ]: shelly_devicepower_status_t;
-  [key: shelly_component_key_helper<'voltmeter'>]: shelly_voltmeter_status_t;
-  [key: shelly_component_key_helper<'smoke'>]: shelly_smoke_status_t;
-  [key: shelly_component_key_helper<'cct'>]: shelly_cct_status_t;
-  [key: shelly_component_key_helper<'em'>]: shelly_em_status_t;
-  [key: shelly_component_key_helper<'em1'>]: shelly_em1_status_t;
-  [key: shelly_component_key_helper<'emdata'>]: shelly_emdata_status_t;
+  [key: shelly_component_key_helper_t<'voltmeter'>]: shelly_voltmeter_status_t;
+  [key: shelly_component_key_helper_t<'smoke'>]: shelly_smoke_status_t;
+  [key: shelly_component_key_helper_t<'cct'>]: shelly_cct_status_t;
+  [key: shelly_component_key_helper_t<'em'>]: shelly_em_status_t;
+  [key: shelly_component_key_helper_t<'em1'>]: shelly_em1_status_t;
+  [key: shelly_component_key_helper_t<'emdata'>]: shelly_emdata_status_t;
 };
 
 export type shelly_component_config_map_t = {
@@ -233,39 +235,40 @@ export type shelly_component_config_map_t = {
   modbus: shelly_modbus_config_t;
   dali: shelly_dali_config_t;
   zigbee: shelly_zigbee_config_t;
+  knx: shelly_knx_config_t;
 } & {
-  [key: shelly_component_key_helper<'number'>]: shelly_number_config_t;
-  [key: shelly_component_key_helper<'boolean'>]: shelly_boolean_config_t;
-  [key: shelly_component_key_helper<'text'>]: shelly_text_config_t;
-  [key: shelly_component_key_helper<'object'>]: shelly_object_config_t;
-  [key: shelly_component_key_helper<'enum'>]: shelly_enum_config_t;
+  [key: shelly_component_key_helper_t<'number'>]: shelly_number_config_t;
+  [key: shelly_component_key_helper_t<'boolean'>]: shelly_boolean_config_t;
+  [key: shelly_component_key_helper_t<'text'>]: shelly_text_config_t;
+  [key: shelly_component_key_helper_t<'object'>]: shelly_object_config_t;
+  [key: shelly_component_key_helper_t<'enum'>]: shelly_enum_config_t;
   [
-    key: shelly_component_key_helper<'bthomesensor'>
+    key: shelly_component_key_helper_t<'bthomesensor'>
   ]: shelly_bthomesensor_config_t;
   [
-    key: shelly_component_key_helper<'bthomedevice'>
+    key: shelly_component_key_helper_t<'bthomedevice'>
   ]: shelly_bthomedevice_config_t;
-  [key: shelly_component_key_helper<'group'>]: shelly_group_config_t;
-  [key: shelly_component_key_helper<'switch'>]: shelly_switch_config_t;
-  [key: shelly_component_key_helper<'cover'>]: shelly_cover_config_t;
-  [key: shelly_component_key_helper<'light'>]: shelly_light_config_t;
-  [key: shelly_component_key_helper<'service'>]: shelly_service_config_t;
-  [key: shelly_component_key_helper<'script'>]: shelly_script_config_t;
+  [key: shelly_component_key_helper_t<'group'>]: shelly_group_config_t;
+  [key: shelly_component_key_helper_t<'switch'>]: shelly_switch_config_t;
+  [key: shelly_component_key_helper_t<'cover'>]: shelly_cover_config_t;
+  [key: shelly_component_key_helper_t<'light'>]: shelly_light_config_t;
+  [key: shelly_component_key_helper_t<'service'>]: shelly_service_config_t;
+  [key: shelly_component_key_helper_t<'script'>]: shelly_script_config_t;
   [
-    key: shelly_component_key_helper<'temperature'>
+    key: shelly_component_key_helper_t<'temperature'>
   ]: shelly_temperature_config_t;
-  [key: shelly_component_key_helper<'humidity'>]: shelly_humidity_config_t;
-  [key: shelly_component_key_helper<'input'>]: shelly_input_config_t;
-  [key: shelly_component_key_helper<'pm1'>]: shelly_pm1_config_t;
+  [key: shelly_component_key_helper_t<'humidity'>]: shelly_humidity_config_t;
+  [key: shelly_component_key_helper_t<'input'>]: shelly_input_config_t;
+  [key: shelly_component_key_helper_t<'pm1'>]: shelly_pm1_config_t;
   [
-    key: shelly_component_key_helper<'devicepower'>
+    key: shelly_component_key_helper_t<'devicepower'>
   ]: shelly_devicepower_config_t;
-  [key: shelly_component_key_helper<'voltmeter'>]: shelly_voltmeter_config_t;
-  [key: shelly_component_key_helper<'smoke'>]: shelly_smoke_config_t;
-  [key: shelly_component_key_helper<'cct'>]: shelly_cct_config_t;
-  [key: shelly_component_key_helper<'em'>]: shelly_em_config_t;
-  [key: shelly_component_key_helper<'em1'>]: shelly_em1_config_t;
-  [key: shelly_component_key_helper<'emdata'>]: shelly_emdata_config_t;
+  [key: shelly_component_key_helper_t<'voltmeter'>]: shelly_voltmeter_config_t;
+  [key: shelly_component_key_helper_t<'smoke'>]: shelly_smoke_config_t;
+  [key: shelly_component_key_helper_t<'cct'>]: shelly_cct_config_t;
+  [key: shelly_component_key_helper_t<'em'>]: shelly_em_config_t;
+  [key: shelly_component_key_helper_t<'em1'>]: shelly_em1_config_t;
+  [key: shelly_component_key_helper_t<'emdata'>]: shelly_emdata_config_t;
 };
 
 // vasi haly
