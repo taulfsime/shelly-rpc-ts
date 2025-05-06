@@ -141,7 +141,8 @@ type shelly_component_single_instance_t =
   | 'modbus'
   | 'dali'
   | 'zigbee'
-  | 'knx';
+  | 'knx'
+  | 'http';
 
 type shelly_component_multi_instance_t =
   | shelly_virtual_component_type_t
