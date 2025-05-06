@@ -2,7 +2,7 @@ import { shelly_ble_config_t, shelly_ble_status_t } from './components/BLE.js';
 import {
   shelly_boolean_config_t,
   shelly_boolean_status_t,
-} from './components/Boolean.js';
+} from './components/VirtualComponents/Boolean.js';
 import {
   shelly_bthomedevice_config_t,
   shelly_bthomedevice_status_t,
@@ -37,7 +37,7 @@ import {
 import {
   shelly_enum_config_t,
   shelly_enum_status_t,
-} from './components/Enum.js';
+} from './components/VirtualComponents/Enum.js';
 import {
   shelly_ethernet_config_t,
   shelly_ethernet_status_t,
@@ -45,7 +45,7 @@ import {
 import {
   shelly_group_config_t,
   shelly_group_status_t,
-} from './components/Group.js';
+} from './components/VirtualComponents/Group.js';
 import {
   shelly_humidity_config_t,
   shelly_humidity_status_t,
@@ -74,11 +74,11 @@ import {
 import {
   shelly_number_config_t,
   shelly_number_status_t,
-} from './components/Number.js';
+} from './components/VirtualComponents/Number.js';
 import {
   shelly_object_config_t,
   shelly_object_status_t,
-} from './components/Object.js';
+} from './components/VirtualComponents/Object.js';
 import { shelly_pm1_config_t, shelly_pm1_status_t } from './components/PM1.js';
 import {
   shelly_script_config_t,
@@ -104,7 +104,8 @@ import {
 import {
   shelly_text_config_t,
   shelly_text_status_t,
-} from './components/Text.js';
+} from './components/VirtualComponents/Text.js';
+import { shelly_virtual_component_type_t } from './components/Virtual.js';
 import {
   shelly_voltmeter_config_t,
   shelly_voltmeter_status_t,
@@ -133,15 +134,10 @@ type shelly_component_single_instance_t =
   | 'zigbee'
   | 'knx';
 
-type shelly_component_virtual_instance_t =
-  | 'number'
-  | 'boolean'
-  | 'text'
-  | 'object'
-  | 'enum'
+export type shelly_component_virtual_instance_t =
+  | shelly_virtual_component_type_t
   | 'bthomesensor'
-  | 'bthomedevice'
-  | 'group';
+  | 'bthomedevice';
 
 type shelly_component_multi_instance_t =
   | shelly_component_virtual_instance_t

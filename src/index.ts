@@ -27,27 +27,27 @@ export {
 export {
   shelly_number_config_t,
   shelly_number_status_t,
-} from './components/Number.js';
+} from './components/VirtualComponents/Number.js';
 export {
   shelly_boolean_config_t,
   shelly_boolean_status_t,
-} from './components/Boolean.js';
+} from './components/VirtualComponents/Boolean.js';
 export {
   shelly_text_config_t,
   shelly_text_status_t,
-} from './components/Text.js';
+} from './components/VirtualComponents/Text.js';
 export {
   shelly_enum_config_t,
   shelly_enum_status_t,
-} from './components/Enum.js';
+} from './components/VirtualComponents/Enum.js';
 export {
   shelly_button_config_t,
   shelly_button_status_t,
-} from './components/Button.js';
+} from './components/VirtualComponents/Button.js';
 export {
   shelly_group_config_t,
   shelly_group_status_t,
-} from './components/Group.js';
+} from './components/VirtualComponents/Group.js';
 export {
   shelly_script_config_t,
   shelly_script_status_t,
@@ -76,7 +76,7 @@ export {
 export {
   shelly_object_config_t,
   shelly_object_status_t,
-} from './components/Object.js';
+} from './components/VirtualComponents/Object.js';
 
 export { shelly_pm1_config_t, shelly_pm1_status_t } from './components/PM1.js';
 

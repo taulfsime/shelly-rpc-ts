@@ -1,8 +1,8 @@
 import {
   shelly_component_id_t,
   shelly_component_key_t,
-} from '../ShellyComponents.js';
-import { shelly_virtual_component_status_source_t } from './common.js';
+} from '../../ShellyComponents.js';
+import { shelly_virtual_component_status_source_t } from '../common.js';
 
 export type shelly_group_status_t = {
   source: shelly_virtual_component_status_source_t;

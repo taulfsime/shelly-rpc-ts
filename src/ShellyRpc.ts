@@ -1,24 +1,24 @@
-import { shelly_boolean_rpc_method_map_t } from './components/Boolean.js';
+import { shelly_boolean_rpc_method_map_t } from './components/VirtualComponents/Boolean.js';
 import { shelly_bthomedevice_rpc_method_map_t } from './components/BTHomeDevice.js';
 import { shelly_bthomesensor_rpc_method_map_t } from './components/BTHomeSensor.js';
-import { shelly_button_rpc_method_map_t } from './components/Button.js';
+import { shelly_button_rpc_method_map_t } from './components/VirtualComponents/Button.js';
 import { shelly_cover_rpc_method_map_t } from './components/Cover.js';
-import { shelly_enum_rpc_method_map_t } from './components/Enum.js';
-import { shelly_group_rpc_method_map_t } from './components/Group.js';
+import { shelly_enum_rpc_method_map_t } from './components/VirtualComponents/Enum.js';
+import { shelly_group_rpc_method_map_t } from './components/VirtualComponents/Group.js';
 import { shelly_humidity_rpc_method_map_t } from './components/Humidity.js';
 import { shelly_input_rpc_method_map_t } from './components/Input.js';
 import { shelly_light_rpc_method_map_t } from './components/Light.js';
 import { shelly_mqtt_rpc_method_map_t } from './components/MQTT.js';
-import { shelly_number_rpc_method_map_t } from './components/Number.js';
+import { shelly_number_rpc_method_map_t } from './components/VirtualComponents/Number.js';
 import { shelly_script_rpc_method_map_t } from './components/Script.js';
 import { shelly_service_rpc_method_map_t } from './components/Service.js';
 import { shelly_switch_rpc_method_map_t } from './components/Switch.js';
 import { shelly_sys_rpc_method_map_t } from './components/Sys.js';
 import { shelly_temperature_rpc_method_map_t } from './components/Temperature.js';
-import { shelly_text_rpc_method_map_t } from './components/Text.js';
+import { shelly_text_rpc_method_map_t } from './components/VirtualComponents/Text.js';
 import { shelly_wifi_rpc_method_map_t } from './components/WiFi.js';
 import { shelly_device_rpc_method_map_t } from './components/Shelly.js';
-import { shelly_object_rpc_method_map_t } from './components/Object.js';
+import { shelly_object_rpc_method_map_t } from './components/VirtualComponents/Object.js';
 import {
   shelly_component_id_t,
   shelly_component_key_t,
@@ -44,6 +44,7 @@ import { shelly_schedule_rpc_method_map_t } from './components/Schedule.js';
 import { shelly_webhook_rpc_method_map_t } from './components/Webhook.js';
 import { shelly_kvs_rpc_method_map_t } from './components/KVS.js';
 import { shelly_knx_rpc_method_map_t } from './components/KNX.js';
+import { shelly_virtual_rpc_method_map_t } from './components/Virtual.js';
 
 type shelly_rpc_method_map_t = shelly_device_rpc_method_map_t &
   shelly_sys_rpc_method_map_t &
@@ -85,7 +86,8 @@ type shelly_rpc_method_map_t = shelly_device_rpc_method_map_t &
   shelly_schedule_rpc_method_map_t &
   shelly_webhook_rpc_method_map_t &
   shelly_kvs_rpc_method_map_t &
-  shelly_knx_rpc_method_map_t;
+  shelly_knx_rpc_method_map_t &
+  shelly_virtual_rpc_method_map_t;
 
 export type shelly_rpc_method_t = keyof shelly_rpc_method_map_t;
 

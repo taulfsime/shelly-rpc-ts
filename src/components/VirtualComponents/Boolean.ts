@@ -1,23 +1,25 @@
 import {
   shelly_component_id_t,
   shelly_component_key_t,
-} from '../ShellyComponents.js';
-import { shelly_virtual_component_status_source_t } from './common.js';
+} from '../../ShellyComponents.js';
+import { shelly_virtual_component_status_source_t } from '../common.js';
 
-export type shelly_object_status_t = {
+export type shelly_boolean_status_t = {
   source: shelly_virtual_component_status_source_t;
-  value: Record<string, unknown> | null;
+  value: boolean;
   last_update_ts: number;
 };
 
-export type shelly_object_config_t = {
+export type shelly_boolean_config_t = {
   id: shelly_component_id_t;
   name: string | null;
+  persisted: boolean;
+  default_value: boolean;
   meta: null | Record<string, unknown>;
 };
 
-export type shelly_object_rpc_method_map_t = {
-  'Object.GetStatus': {
+export type shelly_boolean_rpc_method_map_t = {
+  'Boolean.GetStatus': {
     params:
       | {
           id: shelly_component_id_t;
@@ -26,24 +28,24 @@ export type shelly_object_rpc_method_map_t = {
           role: string;
           owner: shelly_component_key_t;
         };
-    result: shelly_object_status_t;
+    result: shelly_boolean_status_t;
   };
-  'Object.SetConfig': {
+  'Boolean.SetConfig': {
     params:
       | {
           id: shelly_component_id_t;
-          config: shelly_object_config_t;
+          config: shelly_boolean_config_t;
         }
       | {
           role: string;
           owner: shelly_component_key_t;
-          config: shelly_object_config_t;
+          config: shelly_boolean_config_t;
         };
     result: {
       restart_required: boolean;
     };
   };
-  'Object.GetConfig': {
+  'Boolean.GetConfig': {
     params:
       | {
           id: shelly_component_id_t;
@@ -52,9 +54,9 @@ export type shelly_object_rpc_method_map_t = {
           role: string;
           owner: shelly_component_key_t;
         };
-    result: shelly_object_config_t;
+    result: shelly_boolean_config_t;
   };
-  'Object.Set': {
+  'Boolean.Set': {
     params:
       | {
           id: shelly_component_id_t;
