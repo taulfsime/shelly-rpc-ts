@@ -1,6 +1,6 @@
 import { shelly_boolean_rpc_method_map_t } from './components/VirtualComponents/Boolean.js';
-import { shelly_bthomedevice_rpc_method_map_t } from './components/BTHomeDevice.js';
-import { shelly_bthomesensor_rpc_method_map_t } from './components/BTHomeSensor.js';
+import { shelly_bthomedevice_rpc_method_map_t } from './components/BTHomeComponents/BTHomeDevice.js';
+import { shelly_bthomesensor_rpc_method_map_t } from './components/BTHomeComponents/BTHomeSensor.js';
 import { shelly_button_rpc_method_map_t } from './components/VirtualComponents/Button.js';
 import { shelly_cover_rpc_method_map_t } from './components/Cover.js';
 import { shelly_enum_rpc_method_map_t } from './components/VirtualComponents/Enum.js';
@@ -45,6 +45,7 @@ import { shelly_webhook_rpc_method_map_t } from './components/Webhook.js';
 import { shelly_kvs_rpc_method_map_t } from './components/KVS.js';
 import { shelly_knx_rpc_method_map_t } from './components/KNX.js';
 import { shelly_virtual_rpc_method_map_t } from './components/Virtual.js';
+import { shelly_bthome_rpc_method_map_t } from './components/BTHome.js';
 
 type shelly_rpc_method_map_t = shelly_device_rpc_method_map_t &
   shelly_sys_rpc_method_map_t &
@@ -87,7 +88,8 @@ type shelly_rpc_method_map_t = shelly_device_rpc_method_map_t &
   shelly_webhook_rpc_method_map_t &
   shelly_kvs_rpc_method_map_t &
   shelly_knx_rpc_method_map_t &
-  shelly_virtual_rpc_method_map_t;
+  shelly_virtual_rpc_method_map_t &
+  shelly_bthome_rpc_method_map_t;
 
 export type shelly_rpc_method_t = keyof shelly_rpc_method_map_t;
 

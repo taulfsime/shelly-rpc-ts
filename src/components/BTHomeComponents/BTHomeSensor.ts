@@ -1,4 +1,14 @@
-import { shelly_component_id_t } from '../ShellyComponents.js';
+import { shelly_component_id_t } from '../../ShellyComponents.js';
+
+export type shelly_bthomesensor_object_id_t = number;
+export type shelly_bthomesensor_object_type_t =
+  | 'sensor'
+  | 'binary_sensor'
+  | 'button'
+  | 'dimmer'
+  | 'unknown'
+  | 'raw_sensor'
+  | 'other';
 
 export type shelly_bthomesensor_status_t = {
   id: shelly_component_id_t;
@@ -9,7 +19,7 @@ export type shelly_bthomesensor_status_t = {
 export type shelly_bthomesensor_config_t = {
   id: shelly_component_id_t;
   name: string | null;
-  obj_id: number;
+  obj_id: shelly_bthomesensor_object_id_t;
   idx: number;
   addr: string;
   meta: null | Record<string, unknown>;

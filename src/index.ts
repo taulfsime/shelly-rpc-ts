@@ -67,11 +67,11 @@ export {
 export {
   shelly_bthomesensor_config_t,
   shelly_bthomesensor_status_t,
-} from './components/BTHomeSensor.js';
+} from './components/BTHomeComponents/BTHomeSensor.js';
 export {
   shelly_bthomedevice_config_t,
   shelly_bthomedevice_status_t,
-} from './components/BTHomeDevice.js';
+} from './components/BTHomeComponents/BTHomeDevice.js';
 
 export {
   shelly_object_config_t,
@@ -137,6 +137,10 @@ export { shelly_knx_switch_config_t } from './components/KNXComponents/KNXSwitch
 export { shelly_knx_light_config_t } from './components/KNXComponents/KNXLight.js';
 export { shelly_knx_cover_config_t } from './components/KNXComponents/KNXCover.js';
 export { shelly_knx_config_t, shelly_knx_status_t } from './components/KNX.js';
+export {
+  shelly_bthome_status_t,
+  shelly_bthome_config_t,
+} from './components/BTHome.js';
 
 // Shelly device types
 export { shelly_device_info_data_t } from './components/Shelly.js';

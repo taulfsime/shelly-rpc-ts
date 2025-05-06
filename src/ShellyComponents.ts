@@ -6,11 +6,11 @@ import {
 import {
   shelly_bthomedevice_config_t,
   shelly_bthomedevice_status_t,
-} from './components/BTHomeDevice.js';
+} from './components/BTHomeComponents/BTHomeDevice.js';
 import {
   shelly_bthomesensor_config_t,
   shelly_bthomesensor_status_t,
-} from './components/BTHomeSensor.js';
+} from './components/BTHomeComponents/BTHomeSensor.js';
 import { shelly_cct_config_t, shelly_cct_status_t } from './components/CCT.js';
 import {
   shelly_cloud_config_t,
@@ -119,6 +119,11 @@ import {
   shelly_zigbee_config_t,
   shelly_zigbee_status_t,
 } from './components/Zigbee.js';
+import {
+  shelly_bthome_component_type_t,
+  shelly_bthome_config_t,
+  shelly_bthome_status_t,
+} from './components/BTHome.js';
 
 type shelly_component_single_instance_t =
   | 'sys'
@@ -134,13 +139,9 @@ type shelly_component_single_instance_t =
   | 'zigbee'
   | 'knx';
 
-export type shelly_component_virtual_instance_t =
-  | shelly_virtual_component_type_t
-  | 'bthomesensor'
-  | 'bthomedevice';
-
 type shelly_component_multi_instance_t =
-  | shelly_component_virtual_instance_t
+  | shelly_virtual_component_type_t
+  | shelly_bthome_component_type_t
   | 'switch'
   | 'cover'
   | 'light'
@@ -184,6 +185,7 @@ export type shelly_component_status_map_t = {
   dali: shelly_dali_status_t;
   zigbee: shelly_zigbee_status_t;
   knx: shelly_knx_status_t;
+  bthome: shelly_bthome_status_t;
 } & {
   [key: shelly_component_key_helper_t<'number'>]: shelly_number_status_t;
   [key: shelly_component_key_helper_t<'boolean'>]: shelly_boolean_status_t;
@@ -232,6 +234,7 @@ export type shelly_component_config_map_t = {
   dali: shelly_dali_config_t;
   zigbee: shelly_zigbee_config_t;
   knx: shelly_knx_config_t;
+  bthome: shelly_bthome_config_t;
 } & {
   [key: shelly_component_key_helper_t<'number'>]: shelly_number_config_t;
   [key: shelly_component_key_helper_t<'boolean'>]: shelly_boolean_config_t;
