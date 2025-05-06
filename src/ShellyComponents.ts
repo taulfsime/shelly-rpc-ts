@@ -124,6 +124,10 @@ import {
   shelly_bthome_config_t,
   shelly_bthome_status_t,
 } from './components/BTHome.js';
+import {
+  shelly_em1data_config_t,
+  shelly_em1data_status_t,
+} from './components/EM1Data.js';
 
 type shelly_component_single_instance_t =
   | 'sys'
@@ -157,7 +161,8 @@ type shelly_component_multi_instance_t =
   | 'cct'
   | 'em'
   | 'em1'
-  | 'emdata';
+  | 'emdata'
+  | 'em1data';
 
 type shelly_component_key_helper_t<K extends shelly_component_type_t> =
   K extends shelly_component_single_instance_t
@@ -219,6 +224,7 @@ export type shelly_component_status_map_t = {
   [key: shelly_component_key_helper_t<'em'>]: shelly_em_status_t;
   [key: shelly_component_key_helper_t<'em1'>]: shelly_em1_status_t;
   [key: shelly_component_key_helper_t<'emdata'>]: shelly_emdata_status_t;
+  [key: shelly_component_key_helper_t<'em1data'>]: shelly_em1data_status_t;
 };
 
 export type shelly_component_config_map_t = {
@@ -268,6 +274,7 @@ export type shelly_component_config_map_t = {
   [key: shelly_component_key_helper_t<'em'>]: shelly_em_config_t;
   [key: shelly_component_key_helper_t<'em1'>]: shelly_em1_config_t;
   [key: shelly_component_key_helper_t<'emdata'>]: shelly_emdata_config_t;
+  [key: shelly_component_key_helper_t<'em1data'>]: shelly_em1data_config_t;
 };
 
 // vasi haly

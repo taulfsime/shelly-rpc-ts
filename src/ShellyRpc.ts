@@ -46,6 +46,7 @@ import { shelly_kvs_rpc_method_map_t } from './components/KVS.js';
 import { shelly_knx_rpc_method_map_t } from './components/KNX.js';
 import { shelly_virtual_rpc_method_map_t } from './components/Virtual.js';
 import { shelly_bthome_rpc_method_map_t } from './components/BTHome.js';
+import { shelly_em1data_rpc_method_map_t } from './components/EM1Data.js';
 
 type shelly_rpc_method_map_t = shelly_device_rpc_method_map_t &
   shelly_sys_rpc_method_map_t &
@@ -89,7 +90,8 @@ type shelly_rpc_method_map_t = shelly_device_rpc_method_map_t &
   shelly_kvs_rpc_method_map_t &
   shelly_knx_rpc_method_map_t &
   shelly_virtual_rpc_method_map_t &
-  shelly_bthome_rpc_method_map_t;
+  shelly_bthome_rpc_method_map_t &
+  shelly_em1data_rpc_method_map_t;
 
 export type shelly_rpc_method_t = keyof shelly_rpc_method_map_t;
 

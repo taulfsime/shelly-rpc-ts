@@ -141,6 +141,10 @@ export {
   shelly_bthome_status_t,
   shelly_bthome_config_t,
 } from './components/BTHome.js';
+export {
+  shelly_em1data_status_t,
+  shelly_em1data_config_t,
+} from './components/EM1Data.js';
 
 // Shelly device types
 export { shelly_device_info_data_t } from './components/Shelly.js';
