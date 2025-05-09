@@ -22,7 +22,7 @@ import { shelly_object_rpc_method_map_t } from './components/VirtualComponents/O
 import {
   shelly_component_id_t,
   shelly_component_key_t,
-  shelly_component_status_map_t,
+  shelly_component_info_map_t,
 } from './ShellyComponents.js';
 import { shelly_pm1_rpc_method_map_t } from './components/PM1.js';
 import { shelly_devicepower_rpc_method_map_t } from './components/DevicePower.js';

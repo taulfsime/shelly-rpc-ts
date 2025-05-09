@@ -174,4 +174,5 @@ export {
   shelly_component_id_t,
   shelly_component_type_t,
   shelly_component_key_t,
+  shelly_component_info_map_t,
 } from './ShellyComponents.js';
