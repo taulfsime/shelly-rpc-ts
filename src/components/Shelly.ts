@@ -15,7 +15,7 @@ export type shelly_device_info_data_t = {
   gen: number;
   fw_id: string;
   ver: string;
-  app: string;
+  app: shelly_device_app_t;
   auth_en: boolean;
   auth_domain: string | null;
   discoverable?: boolean;
@@ -46,6 +46,7 @@ export type shelly_device_mac_t =
   `${string}:${string}:${string}:${string}:${string}:${string}`;
 export type shelly_device_profile_t = string;
 export type shelly_device_timezone_t = string;
+type shelly_device_app_t = string;
 
 export type shelly_device_location_t = {
   tz: shelly_device_timezone_t | null;
@@ -63,6 +64,15 @@ export type shelly_device_id_t = string;
 export type shelly_device_auth_user_t = 'admin';
 export type shelly_device_auth_realm_t = shelly_device_id_t;
 export type shelly_device_auth_ha1_t = string | null;
+
+type shelly_rpc_components_list_item_t<K extends shelly_component_key_t> =
+  K extends keyof shelly_component_info_map_t
+    ? {
+        key: K;
+        config?: shelly_component_info_map_t[K]['config'];
+        status?: shelly_component_info_map_t[K]['status'];
+      }
+    : never;
 
 export type shelly_device_rpc_method_map_t = {
   'Shelly.GetStatus': {
@@ -197,12 +207,7 @@ export type shelly_device_rpc_method_map_t = {
       dynamic_only?: boolean;
     };
     result: {
-      components: {
-        key: shelly_component_key_t;
-        status?: any; //XXX: Change to specific types
-        config?: any; //XXX: Change to specific types
-        attrs?: any; //XXX: Change to specific types
-      }[];
+      components: shelly_rpc_components_list_item_t<shelly_component_key_t>[];
       cfg_rev: number;
       offset: number;
       total: number;
@@ -211,7 +216,7 @@ export type shelly_device_rpc_method_map_t = {
   'Shelly.InstallAlt': {
     params: {
       stage: shelly_device_update_stage_t;
-      app: string;
+      app: shelly_device_app_t;
     };
     result: null;
   };

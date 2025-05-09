@@ -165,6 +165,7 @@ export {
   shelly_rpc_msg_response_error_t,
   shelly_rpc_msg_response_result_t,
   shelly_rpc_notification_t,
+  shelly_rpc_notification_method_t,
   isRpcResponse,
   isRpcNotification,
 } from './ShellyRpc.js';

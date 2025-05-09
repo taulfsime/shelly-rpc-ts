@@ -151,27 +151,35 @@ export type shelly_rpc_msg_response_t<K extends shelly_rpc_method_t> =
   | shelly_rpc_msg_response_result_t<K>
   | shelly_rpc_msg_response_error_t;
 
+export type shelly_rpc_notification_method_t =
+  | 'NotifyStatus'
+  | 'NotifyFullStatus'
+  | 'NotifyEvent';
+
 type shelly_rpc_notification_base_t = {
   src: string;
   dist: string;
-  method: 'NotifyStatus' | 'NotifyFullStatus' | 'NotifyEvent';
+  method: shelly_rpc_notification_method_t;
   params: unknown;
 };
 
 type shelly_rpc_notification_notify_status_t =
   shelly_rpc_notification_base_t & {
-    method: 'NotifyStatus' | 'NotifyFullStatus';
+    method: Extract<
+      shelly_rpc_notification_method_t,
+      'NotifyStatus' | 'NotifyFullStatus'
+    >;
     params: {
       ts: number;
     } & {
-      [K in keyof shelly_component_status_map_t]: Partial<
-        shelly_component_status_map_t[K]
+      [K in keyof shelly_component_info_map_t]: Partial<
+        shelly_component_info_map_t[K]['status']
       >;
     };
   };
 
 type shelly_rpc_notification_notify_event_t = shelly_rpc_notification_base_t & {
-  method: 'NotifyEvent';
+  method: Extract<shelly_rpc_notification_method_t, 'NotifyEvent'>;
   params: {
     ts: number;
     events: {

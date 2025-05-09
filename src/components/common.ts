@@ -2,6 +2,7 @@ export type shelly_output_component_status_source_t =
   | 'init'
   | 'WS_in'
   | 'http'
+  | 'loopback'
   | string;
 
 export type shelly_output_component_status_counter_t = {
