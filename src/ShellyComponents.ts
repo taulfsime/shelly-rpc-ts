@@ -349,3 +349,19 @@ export type shelly_component_info_map_t = {
   };
 };
 // vasi haly
+
+export function parseComponentKey(key: shelly_component_key_t): {
+  type: shelly_component_type_t;
+  id?: shelly_component_id_t;
+} {
+  const [type, id] = key.split(':', 2);
+
+  if (type.length === key.length) {
+    return { type: type as shelly_component_type_t };
+  }
+
+  return {
+    type: type as shelly_component_type_t,
+    id: parseInt(id, 10) as shelly_component_id_t,
+  };
+}
