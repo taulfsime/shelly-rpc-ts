@@ -1,15 +1,21 @@
+import { shelly_component_id_t } from '../ShellyComponents.js';
 import {
-  shelly_component_id_t,
-  shelly_component_key_t,
-} from '../ShellyComponents.js';
-import { shelly_bthomedevice_config_t } from './BTHomeComponents/BTHomeDevice.js';
+  shelly_bthomedevice_config_t,
+  shelly_bthomedevice_key_t,
+  shelly_bthomedevice_type_t,
+} from './BTHomeComponents/BTHomeDevice.js';
 import {
   shelly_bthomesensor_config_t,
+  shelly_bthomesensor_key_t,
   shelly_bthomesensor_object_id_t,
   shelly_bthomesensor_object_type_t,
+  shelly_bthomesensor_type_t,
 } from './BTHomeComponents/BTHomeSensor.js';
 
 type shelly_bthome_status_errors_t = 'bluetooth_disabled';
+
+export type shelly_bthome_type_t = 'bthome';
+export type shelly_bthome_key_t = shelly_bthome_type_t;
 
 export type shelly_bthome_config_t = {};
 
@@ -21,7 +27,9 @@ export type shelly_bthome_status_t = {
   errors?: shelly_bthome_status_errors_t[];
 };
 
-export type shelly_bthome_component_type_t = 'bthomesensor' | 'bthomedevice';
+export type shelly_bthome_component_type_t =
+  | shelly_bthomedevice_type_t
+  | shelly_bthomesensor_type_t;
 
 export type shelly_bthome_rpc_method_map_t = {
   'BTHome.GetStatus': {
@@ -46,7 +54,7 @@ export type shelly_bthome_rpc_method_map_t = {
       id?: shelly_component_id_t;
     };
     result: {
-      added: shelly_component_key_t;
+      added: shelly_bthomedevice_key_t;
     };
   };
   'BTHome.DeleteDevice': {
@@ -61,7 +69,7 @@ export type shelly_bthome_rpc_method_map_t = {
       id?: shelly_component_id_t;
     };
     result: {
-      added: shelly_component_key_t;
+      added: shelly_bthomesensor_key_t;
     };
   };
   'BTHome.DeleteSensor': {
