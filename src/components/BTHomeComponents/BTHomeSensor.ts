@@ -1,5 +1,9 @@
 import { shelly_component_id_t } from '../../ShellyComponents.js';
 
+export type shelly_bthomesensor_type_t = 'bthomesensor';
+export type shelly_bthomesensor_key_t =
+  `${shelly_bthomesensor_type_t}:${shelly_component_id_t}`;
+
 export type shelly_bthomesensor_object_id_t = number;
 export type shelly_bthomesensor_object_type_t =
   | 'sensor'

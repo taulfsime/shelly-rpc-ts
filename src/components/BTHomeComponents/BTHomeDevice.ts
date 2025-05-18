@@ -1,13 +1,15 @@
-import {
-  shelly_component_id_t,
-  shelly_component_key_t,
-} from '../../ShellyComponents.js';
+import { shelly_component_id_t } from '../../ShellyComponents.js';
+import { shelly_bthomesensor_key_t } from './BTHomeSensor.js';
 
 type shelly_bthomedevice_status_errors_t =
   | 'key_missing_or_bad'
   | 'decrypt_failed'
   | 'parse_failed'
   | 'unencrypted_data';
+
+export type shelly_bthomedevice_type_t = 'bthomedevice';
+export type shelly_bthomedevice_key_t =
+  `${shelly_bthomedevice_type_t}:${shelly_component_id_t}`;
 
 export type shelly_bthomedevice_status_t = {
   id: shelly_component_id_t;
@@ -57,7 +59,7 @@ export type shelly_bthomedevice_rpc_method_map_t = {
       objects: {
         obj_id: number;
         idx: number;
-        component: shelly_component_key_t | null;
+        component: shelly_bthomesensor_key_t | null;
       };
     };
   };
