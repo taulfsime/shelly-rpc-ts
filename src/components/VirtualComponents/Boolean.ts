@@ -1,8 +1,10 @@
-import {
-  shelly_component_id_t,
-  shelly_component_key_t,
-} from '../../ShellyComponents.js';
+import { shelly_component_id_t } from '../../ShellyComponents.js';
 import { shelly_virtual_component_status_source_t } from '../common.js';
+import { shelly_service_key_t } from '../Service.js';
+
+export type shelly_boolean_type_t = 'boolean';
+export type shelly_boolean_key_t =
+  `${shelly_boolean_type_t}:${shelly_component_id_t}`;
 
 export type shelly_boolean_status_t = {
   source: shelly_virtual_component_status_source_t;
@@ -26,7 +28,7 @@ export type shelly_boolean_rpc_method_map_t = {
         }
       | {
           role: string;
-          owner: shelly_component_key_t;
+          owner: shelly_service_key_t;
         };
     result: shelly_boolean_status_t;
   };
@@ -38,7 +40,7 @@ export type shelly_boolean_rpc_method_map_t = {
         }
       | {
           role: string;
-          owner: shelly_component_key_t;
+          owner: shelly_service_key_t;
           config: shelly_boolean_config_t;
         };
     result: {
@@ -52,7 +54,7 @@ export type shelly_boolean_rpc_method_map_t = {
         }
       | {
           role: string;
-          owner: shelly_component_key_t;
+          owner: shelly_service_key_t;
         };
     result: shelly_boolean_config_t;
   };
@@ -64,7 +66,7 @@ export type shelly_boolean_rpc_method_map_t = {
         }
       | {
           role: string;
-          owner: shelly_component_key_t;
+          owner: shelly_service_key_t;
           value: boolean;
         };
     result: null;

@@ -1,10 +1,12 @@
-import {
-  shelly_component_id_t,
-  shelly_component_key_t,
-} from '../../ShellyComponents.js';
+import { shelly_component_id_t } from '../../ShellyComponents.js';
 import { shelly_virtual_component_status_source_t } from '../common.js';
+import { shelly_service_key_t } from '../Service.js';
 
 type shelly_enum_option_t = string;
+
+export type shelly_enum_type_t = 'enum';
+export type shelly_enum_key_t =
+  `${shelly_enum_type_t}:${shelly_component_id_t}`;
 
 export type shelly_enum_status_t = {
   value: shelly_enum_option_t | null;
@@ -29,7 +31,7 @@ export type shelly_enum_rpc_method_map_t = {
         }
       | {
           role: string;
-          owner: shelly_component_key_t;
+          owner: shelly_service_key_t;
         };
     result: shelly_enum_status_t;
   };
@@ -41,7 +43,7 @@ export type shelly_enum_rpc_method_map_t = {
         }
       | {
           role: string;
-          owner: shelly_component_key_t;
+          owner: shelly_service_key_t;
           config: shelly_enum_config_t;
         };
     result: {
@@ -55,7 +57,7 @@ export type shelly_enum_rpc_method_map_t = {
         }
       | {
           role: string;
-          owner: shelly_component_key_t;
+          owner: shelly_service_key_t;
         };
     result: shelly_enum_config_t;
   };
@@ -67,7 +69,7 @@ export type shelly_enum_rpc_method_map_t = {
         }
       | {
           role: string;
-          owner: shelly_component_key_t;
+          owner: shelly_service_key_t;
           value: shelly_enum_option_t | null;
         };
     result: null;
