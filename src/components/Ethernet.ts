@@ -16,11 +16,11 @@ export type shelly_ethernet_config_t = {
 };
 
 export type shelly_ethernet_rpc_method_map_t = {
-  'Ethernet.GetStatus': {
+  'Eth.GetStatus': {
     params: never;
     result: shelly_ethernet_status_t;
   };
-  'Ethernet.SetConfig': {
+  'Eth.SetConfig': {
     params: {
       config: shelly_ethernet_config_t;
     };
@@ -28,11 +28,11 @@ export type shelly_ethernet_rpc_method_map_t = {
       restart_required: boolean;
     };
   };
-  'Ethernet.GetConfig': {
+  'Eth.GetConfig': {
     params: never;
     result: shelly_ethernet_config_t;
   };
-  'Ethernet.ListClients': {
+  'Eth.ListClients': {
     params: {
       offset: number;
     };
