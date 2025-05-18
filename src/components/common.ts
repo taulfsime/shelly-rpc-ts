@@ -3,6 +3,7 @@ export type shelly_output_component_status_source_t =
   | 'WS_in'
   | 'http'
   | 'loopback'
+  | 'short_push' // power strip button push
   | string;
 
 export type shelly_output_component_status_counter_t = {
