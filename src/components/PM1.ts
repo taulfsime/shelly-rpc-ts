@@ -8,6 +8,9 @@ type shelly_pm1_status_errors_t =
   | 'out_of_range:aprtpower'
   | 'out_of_range:apower';
 
+export type shelly_pm1_type_t = 'pm1';
+export type shelly_pm1_key_t = `${shelly_pm1_type_t}:${shelly_component_id_t}`;
+
 export type shelly_pm1_config_t = {
   id: shelly_component_id_t;
   name: string | null;

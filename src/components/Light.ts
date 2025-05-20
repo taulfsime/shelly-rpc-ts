@@ -22,6 +22,10 @@ type shelly_light_status_errors_t =
 
 type shelly_light_status_flags_t = 'no_load' | 'uncalibrated';
 
+export type shelly_light_type_t = 'light';
+export type shelly_light_key_t =
+  `${shelly_light_type_t}:${shelly_component_id_t}`;
+
 export type shelly_light_status_t = {
   id: shelly_component_id_t;
   source: shelly_output_component_status_source_t;

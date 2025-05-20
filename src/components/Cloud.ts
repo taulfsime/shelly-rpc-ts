@@ -1,3 +1,6 @@
+export type shelly_cloud_type_t = 'cloud';
+export type shelly_cloud_key_t = shelly_cloud_type_t;
+
 export type shelly_cloud_config_t = {
   enable: boolean;
   server: string | null;

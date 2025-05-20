@@ -2,6 +2,10 @@ import { shelly_component_id_t } from '../ShellyComponents.js';
 
 type shelly_em1data_status_errors_t = 'database_error' | 'ct_type_not_set';
 
+export type shelly_em1data_type_t = 'em1data';
+export type shelly_em1data_key_t =
+  `${shelly_em1data_type_t}:${shelly_component_id_t}`;
+
 export type shelly_em1data_config_t = {};
 export type shelly_em1data_status_t = {
   id: shelly_component_id_t;

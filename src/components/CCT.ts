@@ -6,6 +6,9 @@ import {
 
 type shelly_cct_status_errors_t = 'overtemp';
 
+export type shelly_cct_type_t = 'cct';
+export type shelly_cct_key_t = `${shelly_cct_type_t}:${shelly_component_id_t}`;
+
 export type shelly_cct_config_t = {
   id: shelly_component_id_t;
   name: string | null;

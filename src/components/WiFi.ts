@@ -16,6 +16,9 @@ type shelly_wifi_config_sta_t = {
   ipv4mode: 'dhcp' | 'static';
 };
 
+export type shelly_wifi_type_t = 'wifi';
+export type shelly_wifi_key_t = shelly_wifi_type_t;
+
 export type shelly_wifi_config_t = {
   ap: {
     ssid: string | null;

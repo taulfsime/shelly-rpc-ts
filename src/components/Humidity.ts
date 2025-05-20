@@ -2,6 +2,10 @@ import { shelly_component_id_t } from '../ShellyComponents.js';
 
 type shelly_humidity_status_errors_t = 'out_of_range' | 'read';
 
+export type shelly_humidity_type_t = 'humidity';
+export type shelly_humidity_key_t =
+  `${shelly_humidity_type_t}:${shelly_component_id_t}`;
+
 export type shelly_humidity_config_t = {
   id: shelly_component_id_t;
   name: string | null;

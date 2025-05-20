@@ -2,6 +2,10 @@ import { shelly_component_id_t } from '../ShellyComponents.js';
 
 type shelly_devicepower_status_errors_t = 'read';
 
+export type shelly_devicepower_type_t = 'devicepower';
+export type shelly_devicepower_key_t =
+  `${shelly_devicepower_type_t}:${shelly_component_id_t}`;
+
 export type shelly_devicepower_status_t = {
   id: shelly_component_id_t;
   battery: {

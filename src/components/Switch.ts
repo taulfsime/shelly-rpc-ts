@@ -10,6 +10,10 @@ type shelly_switch_status_errors_t =
   | 'overvoltage'
   | 'undervoltage';
 
+export type shelly_switch_type_t = 'switch';
+export type shelly_switch_key_t =
+  `${shelly_switch_type_t}:${shelly_component_id_t}`;
+
 export type shelly_switch_status_t = {
   id: shelly_component_id_t;
   source: shelly_output_component_status_source_t;

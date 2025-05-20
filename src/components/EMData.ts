@@ -2,6 +2,10 @@ import { shelly_component_id_t } from '../ShellyComponents.js';
 
 type shelly_emdata_status_errors_t = 'database_error' | 'ct_type_not_set';
 
+export type shelly_emdata_type_t = 'emdata';
+export type shelly_emdata_key_t =
+  `${shelly_emdata_type_t}:${shelly_component_id_t}`;
+
 export type shelly_emdata_status_t = {
   id: shelly_component_id_t;
   a_total_act_energy: number;

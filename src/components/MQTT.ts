@@ -1,3 +1,6 @@
+export type shelly_mqtt_type_t = 'mqtt';
+export type shelly_mqtt_key_t = shelly_mqtt_type_t;
+
 export type shelly_mqtt_status_t = {
   connected: boolean;
 };

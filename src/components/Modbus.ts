@@ -1,3 +1,6 @@
+export type shelly_modbus_type_t = 'modbus';
+export type shelly_modbus_key_t = shelly_modbus_type_t;
+
 export type shelly_modbus_status_t = {
   enabled: boolean;
 };

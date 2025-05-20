@@ -5,6 +5,10 @@ import {
   shelly_rgb_status_t,
 } from './RGB.js';
 
+export type shelly_rgbw_type_t = 'rgbw';
+export type shelly_rgbw_key_t =
+  `${shelly_rgbw_type_t}:${shelly_component_id_t}`;
+
 export type shelly_rgbw_status_t = shelly_rgb_status_t & {
   white: number;
 

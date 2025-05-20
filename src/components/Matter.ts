@@ -1,3 +1,6 @@
+export type shelly_matter_type_t = 'matter';
+export type shelly_matter_key_t = shelly_matter_type_t;
+
 export type shelly_matter_config_t = {
   enable: boolean;
 };

@@ -1,11 +1,21 @@
 import { shelly_rpc_method_t } from '../ShellyRpc.js';
 
 import {
+  shelly_component_config_t,
+  shelly_component_helper_key_to_type_t,
   shelly_component_id_t,
   shelly_component_key_t,
+  shelly_component_status_t,
   shelly_component_type_t,
-  shelly_component_info_map_t,
 } from '../ShellyComponents.js';
+
+type shelly_rpc_components_list_item_t<
+  K extends shelly_component_key_t = shelly_component_key_t,
+> = {
+  key: K;
+  status?: shelly_component_status_t<shelly_component_helper_key_to_type_t<K>>;
+  config?: shelly_component_config_t<shelly_component_helper_key_to_type_t<K>>;
+};
 
 export type shelly_device_info_data_t = {
   name: string | null;
@@ -65,15 +75,6 @@ export type shelly_device_id_t = string;
 export type shelly_device_auth_user_t = 'admin';
 export type shelly_device_auth_realm_t = shelly_device_id_t;
 export type shelly_device_auth_ha1_t = string | null;
-
-type shelly_rpc_components_list_item_t<K extends shelly_component_key_t> =
-  K extends keyof shelly_component_info_map_t
-    ? {
-        key: K;
-        config?: shelly_component_info_map_t[K]['config'];
-        status?: shelly_component_info_map_t[K]['status'];
-      }
-    : never;
 
 export type shelly_device_rpc_method_map_t = {
   'Shelly.GetStatus': {
@@ -208,7 +209,7 @@ export type shelly_device_rpc_method_map_t = {
       dynamic_only?: boolean;
     };
     result: {
-      components: shelly_rpc_components_list_item_t<shelly_component_key_t>[];
+      components: shelly_rpc_components_list_item_t[];
       cfg_rev: number;
       offset: number;
       total: number;

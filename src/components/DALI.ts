@@ -1,5 +1,8 @@
 type shelly_dali_status_errors_t = 'control_gear_missing' | 'driver';
 
+export type shelly_dali_type_t = 'dali';
+export type shelly_dali_key_t = shelly_dali_type_t;
+
 export type shelly_dali_config_t = {};
 
 export type shelly_dali_status_t = {

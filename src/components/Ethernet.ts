@@ -1,3 +1,6 @@
+export type shelly_ethernet_type_t = 'eth';
+export type shelly_ethernet_key_t = shelly_ethernet_type_t;
+
 export type shelly_ethernet_status_t = {
   ip: string | null;
   ip6: string[] | null;

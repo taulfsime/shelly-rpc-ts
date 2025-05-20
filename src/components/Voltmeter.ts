@@ -2,6 +2,10 @@ import { shelly_component_id_t } from '../ShellyComponents.js';
 
 type shelly_voltmeter_status_errors_t = 'read' | 'out_of_range';
 
+export type shelly_voltmeter_type_t = 'voltmeter';
+export type shelly_voltmeter_key_t =
+  `${shelly_voltmeter_type_t}:${shelly_component_id_t}`;
+
 export type shelly_voltmeter_status_t = {
   id: shelly_component_id_t;
   voltage: number | null;

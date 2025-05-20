@@ -26,6 +26,9 @@ type shelly_sys_wakeup_reason_cause_t =
   | 'alarm_test'
   | 'undefined';
 
+export type shelly_sys_type_t = 'sys';
+export type shelly_sys_key_t = shelly_sys_type_t;
+
 export type shelly_sys_config_t = {
   device: {
     name: string;

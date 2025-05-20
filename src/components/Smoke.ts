@@ -1,5 +1,9 @@
 import { shelly_component_id_t } from '../ShellyComponents.js';
 
+export type shelly_smoke_type_t = 'smoke';
+export type shelly_smoke_key_t =
+  `${shelly_smoke_type_t}:${shelly_component_id_t}`;
+
 export type shelly_smoke_status_t = {
   id: shelly_component_id_t;
   alarm: boolean;

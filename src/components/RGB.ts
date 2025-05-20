@@ -7,6 +7,9 @@ import {
 
 type shelly_rpc_status_errors_t = 'overtemp';
 
+export type shelly_rgb_type_t = 'rgb';
+export type shelly_rgb_key_t = `${shelly_rgb_type_t}:${shelly_component_id_t}`;
+
 export type shelly_rgb_status_t = {
   id: shelly_component_id_t;
   source: shelly_output_component_status_source_t;

@@ -1,3 +1,6 @@
+export type shelly_zigbee_type_t = 'zigbee';
+export type shelly_zigbee_key_t = shelly_zigbee_type_t;
+
 export type shelly_zigbee_status_t = {
   network_state: 'disabled' | 'initializing' | 'steering' | 'joined' | 'failed';
 };

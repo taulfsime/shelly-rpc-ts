@@ -2,6 +2,10 @@ import { shelly_component_id_t } from '../ShellyComponents.js';
 
 type shelly_input_status_errors_t = 'out_of_range' | 'read';
 
+export type shelly_input_type_t = 'input';
+export type shelly_input_key_t =
+  `${shelly_input_type_t}:${shelly_component_id_t}`;
+
 export type shelly_input_event_t =
   | 'btn_down'
   | 'btn_up'

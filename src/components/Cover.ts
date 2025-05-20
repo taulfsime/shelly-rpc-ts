@@ -4,6 +4,10 @@ import {
   shelly_output_component_status_source_t,
 } from './common.js';
 
+export type shelly_cover_type_t = 'cover';
+export type shelly_cover_key_t =
+  `${shelly_cover_type_t}:${shelly_component_id_t}`;
+
 type shelly_cover_status_errors_t =
   | 'overtemp'
   | 'overpower'

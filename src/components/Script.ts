@@ -12,6 +12,10 @@ type shelly_script_status_errors_t =
   | 'file_read_error'
   | 'bad_arguments';
 
+export type shelly_script_type_t = 'script';
+export type shelly_script_key_t =
+  `${shelly_script_type_t}:${shelly_component_id_t}`;
+
 export type shelly_script_status_t = {
   id: shelly_component_id_t;
   running: boolean;

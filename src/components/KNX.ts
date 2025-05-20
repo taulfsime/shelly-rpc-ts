@@ -1,30 +1,35 @@
-import { shelly_component_key_t } from '../ShellyComponents.js';
+import { shelly_cover_key_t } from './Cover.js';
+import { shelly_input_key_t } from './Input.js';
 import { shelly_knx_cover_config_t } from './KNXComponents/KNXCover.js';
 import { shelly_knx_input_config_t } from './KNXComponents/KNXInput.js';
 import { shelly_knx_light_config_t } from './KNXComponents/KNXLight.js';
 import { shelly_knx_switch_config_t } from './KNXComponents/KNXSwitch.js';
+import { shelly_light_key_t } from './Light.js';
+import { shelly_switch_key_t } from './Switch.js';
 
 type shelly_knx_individual_address_t = `${number}.${number}.${number}`;
 
-type shelly_knx_component_key_t = Extract<
-  shelly_component_key_t,
-  `${'light' | 'switch' | 'cover' | 'input'}:${number}`
->;
+type shelly_knx_component_key_t =
+  | shelly_light_key_t
+  | shelly_switch_key_t
+  | shelly_cover_key_t
+  | shelly_input_key_t;
 
 type shelly_knx_component_config_helper_t<
   K extends shelly_knx_component_key_t,
-> = K extends `switch:${number}`
+> = K extends shelly_switch_key_t
   ? shelly_knx_switch_config_t
-  : K extends `light:${number}`
+  : K extends shelly_light_key_t
     ? shelly_knx_light_config_t
-    : K extends `input:${number}`
+    : K extends shelly_input_key_t
       ? shelly_knx_input_config_t
-      : K extends `cover:${number}`
+      : K extends shelly_cover_key_t
         ? shelly_knx_cover_config_t
         : never;
 
+export type shelly_knx_type_t = 'knx';
+export type shelly_knx_key_t = shelly_knx_type_t;
 export type shelly_knx_group_address_t = `${number}/${number}/${number}`;
-
 export type shelly_knx_rev_t = number;
 
 export type shelly_knx_config_t = {

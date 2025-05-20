@@ -1,15 +1,5 @@
 import { shelly_component_id_t } from '../ShellyComponents.js';
 
-export type shelly_em_config_ct_type_t =
-  | '50A'
-  | '80A'
-  | '3x63A'
-  | '3EMG3'
-  | '120A'
-  | '400A'
-  | '2000A'
-  | '50AEMG3';
-
 type shelly_em_status_errors_t =
   | 'power_meter_failure'
   | 'phase_sequence'
@@ -20,6 +10,19 @@ type shelly_em_status_errors_phase_t =
   | 'out_of_range:apparent_power'
   | 'out_of_range:voltage'
   | 'out_of_range:current';
+
+export type shelly_em_type_t = 'em';
+export type shelly_em_key_t = `${shelly_em_type_t}:${shelly_component_id_t}`;
+
+export type shelly_em_config_ct_type_t =
+  | '50A'
+  | '80A'
+  | '3x63A'
+  | '3EMG3'
+  | '120A'
+  | '400A'
+  | '2000A'
+  | '50AEMG3';
 
 export type shelly_em_config_t = {
   id: shelly_component_id_t;

@@ -1,3 +1,6 @@
+export type shelly_ws_type_t = 'ws';
+export type shelly_ws_key_t = shelly_ws_type_t;
+
 export type shelly_ws_config_t = {
   enable: boolean;
   server: `ws://${string}` | `wss://${string}`;

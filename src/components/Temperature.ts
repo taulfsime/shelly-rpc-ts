@@ -2,6 +2,10 @@ import { shelly_component_id_t } from '../ShellyComponents.js';
 
 type shelly_temperature_status_errors_t = 'out_of_range' | 'read';
 
+export type shelly_temperature_type_t = 'temperature';
+export type shelly_temperature_key_t =
+  `${shelly_temperature_type_t}:${shelly_component_id_t}`;
+
 export type shelly_temperature_config_t = {
   id: shelly_component_id_t;
   name: string | null;

@@ -1,3 +1,6 @@
+export type shelly_ble_type_t = 'ble';
+export type shelly_ble_key_t = shelly_ble_type_t;
+
 export type shelly_ble_config_t = {
   enable: boolean;
   rpc: {
