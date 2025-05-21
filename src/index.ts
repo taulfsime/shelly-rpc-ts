@@ -72,33 +72,25 @@ export {
   shelly_bthomedevice_config_t,
   shelly_bthomedevice_status_t,
 } from './components/BTHomeComponents/BTHomeDevice.js';
-
 export {
   shelly_object_config_t,
   shelly_object_status_t,
 } from './components/VirtualComponents/Object.js';
-
 export { shelly_pm1_config_t, shelly_pm1_status_t } from './components/PM1.js';
-
 export {
   shelly_devicepower_config_t,
   shelly_devicepower_status_t,
 } from './components/DevicePower.js';
-
 export {
   shelly_ethernet_config_t,
   shelly_ethernet_status_t,
 } from './components/Ethernet.js';
-
 export { shelly_ble_config_t, shelly_ble_status_t } from './components/BLE.js';
-
 export {
   shelly_cloud_config_t,
   shelly_cloud_status_t,
 } from './components/Cloud.js';
-
 export { shelly_ws_config_t, shelly_ws_status_t } from './components/WS.js';
-
 export {
   shelly_matter_config_t,
   shelly_matter_status_t,
@@ -150,6 +142,10 @@ export {
   shelly_rgbw_status_t,
   shelly_rgbw_config_t,
 } from './components/RGBW.js';
+export {
+  shelly_virtual_component_key_t,
+  shelly_virtual_component_status_source_t,
+} from './components/Virtual.js';
 
 // Shelly device types
 export { shelly_device_info_data_t } from './components/Shelly.js';
@@ -166,6 +162,8 @@ export {
   shelly_rpc_msg_response_result_t,
   shelly_rpc_notification_t,
   shelly_rpc_notification_method_t,
+  shelly_rpc_notification_notify_event_t,
+  shelly_rpc_notification_notify_status_t,
   isRpcResponse,
   isRpcNotification,
 } from './ShellyRpc.js';

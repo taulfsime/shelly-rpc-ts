@@ -164,7 +164,7 @@ type shelly_rpc_notification_base_t = {
   params: unknown;
 };
 
-type shelly_rpc_notification_notify_status_t =
+export type shelly_rpc_notification_notify_status_t =
   shelly_rpc_notification_base_t & {
     method: Extract<
       shelly_rpc_notification_method_t,
@@ -179,18 +179,19 @@ type shelly_rpc_notification_notify_status_t =
     };
   };
 
-type shelly_rpc_notification_notify_event_t = shelly_rpc_notification_base_t & {
-  method: Extract<shelly_rpc_notification_method_t, 'NotifyEvent'>;
-  params: {
-    ts: number;
-    events: {
+export type shelly_rpc_notification_notify_event_t =
+  shelly_rpc_notification_base_t & {
+    method: Extract<shelly_rpc_notification_method_t, 'NotifyEvent'>;
+    params: {
       ts: number;
-      component: shelly_component_key_t;
-      id: shelly_component_id_t;
-      event: string; // XXX:
-    }[];
+      events: {
+        ts: number;
+        component: shelly_component_key_t;
+        id: shelly_component_id_t;
+        event: string; // XXX:
+      }[];
+    };
   };
-};
 
 export type shelly_rpc_notification_t =
   | shelly_rpc_notification_notify_status_t
