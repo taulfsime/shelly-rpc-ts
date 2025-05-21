@@ -190,7 +190,6 @@ import {
   shelly_text_status_t,
   shelly_text_type_t,
 } from './components/VirtualComponents/Text.js';
-import { shelly_virtual_component_type_t } from './components/Virtual.js';
 import {
   shelly_voltmeter_config_t,
   shelly_voltmeter_key_t,

@@ -1,5 +1,5 @@
 import { shelly_component_id_t } from '../../ShellyComponents.js';
-import { shelly_virtual_component_status_source_t } from '../common.js';
+import { shelly_virtual_component_status_source_t } from '../Virtual.js';
 import { shelly_service_key_t } from '../Service.js';
 
 export type shelly_boolean_type_t = 'boolean';

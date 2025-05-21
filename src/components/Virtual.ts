@@ -1,4 +1,7 @@
-import { shelly_component_id_t } from '../ShellyComponents.js';
+import {
+  shelly_component_helper_key_to_type_t,
+  shelly_component_id_t,
+} from '../ShellyComponents.js';
 import {
   shelly_boolean_config_t,
   shelly_boolean_key_t,
@@ -24,7 +27,13 @@ import {
   shelly_text_key_t,
 } from './VirtualComponents/Text.js';
 
-export type shelly_virtual_component_type_t =
+export type shelly_virtual_component_status_source_t =
+  | ''
+  | 'rpc'
+  | 'sys'
+  | 'err';
+
+export type shelly_virtual_component_key_t =
   | shelly_boolean_key_t
   | shelly_button_key_t
   | shelly_enum_key_t
@@ -36,7 +45,7 @@ export type shelly_virtual_component_type_t =
 export type shelly_virtual_rpc_method_map_t = {
   'Virtual.Add': {
     params: {
-      type: shelly_virtual_component_type_t;
+      type: shelly_component_helper_key_to_type_t<shelly_virtual_component_key_t>;
       config?:
         | shelly_boolean_config_t
         | shelly_text_config_t
@@ -52,7 +61,7 @@ export type shelly_virtual_rpc_method_map_t = {
   };
   'Virtual.Delete': {
     params: {
-      key: shelly_virtual_component_type_t;
+      key: shelly_virtual_component_key_t;
     };
     result: null;
   };
