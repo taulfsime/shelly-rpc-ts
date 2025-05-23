@@ -1,3 +1,4 @@
+import { shelly_component_key_t } from '../ShellyComponents.js';
 import { shelly_knx_rev_t } from './KNX.js';
 import { shelly_kvs_rev_t } from './KVS.js';
 import { shelly_schedule_rev_t } from './Schedule.js';
@@ -105,6 +106,7 @@ export type shelly_sys_status_t = {
   wakeup_period?: number;
   reset_reason?: number;
   utc_offset: number;
+  ch?: shelly_component_key_t[];
 };
 
 export type shelly_sys_rpc_method_map_t = {
