@@ -245,12 +245,20 @@ import {
   shelly_button_status_t,
   shelly_button_type_t,
 } from './components/VirtualComponents/Button.js';
+import {
+  shelly_plugs_ui_config_t,
+  shelly_plugs_ui_key_t,
+  shelly_plugs_ui_status_t,
+  shelly_plugs_ui_type_t,
+} from './components/PlugS_UI.js';
 
 export type shelly_component_id_t = number;
 export type shelly_component_type_t =
   | shelly_ble_type_t
   | shelly_boolean_type_t
   | shelly_bthome_type_t
+  | shelly_bthomedevice_type_t
+  | shelly_bthomesensor_type_t
   | shelly_button_type_t
   | shelly_cct_type_t
   | shelly_cloud_type_t
@@ -273,6 +281,7 @@ export type shelly_component_type_t =
   | shelly_mqtt_type_t
   | shelly_number_type_t
   | shelly_object_type_t
+  | shelly_plugs_ui_type_t
   | shelly_pm1_type_t
   | shelly_rgb_type_t
   | shelly_rgbw_type_t
@@ -286,14 +295,14 @@ export type shelly_component_type_t =
   | shelly_voltmeter_type_t
   | shelly_wifi_type_t
   | shelly_ws_type_t
-  | shelly_zigbee_type_t
-  | shelly_bthomedevice_type_t
-  | shelly_bthomesensor_type_t;
+  | shelly_zigbee_type_t;
 
 export type shelly_component_key_t =
   | shelly_ble_key_t
   | shelly_boolean_key_t
   | shelly_bthome_key_t
+  | shelly_bthomedevice_key_t
+  | shelly_bthomesensor_key_t
   | shelly_button_key_t
   | shelly_cct_key_t
   | shelly_cloud_key_t
@@ -316,6 +325,7 @@ export type shelly_component_key_t =
   | shelly_mqtt_key_t
   | shelly_number_key_t
   | shelly_object_key_t
+  | shelly_plugs_ui_key_t
   | shelly_pm1_key_t
   | shelly_rgb_key_t
   | shelly_rgbw_key_t
@@ -329,9 +339,7 @@ export type shelly_component_key_t =
   | shelly_voltmeter_key_t
   | shelly_wifi_key_t
   | shelly_ws_key_t
-  | shelly_zigbee_key_t
-  | shelly_bthomesensor_key_t
-  | shelly_bthomedevice_key_t;
+  | shelly_zigbee_key_t;
 
 export type shelly_component_helper_key_to_type_t<
   T extends
@@ -551,6 +559,11 @@ export type shelly_component_status_map_t =
       shelly_rgbw_type_t,
       shelly_rgbw_config_t,
       shelly_rgbw_status_t
+    >
+  | component_entry_t<
+      shelly_plugs_ui_type_t,
+      shelly_plugs_ui_config_t,
+      shelly_plugs_ui_status_t
     >
   | component_entry_t<
       shelly_button_type_t,

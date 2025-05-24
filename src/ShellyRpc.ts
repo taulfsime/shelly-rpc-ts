@@ -51,54 +51,56 @@ import { shelly_em1data_rpc_method_map_t } from './components/EM1Data.js';
 import { shelly_http_rpc_method_map_t } from './components/HTTP.js';
 import { shelly_rgb_rpc_method_map_t } from './components/RGB.js';
 import { shelly_rgbw_rpc_method_map_t } from './components/RGBW.js';
+import { shelly_plugs_ui_rpc_method_map_t } from './components/PlugS_UI.js';
 
 type shelly_rpc_method_map_t = shelly_device_rpc_method_map_t &
-  shelly_sys_rpc_method_map_t &
-  shelly_wifi_rpc_method_map_t &
-  shelly_mqtt_rpc_method_map_t &
-  shelly_switch_rpc_method_map_t &
-  shelly_cover_rpc_method_map_t &
-  shelly_light_rpc_method_map_t &
-  shelly_service_rpc_method_map_t &
-  shelly_number_rpc_method_map_t &
-  shelly_boolean_rpc_method_map_t &
-  shelly_text_rpc_method_map_t &
-  shelly_enum_rpc_method_map_t &
-  shelly_button_rpc_method_map_t &
-  shelly_group_rpc_method_map_t &
-  shelly_script_rpc_method_map_t &
-  shelly_temperature_rpc_method_map_t &
-  shelly_humidity_rpc_method_map_t &
-  shelly_input_rpc_method_map_t &
-  shelly_bthomesensor_rpc_method_map_t &
-  shelly_bthomedevice_rpc_method_map_t &
-  shelly_object_rpc_method_map_t &
-  shelly_pm1_rpc_method_map_t &
-  shelly_devicepower_rpc_method_map_t &
-  shelly_ethernet_rpc_method_map_t &
   shelly_ble_rpc_method_map_t &
-  shelly_cloud_rpc_method_map_t &
-  shelly_ws_rpc_method_map_t &
-  shelly_matter_rpc_method_map_t &
-  shelly_modbus_rpc_method_map_t &
-  shelly_voltmeter_rpc_method_map_t &
-  shelly_smoke_rpc_method_map_t &
-  shelly_dali_rpc_method_map_t &
+  shelly_boolean_rpc_method_map_t &
+  shelly_bthome_rpc_method_map_t &
+  shelly_bthomedevice_rpc_method_map_t &
+  shelly_bthomesensor_rpc_method_map_t &
+  shelly_button_rpc_method_map_t &
   shelly_cct_rpc_method_map_t &
-  shelly_zigbee_rpc_method_map_t &
+  shelly_cloud_rpc_method_map_t &
+  shelly_cover_rpc_method_map_t &
+  shelly_dali_rpc_method_map_t &
+  shelly_devicepower_rpc_method_map_t &
   shelly_em_rpc_method_map_t &
   shelly_em1_rpc_method_map_t &
-  shelly_emdata_rpc_method_map_t &
-  shelly_schedule_rpc_method_map_t &
-  shelly_webhook_rpc_method_map_t &
-  shelly_kvs_rpc_method_map_t &
-  shelly_knx_rpc_method_map_t &
-  shelly_virtual_rpc_method_map_t &
-  shelly_bthome_rpc_method_map_t &
   shelly_em1data_rpc_method_map_t &
+  shelly_emdata_rpc_method_map_t &
+  shelly_enum_rpc_method_map_t &
+  shelly_ethernet_rpc_method_map_t &
+  shelly_group_rpc_method_map_t &
   shelly_http_rpc_method_map_t &
+  shelly_humidity_rpc_method_map_t &
+  shelly_input_rpc_method_map_t &
+  shelly_knx_rpc_method_map_t &
+  shelly_kvs_rpc_method_map_t &
+  shelly_light_rpc_method_map_t &
+  shelly_matter_rpc_method_map_t &
+  shelly_modbus_rpc_method_map_t &
+  shelly_mqtt_rpc_method_map_t &
+  shelly_number_rpc_method_map_t &
+  shelly_object_rpc_method_map_t &
+  shelly_plugs_ui_rpc_method_map_t &
+  shelly_pm1_rpc_method_map_t &
   shelly_rgb_rpc_method_map_t &
-  shelly_rgbw_rpc_method_map_t;
+  shelly_rgbw_rpc_method_map_t &
+  shelly_schedule_rpc_method_map_t &
+  shelly_script_rpc_method_map_t &
+  shelly_service_rpc_method_map_t &
+  shelly_smoke_rpc_method_map_t &
+  shelly_switch_rpc_method_map_t &
+  shelly_sys_rpc_method_map_t &
+  shelly_temperature_rpc_method_map_t &
+  shelly_text_rpc_method_map_t &
+  shelly_virtual_rpc_method_map_t &
+  shelly_voltmeter_rpc_method_map_t &
+  shelly_webhook_rpc_method_map_t &
+  shelly_wifi_rpc_method_map_t &
+  shelly_ws_rpc_method_map_t &
+  shelly_zigbee_rpc_method_map_t;
 
 export type shelly_rpc_method_t = keyof shelly_rpc_method_map_t;
 
