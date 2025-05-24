@@ -251,6 +251,12 @@ import {
   shelly_plugs_ui_status_t,
   shelly_plugs_ui_type_t,
 } from './components/PlugS_UI.js';
+import {
+  shelly_pluguk_ui_config_t,
+  shelly_pluguk_ui_key_t,
+  shelly_pluguk_ui_status_t,
+  shelly_pluguk_ui_type_t,
+} from './components/PlugUK_UI.js';
 
 export type shelly_component_id_t = number;
 export type shelly_component_type_t =
@@ -282,6 +288,7 @@ export type shelly_component_type_t =
   | shelly_number_type_t
   | shelly_object_type_t
   | shelly_plugs_ui_type_t
+  | shelly_pluguk_ui_type_t
   | shelly_pm1_type_t
   | shelly_rgb_type_t
   | shelly_rgbw_type_t
@@ -326,6 +333,7 @@ export type shelly_component_key_t =
   | shelly_number_key_t
   | shelly_object_key_t
   | shelly_plugs_ui_key_t
+  | shelly_pluguk_ui_key_t
   | shelly_pm1_key_t
   | shelly_rgb_key_t
   | shelly_rgbw_key_t
@@ -564,6 +572,11 @@ export type shelly_component_status_map_t =
       shelly_plugs_ui_type_t,
       shelly_plugs_ui_config_t,
       shelly_plugs_ui_status_t
+    >
+  | component_entry_t<
+      shelly_pluguk_ui_type_t,
+      shelly_pluguk_ui_config_t,
+      shelly_pluguk_ui_status_t
     >
   | component_entry_t<
       shelly_button_type_t,
