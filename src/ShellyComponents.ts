@@ -257,6 +257,12 @@ import {
   shelly_pluguk_ui_status_t,
   shelly_pluguk_ui_type_t,
 } from './components/PlugUK_UI.js';
+import {
+  shelly_ht_ui_config_t,
+  shelly_ht_ui_key_t,
+  shelly_ht_ui_status_t,
+  shelly_ht_ui_type_t,
+} from './components/HT_UI.js';
 
 export type shelly_component_id_t = number;
 export type shelly_component_type_t =
@@ -278,6 +284,7 @@ export type shelly_component_type_t =
   | shelly_enum_type_t
   | shelly_ethernet_type_t
   | shelly_group_type_t
+  | shelly_ht_ui_type_t
   | shelly_humidity_type_t
   | shelly_input_type_t
   | shelly_knx_type_t
@@ -323,6 +330,7 @@ export type shelly_component_key_t =
   | shelly_enum_key_t
   | shelly_ethernet_key_t
   | shelly_group_key_t
+  | shelly_ht_ui_key_t
   | shelly_humidity_key_t
   | shelly_input_key_t
   | shelly_knx_key_t
@@ -582,6 +590,11 @@ export type shelly_component_status_map_t =
       shelly_button_type_t,
       shelly_button_config_t,
       shelly_button_status_t
+    >
+  | component_entry_t<
+      shelly_ht_ui_type_t,
+      shelly_ht_ui_config_t,
+      shelly_ht_ui_status_t
     >;
 
 export type shelly_component_status_t<T extends shelly_component_type_t> =

@@ -262,6 +262,12 @@ export {
   shelly_pluguk_ui_status_t,
   shelly_pluguk_ui_config_t,
 } from './components/PlugUK_UI.js';
+export {
+  shelly_ht_ui_key_t,
+  shelly_ht_ui_type_t,
+  shelly_ht_ui_status_t,
+  shelly_ht_ui_config_t,
+} from './components/HT_UI.js';
 
 // Shelly device types
 export { shelly_device_info_data_t } from './components/Shelly.js';
