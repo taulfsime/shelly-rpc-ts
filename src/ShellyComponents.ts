@@ -281,10 +281,17 @@ import {
   shelly_ui_status_t,
   shelly_ui_config_t,
 } from './components/UI.js';
+import {
+  shelly_blugw_key_t,
+  shelly_blugw_type_t,
+  shelly_blugw_status_t,
+  shelly_blugw_config_t,
+} from './components/BluGw.js';
 
 export type shelly_component_id_t = number;
 export type shelly_component_type_t =
   | shelly_ble_type_t
+  | shelly_blugw_type_t
   | shelly_boolean_type_t
   | shelly_bthome_type_t
   | shelly_bthomedevice_type_t
@@ -335,6 +342,7 @@ export type shelly_component_type_t =
 
 export type shelly_component_key_t =
   | shelly_ble_key_t
+  | shelly_blugw_key_t
   | shelly_boolean_key_t
   | shelly_bthome_key_t
   | shelly_bthomedevice_key_t
@@ -630,7 +638,12 @@ export type shelly_component_status_map_t =
       shelly_plusrgbw_config_t,
       shelly_plusrgbw_status_t
     >
-  | component_entry_t<shelly_ui_type_t, shelly_ui_config_t, shelly_ui_status_t>;
+  | component_entry_t<shelly_ui_type_t, shelly_ui_config_t, shelly_ui_status_t>
+  | component_entry_t<
+      shelly_blugw_type_t,
+      shelly_blugw_config_t,
+      shelly_blugw_status_t
+    >;
 
 export type shelly_component_status_t<T extends shelly_component_type_t> =
   Extract<shelly_component_status_map_t, { type: T }>['status'];

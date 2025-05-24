@@ -286,6 +286,12 @@ export {
   shelly_ui_status_t,
   shelly_ui_config_t,
 } from './components/UI.js';
+export {
+  shelly_blugw_key_t,
+  shelly_blugw_type_t,
+  shelly_blugw_status_t,
+  shelly_blugw_config_t,
+} from './components/BluGw.js';
 
 // Shelly device types
 export { shelly_device_info_data_t } from './components/Shelly.js';
