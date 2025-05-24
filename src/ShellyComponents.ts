@@ -263,6 +263,12 @@ import {
   shelly_ht_ui_status_t,
   shelly_ht_ui_type_t,
 } from './components/HT_UI.js';
+import {
+  shelly_wd_ui_config_t,
+  shelly_wd_ui_key_t,
+  shelly_wd_ui_status_t,
+  shelly_wd_ui_type_t,
+} from './components/WD_UI.js';
 
 export type shelly_component_id_t = number;
 export type shelly_component_type_t =
@@ -307,6 +313,7 @@ export type shelly_component_type_t =
   | shelly_temperature_type_t
   | shelly_text_type_t
   | shelly_voltmeter_type_t
+  | shelly_wd_ui_type_t
   | shelly_wifi_type_t
   | shelly_ws_type_t
   | shelly_zigbee_type_t;
@@ -353,6 +360,7 @@ export type shelly_component_key_t =
   | shelly_temperature_key_t
   | shelly_text_key_t
   | shelly_voltmeter_key_t
+  | shelly_wd_ui_key_t
   | shelly_wifi_key_t
   | shelly_ws_key_t
   | shelly_zigbee_key_t;
@@ -595,6 +603,11 @@ export type shelly_component_status_map_t =
       shelly_ht_ui_type_t,
       shelly_ht_ui_config_t,
       shelly_ht_ui_status_t
+    >
+  | component_entry_t<
+      shelly_wd_ui_type_t,
+      shelly_wd_ui_config_t,
+      shelly_wd_ui_status_t
     >;
 
 export type shelly_component_status_t<T extends shelly_component_type_t> =
