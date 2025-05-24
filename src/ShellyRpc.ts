@@ -56,6 +56,7 @@ import { shelly_pluguk_ui_rpc_method_map_t } from './components/PlugUK_UI.js';
 import { shelly_ht_ui_rpc_method_map_t } from './components/HT_UI.js';
 import { shelly_wd_ui_rpc_method_map_t } from './components/WD_UI.js';
 import { shelly_plusrgbw_rpc_method_map_t } from './components/PlusRGBW.js';
+import { shelly_ui_rpc_method_map_t } from './components/UI.js';
 
 type shelly_rpc_method_map_t = shelly_device_rpc_method_map_t &
   shelly_ble_rpc_method_map_t &
@@ -102,6 +103,7 @@ type shelly_rpc_method_map_t = shelly_device_rpc_method_map_t &
   shelly_sys_rpc_method_map_t &
   shelly_temperature_rpc_method_map_t &
   shelly_text_rpc_method_map_t &
+  shelly_ui_rpc_method_map_t &
   shelly_virtual_rpc_method_map_t &
   shelly_voltmeter_rpc_method_map_t &
   shelly_wd_ui_rpc_method_map_t &

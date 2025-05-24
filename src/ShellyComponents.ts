@@ -275,6 +275,12 @@ import {
   shelly_plusrgbw_status_t,
   shelly_plusrgbw_config_t,
 } from './components/PlusRGBW.js';
+import {
+  shelly_ui_key_t,
+  shelly_ui_type_t,
+  shelly_ui_status_t,
+  shelly_ui_config_t,
+} from './components/UI.js';
 
 export type shelly_component_id_t = number;
 export type shelly_component_type_t =
@@ -320,6 +326,7 @@ export type shelly_component_type_t =
   | shelly_sys_type_t
   | shelly_temperature_type_t
   | shelly_text_type_t
+  | shelly_ui_type_t
   | shelly_voltmeter_type_t
   | shelly_wd_ui_type_t
   | shelly_wifi_type_t
@@ -367,6 +374,7 @@ export type shelly_component_key_t =
   | shelly_sys_key_t
   | shelly_temperature_key_t
   | shelly_text_key_t
+  | shelly_ui_key_t
   | shelly_voltmeter_key_t
   | shelly_wd_ui_key_t
   | shelly_wifi_key_t
@@ -621,7 +629,8 @@ export type shelly_component_status_map_t =
       shelly_plusrgbw_type_t,
       shelly_plusrgbw_config_t,
       shelly_plusrgbw_status_t
-    >;
+    >
+  | component_entry_t<shelly_ui_type_t, shelly_ui_config_t, shelly_ui_status_t>;
 
 export type shelly_component_status_t<T extends shelly_component_type_t> =
   Extract<shelly_component_status_map_t, { type: T }>['status'];
