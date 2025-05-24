@@ -274,6 +274,12 @@ export {
   shelly_wd_ui_status_t,
   shelly_wd_ui_config_t,
 } from './components/WD_UI.js';
+export {
+  shelly_plusrgbw_key_t,
+  shelly_plusrgbw_type_t,
+  shelly_plusrgbw_status_t,
+  shelly_plusrgbw_config_t,
+} from './components/PlusRGBW.js';
 
 // Shelly device types
 export { shelly_device_info_data_t } from './components/Shelly.js';

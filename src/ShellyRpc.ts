@@ -55,6 +55,7 @@ import { shelly_plugs_ui_rpc_method_map_t } from './components/PlugS_UI.js';
 import { shelly_pluguk_ui_rpc_method_map_t } from './components/PlugUK_UI.js';
 import { shelly_ht_ui_rpc_method_map_t } from './components/HT_UI.js';
 import { shelly_wd_ui_rpc_method_map_t } from './components/WD_UI.js';
+import { shelly_plusrgbw_rpc_method_map_t } from './components/PlusRGBW.js';
 
 type shelly_rpc_method_map_t = shelly_device_rpc_method_map_t &
   shelly_ble_rpc_method_map_t &
@@ -89,6 +90,7 @@ type shelly_rpc_method_map_t = shelly_device_rpc_method_map_t &
   shelly_object_rpc_method_map_t &
   shelly_plugs_ui_rpc_method_map_t &
   shelly_pluguk_ui_rpc_method_map_t &
+  shelly_plusrgbw_rpc_method_map_t &
   shelly_pm1_rpc_method_map_t &
   shelly_rgb_rpc_method_map_t &
   shelly_rgbw_rpc_method_map_t &

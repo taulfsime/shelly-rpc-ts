@@ -269,6 +269,12 @@ import {
   shelly_wd_ui_status_t,
   shelly_wd_ui_type_t,
 } from './components/WD_UI.js';
+import {
+  shelly_plusrgbw_key_t,
+  shelly_plusrgbw_type_t,
+  shelly_plusrgbw_status_t,
+  shelly_plusrgbw_config_t,
+} from './components/PlusRGBW.js';
 
 export type shelly_component_id_t = number;
 export type shelly_component_type_t =
@@ -302,6 +308,8 @@ export type shelly_component_type_t =
   | shelly_object_type_t
   | shelly_plugs_ui_type_t
   | shelly_pluguk_ui_type_t
+  | shelly_plusrgbw_key_t
+  | shelly_plusrgbw_type_t
   | shelly_pm1_type_t
   | shelly_rgb_type_t
   | shelly_rgbw_type_t
@@ -608,6 +616,11 @@ export type shelly_component_status_map_t =
       shelly_wd_ui_type_t,
       shelly_wd_ui_config_t,
       shelly_wd_ui_status_t
+    >
+  | component_entry_t<
+      shelly_plusrgbw_type_t,
+      shelly_plusrgbw_config_t,
+      shelly_plusrgbw_status_t
     >;
 
 export type shelly_component_status_t<T extends shelly_component_type_t> =
