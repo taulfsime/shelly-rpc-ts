@@ -287,11 +287,18 @@ import {
   shelly_blugw_status_t,
   shelly_blugw_config_t,
 } from './components/BluGw.js';
+import {
+  shelly_blutrv_key_t,
+  shelly_blutrv_type_t,
+  shelly_blutrv_status_t,
+  shelly_blutrv_config_t,
+} from './components/BluTrv.js';
 
 export type shelly_component_id_t = number;
 export type shelly_component_type_t =
   | shelly_ble_type_t
   | shelly_blugw_type_t
+  | shelly_blutrv_type_t
   | shelly_boolean_type_t
   | shelly_bthome_type_t
   | shelly_bthomedevice_type_t
@@ -343,6 +350,7 @@ export type shelly_component_type_t =
 export type shelly_component_key_t =
   | shelly_ble_key_t
   | shelly_blugw_key_t
+  | shelly_blutrv_key_t
   | shelly_boolean_key_t
   | shelly_bthome_key_t
   | shelly_bthomedevice_key_t
@@ -643,6 +651,11 @@ export type shelly_component_status_map_t =
       shelly_blugw_type_t,
       shelly_blugw_config_t,
       shelly_blugw_status_t
+    >
+  | component_entry_t<
+      shelly_blutrv_type_t,
+      shelly_blutrv_config_t,
+      shelly_blutrv_status_t
     >;
 
 export type shelly_component_status_t<T extends shelly_component_type_t> =

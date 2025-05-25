@@ -292,6 +292,12 @@ export {
   shelly_blugw_status_t,
   shelly_blugw_config_t,
 } from './components/BluGw.js';
+export {
+  shelly_blutrv_key_t,
+  shelly_blutrv_type_t,
+  shelly_blutrv_status_t,
+  shelly_blutrv_config_t,
+} from './components/BluTrv.js';
 
 // Shelly device types
 export { shelly_device_info_data_t } from './components/Shelly.js';

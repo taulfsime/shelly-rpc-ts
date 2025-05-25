@@ -58,10 +58,12 @@ import { shelly_wd_ui_rpc_method_map_t } from './components/WD_UI.js';
 import { shelly_plusrgbw_rpc_method_map_t } from './components/PlusRGBW.js';
 import { shelly_ui_rpc_method_map_t } from './components/UI.js';
 import { shelly_blugw_rpc_method_map_t } from './components/BluGw.js';
+import { shelly_blutrv_rpc_method_map_t } from './components/BluTrv.js';
 
 type shelly_rpc_method_map_t = shelly_device_rpc_method_map_t &
   shelly_ble_rpc_method_map_t &
   shelly_blugw_rpc_method_map_t &
+  shelly_blutrv_rpc_method_map_t &
   shelly_boolean_rpc_method_map_t &
   shelly_bthome_rpc_method_map_t &
   shelly_bthomedevice_rpc_method_map_t &
