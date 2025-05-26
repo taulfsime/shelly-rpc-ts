@@ -308,6 +308,7 @@ export {
   shelly_rpc_method_params_t,
   shelly_rpc_method_result_t,
   shelly_rpc_method_error_t,
+  shelly_rpc_msg_request_id_t,
   shelly_rpc_msg_request_t,
   shelly_rpc_msg_response_t,
   shelly_rpc_msg_response_error_t,

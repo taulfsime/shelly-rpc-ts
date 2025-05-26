@@ -139,16 +139,18 @@ export type shelly_rpc_method_error_t = {
   message: string;
 };
 
+export type shelly_rpc_msg_request_id_t = string | number;
+
 export type shelly_rpc_msg_request_t<K extends shelly_rpc_method_t = any> = {
   jsonrpc: '2.0';
-  id: string | number;
+  id: shelly_rpc_msg_request_id_t;
   src: string;
   method: K;
   params: shelly_rpc_method_params_t<K>;
 };
 
 type shelly_rpc_msg_response_base_t = {
-  id: string | number;
+  id: shelly_rpc_msg_request_id_t;
   src: string;
   dst: string;
   result: never;
