@@ -215,47 +215,51 @@ export type shelly_rpc_notification_t =
   | shelly_rpc_notification_notify_status_t
   | shelly_rpc_notification_notify_event_t;
 
-export function isRpcResponse(data: any) {
+export function isRpcResponse(
+  data: unknown
+): data is shelly_rpc_msg_response_t<any> {
   if (typeof data !== 'object' || Array.isArray(data) || data == null) {
     return false;
   }
 
   if (
-    !Object.hasOwn(data, 'id') ||
+    !('id' in data) ||
     (typeof data.id !== 'string' && typeof data.id !== 'number')
   ) {
     return false;
   }
 
-  if (!Object.hasOwn(data, 'src') || typeof data.src !== 'string') {
+  if (!('src' in data) || typeof data.src !== 'string') {
     return false;
   }
 
-  if (!Object.hasOwn(data, 'dst') || typeof data.dst !== 'string') {
+  if (!('dst' in data) || typeof data.dst !== 'string') {
     return false;
   }
 
-  return Object.hasOwn(data, 'result') || Object.hasOwn(data, 'error');
+  return 'result' in data || 'error' in data;
 }
 
-export function isRpcNotification(data: any) {
+export function isRpcNotification(
+  data: any
+): data is shelly_rpc_notification_t {
   if (typeof data !== 'object' || Array.isArray(data) || data == null) {
     return false;
   }
 
-  if (!Object.hasOwn(data, 'src') || typeof data.src !== 'string') {
+  if (!('src' in data) || typeof data.src !== 'string') {
     return false;
   }
 
-  if (!Object.hasOwn(data, 'dst') || typeof data.dst !== 'string') {
+  if (!('dst' in data) || typeof data.dst !== 'string') {
     return false;
   }
 
-  if (!Object.hasOwn(data, 'method') || typeof data.method !== 'string') {
+  if (!('method' in data) || typeof data.method !== 'string') {
     return false;
   }
 
-  if (!Object.hasOwn(data, 'params')) {
+  if (!('params' in data)) {
     return false;
   }
 
