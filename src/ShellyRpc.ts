@@ -141,7 +141,9 @@ export type shelly_rpc_method_error_t = {
 
 export type shelly_rpc_msg_request_id_t = string | number;
 
-export type shelly_rpc_msg_request_t<K extends shelly_rpc_method_t = any> = {
+export type shelly_rpc_msg_request_t<
+  K extends shelly_rpc_method_t = shelly_rpc_method_t,
+> = {
   jsonrpc: '2.0';
   id: shelly_rpc_msg_request_id_t;
   src: string;
@@ -217,7 +219,7 @@ export type shelly_rpc_notification_t =
 
 export function isRpcResponse(
   data: unknown
-): data is shelly_rpc_msg_response_t<any> {
+): data is shelly_rpc_msg_response_t<shelly_rpc_method_t> {
   if (typeof data !== 'object' || Array.isArray(data) || data == null) {
     return false;
   }
@@ -241,7 +243,7 @@ export function isRpcResponse(
 }
 
 export function isRpcNotification(
-  data: any
+  data: unknown
 ): data is shelly_rpc_notification_t {
   if (typeof data !== 'object' || Array.isArray(data) || data == null) {
     return false;

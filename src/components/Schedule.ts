@@ -15,7 +15,7 @@ export type shelly_schedule_job_t = {
   id: shelly_schedule_id_t;
   enable: boolean;
   timespec: string; // cron jon!!!
-  calls: shelly_schedule_call_t<any>[];
+  calls: shelly_schedule_call_t<shelly_rpc_method_t>[];
 };
 
 export type shelly_schedule_rpc_method_map_t = {
@@ -33,7 +33,6 @@ export type shelly_schedule_rpc_method_map_t = {
     };
   };
   'Schedule.List': {
-    params: never;
     result: {
       job: shelly_schedule_job_t[];
       rev: shelly_schedule_rev_t;
@@ -48,7 +47,6 @@ export type shelly_schedule_rpc_method_map_t = {
     };
   };
   'Schedule.DeleteAll': {
-    params: never;
     result: {
       rev: shelly_schedule_rev_t;
     };

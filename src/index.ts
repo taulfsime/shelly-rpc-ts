@@ -331,3 +331,5 @@ export {
   shelly_component_helper_key_to_id_t,
   parseComponentKey,
 } from './ShellyComponents.js';
+
+export { ShellyTransportBase } from './transport/ShellyTransportBase.js';
