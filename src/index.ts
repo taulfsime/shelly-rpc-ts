@@ -304,8 +304,18 @@ export {
   shelly_lora_status_t,
   shelly_lora_config_t,
 } from './components/LoRa.js';
-export { shelly_sensor_addon_peripheral_type_t } from './components/SensorAddon.js';
-export { shelly_pro_sensor_addon_peripheral_type_t } from './components/ProOutputAddon.js';
+export {
+  shelly_sensor_addon_peripheral_type_t,
+  shelly_sensor_addon_config_type_t,
+} from './components/SensorAddon.js';
+export {
+  shelly_pro_sensor_addon_peripheral_type_t,
+  shelly_pro_output_addon_config_type_t,
+} from './components/ProOutputAddon.js';
+export {
+  shelly_uart_addon_types_t,
+  shelly_uart_addon_info_t,
+} from './components/UartAddon.js';
 
 // Shelly device types
 export { shelly_device_info_data_t } from './components/Shelly.js';

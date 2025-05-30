@@ -1,7 +1,10 @@
 import { shelly_component_key_t } from '../ShellyComponents.js';
 import { shelly_knx_rev_t } from './KNX.js';
 import { shelly_kvs_rev_t } from './KVS.js';
+import { shelly_lora_addon_config_type_t } from './LoRa.js';
+import { shelly_pro_output_addon_config_type_t } from './ProOutputAddon.js';
 import { shelly_schedule_rev_t } from './Schedule.js';
+import { shelly_sensor_addon_config_type_t } from './SensorAddon.js';
 import {
   shelly_device_location_t,
   shelly_device_mac_t,
@@ -11,7 +14,11 @@ import {
 } from './Shelly.js';
 import { shelly_webhook_rev_t } from './Webhook.js';
 
-type shelly_addon_type_t = 'sensor' | 'prooutput' | 'LoRa' | null; //XXX: move to addon types
+type shelly_addon_type_t =
+  | shelly_sensor_addon_config_type_t
+  | shelly_pro_output_addon_config_type_t
+  | shelly_lora_addon_config_type_t
+  | null;
 type shelly_sys_wakeup_reason_boot_t =
   | 'poweron'
   | 'software_restart'

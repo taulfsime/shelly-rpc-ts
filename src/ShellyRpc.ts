@@ -63,6 +63,7 @@ import { shelly_xmod_rpc_method_map_t } from './components/XMOD.js';
 import { shelly_lora_rpc_method_map_t } from './components/LoRa.js';
 import { shelly_sensor_addon_rpc_method_map_t } from './components/SensorAddon.js';
 import { shelly_pro_output_addon_rpc_method_map_t } from './components/ProOutputAddon.js';
+import { shelly_uart_addon_rpc_method_map_t } from './components/UartAddon.js';
 
 type shelly_rpc_method_map_t = shelly_device_rpc_method_map_t &
   shelly_ble_rpc_method_map_t &
@@ -114,6 +115,7 @@ type shelly_rpc_method_map_t = shelly_device_rpc_method_map_t &
   shelly_sys_rpc_method_map_t &
   shelly_temperature_rpc_method_map_t &
   shelly_text_rpc_method_map_t &
+  shelly_uart_addon_rpc_method_map_t &
   shelly_ui_rpc_method_map_t &
   shelly_virtual_rpc_method_map_t &
   shelly_voltmeter_rpc_method_map_t &

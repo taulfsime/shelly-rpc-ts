@@ -9,6 +9,9 @@ type shelly_sensor_addon_peripheral_dht22_t = 'dht22';
 type shelly_sensor_addon_peripheral_digital_in_t = 'digital_in';
 type shelly_sensor_addon_peripheral_analog_in_t = 'analog_in';
 type shelly_sensor_addon_peripheral_voltmeter_t = 'voltmeter';
+
+export type shelly_sensor_addon_config_type_t = 'sensor';
+
 export type shelly_sensor_addon_peripheral_type_t =
   | shelly_sensor_addon_peripheral_ds18b20_t
   | shelly_sensor_addon_peripheral_dht22_t

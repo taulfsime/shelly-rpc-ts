@@ -3,6 +3,8 @@ import { shelly_switch_key_t } from './Switch.js';
 
 type shelly_pro_output_addon_peripheral_digital_out_t = 'digital_out';
 
+export type shelly_pro_output_addon_config_type_t = 'prooutput';
+
 export type shelly_pro_sensor_addon_peripheral_type_t =
   shelly_pro_output_addon_peripheral_digital_out_t;
 

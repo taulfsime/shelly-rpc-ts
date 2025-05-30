@@ -13,6 +13,7 @@ type shelly_lora_status_errors_t =
 export type shelly_lora_type_t = 'lora';
 export type shelly_lora_key_t =
   `${shelly_lora_type_t}:${shelly_component_id_t}`;
+export type shelly_lora_addon_config_type_t = 'LoRa';
 
 export type shelly_lora_config_t = {
   id: shelly_component_id_t;
