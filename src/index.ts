@@ -298,6 +298,12 @@ export {
   shelly_blutrv_status_t,
   shelly_blutrv_config_t,
 } from './components/BluTrv.js';
+export {
+  shelly_lora_key_t,
+  shelly_lora_type_t,
+  shelly_lora_status_t,
+  shelly_lora_config_t,
+} from './components/LoRa.js';
 
 // Shelly device types
 export { shelly_device_info_data_t } from './components/Shelly.js';

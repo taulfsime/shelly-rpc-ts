@@ -293,6 +293,12 @@ import {
   shelly_blutrv_status_t,
   shelly_blutrv_config_t,
 } from './components/BluTrv.js';
+import {
+  shelly_lora_config_t,
+  shelly_lora_key_t,
+  shelly_lora_status_t,
+  shelly_lora_type_t,
+} from './components/LoRa.js';
 
 export type shelly_component_id_t = number;
 export type shelly_component_type_t =
@@ -321,6 +327,7 @@ export type shelly_component_type_t =
   | shelly_input_type_t
   | shelly_knx_type_t
   | shelly_light_type_t
+  | shelly_lora_type_t
   | shelly_matter_type_t
   | shelly_modbus_type_t
   | shelly_mqtt_type_t
@@ -373,6 +380,7 @@ export type shelly_component_key_t =
   | shelly_input_key_t
   | shelly_knx_key_t
   | shelly_light_key_t
+  | shelly_lora_key_t
   | shelly_matter_key_t
   | shelly_modbus_key_t
   | shelly_mqtt_key_t
@@ -656,6 +664,11 @@ export type shelly_component_status_map_t =
       shelly_blutrv_type_t,
       shelly_blutrv_config_t,
       shelly_blutrv_status_t
+    >
+  | component_entry_t<
+      shelly_lora_type_t,
+      shelly_lora_config_t,
+      shelly_lora_status_t
     >;
 
 export type shelly_component_status_t<T extends shelly_component_type_t> =

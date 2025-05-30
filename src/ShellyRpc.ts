@@ -60,6 +60,7 @@ import { shelly_ui_rpc_method_map_t } from './components/UI.js';
 import { shelly_blugw_rpc_method_map_t } from './components/BluGw.js';
 import { shelly_blutrv_rpc_method_map_t } from './components/BluTrv.js';
 import { shelly_xmod_rpc_method_map_t } from './components/XMOD.js';
+import { shelly_lora_rpc_method_map_t } from './components/LoRa.js';
 
 type shelly_rpc_method_map_t = shelly_device_rpc_method_map_t &
   shelly_ble_rpc_method_map_t &
@@ -89,6 +90,7 @@ type shelly_rpc_method_map_t = shelly_device_rpc_method_map_t &
   shelly_knx_rpc_method_map_t &
   shelly_kvs_rpc_method_map_t &
   shelly_light_rpc_method_map_t &
+  shelly_lora_rpc_method_map_t &
   shelly_matter_rpc_method_map_t &
   shelly_modbus_rpc_method_map_t &
   shelly_mqtt_rpc_method_map_t &
