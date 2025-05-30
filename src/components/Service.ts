@@ -1,7 +1,4 @@
-import {
-  shelly_component_id_t,
-  shelly_component_key_t,
-} from '../ShellyComponents.js';
+import { shelly_component_id_t } from '../ShellyComponents.js';
 import { shelly_virtual_component_key_t } from './Virtual.js';
 import { shelly_object_key_t } from './VirtualComponents/Object.js';
 
@@ -15,6 +12,7 @@ type shelly_service_status_state_t =
 export type shelly_service_type_t = 'service';
 export type shelly_service_key_t =
   `${shelly_service_type_t}:${shelly_component_id_t}`;
+export type shelly_service_identifier_type_t = string;
 
 export type shelly_service_status_t = {
   etag: string;
@@ -57,7 +55,7 @@ export type shelly_service_rpc_method_map_t = {
       id: shelly_component_id_t;
     };
     result: {
-      type: string;
+      type: shelly_service_identifier_type_t;
       ver: string;
       build_id: string;
       etag: string;

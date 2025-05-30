@@ -8,6 +8,8 @@ import {
   shelly_component_status_t,
   shelly_component_type_t,
 } from '../ShellyComponents.js';
+import { shelly_xmod_info } from './XMOD.js';
+import { shelly_service_identifier_type_t } from './Service.js';
 
 type shelly_rpc_components_list_item_t<
   K extends shelly_component_key_t = shelly_component_key_t,
@@ -35,19 +37,10 @@ export type shelly_device_info_data_t = {
   batch?: string;
   fw_sbits?: string;
   jti?: string;
-  jwt?: {
-    aud: string;
-    iat: number;
-    jti: string;
-    v: number;
-    p: string;
-    n: string;
-    url: string;
-    f: 0 | 1;
-  };
+  jwt?: shelly_xmod_info;
 } & {
   [k: `svc${shelly_component_id_t}`]: {
-    type: string;
+    type: shelly_service_identifier_type_t;
     ver: string;
     build_id: string;
   };
