@@ -62,6 +62,7 @@ import { shelly_blutrv_rpc_method_map_t } from './components/BluTrv.js';
 import { shelly_xmod_rpc_method_map_t } from './components/XMOD.js';
 import { shelly_lora_rpc_method_map_t } from './components/LoRa.js';
 import { shelly_sensor_addon_rpc_method_map_t } from './components/SensorAddon.js';
+import { shelly_pro_output_addon_rpc_method_map_t } from './components/ProOutputAddon.js';
 
 type shelly_rpc_method_map_t = shelly_device_rpc_method_map_t &
   shelly_ble_rpc_method_map_t &
@@ -101,6 +102,7 @@ type shelly_rpc_method_map_t = shelly_device_rpc_method_map_t &
   shelly_pluguk_ui_rpc_method_map_t &
   shelly_plusrgbw_rpc_method_map_t &
   shelly_pm1_rpc_method_map_t &
+  shelly_pro_output_addon_rpc_method_map_t &
   shelly_rgb_rpc_method_map_t &
   shelly_rgbw_rpc_method_map_t &
   shelly_schedule_rpc_method_map_t &

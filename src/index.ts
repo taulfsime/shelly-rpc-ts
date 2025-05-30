@@ -305,6 +305,7 @@ export {
   shelly_lora_config_t,
 } from './components/LoRa.js';
 export { shelly_sensor_addon_peripheral_type_t } from './components/SensorAddon.js';
+export { shelly_pro_sensor_addon_peripheral_type_t } from './components/ProOutputAddon.js';
 
 // Shelly device types
 export { shelly_device_info_data_t } from './components/Shelly.js';
