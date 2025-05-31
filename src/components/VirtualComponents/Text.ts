@@ -1,6 +1,6 @@
 import { shelly_component_id_t } from '../../ShellyComponents.js';
 import { shelly_virtual_component_status_source_t } from '../Virtual.js';
-import { shelly_service_key_t } from '../Service.js';
+import { shelly_service_key_t, shelly_service_role_t } from '../Service.js';
 
 export type shelly_text_type_t = 'text';
 export type shelly_text_key_t =
@@ -28,7 +28,7 @@ export type shelly_text_rpc_method_map_t = {
           id: shelly_component_id_t;
         }
       | {
-          role: string;
+          role: shelly_service_role_t;
           owner: shelly_service_key_t;
         };
     result: shelly_text_status_t;
@@ -40,7 +40,7 @@ export type shelly_text_rpc_method_map_t = {
           config: shelly_text_config_t;
         }
       | {
-          role: string;
+          role: shelly_service_role_t;
           owner: shelly_service_key_t;
           config: shelly_text_config_t;
         };
@@ -54,7 +54,7 @@ export type shelly_text_rpc_method_map_t = {
           id: shelly_component_id_t;
         }
       | {
-          role: string;
+          role: shelly_service_role_t;
           owner: shelly_service_key_t;
         };
     result: shelly_text_config_t;
@@ -66,7 +66,7 @@ export type shelly_text_rpc_method_map_t = {
           value: string;
         }
       | {
-          role: string;
+          role: shelly_service_role_t;
           owner: shelly_service_key_t;
           value: string;
         };

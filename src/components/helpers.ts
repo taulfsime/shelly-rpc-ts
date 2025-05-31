@@ -1,4 +1,3 @@
-
 /**
  * Utility type that enforces only one property of the given object type T is present
 

@@ -13,6 +13,7 @@ export type shelly_service_type_t = 'service';
 export type shelly_service_key_t =
   `${shelly_service_type_t}:${shelly_component_id_t}`;
 export type shelly_service_identifier_type_t = string;
+export type shelly_service_role_t = string;
 
 export type shelly_service_status_t = {
   etag: string;
@@ -68,8 +69,10 @@ export type shelly_service_rpc_method_map_t = {
     };
     result: {
       etag: string;
-      //XXX: add type for role
-      vc?: Record<string, shelly_virtual_component_key_t | shelly_object_key_t>;
+      vc?: Record<
+        shelly_service_role_t,
+        shelly_virtual_component_key_t | shelly_object_key_t
+      >;
     };
   };
   [key: `Service.${string}`]: {
