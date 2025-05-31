@@ -123,6 +123,13 @@ export abstract class ShellyTransportBase {
     this.listeners[method].push(listener);
   }
 
+  off(
+    method: shelly_rpc_notification_method_t,
+    listener: shelly_listener_t
+  ): void {
+    this.listeners[method] = this.listeners[method].filter(l => l !== listener);
+  }
+
   get ready(): Promise<void> {
     return Promise.resolve();
   }

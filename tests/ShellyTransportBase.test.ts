@@ -86,6 +86,19 @@ describe('ShellyTransportBase', () => {
     expect(listener).toHaveBeenCalledWith({ some: 'data' });
   });
 
+  it('should allow unsubscribing notification listeners', async () => {
+    const listener = vi.fn();
+    transport.on('NotifyEvent', listener);
+
+    transport.simulateNotification('NotifyEvent', { some: 'data' });
+    expect(listener).toHaveBeenCalledWith({ some: 'data' });
+
+    transport.off('NotifyEvent', listener);
+
+    transport.simulateNotification('NotifyEvent', { some: 'data2' });
+    expect(listener).toHaveBeenCalledTimes(1);
+  });
+
   it('should handle request retries and fail after retries', async () => {
     transport.sendResult = false; // _onSend will fail
     const promise = transport.rpcRequest(
