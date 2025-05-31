@@ -3,6 +3,7 @@ import {
   shelly_output_component_status_counter_t,
   shelly_output_component_status_source_t,
 } from './common.js';
+import { only_one_prop_t } from './helpers.js';
 
 export type shelly_cover_type_t = 'cover';
 export type shelly_cover_key_t =
@@ -38,7 +39,7 @@ type shelly_cover_status_errors_t =
 
 export type shelly_cover_status_t = {
   id: shelly_component_id_t;
-  source: shelly_output_component_status_source_t; //XXX:
+  source: shelly_output_component_status_source_t;
   state: 'open' | 'closed' | 'opening' | 'closing' | 'stopped' | 'calibrating';
   apower: number;
   voltage: number;
@@ -58,6 +59,15 @@ export type shelly_cover_status_t = {
   };
   slat_pos?: number | null;
   errors?: shelly_cover_status_errors_t[];
+};
+
+type shelly_cover_rpc_go_to_position_params_t = (
+  | only_one_prop_t<{ pos: number; rel: number }>
+  | only_one_prop_t<{ slat_pos: number; slat_rel: number }>
+  | (only_one_prop_t<{ pos: number; rel: number }> &
+      only_one_prop_t<{ slat_pos: number; slat_rel: number }>)
+) & {
+  id: shelly_component_id_t;
 };
 
 export type shelly_cover_config_t = {
@@ -151,14 +161,7 @@ export type shelly_cover_rpc_method_map_t = {
     result: null;
   };
   'Cover.GoToPosition': {
-    params: {
-      //XXX: TODO: (k.todorov) fix the type
-      id: shelly_component_id_t;
-      pos?: number;
-      rel?: number;
-      slat_pos?: number;
-      slat_rel?: number;
-    };
+    params: shelly_cover_rpc_go_to_position_params_t;
     result: null;
   };
   'Cover.ResetCounters': {
