@@ -231,6 +231,7 @@ export function isRpcResponse(
   data: unknown
 ): data is shelly_rpc_msg_response_t<shelly_rpc_method_t> {
   if (typeof data !== 'object' || Array.isArray(data) || data == null) {
+    // console.log('isRpcResponse: data is not an object or is null/array');
     return false;
   }
 
@@ -238,14 +239,17 @@ export function isRpcResponse(
     !('id' in data) ||
     (typeof data.id !== 'string' && typeof data.id !== 'number')
   ) {
+    // console.log('isRpcResponse: id is missing or not a string/number');
     return false;
   }
 
   if (!('src' in data) || typeof data.src !== 'string') {
+    // console.log('isRpcResponse: src is missing or not a string');
     return false;
   }
 
   if (!('dst' in data) || typeof data.dst !== 'string') {
+    // console.log('isRpcResponse: dst is missing or not a string');
     return false;
   }
 
@@ -256,22 +260,27 @@ export function isRpcNotification(
   data: unknown
 ): data is shelly_rpc_notification_t {
   if (typeof data !== 'object' || Array.isArray(data) || data == null) {
+    // console.log('isRpcNotification: data is not an object or is null/array');
     return false;
   }
 
   if (!('src' in data) || typeof data.src !== 'string') {
+    // console.log('isRpcNotification: src is missing or not a string');
     return false;
   }
 
   if (!('dst' in data) || typeof data.dst !== 'string') {
+    // console.log('isRpcNotification: dst is missing or not a string');
     return false;
   }
 
   if (!('method' in data) || typeof data.method !== 'string') {
+    // console.log('isRpcNotification: method is missing or not a string');
     return false;
   }
 
   if (!('params' in data)) {
+    // console.log('isRpcNotification: params are missing');
     return false;
   }
 

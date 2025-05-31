@@ -18,6 +18,11 @@ type shelly_transport_response_map_t = {
   method: shelly_rpc_method_t;
   onResponse: (result: any) => void;
   onError: (error: any) => void; //XXX: types!!!
+  options: {
+    timeout: number;
+    numberOfRetries: number;
+  };
+  timeoutId?: number;
 };
 
 export abstract class ShellyTransportBase {
@@ -43,7 +48,8 @@ export abstract class ShellyTransportBase {
 
   async rpcRequest<K extends shelly_rpc_method_t>(
     method: K,
-    params: shelly_rpc_method_params_t<K>
+    params: shelly_rpc_method_params_t<K>,
+    options?: shelly_transport_response_map_t['options']
   ): Promise<shelly_rpc_method_result_t<K>> {
     const msgId = this.msgCounter++;
 
@@ -53,6 +59,10 @@ export abstract class ShellyTransportBase {
           onResponse: resolve,
           onError: reject,
           method,
+          options: {
+            timeout: options?.timeout ?? 5000,
+            numberOfRetries: options?.numberOfRetries ?? 3,
+          },
         });
       }
     );
@@ -100,7 +110,6 @@ export abstract class ShellyTransportBase {
           listener(data.params);
         }
       }
-
       return true;
     }
 
@@ -128,10 +137,51 @@ export abstract class ShellyTransportBase {
 
     const request = this.msgQueue.shift()!;
 
-    if (!this._onSend(request)) {
-      // if unable to send the request, add it back to the queue
+    if (this._onSend(request) === false) {
+      // if unable to send the request, add it back to the queue if retries are available
+
+      const reqData = this.responsesMap.get(request.id);
+      if (!reqData) {
+        // no response data, cannot retry
+        this._handleQueue();
+        return;
+      }
+
+      reqData.options.numberOfRetries -= 1;
+      // console.log(
+      //   `Request ${request.id} failed, retries left: ${reqData.options.numberOfRetries}`
+      // );
+
+      if (reqData.options.numberOfRetries <= 0) {
+        // no retries left, call onError //XXX: error type!!!
+        reqData.onError(new Error('Request failed after retries'));
+        this.responsesMap.delete(request.id);
+        // console.log(`Request ${request.id} failed, no retries left`);
+        this._handleQueue();
+        return;
+      }
+
+      // at the back of the queue
       this.msgQueue.push(request);
+      this._handleQueue();
+      // console.log(
+      //   `Request ${request.id} added back to queue, retries left: ${reqData.options.numberOfRetries}`
+      // );
       return;
+    }
+
+    const reqData = this.responsesMap.get(request.id);
+    if (reqData) {
+      clearTimeout(reqData.timeoutId);
+      reqData.timeoutId = setTimeout(() => {
+        if (!this.responsesMap.has(request.id)) {
+          return; // already handled
+        }
+
+        reqData.onError(new Error('Request timed out'));
+        this.responsesMap.delete(request.id);
+        this._handleQueue();
+      }, reqData.options.timeout);
     }
 
     this.msgInFlight++;
