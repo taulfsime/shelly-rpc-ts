@@ -90,8 +90,10 @@ export abstract class ShellyTransportBase {
       }
 
       if (this.responsesMap.has(data.id)) {
-        const { onError, onResponse, method } = this.responsesMap.get(data.id)!;
+        const { onError, onResponse, method, timeoutId } =
+          this.responsesMap.get(data.id)!;
         this.responsesMap.delete(data.id);
+        clearTimeout(timeoutId);
 
         if (data.error) {
           onError(data.error);
@@ -143,7 +145,6 @@ export abstract class ShellyTransportBase {
     }
 
     const request = this.msgQueue.shift()!;
-
     if (this._onSend(request) === false) {
       // if unable to send the request, add it back to the queue if retries are available
 
@@ -155,15 +156,12 @@ export abstract class ShellyTransportBase {
       }
 
       reqData.options.numberOfRetries -= 1;
-      // console.log(
-      //   `Request ${request.id} failed, retries left: ${reqData.options.numberOfRetries}`
-      // );
 
       if (reqData.options.numberOfRetries <= 0) {
         // no retries left, call onError //XXX: error type!!!
         reqData.onError(new Error('Request failed after retries'));
         this.responsesMap.delete(request.id);
-        // console.log(`Request ${request.id} failed, no retries left`);
+        clearTimeout(reqData.timeoutId);
         this._handleQueue();
         return;
       }
@@ -171,9 +169,6 @@ export abstract class ShellyTransportBase {
       // at the back of the queue
       this.msgQueue.push(request);
       this._handleQueue();
-      // console.log(
-      //   `Request ${request.id} added back to queue, retries left: ${reqData.options.numberOfRetries}`
-      // );
       return;
     }
 
