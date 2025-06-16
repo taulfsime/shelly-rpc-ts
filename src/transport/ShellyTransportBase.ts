@@ -49,7 +49,7 @@ export abstract class ShellyTransportBase {
   async rpcRequest<K extends shelly_rpc_method_t>(
     method: K,
     params: shelly_rpc_method_params_t<K>,
-    options?: shelly_transport_response_map_t['options']
+    options?: Partial<shelly_transport_response_map_t['options']>
   ): Promise<shelly_rpc_method_result_t<K>> {
     const msgId = this.msgCounter++;
 
@@ -109,7 +109,7 @@ export abstract class ShellyTransportBase {
     } else if (isRpcNotification(data)) {
       if (this.listeners[data.method]) {
         for (const listener of this.listeners[data.method]) {
-          listener(data.params);
+          listener(data.params as shelly_rpc_notification_t['params']);
         }
       }
       return true;
