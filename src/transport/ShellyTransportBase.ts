@@ -7,12 +7,22 @@ import {
   shelly_rpc_msg_request_id_t,
   shelly_rpc_msg_request_t,
   shelly_rpc_notification_method_t,
+  shelly_rpc_notification_notify_event_t,
+  shelly_rpc_notification_notify_status_t,
   shelly_rpc_notification_t,
 } from '../ShellyRpc.js';
 
 const SHELLY_LIMIT_REQUESTS_IN_FLIGHT = 1;
 
-type shelly_listener_t = (msg: shelly_rpc_notification_t['params']) => void;
+type shelly_listener_params_t = {
+  NotifyStatus: shelly_rpc_notification_notify_status_t['params'];
+  NotifyFullStatus: shelly_rpc_notification_notify_status_t['params'];
+  NotifyEvent: shelly_rpc_notification_notify_event_t['params'];
+};
+
+type shelly_listener_t<
+  M extends shelly_rpc_notification_method_t = shelly_rpc_notification_method_t,
+> = (msg: shelly_listener_params_t[M]) => void;
 
 type shelly_transport_response_map_t = {
   method: shelly_rpc_method_t;
@@ -35,7 +45,7 @@ export abstract class ShellyTransportBase {
     shelly_transport_response_map_t
   > = new Map();
   private listeners: {
-    [K in shelly_rpc_notification_method_t]: shelly_listener_t[];
+    [M in shelly_rpc_notification_method_t]: shelly_listener_t<M>[];
   } = {
     NotifyStatus: [],
     NotifyFullStatus: [],
@@ -107,29 +117,40 @@ export abstract class ShellyTransportBase {
       this._handleQueue();
       return true;
     } else if (isRpcNotification(data)) {
-      if (this.listeners[data.method]) {
+      if (!this.listeners[data.method]) {
+        return true; // no listeners for this method, ignore
+      }
+
+      if (data.method === 'NotifyEvent') {
         for (const listener of this.listeners[data.method]) {
-          listener(data.params as shelly_rpc_notification_t['params']);
+          listener(data.params);
+        }
+      } else {
+        for (const listener of this.listeners[data.method]) {
+          listener(data.params);
         }
       }
+
       return true;
     }
 
     return false;
   }
 
-  on(
-    method: shelly_rpc_notification_method_t,
-    listener: shelly_listener_t
+  on<M extends shelly_rpc_notification_method_t>(
+    method: M,
+    listener: shelly_listener_t<M>
   ): void {
     this.listeners[method].push(listener);
   }
 
-  off(
-    method: shelly_rpc_notification_method_t,
-    listener: shelly_listener_t
+  off<M extends shelly_rpc_notification_method_t>(
+    method: M,
+    listener: shelly_listener_t<M>
   ): void {
-    this.listeners[method] = this.listeners[method].filter(l => l !== listener);
+    this.listeners[method] = this.listeners[method].filter(
+      l => l !== listener
+    ) as (typeof this.listeners)[M];
   }
 
   get ready(): Promise<void> {

@@ -196,10 +196,7 @@ type shelly_rpc_notification_base_t = {
 
 export type shelly_rpc_notification_notify_status_t =
   shelly_rpc_notification_base_t & {
-    method: Extract<
-      shelly_rpc_notification_method_t,
-      'NotifyStatus' | 'NotifyFullStatus'
-    >;
+    method: 'NotifyStatus' | 'NotifyFullStatus';
     params: {
       ts: number;
     } & {
@@ -211,7 +208,7 @@ export type shelly_rpc_notification_notify_status_t =
 
 export type shelly_rpc_notification_notify_event_t =
   shelly_rpc_notification_base_t & {
-    method: Extract<shelly_rpc_notification_method_t, 'NotifyEvent'>;
+    method: 'NotifyEvent';
     params: {
       ts: number;
       events: {
