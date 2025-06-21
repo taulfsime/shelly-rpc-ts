@@ -49,11 +49,11 @@ export type shelly_http_rpc_method_map_t = {
   'HTTP.Request': {
     params:
       | (shelly_http_request_params_base_t & {
-          body: string;
+          body?: string;
           body_b64?: never;
         })
       | (shelly_http_request_params_base_t & {
-          body: never;
+          body?: never;
           body_b64?: string;
         });
     result: shelly_http_result_t;
