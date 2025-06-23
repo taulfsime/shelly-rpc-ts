@@ -3,6 +3,7 @@ import {
   shelly_light_config_fade_rate_t,
   shelly_output_component_status_source_t,
 } from './common.js';
+import { at_least_one_prop_t } from './helpers.js';
 
 type shelly_cct_status_errors_t = 'overtemp';
 
@@ -89,16 +90,16 @@ export type shelly_cct_rpc_method_map_t = {
     result: shelly_cct_config_t;
   };
   'CCT.Set': {
-    // TODO: fix: At least one of the on, brightness and ct parameters is required.
     params: {
       id: shelly_component_id_t;
-      on?: boolean;
-      brightness?: number;
-      ct?: number;
       toggle_after?: number;
       transition_duration?: number;
       offset?: number;
-    };
+    } & at_least_one_prop_t<{
+      on?: boolean;
+      brightness?: number;
+      ct?: number;
+    }>;
     result: null;
   };
   'CCT.Toggle': {

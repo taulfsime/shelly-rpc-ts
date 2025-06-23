@@ -4,6 +4,7 @@ import {
   shelly_output_component_status_counter_t,
   shelly_output_component_status_source_t,
 } from './common.js';
+import { at_least_one_prop_t } from './helpers.js';
 
 type shelly_light_status_errors_t =
   | 'overtemp'
@@ -105,11 +106,12 @@ export type shelly_light_rpc_method_map_t = {
   'Light.Set': {
     params: {
       id: shelly_component_id_t;
-      on?: boolean;
-      brightness?: number;
       toggle_after?: number;
       offset?: number;
-    };
+    } & at_least_one_prop_t<{
+      on?: boolean;
+      brightness?: number;
+    }>;
     result: null;
   };
   'Light.Toggle': {

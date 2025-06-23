@@ -4,6 +4,7 @@ import {
   shelly_output_component_status_counter_t,
   shelly_output_component_status_source_t,
 } from './common.js';
+import { at_least_one_prop_t } from './helpers.js';
 
 type shelly_rpc_status_errors_t = 'overtemp';
 
@@ -92,13 +93,14 @@ export type shelly_rgb_rpc_method_map_t = {
   'RGB.Set': {
     params: {
       id: shelly_component_id_t;
-      on?: boolean;
-      brightness?: number;
       rgb?: [number, number, number];
       transition_duration?: number;
       toggle_after?: number;
       offset?: number;
-    };
+    } & at_least_one_prop_t<{
+      on?: boolean;
+      brightness?: number;
+    }>;
     result: null;
   };
   'RGB.Toggle': {
