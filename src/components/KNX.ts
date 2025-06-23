@@ -44,7 +44,7 @@ export type shelly_knx_status_t = {};
 
 export type shelly_knx_rpc_method_map_t = {
   'KNX.GetStatus': {
-    params: never;
+    params?: {};
     result: shelly_knx_status_t;
   };
   'KNX.SetConfig': {
@@ -56,7 +56,7 @@ export type shelly_knx_rpc_method_map_t = {
     };
   };
   'KNX.GetConfig': {
-    params: never;
+    params?: {};
     result: shelly_knx_config_t;
   };
 

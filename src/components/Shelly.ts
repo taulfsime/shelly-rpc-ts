@@ -71,15 +71,11 @@ export type shelly_device_auth_ha1_t = string | null;
 
 export type shelly_device_rpc_method_map_t = {
   'Shelly.GetStatus': {
-    params: never;
+    params?: {};
     result: never;
   };
   'Shelly.GetConfig': {
-    params: never;
-    result: never;
-  };
-  'Shelly.SetConfig': {
-    params: never;
+    params?: {};
     result: never;
   };
   'Shelly.GetDeviceInfo': {
@@ -89,13 +85,13 @@ export type shelly_device_rpc_method_map_t = {
     result: shelly_device_info_data_t;
   };
   'Shelly.ListMethods': {
-    params: never;
+    params?: {};
     result: {
       methods: shelly_rpc_method_t[];
     };
   };
   'Shelly.ListProfiles': {
-    params: never;
+    params?: {};
     result: {
       profiles: {
         [key: shelly_device_profile_t]: {
@@ -126,11 +122,11 @@ export type shelly_device_rpc_method_map_t = {
     };
   };
   'Shelly.DetectLocation': {
-    params: never;
+    params?: {};
     result: shelly_device_location_t;
   };
   'Shelly.CheckForUpdate': {
-    params: never;
+    params?: {};
     result: Partial<
       Record<shelly_device_update_stage_t, shelly_device_update_info_t>
     >;
@@ -146,11 +142,11 @@ export type shelly_device_rpc_method_map_t = {
     result: null;
   };
   'Shelly.FactoryReset': {
-    params: never;
+    params?: {};
     result: null;
   };
   'Shelly.ResetWiFiConfig': {
-    params: never;
+    params?: {};
     result: null;
   };
   'Shelly.Reboot': {

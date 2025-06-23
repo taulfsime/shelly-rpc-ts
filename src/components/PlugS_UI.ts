@@ -41,7 +41,7 @@ export type shelly_plugs_ui_config_t = {
 
 export type shelly_plugs_ui_rpc_method_map_t = {
   'PlugS_UI.GetStatus': {
-    params: never;
+    params?: {};
     result: shelly_plugs_ui_status_t;
   };
   'PlugS_UI.SetConfig': {
@@ -50,7 +50,7 @@ export type shelly_plugs_ui_rpc_method_map_t = {
     };
   };
   'PlugS_UI.GetConfig': {
-    params: never;
+    params?: {};
     result: shelly_plugs_ui_config_t;
   };
 };

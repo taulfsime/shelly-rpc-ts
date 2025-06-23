@@ -9,7 +9,7 @@ export type shelly_plusrgbw_config_t = {
 
 export type shelly_plusrgbw_rpc_method_map_t = {
   'PlusRGBW.GetStatus': {
-    params: never;
+    params?: {};
     result: shelly_plusrgbw_status_t;
   };
   'PlusRGBW.SetConfig': {
@@ -18,7 +18,7 @@ export type shelly_plusrgbw_rpc_method_map_t = {
     };
   };
   'PlusRGBW.GetConfig': {
-    params: never;
+    params?: {};
     result: shelly_plusrgbw_config_t;
   };
 };

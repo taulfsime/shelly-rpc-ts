@@ -17,7 +17,7 @@ export type shelly_ble_status_t = {
 
 export type shelly_ble_rpc_method_map_t = {
   'BLE.GetConfig': {
-    params: never;
+    params?: {};
     result: shelly_ble_config_t;
   };
   'BLE.SetConfig': {
@@ -29,11 +29,11 @@ export type shelly_ble_rpc_method_map_t = {
     };
   };
   'BLE.GetStatus': {
-    params: never;
+    params?: {};
     result: shelly_ble_status_t;
   };
   'BLE.CloudRelay.List': {
-    params: never;
+    params?: {};
     result: {
       rev: number;
       addrs: string[];

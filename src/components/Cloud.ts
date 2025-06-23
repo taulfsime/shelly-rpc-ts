@@ -12,7 +12,7 @@ export type shelly_cloud_status_t = {
 
 export type shelly_cloud_rpc_method_map_t = {
   'Cloud.GetStatus': {
-    params: never;
+    params?: {};
     result: shelly_cloud_status_t;
   };
   'Cloud.SetConfig': {
@@ -24,7 +24,7 @@ export type shelly_cloud_rpc_method_map_t = {
     };
   };
   'Cloud.GetConfig': {
-    params: never;
+    params?: {};
     result: shelly_cloud_config_t;
   };
 };

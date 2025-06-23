@@ -33,7 +33,7 @@ export type shelly_bthome_component_type_t =
 
 export type shelly_bthome_rpc_method_map_t = {
   'BTHome.GetStatus': {
-    params: never;
+    params?: {};
     result: shelly_bthome_status_t;
   };
   'BTHome.SetConfig': {
@@ -45,7 +45,7 @@ export type shelly_bthome_rpc_method_map_t = {
     };
   };
   'BTHome.GetConfig': {
-    params: never;
+    params?: {};
     result: shelly_bthome_config_t;
   };
   'BTHome.AddDevice': {

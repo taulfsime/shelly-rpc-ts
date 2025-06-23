@@ -29,7 +29,7 @@ export type shelly_xmod_info = {
 
 export type shelly_xmod_rpc_method_map_t = {
   'XMOD.GetInfo': {
-    params: never;
+    params?: {};
     result: shelly_xmod_info;
   };
   'XMOD.ApplyProductJWS': {
@@ -39,7 +39,7 @@ export type shelly_xmod_rpc_method_map_t = {
     result: null;
   };
   'XMOD.GetProductJWS': {
-    params: never;
+    params?: {};
     result: {
       jws: shelly_xmod_jws_t;
     };

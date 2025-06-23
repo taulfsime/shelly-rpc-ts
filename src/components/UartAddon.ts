@@ -14,11 +14,11 @@ export type shelly_uart_addon_info_t = {
 
 export type shelly_uart_addon_rpc_method_map_t = {
   'AddOn.GetInfo': {
-    params: never;
+    params?: {};
     result: shelly_uart_addon_info_t;
   };
   'AddOn.CheckForUpdate': {
-    params: never;
+    params?: {};
     result: {
       type: shelly_uart_addon_types_t;
     } & Partial<

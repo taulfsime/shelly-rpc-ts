@@ -20,11 +20,11 @@ export type shelly_mqtt_config_t = {
 
 export type shelly_mqtt_rpc_method_map_t = {
   'MQTT.GetStatus': {
-    params: never;
+    params?: {};
     result: shelly_mqtt_status_t;
   };
   'MQTT.GetConfig': {
-    params: never;
+    params?: {};
     result: shelly_mqtt_config_t;
   };
   'MQTT.SetConfig': {

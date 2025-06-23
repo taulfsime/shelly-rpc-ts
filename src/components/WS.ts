@@ -13,7 +13,7 @@ export type shelly_ws_status_t = {
 
 export type shelly_ws_rpc_method_map_t = {
   'WS.GetStatus': {
-    params: never;
+    params?: {};
     result: shelly_ws_status_t;
   };
   'WS.SetConfig': {
@@ -25,7 +25,7 @@ export type shelly_ws_rpc_method_map_t = {
     };
   };
   'WS.GetConfig': {
-    params: never;
+    params?: {};
     result: shelly_ws_config_t;
   };
 };

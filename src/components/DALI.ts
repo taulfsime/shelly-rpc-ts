@@ -16,7 +16,7 @@ export type shelly_dali_status_t = {
 
 export type shelly_dali_rpc_method_map_t = {
   'DALI.GetStatus': {
-    params: never;
+    params?: {};
     result: shelly_dali_status_t;
   };
   'DALI.SetConfig': {
@@ -28,15 +28,15 @@ export type shelly_dali_rpc_method_map_t = {
     };
   };
   'DALI.GetConfig': {
-    params: never;
+    params?: {};
     result: shelly_dali_config_t;
   };
   'DALI.StartScan': {
-    params: never;
+    params?: {};
     result: null;
   };
   'DALI.PingKnownDevices': {
-    params: never;
+    params?: {};
     result: null;
   };
 };

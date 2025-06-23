@@ -11,7 +11,7 @@ export type shelly_modbus_config_t = {
 
 export type shelly_modbus_rpc_method_map_t = {
   'Modbus.GetStatus': {
-    params: never;
+    params?: {};
     result: shelly_modbus_status_t;
   };
   'Modbus.SetConfig': {
@@ -23,7 +23,7 @@ export type shelly_modbus_rpc_method_map_t = {
     };
   };
   'Modbus.GetConfig': {
-    params: never;
+    params?: {};
     result: shelly_modbus_config_t;
   };
 };

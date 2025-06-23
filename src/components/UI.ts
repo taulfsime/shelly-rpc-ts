@@ -9,7 +9,7 @@ export type shelly_ui_config_t = {
 
 export type shelly_ui_rpc_method_map_t = {
   'UI.GetConfig': {
-    params: never;
+    params?: {};
     result: shelly_ui_config_t;
   };
   'UI.SetConfig': {
@@ -18,7 +18,7 @@ export type shelly_ui_rpc_method_map_t = {
     };
   };
   'UI.GetStatus': {
-    params: never;
+    params?: {};
     result: shelly_ui_status_t;
   };
 };

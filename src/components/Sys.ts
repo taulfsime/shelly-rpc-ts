@@ -118,7 +118,7 @@ export type shelly_sys_status_t = {
 
 export type shelly_sys_rpc_method_map_t = {
   'Sys.GetStatus': {
-    params: never;
+    params?: {};
     result: shelly_sys_status_t;
   };
   'Sys.SetConfig': {
@@ -130,7 +130,7 @@ export type shelly_sys_rpc_method_map_t = {
     };
   };
   'Sys.GetConfig': {
-    params: never;
+    params?: {};
     result: shelly_sys_config_t;
   };
   'Sys.SetTime': {

@@ -67,11 +67,11 @@ export type shelly_wifi_ap_client_single_result_t = {
 
 export type shelly_wifi_rpc_method_map_t = {
   'WiFi.GetStatus': {
-    params: never;
+    params?: {};
     result: shelly_wifi_status_t;
   };
   'WiFi.GetConfig': {
-    params: never;
+    params?: {};
     result: shelly_wifi_config_t;
   };
   'WiFi.SetConfig': {
@@ -83,13 +83,13 @@ export type shelly_wifi_rpc_method_map_t = {
     };
   };
   'WiFi.Scan': {
-    params: never;
+    params?: {};
     result: {
       results: shelly_wifi_scan_single_result_t[];
     };
   };
   'WiFi.ListAPClients': {
-    params: never;
+    params?: {};
     result: {
       ts: number | null;
       ap_clients: shelly_wifi_ap_client_single_result_t[];

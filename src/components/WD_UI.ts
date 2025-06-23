@@ -10,7 +10,7 @@ export type shelly_wd_ui_config_t = {
 
 export type shelly_wd_ui_rpc_method_map_t = {
   'WD_UI.GetStatus': {
-    params: never;
+    params?: {};
     result: shelly_wd_ui_status_t;
   };
   'WD_UI.SetConfig': {
@@ -19,7 +19,7 @@ export type shelly_wd_ui_rpc_method_map_t = {
     };
   };
   'WD_UI.GetConfig': {
-    params: never;
+    params?: {};
     result: shelly_wd_ui_config_t;
   };
 };

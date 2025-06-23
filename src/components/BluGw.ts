@@ -8,7 +8,7 @@ export type shelly_blugw_status_t = {};
 
 export type shelly_blugw_rpc_method_map_t = {
   'BluGw.GetStatus': {
-    params: never;
+    params?: {};
     result: shelly_blugw_status_t;
   };
   'BluGw.SetConfig': {
@@ -17,7 +17,7 @@ export type shelly_blugw_rpc_method_map_t = {
     };
   };
   'BluGw.GetConfig': {
-    params: never;
+    params?: {};
     result: shelly_blugw_config_t;
   };
 };

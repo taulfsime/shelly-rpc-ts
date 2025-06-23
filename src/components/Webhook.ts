@@ -20,7 +20,7 @@ export type shelly_webhook_hook_t = {
 
 export type shelly_webhook_rpc_method_map_t = {
   'Webhook.List': {
-    params: never;
+    params?: {};
     result: {
       hooks: shelly_webhook_hook_t[];
       rev: shelly_webhook_rev_t;
@@ -48,13 +48,13 @@ export type shelly_webhook_rpc_method_map_t = {
     };
   };
   'Webhook.DeleteAll': {
-    params: never;
+    params?: {};
     result: {
       rev: shelly_webhook_rev_t;
     };
   };
   'Webhook.ListSupported': {
-    params: never;
+    params?: {};
     result: {
       types: Record<
         shelly_webhook_event_t,

@@ -12,7 +12,7 @@ export type shelly_matter_status_t = {
 
 export type shelly_matter_rpc_method_map_t = {
   'Matter.GetConfig': {
-    params: never;
+    params?: {};
     result: shelly_matter_config_t;
   };
   'Matter.SetConfig': {
@@ -24,11 +24,11 @@ export type shelly_matter_rpc_method_map_t = {
     };
   };
   'Matter.GetStatus': {
-    params: never;
+    params?: {};
     result: shelly_matter_status_t;
   };
   'Matter.GetSetupCode': {
-    params: never;
+    params?: {};
     result: {
       qr_code: string;
       manual_code: string;

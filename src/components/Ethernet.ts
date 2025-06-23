@@ -20,7 +20,7 @@ export type shelly_ethernet_config_t = {
 
 export type shelly_ethernet_rpc_method_map_t = {
   'Eth.GetStatus': {
-    params: never;
+    params?: {};
     result: shelly_ethernet_status_t;
   };
   'Eth.SetConfig': {
@@ -32,7 +32,7 @@ export type shelly_ethernet_rpc_method_map_t = {
     };
   };
   'Eth.GetConfig': {
-    params: never;
+    params?: {};
     result: shelly_ethernet_config_t;
   };
   'Eth.ListClients': {

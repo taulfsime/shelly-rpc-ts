@@ -53,7 +53,7 @@ export type shelly_sensor_addon_rpc_method_map_t = {
     };
   };
   'SensorAddon.GetPeripherals': {
-    params: never;
+    params?: {};
     result: {
       [key in shelly_sensor_addon_peripheral_ds18b20_t]?: {
         [key in shelly_temperature_key_t]?: {
@@ -95,7 +95,7 @@ export type shelly_sensor_addon_rpc_method_map_t = {
     };
   };
   'SensorAddon.OneWireScan': {
-    params: never;
+    params?: {};
     result: {
       devices: {
         type: shelly_sensor_addon_peripheral_ds18b20_t | 'unknown';

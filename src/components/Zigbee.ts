@@ -11,7 +11,7 @@ export type shelly_zigbee_config_t = {
 
 export type shelly_zigbee_rpc_method_map_t = {
   'Zigbee.GetStatus': {
-    params: never;
+    params?: {};
     result: shelly_zigbee_status_t;
   };
   'Zigbee.SetConfig': {
@@ -23,11 +23,11 @@ export type shelly_zigbee_rpc_method_map_t = {
     };
   };
   'Zigbee.GetConfig': {
-    params: never;
+    params?: {};
     result: shelly_zigbee_config_t;
   };
   'Zigbee.StartNetworkSteering': {
-    params: never;
+    params?: {};
     result: null;
   };
 };

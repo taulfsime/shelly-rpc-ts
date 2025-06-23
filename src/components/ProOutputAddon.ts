@@ -21,7 +21,7 @@ export type shelly_pro_output_addon_rpc_method_map_t = {
     };
   };
   'ProOutputAddon.GetPeripherals': {
-    params: never;
+    params?: {};
     result: {
       [key in shelly_pro_output_addon_peripheral_digital_out_t]: {
         [key in shelly_switch_key_t]?: {};

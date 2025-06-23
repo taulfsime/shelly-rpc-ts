@@ -105,7 +105,7 @@ export type shelly_script_rpc_method_map_t = {
     };
   };
   'Script.List': {
-    params: never;
+    params?: {};
     result: {
       scripts: {
         id: shelly_component_id_t;
