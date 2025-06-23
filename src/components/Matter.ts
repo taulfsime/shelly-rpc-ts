@@ -34,4 +34,8 @@ export type shelly_matter_rpc_method_map_t = {
       manual_code: string;
     };
   };
+  'Matter.FactoryReset': {
+    params?: {};
+    result: null;
+  };
 };
