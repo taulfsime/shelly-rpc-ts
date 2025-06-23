@@ -64,6 +64,7 @@ import { shelly_lora_rpc_method_map_t } from './components/LoRa.js';
 import { shelly_sensor_addon_rpc_method_map_t } from './components/SensorAddon.js';
 import { shelly_pro_output_addon_rpc_method_map_t } from './components/ProOutputAddon.js';
 import { shelly_uart_addon_rpc_method_map_t } from './components/UartAddon.js';
+import { shelly_bthomecontrol_rpc_method_map_t } from './components/BTHomeComponents/BTHomeControl.js';
 
 type shelly_rpc_method_map_t = shelly_device_rpc_method_map_t &
   shelly_ble_rpc_method_map_t &
@@ -71,6 +72,7 @@ type shelly_rpc_method_map_t = shelly_device_rpc_method_map_t &
   shelly_blutrv_rpc_method_map_t &
   shelly_boolean_rpc_method_map_t &
   shelly_bthome_rpc_method_map_t &
+  shelly_bthomecontrol_rpc_method_map_t &
   shelly_bthomedevice_rpc_method_map_t &
   shelly_bthomesensor_rpc_method_map_t &
   shelly_button_rpc_method_map_t &

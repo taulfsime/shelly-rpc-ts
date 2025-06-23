@@ -101,6 +101,8 @@ export {
   shelly_bthomesensor_status_t,
   shelly_bthomesensor_key_t,
   shelly_bthomesensor_type_t,
+  shelly_bthomesensor_object_id_t,
+  shelly_bthomesensor_object_index_t,
 } from './components/BTHomeComponents/BTHomeSensor.js';
 export {
   shelly_bthomedevice_config_t,

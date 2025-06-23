@@ -28,6 +28,14 @@ export type shelly_bthomedevice_config_t = {
   meta: null | Record<string, unknown>;
 };
 
+export type shelly_bthomedevice_event_t =
+  | 'single_push'
+  | 'double_push'
+  | 'triple_push'
+  | 'rotate_left'
+  | 'rotate_right'
+  | 'hold_press';
+
 export type shelly_bthomedevice_rpc_method_map_t = {
   'BTHomeDevice.GetStatus': {
     params: {

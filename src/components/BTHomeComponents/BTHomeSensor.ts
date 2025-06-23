@@ -5,6 +5,7 @@ export type shelly_bthomesensor_key_t =
   `${shelly_bthomesensor_type_t}:${shelly_component_id_t}`;
 
 export type shelly_bthomesensor_object_id_t = number;
+export type shelly_bthomesensor_object_index_t = number;
 export type shelly_bthomesensor_object_type_t =
   | 'sensor'
   | 'binary_sensor'
@@ -24,7 +25,7 @@ export type shelly_bthomesensor_config_t = {
   id: shelly_component_id_t;
   name: string | null;
   obj_id: shelly_bthomesensor_object_id_t;
-  idx: number;
+  idx: shelly_bthomesensor_object_index_t;
   addr: string;
   meta: null | Record<string, unknown>;
 };
