@@ -33,6 +33,7 @@ export {
 export {
   shelly_service_config_t,
   shelly_service_status_t,
+  shelly_service_info_t,
   shelly_service_key_t,
   shelly_service_type_t,
 } from './components/Service.js';
@@ -318,6 +319,7 @@ export {
   shelly_uart_addon_types_t,
   shelly_uart_addon_info_t,
 } from './components/UartAddon.js';
+export { shelly_xmod_info } from './components/XMOD.js';
 
 // Shelly device types
 export { shelly_device_info_data_t } from './components/Shelly.js';

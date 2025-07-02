@@ -29,6 +29,14 @@ export type shelly_service_status_t = {
 
 export type shelly_service_config_t = null | Record<string, unknown>;
 
+export type shelly_service_info_t = {
+  type: shelly_service_identifier_type_t;
+  ver: string;
+  build_id: string;
+  etag: string;
+  meta?: Record<string, unknown>;
+};
+
 export type shelly_service_rpc_method_map_t = {
   'Service.GetStatus': {
     params: {
@@ -55,13 +63,7 @@ export type shelly_service_rpc_method_map_t = {
     params: {
       id: shelly_component_id_t;
     };
-    result: {
-      type: shelly_service_identifier_type_t;
-      ver: string;
-      build_id: string;
-      etag: string;
-      meta?: Record<string, unknown>;
-    };
+    result: shelly_service_info_t;
   };
   'Service.GetResources': {
     params: {
