@@ -11,6 +11,7 @@ import {
   shelly_rpc_notification_notify_status_t,
   shelly_rpc_notification_t,
 } from '../ShellyRpc.js';
+import { deepEqual } from '../utils/deep-equal.js';
 
 const SHELLY_LIMIT_REQUESTS_IN_FLIGHT = 1;
 
@@ -26,13 +27,15 @@ type shelly_listener_t<
 
 type shelly_transport_response_map_t = {
   method: shelly_rpc_method_t;
-  onResponse: (result: any) => void;
-  onError: (error: any) => void; //XXX: types!!!
+  onResponse: ((result: any) => void)[];
+  onError: ((error: any) => void)[];
   options: {
     timeout: number;
     numberOfRetries: number;
+    debounce?: number;
   };
   timeoutId?: number;
+  debounceTimeoutId?: number;
 };
 
 export abstract class ShellyTransportBase {
@@ -61,17 +64,37 @@ export abstract class ShellyTransportBase {
     params: shelly_rpc_method_params_t<K>,
     options?: Partial<shelly_transport_response_map_t['options']>
   ): Promise<shelly_rpc_method_result_t<K>> {
+    // Check if there's a matching request already in the queue
+    for (const queuedRequest of this.msgQueue) {
+      if (
+        queuedRequest.method === method &&
+        deepEqual(queuedRequest.params, params)
+      ) {
+        // Found matching request, return its promise
+        const existingData = this.responsesMap.get(queuedRequest.id);
+        if (existingData) {
+          return new Promise<shelly_rpc_method_result_t<K>>(
+            (resolve, reject) => {
+              existingData.onResponse.push(resolve);
+              existingData.onError.push(reject);
+            }
+          );
+        }
+      }
+    }
+
     const msgId = this.msgCounter++;
 
     const responsePromise = new Promise<shelly_rpc_method_result_t<K>>(
       (resolve, reject) => {
         this.responsesMap.set(msgId, {
-          onResponse: resolve,
-          onError: reject,
+          onResponse: [resolve],
+          onError: [reject],
           method,
           options: {
             timeout: options?.timeout ?? 5000,
             numberOfRetries: options?.numberOfRetries ?? 3,
+            debounce: options?.debounce,
           },
         });
       }
@@ -106,9 +129,12 @@ export abstract class ShellyTransportBase {
         clearTimeout(timeoutId);
 
         if (data.error) {
-          onError(data.error);
+          onError.forEach(callback => callback(data.error));
         } else {
-          onResponse(data.result as shelly_rpc_method_result_t<typeof method>);
+          const result = data.result as shelly_rpc_method_result_t<
+            typeof method
+          >;
+          onResponse.forEach(callback => callback(result));
         }
       }
 
@@ -165,28 +191,57 @@ export abstract class ShellyTransportBase {
       return;
     }
 
+    const nextRequest = this.msgQueue[0];
+    const reqData = this.responsesMap.get(nextRequest.id);
+    if (!reqData) {
+      return;
+    }
+
+    // If there's an active debounce timer for this request, don't do anything
+    if (reqData.options.debounce && reqData.debounceTimeoutId !== undefined) {
+      return;
+    }
+
+    // If this request has a debounce option and hasn't been debounced yet
+    if (reqData.options.debounce && reqData.debounceTimeoutId === undefined) {
+      reqData.debounceTimeoutId = setTimeout(() => {
+        reqData.debounceTimeoutId = undefined;
+        this._sendRequest();
+      }, reqData.options.debounce);
+      return;
+    }
+
+    // No debounce or timer expired, send immediately
+    this._sendRequest();
+  }
+
+  private _sendRequest(): void {
+    if (
+      this.msgQueue.length === 0 ||
+      this.msgInFlight >= SHELLY_LIMIT_REQUESTS_IN_FLIGHT
+    ) {
+      return;
+    }
+
     const request = this.msgQueue.shift()!;
     if (this._onSend(request) === false) {
       // if unable to send the request, add it back to the queue if retries are available
-
       const reqData = this.responsesMap.get(request.id);
       if (!reqData) {
         // no response data, cannot retry
         this._handleQueue();
         return;
       }
-
       reqData.options.numberOfRetries -= 1;
-
       if (reqData.options.numberOfRetries <= 0) {
-        // no retries left, call onError //XXX: error type!!!
-        reqData.onError(new Error('Request failed after retries'));
+        // no retries left, call onError handlers
+        const error = new Error('Request failed after retries');
+        reqData.onError.forEach(callback => callback(error));
         this.responsesMap.delete(request.id);
         clearTimeout(reqData.timeoutId);
         this._handleQueue();
         return;
       }
-
       // at the back of the queue
       this.msgQueue.push(request);
       this._handleQueue();
@@ -200,8 +255,8 @@ export abstract class ShellyTransportBase {
         if (!this.responsesMap.has(request.id)) {
           return; // already handled
         }
-
-        reqData.onError(new Error('Request timed out'));
+        const error = new Error(`Request timed out with id=${request.id}`);
+        reqData.onError.forEach(callback => callback(error));
         this.responsesMap.delete(request.id);
         this._handleQueue();
       }, reqData.options.timeout);

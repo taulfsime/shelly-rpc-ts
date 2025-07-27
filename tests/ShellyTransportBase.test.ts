@@ -172,4 +172,31 @@ describe('ShellyTransportBase', () => {
     ).toBe(2);
     await expect(promise).rejects.toThrow('Request failed after retries');
   });
+
+  it('should return same promise for duplicate requests', async () => {
+    vi.useFakeTimers();
+    const promise1 = transport.rpcRequest(
+      'Switch.Set',
+      { id: 0, on: true },
+      { timeout: 3000, debounce: 500 }
+    );
+    const promise2 = transport.rpcRequest(
+      'Switch.Set',
+      { id: 0, on: true },
+      { timeout: 3000, debounce: 500 }
+    );
+
+    vi.advanceTimersByTime(500); // Simulate debounce time
+
+    expect(transport.sentRequests.length).toBe(1);
+
+    transport.simulateResponse(transport.sentRequests[0].id, { was_on: false });
+
+    // Both promises should resolve with the same result
+    const result1 = await promise1;
+    const result2 = await promise2;
+    expect(result1).toEqual({ was_on: false });
+    expect(result2).toEqual({ was_on: false });
+    expect(result1).toStrictEqual(result2); // Should be deeply equal
+  });
 });
