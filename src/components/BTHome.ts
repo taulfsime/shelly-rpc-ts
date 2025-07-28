@@ -50,7 +50,12 @@ export type shelly_bthome_rpc_method_map_t = {
   };
   'BTHome.AddDevice': {
     params: {
-      config: Omit<shelly_bthomedevice_config_t, 'id'>;
+      config: {
+        [key in keyof Omit<
+          shelly_bthomedevice_config_t,
+          'id'
+        >]?: shelly_bthomedevice_config_t[key];
+      };
       id?: shelly_component_id_t;
     };
     result: {
