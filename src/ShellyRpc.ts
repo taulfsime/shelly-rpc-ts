@@ -17,7 +17,10 @@ import { shelly_sys_rpc_method_map_t } from './components/Sys.js';
 import { shelly_temperature_rpc_method_map_t } from './components/Temperature.js';
 import { shelly_text_rpc_method_map_t } from './components/VirtualComponents/Text.js';
 import { shelly_wifi_rpc_method_map_t } from './components/WiFi.js';
-import { shelly_device_rpc_method_map_t } from './components/Shelly.js';
+import {
+  shelly_device_info_data_t,
+  shelly_device_rpc_method_map_t,
+} from './components/Shelly.js';
 import { shelly_object_rpc_method_map_t } from './components/VirtualComponents/Object.js';
 import {
   shelly_component_helper_key_to_type_t,
@@ -151,6 +154,23 @@ export type shelly_rpc_method_error_t = {
   message: string;
 };
 
+export type shelly_rpc_auth_response_t = {
+  auth_type: 'digest';
+  realm: NonNullable<shelly_device_info_data_t['auth_domain']>;
+  nonce: number;
+  algorithm: 'SHA-256';
+  nc: number;
+};
+
+export type shelly_rpc_auth_request_t = {
+  realm: shelly_rpc_auth_response_t['realm'];
+  username: string;
+  nonce: shelly_rpc_auth_response_t['nonce'];
+  cnonce: shelly_rpc_auth_response_t['nonce'];
+  response: string;
+  algorithm: shelly_rpc_auth_response_t['algorithm'];
+};
+
 export type shelly_rpc_msg_request_id_t = string | number;
 
 export type shelly_rpc_msg_request_t<
@@ -161,6 +181,7 @@ export type shelly_rpc_msg_request_t<
   src: string;
   method: K;
   params: shelly_rpc_method_params_t<K>;
+  auth?: shelly_rpc_auth_request_t;
 };
 
 type shelly_rpc_msg_response_base_t = {
@@ -287,5 +308,35 @@ export function isRpcNotification(
     data.method === 'NotifyStatus' ||
     data.method === 'NotifyFullStatus' ||
     data.method === 'NotifyEvent'
+  );
+}
+
+export function isRpcError(error: unknown): error is shelly_rpc_method_error_t {
+  return (
+    typeof error === 'object' &&
+    error !== null &&
+    'code' in error &&
+    typeof error.code === 'number' &&
+    'message' in error &&
+    typeof error.message === 'string'
+  );
+}
+
+export function isRpcAuthResponse(
+  response: unknown
+): response is shelly_rpc_auth_response_t {
+  return (
+    typeof response === 'object' &&
+    response !== null &&
+    'auth_type' in response &&
+    response.auth_type === 'digest' &&
+    'realm' in response &&
+    typeof response.realm === 'string' &&
+    'nonce' in response &&
+    typeof response.nonce === 'number' &&
+    'algorithm' in response &&
+    response.algorithm === 'SHA-256' &&
+    'nc' in response &&
+    typeof response.nc === 'number'
   );
 }

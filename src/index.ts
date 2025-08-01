@@ -329,21 +329,25 @@ export {
 
 // Shelly RPC-related types
 export {
-  shelly_rpc_method_t,
+  shelly_rpc_auth_request_t,
+  shelly_rpc_auth_response_t,
+  shelly_rpc_method_error_t,
   shelly_rpc_method_params_t,
   shelly_rpc_method_result_t,
-  shelly_rpc_method_error_t,
+  shelly_rpc_method_t,
   shelly_rpc_msg_request_id_t,
   shelly_rpc_msg_request_t,
-  shelly_rpc_msg_response_t,
   shelly_rpc_msg_response_error_t,
   shelly_rpc_msg_response_result_t,
-  shelly_rpc_notification_t,
+  shelly_rpc_msg_response_t,
   shelly_rpc_notification_method_t,
   shelly_rpc_notification_notify_event_t,
   shelly_rpc_notification_notify_status_t,
-  isRpcResponse,
+  shelly_rpc_notification_t,
+  isRpcAuthResponse,
+  isRpcError,
   isRpcNotification,
+  isRpcResponse,
 } from './ShellyRpc.js';
 
 export {
@@ -357,4 +361,7 @@ export {
   parseComponentKey,
 } from './ShellyComponents.js';
 
-export { ShellyTransportBase } from './transport/ShellyTransportBase.js';
+export {
+  ShellyTransportBase,
+  shelly_transport_rpc_options_t,
+} from './transport/ShellyTransportBase.js';

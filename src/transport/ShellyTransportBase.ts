@@ -1,6 +1,7 @@
 import {
   isRpcNotification,
   isRpcResponse,
+  shelly_rpc_auth_request_t,
   shelly_rpc_method_params_t,
   shelly_rpc_method_result_t,
   shelly_rpc_method_t,
@@ -25,15 +26,23 @@ type shelly_listener_t<
   M extends shelly_rpc_notification_method_t = shelly_rpc_notification_method_t,
 > = (msg: shelly_listener_params_t[M]) => void;
 
+export type shelly_transport_rpc_options_t = {
+  timeout?: number;
+  numberOfRetries?: number;
+  debounce?: number;
+  auth?: shelly_rpc_auth_request_t; //XXX: TODO: add tests
+};
+
 type shelly_transport_response_map_t = {
   method: shelly_rpc_method_t;
   onResponse: ((result: any) => void)[];
   onError: ((error: any) => void)[];
-  options: {
-    timeout: number;
-    numberOfRetries: number;
-    debounce?: number;
-  };
+  options: Partial<
+    Omit<shelly_transport_rpc_options_t, 'timeout' | 'numberOfRetries'>
+  > &
+    Required<
+      Pick<shelly_transport_rpc_options_t, 'timeout' | 'numberOfRetries'>
+    >;
   timeoutId?: number;
   debounceTimeoutId?: number;
 };
@@ -62,9 +71,9 @@ export abstract class ShellyTransportBase {
   async rpcRequest<K extends shelly_rpc_method_t>(
     method: K,
     params: shelly_rpc_method_params_t<K>,
-    options?: Partial<shelly_transport_response_map_t['options']>
+    options?: Partial<shelly_transport_rpc_options_t>
   ): Promise<shelly_rpc_method_result_t<K>> {
-    // Check if there's a matching request already in the queue
+    // Check if there is a matching request already in the queue
     for (const queuedRequest of this.msgQueue) {
       if (
         queuedRequest.method === method &&
@@ -106,6 +115,7 @@ export abstract class ShellyTransportBase {
       src: this.clientId,
       method,
       params: params as shelly_rpc_method_params_t<K>,
+      auth: options?.auth,
     };
 
     this.msgQueue.push(request);
