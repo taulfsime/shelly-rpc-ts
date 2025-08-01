@@ -322,7 +322,10 @@ export {
 export { shelly_xmod_info } from './components/XMOD.js';
 
 // Shelly device types
-export { shelly_device_info_data_t } from './components/Shelly.js';
+export {
+  shelly_device_info_data_t,
+  shelly_device_profile_t,
+} from './components/Shelly.js';
 
 // Shelly RPC-related types
 export {
