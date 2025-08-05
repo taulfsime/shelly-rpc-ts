@@ -33,8 +33,11 @@ export type shelly_transport_rpc_options_t = {
   auth?: shelly_rpc_auth_request_t; //XXX: TODO: add tests
 };
 
-type shelly_transport_response_map_t = {
-  method: shelly_rpc_method_t;
+type shelly_transport_response_map_t<
+  K extends shelly_rpc_method_t = shelly_rpc_method_t,
+> = {
+  method: K;
+  params: shelly_rpc_method_params_t<K>;
   onResponse: ((result: any) => void)[];
   onError: ((error: any) => void)[];
   options: Partial<
@@ -100,6 +103,7 @@ export abstract class ShellyTransportBase {
           onResponse: [resolve],
           onError: [reject],
           method,
+          params,
           options: {
             timeout: options?.timeout ?? 5000,
             numberOfRetries: options?.numberOfRetries ?? 3,
