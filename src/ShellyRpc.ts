@@ -333,7 +333,6 @@ export function isRpcAuthResponse(
     'realm' in response &&
     typeof response.realm === 'string' &&
     'nonce' in response &&
-    typeof response.nonce === 'number' &&
     'algorithm' in response &&
     response.algorithm === 'SHA-256' &&
     'nc' in response &&
