@@ -66,9 +66,26 @@ export abstract class ShellyTransportBase {
     NotifyFullStatus: [],
     NotifyEvent: [],
   };
+  private rpcDefaultOptions: Required<
+    Pick<shelly_transport_rpc_options_t, 'timeout' | 'numberOfRetries'>
+  > = {
+    timeout: 5000,
+    numberOfRetries: 3,
+  };
 
-  constructor(clientId: string) {
+  constructor(
+    clientId: string,
+    defaultOptions?: Pick<
+      shelly_transport_rpc_options_t,
+      'timeout' | 'numberOfRetries'
+    >
+  ) {
     this.clientId = clientId;
+
+    this.rpcDefaultOptions.numberOfRetries =
+      defaultOptions?.numberOfRetries ?? this.rpcDefaultOptions.numberOfRetries;
+    this.rpcDefaultOptions.timeout =
+      defaultOptions?.timeout ?? this.rpcDefaultOptions.timeout;
   }
 
   async rpcRequest<K extends shelly_rpc_method_t>(
@@ -105,8 +122,10 @@ export abstract class ShellyTransportBase {
           method,
           params,
           options: {
-            timeout: options?.timeout ?? 5000,
-            numberOfRetries: options?.numberOfRetries ?? 3,
+            timeout: options?.timeout ?? this.rpcDefaultOptions.timeout,
+            numberOfRetries:
+              options?.numberOfRetries ??
+              this.rpcDefaultOptions.numberOfRetries,
             debounce: options?.debounce,
           },
         });
