@@ -2,7 +2,6 @@ import { shelly_rpc_method_t } from '../ShellyRpc.js';
 
 import {
   shelly_component_config_t,
-  shelly_component_helper_key_to_type_t,
   shelly_component_id_t,
   shelly_component_key_t,
   shelly_component_status_t,
@@ -15,8 +14,8 @@ type shelly_rpc_components_list_item_t<
   K extends shelly_component_key_t = shelly_component_key_t,
 > = {
   key: K;
-  status?: shelly_component_status_t<shelly_component_helper_key_to_type_t<K>>;
-  config?: shelly_component_config_t<shelly_component_helper_key_to_type_t<K>>;
+  status?: shelly_component_status_t<shelly_component_type_t<K>>;
+  config?: shelly_component_config_t<shelly_component_type_t<K>>;
 };
 
 export type shelly_device_info_data_t = {
@@ -96,7 +95,7 @@ export type shelly_device_rpc_method_map_t = {
       profiles: {
         [key: shelly_device_profile_t]: {
           components: {
-            type: shelly_component_type_t;
+            type: shelly_component_type_t<shelly_component_key_t>;
             count: number;
           }[];
         };

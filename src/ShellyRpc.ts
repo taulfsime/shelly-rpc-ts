@@ -23,10 +23,10 @@ import {
 } from './components/Shelly.js';
 import { shelly_object_rpc_method_map_t } from './components/VirtualComponents/Object.js';
 import {
-  shelly_component_helper_key_to_type_t,
   shelly_component_id_t,
   shelly_component_key_t,
   shelly_component_status_t,
+  shelly_component_type_t,
 } from './ShellyComponents.js';
 import { shelly_pm1_rpc_method_map_t } from './components/PM1.js';
 import { shelly_devicepower_rpc_method_map_t } from './components/DevicePower.js';
@@ -224,7 +224,7 @@ export type shelly_rpc_notification_notify_status_t =
       ts: number;
     } & {
       [K in shelly_component_key_t]?: Partial<
-        shelly_component_status_t<shelly_component_helper_key_to_type_t<K>>
+        shelly_component_status_t<shelly_component_type_t<K>>
       >;
     };
   };

@@ -301,58 +301,10 @@ import {
 } from './components/LoRa.js';
 
 export type shelly_component_id_t = number;
-export type shelly_component_type_t =
-  | shelly_ble_type_t
-  | shelly_blugw_type_t
-  | shelly_blutrv_type_t
-  | shelly_boolean_type_t
-  | shelly_bthome_type_t
-  | shelly_bthomedevice_type_t
-  | shelly_bthomesensor_type_t
-  | shelly_button_type_t
-  | shelly_cct_type_t
-  | shelly_cloud_type_t
-  | shelly_cover_type_t
-  | shelly_dali_type_t
-  | shelly_devicepower_type_t
-  | shelly_em_type_t
-  | shelly_em1_type_t
-  | shelly_em1data_type_t
-  | shelly_emdata_type_t
-  | shelly_enum_type_t
-  | shelly_ethernet_type_t
-  | shelly_group_type_t
-  | shelly_ht_ui_type_t
-  | shelly_humidity_type_t
-  | shelly_input_type_t
-  | shelly_knx_type_t
-  | shelly_light_type_t
-  | shelly_lora_type_t
-  | shelly_matter_type_t
-  | shelly_modbus_type_t
-  | shelly_mqtt_type_t
-  | shelly_number_type_t
-  | shelly_object_type_t
-  | shelly_plugs_ui_type_t
-  | shelly_pluguk_ui_type_t
-  | shelly_plusrgbw_key_t
-  | shelly_plusrgbw_type_t
-  | shelly_pm1_type_t
-  | shelly_rgb_type_t
-  | shelly_rgbw_type_t
-  | shelly_script_type_t
-  | shelly_service_type_t
-  | shelly_smoke_type_t
-  | shelly_switch_type_t
-  | shelly_sys_type_t
-  | shelly_temperature_type_t
-  | shelly_text_type_t
-  | shelly_ui_type_t
-  | shelly_voltmeter_type_t
-  | shelly_wd_ui_type_t
-  | shelly_wifi_type_t
-  | shelly_ws_type_t
-  | shelly_zigbee_type_t;
+
+export type shelly_component_type_t<
+  K extends shelly_component_key_t = shelly_component_key_t,
+> = Extract<shelly_component_status_map_t, { key: K }>['type'];
 
 export type shelly_component_key_t =
   | shelly_ble_key_t
@@ -388,6 +340,7 @@ export type shelly_component_key_t =
   | shelly_object_key_t
   | shelly_plugs_ui_key_t
   | shelly_pluguk_ui_key_t
+  | shelly_plusrgbw_key_t
   | shelly_pm1_key_t
   | shelly_rgb_key_t
   | shelly_rgbw_key_t
@@ -406,9 +359,7 @@ export type shelly_component_key_t =
   | shelly_zigbee_key_t;
 
 export type shelly_component_helper_key_to_type_t<
-  T extends
-    | `${shelly_component_type_t}:${shelly_component_id_t}`
-    | shelly_component_type_t,
+  T extends shelly_component_key_t,
 > =
   T extends `${infer K extends shelly_component_type_t}:${shelly_component_id_t}`
     ? K
@@ -425,247 +376,315 @@ export type shelly_component_helper_key_to_id_t<
     ? K
     : never;
 
-type component_entry_t<K extends shelly_component_type_t, C, S> = {
-  type: K;
+type component_entry_t<
+  K extends shelly_component_key_t,
+  T extends shelly_component_type_t,
+  C,
+  S,
+> = {
+  key: K;
+  type: T;
   status: S;
   config: C;
 };
 
 export type shelly_component_status_map_t =
   | component_entry_t<
+      shelly_sys_key_t,
       shelly_sys_type_t,
       shelly_sys_config_t,
       shelly_sys_status_t
     >
   | component_entry_t<
+      shelly_wifi_key_t,
       shelly_wifi_type_t,
       shelly_wifi_config_t,
       shelly_wifi_status_t
     >
   | component_entry_t<
+      shelly_mqtt_key_t,
       shelly_mqtt_type_t,
       shelly_mqtt_config_t,
       shelly_mqtt_status_t
     >
   | component_entry_t<
+      shelly_ethernet_key_t,
       shelly_ethernet_type_t,
       shelly_ethernet_config_t,
       shelly_ethernet_status_t
     >
   | component_entry_t<
+      shelly_ble_key_t,
       shelly_ble_type_t,
       shelly_ble_config_t,
       shelly_ble_status_t
     >
   | component_entry_t<
+      shelly_cloud_key_t,
       shelly_cloud_type_t,
       shelly_cloud_config_t,
       shelly_cloud_status_t
     >
-  | component_entry_t<shelly_ws_type_t, shelly_ws_config_t, shelly_ws_status_t>
   | component_entry_t<
+      shelly_ws_key_t,
+      shelly_ws_type_t,
+      shelly_ws_config_t,
+      shelly_ws_status_t
+    >
+  | component_entry_t<
+      shelly_matter_key_t,
       shelly_matter_type_t,
       shelly_matter_config_t,
       shelly_matter_status_t
     >
   | component_entry_t<
+      shelly_modbus_key_t,
       shelly_modbus_type_t,
       shelly_modbus_config_t,
       shelly_modbus_status_t
     >
   | component_entry_t<
+      shelly_dali_key_t,
       shelly_dali_type_t,
       shelly_dali_config_t,
       shelly_dali_status_t
     >
   | component_entry_t<
+      shelly_zigbee_key_t,
       shelly_zigbee_type_t,
       shelly_zigbee_config_t,
       shelly_zigbee_status_t
     >
   | component_entry_t<
+      shelly_knx_key_t,
       shelly_knx_type_t,
       shelly_knx_config_t,
       shelly_knx_status_t
     >
   | component_entry_t<
+      shelly_bthome_key_t,
       shelly_bthome_type_t,
       shelly_bthome_config_t,
       shelly_bthome_status_t
     >
   | component_entry_t<
+      shelly_number_key_t,
       shelly_number_type_t,
       shelly_number_config_t,
       shelly_number_status_t
     >
   | component_entry_t<
+      shelly_boolean_key_t,
       shelly_boolean_type_t,
       shelly_boolean_config_t,
       shelly_boolean_status_t
     >
   | component_entry_t<
+      shelly_text_key_t,
       shelly_text_type_t,
       shelly_text_config_t,
       shelly_text_status_t
     >
   | component_entry_t<
+      shelly_object_key_t,
       shelly_object_type_t,
       shelly_object_config_t,
       shelly_object_status_t
     >
   | component_entry_t<
+      shelly_enum_key_t,
       shelly_enum_type_t,
       shelly_enum_config_t,
       shelly_enum_status_t
     >
   | component_entry_t<
+      shelly_bthomesensor_key_t,
       shelly_bthomesensor_type_t,
       shelly_bthomesensor_config_t,
       shelly_bthomesensor_status_t
     >
   | component_entry_t<
+      shelly_bthomedevice_key_t,
       shelly_bthomedevice_type_t,
       shelly_bthomedevice_config_t,
       shelly_bthomedevice_status_t
     >
   | component_entry_t<
+      shelly_group_key_t,
       shelly_group_type_t,
       shelly_group_config_t,
       shelly_group_status_t
     >
   | component_entry_t<
+      shelly_switch_key_t,
       shelly_switch_type_t,
       shelly_switch_config_t,
       shelly_switch_status_t
     >
   | component_entry_t<
+      shelly_cover_key_t,
       shelly_cover_type_t,
       shelly_cover_config_t,
       shelly_cover_status_t
     >
   | component_entry_t<
+      shelly_light_key_t,
       shelly_light_type_t,
       shelly_light_config_t,
       shelly_light_status_t
     >
   | component_entry_t<
+      shelly_service_key_t,
       shelly_service_type_t,
       shelly_service_config_t,
       shelly_service_status_t
     >
   | component_entry_t<
+      shelly_script_key_t,
       shelly_script_type_t,
       shelly_script_config_t,
       shelly_script_status_t
     >
   | component_entry_t<
+      shelly_temperature_key_t,
       shelly_temperature_type_t,
       shelly_temperature_config_t,
       shelly_temperature_status_t
     >
   | component_entry_t<
+      shelly_humidity_key_t,
       shelly_humidity_type_t,
       shelly_humidity_config_t,
       shelly_humidity_status_t
     >
   | component_entry_t<
+      shelly_input_key_t,
       shelly_input_type_t,
       shelly_input_config_t,
       shelly_input_status_t
     >
   | component_entry_t<
+      shelly_pm1_key_t,
       shelly_pm1_type_t,
       shelly_pm1_config_t,
       shelly_pm1_status_t
     >
   | component_entry_t<
+      shelly_devicepower_key_t,
       shelly_devicepower_type_t,
       shelly_devicepower_config_t,
       shelly_devicepower_status_t
     >
   | component_entry_t<
+      shelly_voltmeter_key_t,
       shelly_voltmeter_type_t,
       shelly_voltmeter_config_t,
       shelly_voltmeter_status_t
     >
   | component_entry_t<
+      shelly_smoke_key_t,
       shelly_smoke_type_t,
       shelly_smoke_config_t,
       shelly_smoke_status_t
     >
   | component_entry_t<
+      shelly_cct_key_t,
       shelly_cct_type_t,
       shelly_cct_config_t,
       shelly_cct_status_t
     >
-  | component_entry_t<shelly_em_type_t, shelly_em_config_t, shelly_em_status_t>
   | component_entry_t<
+      shelly_em_key_t,
+      shelly_em_type_t,
+      shelly_em_config_t,
+      shelly_em_status_t
+    >
+  | component_entry_t<
+      shelly_em1_key_t,
       shelly_em1_type_t,
       shelly_em1_config_t,
       shelly_em1_status_t
     >
   | component_entry_t<
+      shelly_emdata_key_t,
       shelly_emdata_type_t,
       shelly_emdata_config_t,
       shelly_emdata_status_t
     >
   | component_entry_t<
+      shelly_em1data_key_t,
       shelly_em1data_type_t,
       shelly_em1data_config_t,
       shelly_em1data_status_t
     >
   | component_entry_t<
+      shelly_rgb_key_t,
       shelly_rgb_type_t,
       shelly_rgb_config_t,
       shelly_rgb_status_t
     >
   | component_entry_t<
+      shelly_rgbw_key_t,
       shelly_rgbw_type_t,
       shelly_rgbw_config_t,
       shelly_rgbw_status_t
     >
   | component_entry_t<
+      shelly_plugs_ui_key_t,
       shelly_plugs_ui_type_t,
       shelly_plugs_ui_config_t,
       shelly_plugs_ui_status_t
     >
   | component_entry_t<
+      shelly_pluguk_ui_key_t,
       shelly_pluguk_ui_type_t,
       shelly_pluguk_ui_config_t,
       shelly_pluguk_ui_status_t
     >
   | component_entry_t<
+      shelly_button_key_t,
       shelly_button_type_t,
       shelly_button_config_t,
       shelly_button_status_t
     >
   | component_entry_t<
+      shelly_ht_ui_key_t,
       shelly_ht_ui_type_t,
       shelly_ht_ui_config_t,
       shelly_ht_ui_status_t
     >
   | component_entry_t<
+      shelly_wd_ui_key_t,
       shelly_wd_ui_type_t,
       shelly_wd_ui_config_t,
       shelly_wd_ui_status_t
     >
   | component_entry_t<
+      shelly_plusrgbw_key_t,
       shelly_plusrgbw_type_t,
       shelly_plusrgbw_config_t,
       shelly_plusrgbw_status_t
     >
-  | component_entry_t<shelly_ui_type_t, shelly_ui_config_t, shelly_ui_status_t>
   | component_entry_t<
+      shelly_ui_key_t,
+      shelly_ui_type_t,
+      shelly_ui_config_t,
+      shelly_ui_status_t
+    >
+  | component_entry_t<
+      shelly_blugw_key_t,
       shelly_blugw_type_t,
       shelly_blugw_config_t,
       shelly_blugw_status_t
     >
   | component_entry_t<
+      shelly_blutrv_key_t,
       shelly_blutrv_type_t,
       shelly_blutrv_config_t,
       shelly_blutrv_status_t
     >
   | component_entry_t<
+      shelly_lora_key_t,
       shelly_lora_type_t,
       shelly_lora_config_t,
       shelly_lora_status_t
@@ -676,8 +695,6 @@ export type shelly_component_status_t<T extends shelly_component_type_t> =
 
 export type shelly_component_config_t<T extends shelly_component_type_t> =
   Extract<shelly_component_status_map_t, { type: T }>['config'];
-
-// vasi haly
 
 export function parseComponentKey(key: shelly_component_key_t): {
   type: shelly_component_type_t;
