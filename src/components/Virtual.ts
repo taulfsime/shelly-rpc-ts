@@ -1,4 +1,8 @@
-import { shelly_component_id_t } from '../ShellyComponents.js';
+import {
+  shelly_component_id_t,
+  shelly_component_key_t,
+} from '../ShellyComponents.js';
+import { shelly_service_role_t } from './Service.js';
 import {
   shelly_boolean_config_t,
   shelly_boolean_key_t,
@@ -85,4 +89,9 @@ export type shelly_virtual_rpc_method_map_t = {
     };
     result: null;
   };
+};
+
+export type shelly_virtual_attrs_t = {
+  role: shelly_service_role_t;
+  owner: shelly_component_key_t;
 };

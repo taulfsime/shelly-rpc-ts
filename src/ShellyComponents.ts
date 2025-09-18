@@ -11,6 +11,7 @@ import {
   shelly_boolean_type_t,
 } from './components/VirtualComponents/Boolean.js';
 import {
+  shelly_bthomedevice_attrs_t,
   shelly_bthomedevice_config_t,
   shelly_bthomedevice_key_t,
   shelly_bthomedevice_status_t,
@@ -299,12 +300,9 @@ import {
   shelly_lora_status_t,
   shelly_lora_type_t,
 } from './components/LoRa.js';
+import { shelly_virtual_attrs_t } from './components/Virtual.js';
 
 export type shelly_component_id_t = number;
-
-export type shelly_component_type_t<
-  K extends shelly_component_key_t = shelly_component_key_t,
-> = Extract<shelly_component_status_map_t, { key: K }>['type'];
 
 export type shelly_component_key_t =
   | shelly_ble_key_t
@@ -381,11 +379,13 @@ type component_entry_t<
   T extends shelly_component_type_t,
   C,
   S,
+  A = never,
 > = {
   key: K;
   type: T;
   status: S;
   config: C;
+  attrs?: A;
 };
 
 export type shelly_component_status_map_t =
@@ -471,31 +471,36 @@ export type shelly_component_status_map_t =
       shelly_number_key_t,
       shelly_number_type_t,
       shelly_number_config_t,
-      shelly_number_status_t
+      shelly_number_status_t,
+      shelly_virtual_attrs_t
     >
   | component_entry_t<
       shelly_boolean_key_t,
       shelly_boolean_type_t,
       shelly_boolean_config_t,
-      shelly_boolean_status_t
+      shelly_boolean_status_t,
+      shelly_virtual_attrs_t
     >
   | component_entry_t<
       shelly_text_key_t,
       shelly_text_type_t,
       shelly_text_config_t,
-      shelly_text_status_t
+      shelly_text_status_t,
+      shelly_virtual_attrs_t
     >
   | component_entry_t<
       shelly_object_key_t,
       shelly_object_type_t,
       shelly_object_config_t,
-      shelly_object_status_t
+      shelly_object_status_t,
+      shelly_virtual_attrs_t
     >
   | component_entry_t<
       shelly_enum_key_t,
       shelly_enum_type_t,
       shelly_enum_config_t,
-      shelly_enum_status_t
+      shelly_enum_status_t,
+      shelly_virtual_attrs_t
     >
   | component_entry_t<
       shelly_bthomesensor_key_t,
@@ -507,7 +512,8 @@ export type shelly_component_status_map_t =
       shelly_bthomedevice_key_t,
       shelly_bthomedevice_type_t,
       shelly_bthomedevice_config_t,
-      shelly_bthomedevice_status_t
+      shelly_bthomedevice_status_t,
+      shelly_bthomedevice_attrs_t
     >
   | component_entry_t<
       shelly_group_key_t,
@@ -695,6 +701,13 @@ export type shelly_component_status_t<T extends shelly_component_type_t> =
 
 export type shelly_component_config_t<T extends shelly_component_type_t> =
   Extract<shelly_component_status_map_t, { type: T }>['config'];
+
+export type shelly_component_attrs_t<T extends shelly_component_type_t> =
+  Extract<shelly_component_status_map_t, { type: T }>['attrs'];
+
+export type shelly_component_type_t<
+  K extends shelly_component_key_t = shelly_component_key_t,
+> = Extract<shelly_component_status_map_t, { key: K }>['type'];
 
 export function parseComponentKey(key: shelly_component_key_t): {
   type: shelly_component_type_t;

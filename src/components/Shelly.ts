@@ -1,6 +1,7 @@
 import { shelly_rpc_method_t } from '../ShellyRpc.js';
 
 import {
+  shelly_component_attrs_t,
   shelly_component_config_t,
   shelly_component_id_t,
   shelly_component_key_t,
@@ -16,6 +17,7 @@ type shelly_rpc_components_list_item_t<
   key: K;
   status?: shelly_component_status_t<shelly_component_type_t<K>>;
   config?: shelly_component_config_t<shelly_component_type_t<K>>;
+  attrs?: shelly_component_attrs_t<shelly_component_type_t<K>>;
 };
 
 export type shelly_device_info_data_t = {

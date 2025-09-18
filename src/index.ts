@@ -110,6 +110,7 @@ export {
   shelly_bthomedevice_status_t,
   shelly_bthomedevice_key_t,
   shelly_bthomedevice_type_t,
+  shelly_bthomedevice_attrs_t,
 } from './components/BTHomeComponents/BTHomeDevice.js';
 export {
   shelly_object_config_t,
@@ -252,6 +253,12 @@ export {
 export {
   shelly_virtual_component_key_t,
   shelly_virtual_component_status_source_t,
+  shelly_virtual_attrs_t,
+  shelly_virtual_attrs_t as shelly_number_attrs_t,
+  shelly_virtual_attrs_t as shelly_boolean_attrs_t,
+  shelly_virtual_attrs_t as shelly_text_attrs_t,
+  shelly_virtual_attrs_t as shelly_object_attrs_t,
+  shelly_virtual_attrs_t as shelly_enum_attrs_t,
 } from './components/Virtual.js';
 export {
   shelly_plugs_ui_key_t,

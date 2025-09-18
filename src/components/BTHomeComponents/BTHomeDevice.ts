@@ -28,6 +28,11 @@ export type shelly_bthomedevice_config_t = {
   meta: null | Record<string, unknown>;
 };
 
+export type shelly_bthomedevice_attrs_t = {
+  flags: number;
+  model_id: number;
+};
+
 export type shelly_bthomedevice_event_t =
   | 'single_push'
   | 'double_push'
