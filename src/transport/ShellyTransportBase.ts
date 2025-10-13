@@ -10,11 +10,8 @@ import {
   shelly_rpc_notification_method_t,
   shelly_rpc_notification_notify_event_t,
   shelly_rpc_notification_notify_status_t,
-  shelly_rpc_notification_t,
 } from '../ShellyRpc.js';
 import { deepEqual } from '../utils/deep-equal.js';
-
-const SHELLY_LIMIT_REQUESTS_IN_FLIGHT = 1;
 
 type shelly_listener_params_t = {
   NotifyStatus: shelly_rpc_notification_notify_status_t['params'];
@@ -31,6 +28,7 @@ export type shelly_transport_rpc_options_t = {
   numberOfRetries?: number;
   debounce?: number;
   auth?: shelly_rpc_auth_request_t; //XXX: TODO: add tests
+  //TODO: add priority?
 };
 
 type shelly_transport_response_map_t<
@@ -52,6 +50,7 @@ type shelly_transport_response_map_t<
 
 export abstract class ShellyTransportBase {
   private readonly clientId: string;
+  private readonly requestsInFlight: number = 1;
   private msgCounter: number = 1;
   private msgInFlight: number = 0;
   private msgQueue: shelly_rpc_msg_request_t[] = [];
@@ -75,9 +74,10 @@ export abstract class ShellyTransportBase {
 
   constructor(
     clientId: string,
-    defaultOptions?: Pick<
-      shelly_transport_rpc_options_t,
-      'timeout' | 'numberOfRetries'
+    defaultOptions?: Partial<
+      {
+        requestsInFlight?: number;
+      } & Pick<shelly_transport_rpc_options_t, 'timeout' | 'numberOfRetries'>
     >
   ) {
     this.clientId = clientId;
@@ -86,6 +86,10 @@ export abstract class ShellyTransportBase {
       defaultOptions?.numberOfRetries ?? this.rpcDefaultOptions.numberOfRetries;
     this.rpcDefaultOptions.timeout =
       defaultOptions?.timeout ?? this.rpcDefaultOptions.timeout;
+    this.requestsInFlight = Math.max(
+      defaultOptions?.requestsInFlight ?? this.requestsInFlight,
+      this.requestsInFlight
+    );
   }
 
   async rpcRequest<K extends shelly_rpc_method_t>(
@@ -219,7 +223,7 @@ export abstract class ShellyTransportBase {
   _handleQueue(): void {
     if (
       this.msgQueue.length === 0 ||
-      this.msgInFlight >= SHELLY_LIMIT_REQUESTS_IN_FLIGHT
+      this.msgInFlight >= this.requestsInFlight
     ) {
       return;
     }
@@ -251,7 +255,7 @@ export abstract class ShellyTransportBase {
   private _sendRequest(): void {
     if (
       this.msgQueue.length === 0 ||
-      this.msgInFlight >= SHELLY_LIMIT_REQUESTS_IN_FLIGHT
+      this.msgInFlight >= this.requestsInFlight
     ) {
       return;
     }
