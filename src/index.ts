@@ -327,6 +327,13 @@ export {
   shelly_uart_addon_info_t,
 } from './components/UartAddon.js';
 export { shelly_xmod_info } from './components/XMOD.js';
+export {
+  shelly_cury_key_t,
+  shelly_cury_type_t,
+  shelly_cury_status_t,
+  shelly_cury_config_t,
+  shelly_cury_vial_info_t,
+} from './components/Cury.js';
 
 // Shelly device types
 export {
