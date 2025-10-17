@@ -357,6 +357,13 @@ export {
   shelly_thermostat_profile_t,
   shelly_thermostat_rule_t,
 } from './components/Thermostat.js';
+export {
+  shelly_cury_key_t,
+  shelly_cury_type_t,
+  shelly_cury_status_t,
+  shelly_cury_config_t,
+  shelly_cury_vial_info_t,
+} from './components/Cury.js';
 
 // Shelly device types
 export {
