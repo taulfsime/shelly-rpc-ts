@@ -327,6 +327,19 @@ export {
   shelly_uart_addon_info_t,
 } from './components/UartAddon.js';
 export { shelly_xmod_info } from './components/XMOD.js';
+export {
+  shelly_media_key_t,
+  shelly_media_type_t,
+  shelly_media_media_type_t,
+  shelly_media_audio_type_t,
+  shelly_media_photo_type_t,
+  shelly_media_ringtone_type_t,
+  shelly_media_media_list_item_t,
+  shelly_media_favourite_radio_item_t,
+  shelly_media_buffering_type_t,
+  shelly_media_status_t,
+  shelly_media_config_t,
+} from './components/Media.js';
 
 // Shelly device types
 export {
