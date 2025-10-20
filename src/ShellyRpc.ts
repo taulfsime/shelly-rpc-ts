@@ -68,6 +68,7 @@ import { shelly_sensor_addon_rpc_method_map_t } from './components/SensorAddon.j
 import { shelly_pro_output_addon_rpc_method_map_t } from './components/ProOutputAddon.js';
 import { shelly_uart_addon_rpc_method_map_t } from './components/UartAddon.js';
 import { shelly_bthomecontrol_rpc_method_map_t } from './components/BTHomeComponents/BTHomeControl.js';
+import { shelly_media_rpc_method_map_t } from './components/Media.js';
 
 type shelly_rpc_method_map_t = shelly_device_rpc_method_map_t &
   shelly_ble_rpc_method_map_t &
@@ -129,7 +130,8 @@ type shelly_rpc_method_map_t = shelly_device_rpc_method_map_t &
   shelly_wifi_rpc_method_map_t &
   shelly_ws_rpc_method_map_t &
   shelly_xmod_rpc_method_map_t &
-  shelly_zigbee_rpc_method_map_t;
+  shelly_zigbee_rpc_method_map_t &
+  shelly_media_rpc_method_map_t;
 
 export type shelly_rpc_method_t = keyof shelly_rpc_method_map_t;
 
