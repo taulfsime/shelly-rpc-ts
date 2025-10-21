@@ -345,6 +345,15 @@ export {
   shelly_media_status_t,
   shelly_media_config_t,
 } from './components/Media.js';
+export {
+  shelly_thermostat_key_t,
+  shelly_thermostat_type_t,
+  shelly_thermostat_status_t,
+  shelly_thermostat_config_t,
+  shelly_thermostat_thermostat_type_t,
+  shelly_thermostat_profile_t,
+  shelly_thermostat_rule_t,
+} from './components/Thermostat.js';
 
 // Shelly device types
 export {
