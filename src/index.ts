@@ -327,6 +327,15 @@ export {
   shelly_uart_addon_info_t,
 } from './components/UartAddon.js';
 export { shelly_xmod_info } from './components/XMOD.js';
+export {
+  shelly_thermostat_key_t,
+  shelly_thermostat_type_t,
+  shelly_thermostat_status_t,
+  shelly_thermostat_config_t,
+  shelly_thermostat_thermostat_type_t,
+  shelly_thermostat_profile_t,
+  shelly_thermostat_rule_t,
+} from './components/Thermostat.js';
 
 // Shelly device types
 export {
