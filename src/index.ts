@@ -1,5 +1,10 @@
 // Shelly components types
-export { shelly_sys_config_t, shelly_sys_status_t } from './components/Sys.js';
+export {
+  shelly_sys_config_t,
+  shelly_sys_status_t,
+  shelly_sys_key_t,
+  shelly_sys_type_t,
+} from './components/Sys.js';
 export {
   shelly_wifi_config_t,
   shelly_wifi_status_t,
