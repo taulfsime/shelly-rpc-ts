@@ -1,18 +1,18 @@
 {
   "name": "@taulfsime/shelly-rpc-ts",
-  "version": "0.4.0",
+  "version": "0.4.1",
   "description": "Type definitions for the Shelly RPC interface and helper functions and classes",
   "keywords": [
     "shelly",
     "typescript"
   ],
-  "homepage": "https://github.com/taulfsime/shelly-rpc-types#readme",
+  "homepage": "https://github.com/taulfsime/shelly-rpc-ts#readme",
   "bugs": {
-    "url": "https://github.com/taulfsime/shelly-rpc-types/issues"
+    "url": "https://github.com/taulfsime/shelly-rpc-ts/issues"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/taulfsime/shelly-rpc-types.git"
+    "url": "git+https://github.com/taulfsime/shelly-rpc-ts.git"
   },
   "license": "MIT",
   "author": "taulfsime",
