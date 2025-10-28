@@ -28,6 +28,7 @@ import {
   shelly_number_key_t,
   shelly_number_type_t,
 } from './VirtualComponents/Number.js';
+import { shelly_object_key_t } from './VirtualComponents/Object.js';
 import {
   shelly_text_config_t,
   shelly_text_key_t,
@@ -46,6 +47,7 @@ export type shelly_virtual_component_key_t =
   | shelly_enum_key_t
   | shelly_group_key_t
   | shelly_number_key_t
+  | shelly_object_key_t
   | shelly_text_key_t;
 
 type shelly_virtual_rpc_add_params_t =
