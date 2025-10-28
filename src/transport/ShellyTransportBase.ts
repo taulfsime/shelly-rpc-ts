@@ -303,5 +303,5 @@ export abstract class ShellyTransportBase {
     this._handleQueue();
   }
 
-  abstract _onSend(req: shelly_rpc_msg_request_t<any>): boolean;
+  protected abstract _onSend(req: shelly_rpc_msg_request_t<any>): boolean;
 }
