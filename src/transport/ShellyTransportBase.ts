@@ -220,7 +220,7 @@ export abstract class ShellyTransportBase {
     return Promise.resolve();
   }
 
-  _handleQueue(): void {
+  private _handleQueue(): void {
     if (
       this.msgQueue.length === 0 ||
       this.msgInFlight >= this.requestsInFlight
