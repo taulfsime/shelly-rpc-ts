@@ -300,6 +300,13 @@ import {
   shelly_lora_status_t,
   shelly_lora_type_t,
 } from './components/LoRa.js';
+import {
+  shelly_cury_config_t,
+  shelly_cury_key_t,
+  shelly_cury_status_t,
+  shelly_cury_type_t,
+  shelly_cury_vial_info_t,
+} from './components/Cury.js';
 import { shelly_virtual_attrs_t } from './components/Virtual.js';
 
 export type shelly_component_id_t = number;
@@ -354,7 +361,8 @@ export type shelly_component_key_t =
   | shelly_wd_ui_key_t
   | shelly_wifi_key_t
   | shelly_ws_key_t
-  | shelly_zigbee_key_t;
+  | shelly_zigbee_key_t
+  | shelly_cury_key_t;
 
 export type shelly_component_helper_key_to_type_t<
   T extends shelly_component_key_t,
@@ -694,6 +702,13 @@ export type shelly_component_status_map_t =
       shelly_lora_type_t,
       shelly_lora_config_t,
       shelly_lora_status_t
+    >
+  | component_entry_t<
+      shelly_cury_key_t,
+      shelly_cury_type_t,
+      shelly_cury_config_t,
+      shelly_cury_status_t,
+      shelly_cury_vial_info_t
     >;
 
 export type shelly_component_status_t<T extends shelly_component_type_t> =
