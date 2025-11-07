@@ -125,3 +125,11 @@ export type shelly_em_rpc_method_map_t = {
     };
   };
 };
+
+export type shelly_em_webhook_event_t =
+  | 'em.voltage_change'
+  | 'em.current_change'
+  | 'em.active_power_change'
+  | 'em.total_active_power_change'
+  | 'em.total_apparent_power_change'
+  | 'em.total_current_change';

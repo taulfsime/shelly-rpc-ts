@@ -44,3 +44,8 @@ export type shelly_smoke_rpc_method_map_t = {
     result: null;
   };
 };
+
+export type shelly_smoke_webhook_event_t =
+  | 'smoke.alarm'
+  | 'smoke.alarm_off'
+  | 'smoke.alarm_test';

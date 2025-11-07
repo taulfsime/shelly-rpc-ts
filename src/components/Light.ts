@@ -167,3 +167,5 @@ export type shelly_light_rpc_method_map_t = {
     };
   };
 };
+
+export type shelly_light_webhook_event_t = 'light.on' | 'light.off';

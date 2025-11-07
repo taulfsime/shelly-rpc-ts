@@ -77,3 +77,13 @@ export type shelly_bthomedevice_rpc_method_map_t = {
     };
   };
 };
+
+export type shelly_bthomedevice_webhook_event_t =
+  | 'bthomedevice.single_push'
+  | 'bthomedevice.double_push'
+  | 'bthomedevice.triple_push'
+  | 'bthomedevice.long_push'
+  | 'bthomedevice.long_double_push'
+  | 'bthomedevice.long_triple_push'
+  | 'bthomedevice.rotate_left'
+  | 'bthomedevice.rotate_right';

@@ -67,3 +67,8 @@ export type shelly_pm1_rpc_method_map_t = {
     };
   };
 };
+
+export type shelly_pm1_webhook_event_t =
+  | 'pm1.voltage_change'
+  | 'pm1.current_change'
+  | 'pm1.apower_change';

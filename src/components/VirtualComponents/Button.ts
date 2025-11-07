@@ -71,3 +71,9 @@ export type shelly_button_rpc_method_map_t = {
     result: null;
   };
 };
+
+export type shelly_button_webhook_event_t =
+  | 'button.single_push'
+  | 'button.double_push'
+  | 'button.triple_push'
+  | 'button.long_push';

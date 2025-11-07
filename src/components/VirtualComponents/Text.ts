@@ -73,3 +73,5 @@ export type shelly_text_rpc_method_map_t = {
     result: null;
   };
 };
+
+export type shelly_text_webhook_event_t = 'text.change';

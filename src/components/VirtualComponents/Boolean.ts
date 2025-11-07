@@ -72,3 +72,5 @@ export type shelly_boolean_rpc_method_map_t = {
     result: null;
   };
 };
+
+export type shelly_boolean_webhook_event_t = 'boolean.change';

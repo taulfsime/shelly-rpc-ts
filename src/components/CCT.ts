@@ -129,3 +129,5 @@ export type shelly_cct_rpc_method_map_t = {
     result: null;
   };
 };
+
+export type shelly_cct_webhook_event_t = 'cct.on' | 'cct.off';

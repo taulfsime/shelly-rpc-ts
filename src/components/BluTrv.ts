@@ -78,3 +78,7 @@ export type shelly_blutrv_rpc_method_map_t = {
     result: unknown;
   };
 };
+
+export type shelly_blutrv_webhook_event_t =
+  | 'blutrv.temperature_change'
+  | 'blutrv.position_change';

@@ -42,3 +42,7 @@ export type shelly_humidity_rpc_method_map_t = {
     result: shelly_humidity_config_t;
   };
 };
+
+export type shelly_humidity_webhook_event_t =
+  | 'humidity.change'
+  | 'humidity.measurement';

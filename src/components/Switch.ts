@@ -108,3 +108,9 @@ export type shelly_switch_rpc_method_map_t = {
     };
   };
 };
+
+export type shelly_switch_webhook_event_t =
+  | 'switch.on'
+  | 'switch.off'
+  | 'switch.active_power_change'
+  | 'switch.active_power_measurement';

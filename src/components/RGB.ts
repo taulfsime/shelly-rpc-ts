@@ -130,3 +130,5 @@ export type shelly_rgb_rpc_method_map_t = {
     result: null;
   };
 };
+
+export type shelly_rgb_webhook_event_t = 'rgb.on' | 'rgb.off';

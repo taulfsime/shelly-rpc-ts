@@ -112,3 +112,17 @@ export type shelly_input_rpc_method_map_t = {
     result: null;
   };
 };
+
+export type shelly_input_webhook_event_t =
+  | 'input.toggle_on'
+  | 'input.toggle_off'
+  | 'input.button_push'
+  | 'input.button_longpush'
+  | 'input.button_doublepush'
+  | 'input.button_triplepush'
+  | 'input.analog_change'
+  | 'input.analog_measurement'
+  | 'input.count_measurement'
+  | 'input.count_change'
+  | 'input.freq_measurement'
+  | 'input.freq_change';

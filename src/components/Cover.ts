@@ -176,3 +176,10 @@ export type shelly_cover_rpc_method_map_t = {
     };
   };
 };
+
+export type shelly_cover_webhook_event_t =
+  | 'cover.stopped'
+  | 'cover.open'
+  | 'cover.closed'
+  | 'cover.opening'
+  | 'cover.closing';

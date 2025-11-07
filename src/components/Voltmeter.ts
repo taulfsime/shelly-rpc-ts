@@ -53,3 +53,7 @@ export type shelly_voltmeter_rpc_method_map_t = {
     };
   };
 };
+
+export type shelly_voltmeter_webhook_event_t =
+  | 'voltmeter.change'
+  | 'voltmeter.measurement';

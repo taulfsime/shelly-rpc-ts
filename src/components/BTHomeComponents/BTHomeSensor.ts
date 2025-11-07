@@ -53,3 +53,7 @@ export type shelly_bthomesensor_rpc_method_map_t = {
     result: shelly_bthomesensor_config_t;
   };
 };
+
+export type shelly_bthomesensor_webhook_event_t =
+  | 'bthomesensor.value_change'
+  | 'bthomesensor.state_change';

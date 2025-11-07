@@ -75,3 +75,5 @@ export type shelly_enum_rpc_method_map_t = {
     result: null;
   };
 };
+
+export type shelly_enum_webhook_event_t = 'enum.change';

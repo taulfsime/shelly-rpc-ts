@@ -220,7 +220,10 @@ export {
   shelly_emdata_type_t,
 } from './components/EMData.js';
 export { shelly_schedule_job_t } from './components/Schedule.js';
-export { shelly_webhook_hook_t } from './components/Webhook.js';
+export {
+  shelly_webhook_hook_t,
+  shelly_webhook_event_t,
+} from './components/Webhook.js';
 export { shelly_knx_input_config_t } from './components/KNXComponents/KNXInput.js';
 export { shelly_knx_switch_config_t } from './components/KNXComponents/KNXSwitch.js';
 export { shelly_knx_light_config_t } from './components/KNXComponents/KNXLight.js';

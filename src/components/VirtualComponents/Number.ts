@@ -74,3 +74,5 @@ export type shelly_number_rpc_method_map_t = {
     result: null;
   };
 };
+
+export type shelly_number_webhook_event_t = 'number.change';

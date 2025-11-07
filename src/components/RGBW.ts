@@ -68,3 +68,5 @@ export type shelly_rgbw_rpc_method_map_t = {
   'RGBW.DimDown': shelly_rgb_rpc_method_map_t['RGB.DimDown'];
   'RGBW.DimStop': shelly_rgb_rpc_method_map_t['RGB.DimStop'];
 };
+
+export type shelly_rgbw_webhook_event_t = 'rgbw.on' | 'rgbw.off';

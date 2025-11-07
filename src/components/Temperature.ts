@@ -43,3 +43,7 @@ export type shelly_temperature_rpc_method_map_t = {
     result: shelly_temperature_config_t;
   };
 };
+
+export type shelly_temperature_webhook_event_t =
+  | 'temperature.change'
+  | 'temperature.measurement';
