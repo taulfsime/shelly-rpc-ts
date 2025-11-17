@@ -11,7 +11,6 @@ import {
   shelly_rpc_notification_notify_event_t,
   shelly_rpc_notification_notify_status_t,
 } from '../ShellyRpc.js';
-import { deepEqual } from '../utils/deep-equal.js';
 
 type shelly_listener_event_t =
   | shelly_rpc_notification_method_t
@@ -79,15 +78,18 @@ export abstract class ShellyTransportBase {
     numberOfRetries: 3,
   };
   private _state: shelly_listener_params_t['_StateChanged'];
+  private _compareObjects: (obj1: unknown, obj2: unknown) => boolean;
 
   constructor(
     clientId: string,
     defaultOptions?: Partial<
       {
         requestsInFlight?: number;
+        compareObjects?: (obj1: unknown, obj2: unknown) => boolean;
       } & Pick<shelly_transport_rpc_options_t, 'timeout' | 'numberOfRetries'>
     >
   ) {
+    this._state = 'initial';
     this.clientId = clientId;
 
     this.rpcDefaultOptions.numberOfRetries =
@@ -98,7 +100,10 @@ export abstract class ShellyTransportBase {
       defaultOptions?.requestsInFlight ?? this.requestsInFlight,
       this.requestsInFlight
     );
-    this._state = 'initial';
+
+    this._compareObjects =
+      defaultOptions?.compareObjects ??
+      ((obj1, obj2) => JSON.stringify(obj1) === JSON.stringify(obj2));
   }
 
   async rpcRequest<K extends shelly_rpc_method_t>(
@@ -110,7 +115,7 @@ export abstract class ShellyTransportBase {
     for (const queuedRequest of this.msgQueue) {
       if (
         queuedRequest.method === method &&
-        deepEqual(queuedRequest.params, params)
+        this._compareObjects(queuedRequest.params, params)
       ) {
         // Found matching request, return its promise
         const existingData = this.responsesMap.get(queuedRequest.id);
