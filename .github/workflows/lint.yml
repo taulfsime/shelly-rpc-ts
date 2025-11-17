@@ -51,12 +51,20 @@ jobs:
       - name: Check if version is published
         id: check_version
         run: |
+          set -euo pipefail
+
           VERSION=$(node -p "require('./package.json').version")
           PKG_NAME=$(node -p "require('./package.json').name")
-          PUBLISHED=$(npm view $PKG_NAME@$VERSION version || echo "")
-          echo "published_version=$PUBLISHED" >> $GITHUB_OUTPUT
+
+          echo "Checking $PKG_NAME@$VERSION"
+
+          if npm view "$PKG_NAME@$VERSION" version > /dev/null 2>&1; then
+            echo "published_version=$VERSION" >> "$GITHUB_OUTPUT"
+          else
+            echo "published_version=" >> "$GITHUB_OUTPUT"
+          fi
       - name: Publish if not published
         if: steps.check_version.outputs.published_version == ''
-        run: npm publish --access public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: npm publish --access public
