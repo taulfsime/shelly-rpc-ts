@@ -13,15 +13,21 @@ import {
 } from '../ShellyRpc.js';
 import { deepEqual } from '../utils/deep-equal.js';
 
+type shelly_listener_event_t =
+  | shelly_rpc_notification_method_t
+  | '_StateChanged';
+
 type shelly_listener_params_t = {
   NotifyStatus: shelly_rpc_notification_notify_status_t['params'];
   NotifyFullStatus: shelly_rpc_notification_notify_status_t['params'];
   NotifyEvent: shelly_rpc_notification_notify_event_t['params'];
+
+  _StateChanged: 'connected' | 'disconnected' | 'initial';
 };
 
-type shelly_listener_t<
-  M extends shelly_rpc_notification_method_t = shelly_rpc_notification_method_t,
-> = (msg: shelly_listener_params_t[M]) => void;
+type shelly_listener_t<M extends shelly_listener_event_t> = (
+  msg: shelly_listener_params_t[M]
+) => void;
 
 export type shelly_transport_rpc_options_t = {
   timeout?: number;
@@ -59,11 +65,12 @@ export abstract class ShellyTransportBase {
     shelly_transport_response_map_t
   > = new Map();
   private listeners: {
-    [M in shelly_rpc_notification_method_t]: shelly_listener_t<M>[];
+    [M in shelly_listener_event_t]: shelly_listener_t<M>[];
   } = {
     NotifyStatus: [],
     NotifyFullStatus: [],
     NotifyEvent: [],
+    _StateChanged: [],
   };
   private rpcDefaultOptions: Required<
     Pick<shelly_transport_rpc_options_t, 'timeout' | 'numberOfRetries'>
@@ -71,6 +78,7 @@ export abstract class ShellyTransportBase {
     timeout: 5000,
     numberOfRetries: 3,
   };
+  private _state: shelly_listener_params_t['_StateChanged'];
 
   constructor(
     clientId: string,
@@ -90,6 +98,7 @@ export abstract class ShellyTransportBase {
       defaultOptions?.requestsInFlight ?? this.requestsInFlight,
       this.requestsInFlight
     );
+    this._state = 'initial';
   }
 
   async rpcRequest<K extends shelly_rpc_method_t>(
@@ -200,14 +209,14 @@ export abstract class ShellyTransportBase {
     return false;
   }
 
-  on<M extends shelly_rpc_notification_method_t>(
+  on<M extends shelly_listener_event_t>(
     method: M,
     listener: shelly_listener_t<M>
   ): void {
     this.listeners[method].push(listener);
   }
 
-  off<M extends shelly_rpc_notification_method_t>(
+  off<M extends shelly_listener_event_t>(
     method: M,
     listener: shelly_listener_t<M>
   ): void {
@@ -216,8 +225,16 @@ export abstract class ShellyTransportBase {
     ) as (typeof this.listeners)[M];
   }
 
-  get ready(): Promise<void> {
-    return Promise.resolve();
+  set state(state: shelly_listener_params_t['_StateChanged']) {
+    this._state = state;
+
+    for (const listener of this.listeners['_StateChanged']) {
+      listener(state);
+    }
+  }
+
+  get state() {
+    return this._state;
   }
 
   private _handleQueue(): void {
