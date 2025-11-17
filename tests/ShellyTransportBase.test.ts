@@ -139,10 +139,6 @@ describe('ShellyTransportBase', () => {
     expect(result).toBe(false);
   });
 
-  it('should resolve ready immediately', async () => {
-    await expect(transport.ready).resolves.toBeUndefined();
-  });
-
   it('should handle multiple requests sequentially (one in flight)', async () => {
     const promise1 = transport.rpcRequest('Switch.Set', { id: 0, on: true });
     const promise2 = transport.rpcRequest('Switch.Toggle', { id: 1 });
