@@ -54,7 +54,8 @@ type shelly_transport_response_map_t<
 };
 
 export abstract class ShellyTransportBase {
-  private readonly clientId: string;
+  readonly clientId: string;
+
   private readonly requestsInFlight: number = 1;
   private msgCounter: number = 1;
   private msgInFlight: number = 0;
@@ -231,6 +232,10 @@ export abstract class ShellyTransportBase {
   }
 
   set state(state: shelly_listener_params_t['_StateChanged']) {
+    if (this._state === state) {
+      return;
+    }
+
     this._state = state;
 
     for (const listener of this.listeners['_StateChanged']) {
