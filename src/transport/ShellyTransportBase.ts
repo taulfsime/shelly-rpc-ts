@@ -107,7 +107,7 @@ export abstract class ShellyTransportBase {
       ((obj1, obj2) => JSON.stringify(obj1) === JSON.stringify(obj2));
   }
 
-  async rpcRequest<K extends shelly_rpc_method_t>(
+  rpcRequest<K extends shelly_rpc_method_t>(
     method: K,
     params: shelly_rpc_method_params_t<K>,
     options?: Partial<shelly_transport_rpc_options_t>
@@ -303,6 +303,7 @@ export abstract class ShellyTransportBase {
         reqData.onError.forEach(callback => callback(error));
         this.responsesMap.delete(request.id);
         clearTimeout(reqData.timeoutId);
+        this.msgInFlight--;
         this._handleQueue();
         return;
       }
@@ -322,6 +323,7 @@ export abstract class ShellyTransportBase {
         const error = new Error(`Request timed out with id=${request.id}`);
         reqData.onError.forEach(callback => callback(error));
         this.responsesMap.delete(request.id);
+        this.msgInFlight--;
         this._handleQueue();
       }, reqData.options.timeout);
     }
