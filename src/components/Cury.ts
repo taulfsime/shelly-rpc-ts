@@ -22,18 +22,18 @@ export type shelly_cury_mode_t =
 
 export type shelly_cury_inactive_state_t = 'off' | 'level' | 'intensity';
 
-type shelly_cury_initial_state_t = 'restore_last' | 'off' | 'on';
+export type shelly_cury_initial_state_t = 'restore_last' | 'off' | 'on';
 
-type shelly_cury_auto_t = {
+export type shelly_cury_auto_t = {
   auto_on: boolean;
   auto_on_delay: number;
   auto_off: boolean;
   auto_off_delay: number;
 };
 
-type shelly_cury_vial_type_t = 'perfume' | 'repellent';
+export type shelly_cury_vial_type_t = 'perfume' | 'repellent';
 
-type shelly_cury_status_errors_t =
+export type shelly_cury_status_errors_t =
   | 'nfc_bus'
   | 'acc_bus'
   | 'keyboard_button_stuck'
@@ -47,30 +47,48 @@ type shelly_cury_status_errors_t =
   | 'orientation_tilt'
   | 'orientation_plug_rotated';
 
-type shelly_cury_slot_t = 'left' | 'right';
+export type shelly_cury_slot_t = 'left' | 'right';
 
-type shelly_cury_slot_content_t = {
-  type: shelly_cury_vial_type_t;
-  product_name: string;
-  mfr_name: string;
-  exp_date: string;
-  default_intensity: number;
-  serial: string;
-  color_intensity: {
-    brightness: number;
-    rgb: [number, number, number];
-  };
-  color_level: {
-    brightness: number;
-    rgb: [number, number, number];
-  };
-} | null;
+export type shelly_cury_slot_content_t =
+  | {
+      type: shelly_cury_vial_type_t;
+      product_name: string;
+      mfr_name: string;
+      exp_date: string;
+      default_intensity: number;
+      serial: string;
+      color_intensity: {
+        brightness: number;
+        rgb: [number, number, number];
+      };
+      color_level: {
+        brightness: number;
+        rgb: [number, number, number];
+      };
+    }
+  | null
+  | 'none';
 
-type shelly_cury_slot_status_t = {
+export type shelly_cury_slot_info_t = {
+  isActive?: boolean;
+  name?: string;
+  color?: string;
+  additional?: string[];
+  slot?: shelly_cury_slot_t;
+  manufacturerName?: string;
+  type?: shelly_cury_vial_type_t;
+  rgb?: [number, number, number] | number[];
+  intensity?: number;
+  level?: number;
+  on?: boolean;
+  isEmpty?: boolean;
+};
+
+export type shelly_cury_slot_status_t = {
   intensity: number;
   on: boolean;
-  boost: number | null;
-  timer: number | null;
+  boost: { duration: number; started_at: number } | null;
+  timer: { timer_started_at: number; timer_duration: number } | null;
   vial: {
     level: number;
     serial: string;
@@ -83,11 +101,10 @@ export type shelly_cury_status_t = {
   id: shelly_component_id_t;
   slots: {
     [key in shelly_cury_slot_t]: shelly_cury_slot_status_t;
-  } & {
-    mode: shelly_cury_mode_t;
-    away_mode: boolean;
-    errors?: shelly_cury_status_errors_t[];
   };
+  mode: shelly_cury_mode_t;
+  away_mode: boolean;
+  errors?: shelly_cury_status_errors_t[];
 };
 
 export type shelly_cury_config_t = {
