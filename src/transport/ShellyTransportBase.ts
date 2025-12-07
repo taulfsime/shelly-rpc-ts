@@ -14,7 +14,16 @@ import {
 
 type shelly_listener_event_t =
   | shelly_rpc_notification_method_t
-  | '_StateChanged';
+  | '_StateChanged'
+  | '_DebugLog';
+
+export const ShellyDebugLogLevel = {
+  ERROR: 0,
+  WARN: 1,
+  INFO: 2,
+  DEBUG: 3,
+  VERBOSE: 4,
+} as const;
 
 type shelly_listener_params_t = {
   NotifyStatus: shelly_rpc_notification_notify_status_t['params'];
@@ -22,6 +31,13 @@ type shelly_listener_params_t = {
   NotifyEvent: shelly_rpc_notification_notify_event_t['params'];
 
   _StateChanged: 'connected' | 'disconnected' | 'initial';
+
+  _DebugLog: {
+    data: string;
+    ts: number;
+    level: (typeof ShellyDebugLogLevel)[keyof typeof ShellyDebugLogLevel];
+    fd: number;
+  };
 };
 
 type shelly_listener_t<M extends shelly_listener_event_t> = (
@@ -71,6 +87,7 @@ export abstract class ShellyTransportBase {
     NotifyFullStatus: [],
     NotifyEvent: [],
     _StateChanged: [],
+    _DebugLog: [],
   };
   private rpcDefaultOptions: Required<
     Pick<shelly_transport_rpc_options_t, 'timeout' | 'numberOfRetries'>
@@ -330,6 +347,20 @@ export abstract class ShellyTransportBase {
 
     this.msgInFlight++;
     this._handleQueue();
+  }
+
+  protected _emitDebugLog(data: shelly_listener_params_t['_DebugLog']): void {
+    for (const listener of this.listeners['_DebugLog']) {
+      listener(data);
+    }
+  }
+
+  /**
+   * Begin logging on the device. Override in subclasses if supported.
+   * @returns True if logging was started, false otherwise.
+   */
+  beginLogging(): Promise<boolean> | boolean {
+    return false;
   }
 
   protected abstract _onSend(req: shelly_rpc_msg_request_t<any>): boolean;
