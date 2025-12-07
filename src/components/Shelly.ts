@@ -71,6 +71,10 @@ export type shelly_device_auth_realm_t = shelly_device_id_t;
 export type shelly_device_auth_ha1_t = string | null;
 
 export type shelly_device_rpc_method_map_t = {
+  'Shelly.Ping': {
+    params: {};
+    result: null;
+  };
   'Shelly.GetStatus': {
     params?: {};
     result: never;
