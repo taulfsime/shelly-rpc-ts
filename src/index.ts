@@ -10,6 +10,7 @@ export {
   shelly_wifi_status_t,
   shelly_wifi_key_t,
   shelly_wifi_type_t,
+  shelly_wifi_ap_client_single_result_t,
 } from './components/WiFi.js';
 export {
   shelly_mqtt_config_t,
@@ -140,12 +141,14 @@ export {
   shelly_ethernet_status_t,
   shelly_ethernet_key_t,
   shelly_ethernet_type_t,
+  shelly_eth_dhcp_client_single_result_t,
 } from './components/Ethernet.js';
 export {
   shelly_ble_config_t,
   shelly_ble_status_t,
   shelly_ble_key_t,
   shelly_ble_type_t,
+  shelly_ble_client_single_result_t,
 } from './components/BLE.js';
 export {
   shelly_cloud_config_t,

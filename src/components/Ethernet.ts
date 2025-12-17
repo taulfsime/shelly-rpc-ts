@@ -18,6 +18,13 @@ export type shelly_ethernet_config_t = {
   dhcp_end?: string;
 };
 
+export type shelly_eth_dhcp_client_single_result_t = {
+  host: string | null;
+  mac: string;
+  ip: string;
+  ttl: number;
+};
+
 export type shelly_ethernet_rpc_method_map_t = {
   'Eth.GetStatus': {
     params?: {};
@@ -44,12 +51,7 @@ export type shelly_ethernet_rpc_method_map_t = {
       offset: number;
       count: number;
       total: number;
-      dhcp_clients: {
-        host: string | null;
-        mac: string;
-        ip: string;
-        ttl: number;
-      }[];
+      dhcp_clients: shelly_eth_dhcp_client_single_result_t[];
     };
   };
 };

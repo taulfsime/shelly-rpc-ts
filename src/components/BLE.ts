@@ -15,6 +15,14 @@ export type shelly_ble_status_t = {
   };
 };
 
+export type shelly_ble_client_single_result_t = {
+  name: string | null;
+  model: 0 | number;
+  sdata: Record<string, string>;
+  mdata: Record<string, string>;
+  last_seen: number;
+};
+
 export type shelly_ble_rpc_method_map_t = {
   'BLE.GetConfig': {
     params?: {};
@@ -48,13 +56,7 @@ export type shelly_ble_rpc_method_map_t = {
       offset: number;
       count: number;
       total: number;
-      devices: {
-        name: string | null;
-        model: 0 | number;
-        sdata: Record<string, string>;
-        mdata: Record<string, string>;
-        last_seen: number;
-      }[];
+      devices: shelly_ble_client_single_result_t[];
     };
   };
   'BLE.StartBluTrvAssociations': {
