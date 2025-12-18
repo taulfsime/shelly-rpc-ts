@@ -2,7 +2,11 @@ export type shelly_media_type_t = 'media';
 
 export type shelly_media_key_t = shelly_media_type_t;
 
-export type shelly_media_media_type_t = 'RADIO' | 'AUDIO' | 'RINGTONE';
+export type shelly_media_media_type_t =
+  | 'RADIO'
+  | 'AUDIO'
+  | 'RINGTONE'
+  | 'ALERT';
 
 type shelly_media_base_file_type_t = {
   id: number;
@@ -33,10 +37,15 @@ export type shelly_media_ringtone_type_t = shelly_media_base_file_type_t & {
   type: 'RINGTONE';
 };
 
+export type shelly_media_alert_type_t = shelly_media_base_file_type_t & {
+  type: 'ALERT';
+};
+
 export type shelly_media_media_list_item_t =
   | shelly_media_audio_type_t
   | shelly_media_photo_type_t
-  | shelly_media_ringtone_type_t;
+  | shelly_media_ringtone_type_t
+  | shelly_media_alert_type_t;
 
 export type shelly_media_favourite_radio_item_t = {
   id: number;
@@ -46,18 +55,20 @@ export type shelly_media_favourite_radio_item_t = {
 };
 
 export type shelly_media_buffering_type_t = {
-  buffering: boolean;
-  enable: boolean;
-  media_meta: {
-    album?: string;
-    artist?: string;
-    duration?: number;
-    position?: number;
-    thumb: string;
-    title: string;
+  playback: {
+    buffering: boolean;
+    enable: boolean;
+    media_meta: {
+      album?: string;
+      artist?: string;
+      duration?: number;
+      position?: number;
+      thumb: string;
+      title: string;
+    };
+    media_type: shelly_media_media_type_t;
+    volume: number;
   };
-  media_type: shelly_media_media_type_t;
-  volume: number;
 };
 
 export type shelly_media_status_t = {
@@ -70,6 +81,8 @@ export type shelly_media_status_t = {
       title: string;
       artist: string;
       album: string;
+      duration?: number;
+      position?: number;
       thumb: string;
     };
     total_size: number;
@@ -186,6 +199,22 @@ export type shelly_media_rpc_method_map_t = {
           title: string;
         };
         media_type: Extract<shelly_media_media_type_t, 'RINGTONE'>;
+        volume: number;
+      };
+    };
+  };
+  'Media.MediaPlayer.PlayAlert': {
+    params: {
+      id: number;
+    };
+    result: {
+      audio_clip: shelly_media_buffering_type_t;
+      resume: {
+        enable: boolean;
+        media_meta: {
+          title: string;
+        };
+        media_type: Extract<shelly_media_media_type_t, 'ALERT'>;
         volume: number;
       };
     };
