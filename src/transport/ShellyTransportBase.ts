@@ -65,8 +65,8 @@ type shelly_transport_response_map_t<
     Required<
       Pick<shelly_transport_rpc_options_t, 'timeout' | 'numberOfRetries'>
     >;
-  timeoutId?: number;
-  debounceTimeoutId?: number;
+  timeoutId?: ReturnType<typeof setTimeout>;
+  debounceTimeoutId?: ReturnType<typeof setTimeout>;
 };
 
 export abstract class ShellyTransportBase {
