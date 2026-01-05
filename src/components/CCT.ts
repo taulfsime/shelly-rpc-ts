@@ -3,7 +3,7 @@ import {
   shelly_light_config_fade_rate_t,
   shelly_output_component_status_source_t,
 } from './common.js';
-import { at_least_one_prop_t } from './helpers.js';
+import { at_least_one_prop_t, optional_recursive_t } from './helpers.js';
 
 type shelly_cct_status_errors_t = 'overtemp';
 
@@ -77,7 +77,7 @@ export type shelly_cct_rpc_method_map_t = {
   'CCT.SetConfig': {
     params: {
       id: shelly_component_id_t;
-      config: shelly_cct_config_t;
+      config: optional_recursive_t<shelly_cct_config_t>;
     };
     result: {
       restart_required: boolean;

@@ -1,4 +1,5 @@
 import { shelly_component_id_t } from '../ShellyComponents.js';
+import { optional_recursive_t } from './helpers.js';
 
 export type shelly_thermostat_type_t = 'thermostat';
 
@@ -56,7 +57,7 @@ export type shelly_thermostat_rpc_method_map_t = {
   'Thermostat.SetConfig': {
     params: {
       id: shelly_component_id_t;
-      config: shelly_thermostat_config_t;
+      config: optional_recursive_t<shelly_thermostat_config_t>;
     };
     result: {
       restart_required: boolean;

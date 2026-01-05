@@ -1,6 +1,7 @@
 import { shelly_component_id_t } from '../../ShellyComponents.js';
 import { shelly_virtual_component_status_source_t } from '../Virtual.js';
 import { shelly_service_key_t, shelly_service_role_t } from '../Service.js';
+import { optional_recursive_t } from '../helpers.js';
 
 export type shelly_object_type_t = 'object';
 export type shelly_object_key_t =
@@ -34,12 +35,12 @@ export type shelly_object_rpc_method_map_t = {
     params:
       | {
           id: shelly_component_id_t;
-          config: shelly_object_config_t;
+          config: optional_recursive_t<shelly_object_config_t>;
         }
       | {
           role: shelly_service_role_t;
           owner: shelly_service_key_t;
-          config: shelly_object_config_t;
+          config: optional_recursive_t<shelly_object_config_t>;
         };
     result: {
       restart_required: boolean;

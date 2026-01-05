@@ -1,6 +1,7 @@
 import { shelly_component_id_t } from '../../ShellyComponents.js';
 import { shelly_virtual_component_status_source_t } from '../Virtual.js';
 import { shelly_service_key_t, shelly_service_role_t } from '../Service.js';
+import { optional_recursive_t } from '../helpers.js';
 
 export type shelly_text_type_t = 'text';
 export type shelly_text_key_t =
@@ -37,12 +38,12 @@ export type shelly_text_rpc_method_map_t = {
     params:
       | {
           id: shelly_component_id_t;
-          config: shelly_text_config_t;
+          config: optional_recursive_t<shelly_text_config_t>;
         }
       | {
           role: shelly_service_role_t;
           owner: shelly_service_key_t;
-          config: shelly_text_config_t;
+          config: optional_recursive_t<shelly_text_config_t>;
         };
     result: {
       restart_required: boolean;

@@ -1,3 +1,5 @@
+import { optional_recursive_t } from './helpers.js';
+
 export type shelly_plusrgbw_type_t = 'plusrgbw';
 export type shelly_plusrgbw_key_t = shelly_plusrgbw_type_t;
 
@@ -14,7 +16,7 @@ export type shelly_plusrgbw_rpc_method_map_t = {
   };
   'PlusRGBW.SetConfig': {
     params: {
-      config: shelly_plusrgbw_config_t;
+      config: optional_recursive_t<shelly_plusrgbw_config_t>;
     };
   };
   'PlusRGBW.GetConfig': {

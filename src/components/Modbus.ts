@@ -1,3 +1,5 @@
+import { optional_recursive_t } from './helpers.js';
+
 export type shelly_modbus_type_t = 'modbus';
 export type shelly_modbus_key_t = shelly_modbus_type_t;
 
@@ -16,7 +18,7 @@ export type shelly_modbus_rpc_method_map_t = {
   };
   'Modbus.SetConfig': {
     params: {
-      config: shelly_modbus_config_t;
+      config: optional_recursive_t<shelly_modbus_config_t>;
     };
     result: {
       restart_required: boolean;

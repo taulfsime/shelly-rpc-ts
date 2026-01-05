@@ -1,4 +1,5 @@
 import { shelly_component_id_t } from '../../ShellyComponents.js';
+import { optional_recursive_t } from '../helpers.js';
 import { shelly_bthomesensor_key_t } from './BTHomeSensor.js';
 
 type shelly_bthomedevice_status_errors_t =
@@ -51,7 +52,7 @@ export type shelly_bthomedevice_rpc_method_map_t = {
   'BTHomeDevice.SetConfig': {
     params: {
       id: shelly_component_id_t;
-      config: shelly_bthomedevice_config_t;
+      config: optional_recursive_t<shelly_bthomedevice_config_t>;
     };
     result: {
       restart_required: boolean;

@@ -1,4 +1,5 @@
 import { shelly_component_id_t } from '../../ShellyComponents.js';
+import { optional_recursive_t } from '../helpers.js';
 
 export type shelly_bthomesensor_type_t = 'bthomesensor';
 export type shelly_bthomesensor_key_t =
@@ -40,7 +41,7 @@ export type shelly_bthomesensor_rpc_method_map_t = {
   'BthomeSensor.SetConfig': {
     params: {
       id: shelly_component_id_t;
-      config: shelly_bthomesensor_config_t;
+      config: optional_recursive_t<shelly_bthomesensor_config_t>;
     };
     result: {
       restart_required: boolean;

@@ -1,6 +1,7 @@
 import { shelly_component_id_t } from '../../ShellyComponents.js';
 import { shelly_virtual_component_status_source_t } from '../Virtual.js';
 import { shelly_service_key_t, shelly_service_role_t } from '../Service.js';
+import { optional_recursive_t } from '../helpers.js';
 
 export type shelly_number_type_t = 'number';
 export type shelly_number_key_t =
@@ -38,7 +39,7 @@ export type shelly_number_rpc_method_map_t = {
     params:
       | {
           id: shelly_component_id_t;
-          config: shelly_number_config_t;
+          config: optional_recursive_t<shelly_number_config_t>;
         }
       | {
           role: shelly_service_role_t;

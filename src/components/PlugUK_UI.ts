@@ -1,3 +1,4 @@
+import { optional_recursive_t } from './helpers.js';
 import {
   shelly_plugs_ui_config_t,
   shelly_plugs_ui_status_t,
@@ -17,7 +18,7 @@ export type shelly_pluguk_ui_rpc_method_map_t = {
   };
   'PlugUK_UI.SetConfig': {
     params: {
-      config: shelly_pluguk_ui_config_t;
+      config: optional_recursive_t<shelly_pluguk_ui_config_t>;
     };
   };
   'PlugUK_UI.GetConfig': {

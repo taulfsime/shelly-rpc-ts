@@ -1,3 +1,5 @@
+import { optional_recursive_t } from './helpers.js';
+
 export type shelly_blugw_type_t = 'blugw';
 export type shelly_blugw_key_t = shelly_blugw_type_t;
 
@@ -13,7 +15,7 @@ export type shelly_blugw_rpc_method_map_t = {
   };
   'BluGw.SetConfig': {
     params: {
-      config: shelly_blugw_config_t;
+      config: optional_recursive_t<shelly_blugw_config_t>;
     };
   };
   'BluGw.GetConfig': {

@@ -11,6 +11,7 @@ import {
   shelly_bthomesensor_object_type_t,
   shelly_bthomesensor_type_t,
 } from './BTHomeComponents/BTHomeSensor.js';
+import { optional_recursive_t } from './helpers.js';
 
 type shelly_bthome_status_errors_t = 'bluetooth_disabled';
 
@@ -38,7 +39,7 @@ export type shelly_bthome_rpc_method_map_t = {
   };
   'BTHome.SetConfig': {
     params: {
-      config: shelly_bthome_config_t;
+      config: optional_recursive_t<shelly_bthome_config_t>;
     };
     result: {
       restart_required: boolean;

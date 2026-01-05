@@ -1,4 +1,5 @@
 import { shelly_component_id_t } from '../../ShellyComponents.js';
+import { optional_recursive_t } from '../helpers.js';
 import { shelly_service_key_t, shelly_service_role_t } from '../Service.js';
 
 export type shelly_button_type_t = 'button';
@@ -35,12 +36,12 @@ export type shelly_button_rpc_method_map_t = {
     params:
       | {
           id: shelly_component_id_t;
-          config: shelly_button_config_t;
+          config: optional_recursive_t<shelly_button_config_t>;
         }
       | {
           role: shelly_service_role_t;
           owner: shelly_service_key_t;
-          config: shelly_button_config_t;
+          config: optional_recursive_t<shelly_button_config_t>;
         };
     result: {
       restart_required: boolean;

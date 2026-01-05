@@ -1,4 +1,5 @@
 import { shelly_component_key_t } from '../ShellyComponents.js';
+import { optional_recursive_t } from './helpers.js';
 import { shelly_knx_rev_t } from './KNX.js';
 import { shelly_kvs_rev_t } from './KVS.js';
 import { shelly_lora_addon_config_type_t } from './LoRa.js';
@@ -123,7 +124,7 @@ export type shelly_sys_rpc_method_map_t = {
   };
   'Sys.SetConfig': {
     params: {
-      config: shelly_sys_config_t;
+      config: optional_recursive_t<shelly_sys_config_t>;
     };
     result: {
       restart_required: boolean;

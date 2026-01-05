@@ -1,4 +1,5 @@
 import { shelly_component_id_t } from '../ShellyComponents.js';
+import { optional_recursive_t } from './helpers.js';
 
 type shelly_em_status_errors_t =
   | 'power_meter_failure'
@@ -85,7 +86,7 @@ export type shelly_em_rpc_method_map_t = {
   'EM.SetConfig': {
     params: {
       id: shelly_component_id_t;
-      config: shelly_em_config_t;
+      config: optional_recursive_t<shelly_em_config_t>;
     };
     result: {
       restart_required: boolean;

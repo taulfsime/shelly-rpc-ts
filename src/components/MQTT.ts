@@ -1,3 +1,5 @@
+import { optional_recursive_t } from './helpers.js';
+
 export type shelly_mqtt_type_t = 'mqtt';
 export type shelly_mqtt_key_t = shelly_mqtt_type_t;
 
@@ -29,7 +31,7 @@ export type shelly_mqtt_rpc_method_map_t = {
   };
   'MQTT.SetConfig': {
     params: {
-      config: shelly_mqtt_config_t;
+      config: optional_recursive_t<shelly_mqtt_config_t>;
     };
     result: {
       restart_required: boolean;

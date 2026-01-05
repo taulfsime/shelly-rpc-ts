@@ -3,6 +3,7 @@ import {
   shelly_output_component_status_source_t,
   shelly_output_component_status_counter_t,
 } from './common.js';
+import { optional_recursive_t } from './helpers.js';
 
 type shelly_switch_status_errors_t =
   | 'overtemp'
@@ -63,7 +64,7 @@ export type shelly_switch_rpc_method_map_t = {
   'Switch.SetConfig': {
     params: {
       id: shelly_component_id_t;
-      config: shelly_switch_config_t;
+      config: optional_recursive_t<shelly_switch_config_t>;
     };
     result: {
       restart_required: boolean;

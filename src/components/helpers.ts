@@ -30,3 +30,14 @@ export type only_one_prop_t<T> = {
 export type at_least_one_prop_t<T> = {
   [K in keyof T]: Required<Pick<T, K>> & Partial<Omit<T, K>>;
 }[keyof T];
+
+/**
+ * Utility type that makes all properties of the given object type T optional, recursively
+ *
+ * Example:
+ *   type C = optional_recursive_t<{ foo: { bar: number; baz: string }; qux: boolean }>;
+ *   // C is: { foo?: { bar?: number; baz?: string }; qux?: boolean }
+ */
+export type optional_recursive_t<T> = {
+  [P in keyof T]?: T[P] extends object ? optional_recursive_t<T[P]> : T[P];
+};

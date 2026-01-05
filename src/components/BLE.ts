@@ -1,3 +1,5 @@
+import { optional_recursive_t } from './helpers.js';
+
 export type shelly_ble_type_t = 'ble';
 export type shelly_ble_key_t = shelly_ble_type_t;
 
@@ -30,7 +32,7 @@ export type shelly_ble_rpc_method_map_t = {
   };
   'BLE.SetConfig': {
     params: {
-      config: shelly_ble_config_t;
+      config: optional_recursive_t<shelly_ble_config_t>;
     };
     result: {
       restart_required: boolean;

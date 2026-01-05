@@ -1,4 +1,5 @@
 import { shelly_component_id_t } from '../ShellyComponents.js';
+import { optional_recursive_t } from './helpers.js';
 
 type shelly_emdata_status_errors_t = 'database_error' | 'ct_type_not_set';
 
@@ -35,7 +36,7 @@ export type shelly_emdata_rpc_method_map_t = {
   'EMData.SetConfig': {
     params: {
       id: shelly_component_id_t;
-      config: shelly_emdata_config_t;
+      config: optional_recursive_t<shelly_emdata_config_t>;
     };
   };
   'EMData.GetConfig': {

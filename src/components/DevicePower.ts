@@ -1,4 +1,5 @@
 import { shelly_component_id_t } from '../ShellyComponents.js';
+import { optional_recursive_t } from './helpers.js';
 
 type shelly_devicepower_status_errors_t = 'read';
 
@@ -32,7 +33,7 @@ export type shelly_devicepower_rpc_method_map_t = {
   'DevicePower.SetConfig': {
     params: {
       id: shelly_component_id_t;
-      config: shelly_devicepower_config_t;
+      config: optional_recursive_t<shelly_devicepower_config_t>;
     };
     result: {
       restart_required: boolean;

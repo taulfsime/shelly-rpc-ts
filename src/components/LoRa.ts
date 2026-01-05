@@ -1,4 +1,5 @@
 import { shelly_component_id_t } from '../ShellyComponents.js';
+import { optional_recursive_t } from './helpers.js';
 import {
   shelly_device_update_info_t,
   shelly_device_update_stage_t,
@@ -58,7 +59,7 @@ export type shelly_lora_rpc_method_map_t = {
   'Lora.SetConfig': {
     params: {
       id: shelly_component_id_t;
-      config: shelly_lora_config_t;
+      config: optional_recursive_t<shelly_lora_config_t>;
     };
   };
   'Lora.GetConfig': {

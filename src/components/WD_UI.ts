@@ -1,3 +1,5 @@
+import { optional_recursive_t } from './helpers.js';
+
 export type shelly_wd_ui_type_t = 'wd_ui';
 export type shelly_wd_ui_key_t = shelly_wd_ui_type_t;
 
@@ -15,7 +17,7 @@ export type shelly_wd_ui_rpc_method_map_t = {
   };
   'WD_UI.SetConfig': {
     params: {
-      config: shelly_wd_ui_config_t;
+      config: optional_recursive_t<shelly_wd_ui_config_t>;
     };
   };
   'WD_UI.GetConfig': {

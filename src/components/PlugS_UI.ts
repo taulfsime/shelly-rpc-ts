@@ -1,3 +1,4 @@
+import { optional_recursive_t } from './helpers.js';
 import { shelly_switch_key_t } from './Switch.js';
 
 type shelly_plugs_ui_leds_mode_t = 'power' | 'switch' | 'off';
@@ -46,7 +47,7 @@ export type shelly_plugs_ui_rpc_method_map_t = {
   };
   'PlugS_UI.SetConfig': {
     params: {
-      config: shelly_plugs_ui_config_t;
+      config: optional_recursive_t<shelly_plugs_ui_config_t>;
     };
   };
   'PlugS_UI.GetConfig': {

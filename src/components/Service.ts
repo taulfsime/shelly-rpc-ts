@@ -1,4 +1,5 @@
 import { shelly_component_id_t } from '../ShellyComponents.js';
+import { optional_recursive_t } from './helpers.js';
 import { shelly_virtual_component_key_t } from './Virtual.js';
 import { shelly_object_key_t } from './VirtualComponents/Object.js';
 
@@ -47,7 +48,7 @@ export type shelly_service_rpc_method_map_t = {
   'Service.SetConfig': {
     params: {
       id: shelly_component_id_t;
-      config: shelly_service_config_t;
+      config: optional_recursive_t<shelly_service_config_t>;
     };
     result: {
       restart_required: boolean;

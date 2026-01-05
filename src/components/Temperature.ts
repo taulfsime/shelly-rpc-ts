@@ -1,4 +1,5 @@
 import { shelly_component_id_t } from '../ShellyComponents.js';
+import { optional_recursive_t } from './helpers.js';
 
 type shelly_temperature_status_errors_t = 'out_of_range' | 'read';
 
@@ -30,7 +31,7 @@ export type shelly_temperature_rpc_method_map_t = {
   'Temperature.SetConfig': {
     params: {
       id: shelly_component_id_t;
-      config: shelly_temperature_config_t;
+      config: optional_recursive_t<shelly_temperature_config_t>;
     };
     result: {
       restart_required: boolean;

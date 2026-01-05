@@ -1,3 +1,5 @@
+import { optional_recursive_t } from './helpers.js';
+
 export type shelly_zigbee_type_t = 'zigbee';
 export type shelly_zigbee_key_t = shelly_zigbee_type_t;
 
@@ -16,7 +18,7 @@ export type shelly_zigbee_rpc_method_map_t = {
   };
   'Zigbee.SetConfig': {
     params: {
-      config: shelly_zigbee_config_t;
+      config: optional_recursive_t<shelly_zigbee_config_t>;
     };
     result: {
       restart_required: boolean;

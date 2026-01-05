@@ -1,3 +1,5 @@
+import { optional_recursive_t } from './helpers.js';
+
 export type shelly_ethernet_type_t = 'eth';
 export type shelly_ethernet_key_t = shelly_ethernet_type_t;
 
@@ -32,7 +34,7 @@ export type shelly_ethernet_rpc_method_map_t = {
   };
   'Eth.SetConfig': {
     params: {
-      config: shelly_ethernet_config_t;
+      config: optional_recursive_t<shelly_ethernet_config_t>;
     };
     result: {
       restart_required: boolean;

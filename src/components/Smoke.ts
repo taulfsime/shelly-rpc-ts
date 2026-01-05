@@ -1,4 +1,5 @@
 import { shelly_component_id_t } from '../ShellyComponents.js';
+import { optional_recursive_t } from './helpers.js';
 
 export type shelly_smoke_type_t = 'smoke';
 export type shelly_smoke_key_t =
@@ -25,7 +26,7 @@ export type shelly_smoke_rpc_method_map_t = {
   'Smoke.SetConfig': {
     params: {
       id: shelly_component_id_t;
-      config: shelly_smoke_config_t;
+      config: optional_recursive_t<shelly_smoke_config_t>;
     };
     result: {
       restart_required: boolean;

@@ -1,3 +1,4 @@
+import { optional_recursive_t } from './helpers.js';
 import { shelly_device_mac_t } from './Shelly.js';
 
 type shelly_wifi_config_sta_static_t = {
@@ -76,7 +77,7 @@ export type shelly_wifi_rpc_method_map_t = {
   };
   'WiFi.SetConfig': {
     params: {
-      config: shelly_wifi_config_t;
+      config: optional_recursive_t<shelly_wifi_config_t>;
     };
     result: {
       restart_required: boolean;

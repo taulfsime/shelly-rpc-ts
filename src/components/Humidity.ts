@@ -1,4 +1,5 @@
 import { shelly_component_id_t } from '../ShellyComponents.js';
+import { optional_recursive_t } from './helpers.js';
 
 type shelly_humidity_status_errors_t = 'out_of_range' | 'read';
 
@@ -29,7 +30,7 @@ export type shelly_humidity_rpc_method_map_t = {
   'Humidity.SetConfig': {
     params: {
       id: shelly_component_id_t;
-      config: shelly_humidity_config_t;
+      config: optional_recursive_t<shelly_humidity_config_t>;
     };
     result: {
       restart_required: boolean;

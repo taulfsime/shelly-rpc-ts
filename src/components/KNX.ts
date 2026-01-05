@@ -1,4 +1,5 @@
 import { shelly_cover_key_t } from './Cover.js';
+import { optional_recursive_t } from './helpers.js';
 import { shelly_input_key_t } from './Input.js';
 import { shelly_knx_cover_config_t } from './KNXComponents/KNXCover.js';
 import { shelly_knx_input_config_t } from './KNXComponents/KNXInput.js';
@@ -49,7 +50,7 @@ export type shelly_knx_rpc_method_map_t = {
   };
   'KNX.SetConfig': {
     params: {
-      config: shelly_knx_config_t;
+      config: optional_recursive_t<shelly_knx_config_t>;
     };
     result: {
       restart_required: boolean;

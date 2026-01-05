@@ -1,4 +1,5 @@
 import { shelly_component_id_t } from '../ShellyComponents.js';
+import { optional_recursive_t } from './helpers.js';
 import {
   shelly_rgb_config_t,
   shelly_rgb_rpc_method_map_t,
@@ -45,7 +46,7 @@ export type shelly_rgbw_rpc_method_map_t = {
   'RGBW.SetConfig': {
     params: {
       id: shelly_component_id_t;
-      config: shelly_rgbw_config_t;
+      config: optional_recursive_t<shelly_rgbw_config_t>;
     };
     result: {
       restart_required: boolean;

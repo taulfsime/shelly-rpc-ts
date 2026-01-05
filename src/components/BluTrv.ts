@@ -4,6 +4,7 @@ import {
   shelly_bthomedevice_config_t,
 } from './BTHomeComponents/BTHomeDevice.js';
 import { shelly_bthomesensor_key_t } from './BTHomeComponents/BTHomeSensor.js';
+import { optional_recursive_t } from './helpers.js';
 
 export type shelly_blutrv_type_t = 'blutrv';
 export type shelly_blutrv_key_t =
@@ -34,7 +35,7 @@ export type shelly_blutrv_rpc_method_map_t = {
   'BluTrv.SetConfig': {
     params: {
       id: shelly_component_id_t;
-      config: shelly_blutrv_config_t;
+      config: optional_recursive_t<shelly_blutrv_config_t>;
     };
     result: {
       restart_required: boolean;

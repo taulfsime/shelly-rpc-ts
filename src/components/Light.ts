@@ -4,7 +4,7 @@ import {
   shelly_output_component_status_counter_t,
   shelly_output_component_status_source_t,
 } from './common.js';
-import { at_least_one_prop_t } from './helpers.js';
+import { at_least_one_prop_t, optional_recursive_t } from './helpers.js';
 
 type shelly_light_status_errors_t =
   | 'overtemp'
@@ -97,7 +97,7 @@ export type shelly_light_rpc_method_map_t = {
   'Light.SetConfig': {
     params: {
       id: shelly_component_id_t;
-      config: shelly_light_config_t;
+      config: optional_recursive_t<shelly_light_config_t>;
     };
     result: {
       restart_required: boolean;

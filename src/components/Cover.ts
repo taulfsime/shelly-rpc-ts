@@ -3,7 +3,7 @@ import {
   shelly_output_component_status_counter_t,
   shelly_output_component_status_source_t,
 } from './common.js';
-import { only_one_prop_t } from './helpers.js';
+import { only_one_prop_t, optional_recursive_t } from './helpers.js';
 
 export type shelly_cover_type_t = 'cover';
 export type shelly_cover_key_t =
@@ -122,7 +122,7 @@ export type shelly_cover_rpc_method_map_t = {
   'Cover.SetConfig': {
     params: {
       id: shelly_component_id_t;
-      config: shelly_cover_config_t;
+      config: optional_recursive_t<shelly_cover_config_t>;
     };
     result: {
       restart_required: boolean;
