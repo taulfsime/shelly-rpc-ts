@@ -2,7 +2,8 @@ name: CI
 
 on:
   push:
-    branches: ['**']
+    branches:
+      - main
   pull_request:
 
 jobs:
@@ -36,8 +37,24 @@ jobs:
       - run: npm ci --prefer-offline --no-audit --no-fund
       - run: npm run tests
 
+  verify-commit-msg:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0 # Fetch all history
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 24
+      - run: npm ci --prefer-offline --no-audit --no-fund
+
+      - name: Lint commit messages
+        run: npx tsx tools/commit-linter.ts check origin/main --ci
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+
   deploy:
-    needs: [code-format, types-compile, run-tests]
+    needs: [code-format, types-compile, run-tests, verify-commit-msg]
     runs-on: ubuntu-latest
     permissions:
       id-token: write
