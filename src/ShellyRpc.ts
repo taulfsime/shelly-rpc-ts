@@ -340,8 +340,6 @@ export function isRpcAuthResponse(
     typeof response.realm === 'string' &&
     'nonce' in response &&
     'algorithm' in response &&
-    response.algorithm === 'SHA-256' &&
-    'nc' in response &&
-    typeof response.nc === 'number'
+    response.algorithm === 'SHA-256'
   );
 }
