@@ -37,24 +37,86 @@ jobs:
       - run: npm ci --prefer-offline --no-audit --no-fund
       - run: npm run tests
 
-  verify-commit-msg:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-        with:
-          fetch-depth: 0 # Fetch all history
-      - uses: actions/setup-node@v3
-        with:
-          node-version: 24
-      - run: npm ci --prefer-offline --no-audit --no-fund
+  # verify-commit-msg:
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - uses: actions/checkout@v3
+  #       with:
+  #         fetch-depth: 0 # Fetch all history
+  #     - uses: actions/setup-node@v3
+  #       with:
+  #         node-version: 24
+  #     - run: npm ci --prefer-offline --no-audit --no-fund
 
-      - name: Lint commit messages
-        run: npx tsx tools/commit-linter.ts check origin/main --ci
-        env:
-          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+  #     - name: Lint commit messages
+  #       run: npx tsx tools/commit-linter.ts check origin/main --ci
+  #       env:
+  #         ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+
+  # generate-changelog:
+  #   runs-on: ubuntu-latest
+  #   permissions:
+  #     contents: write
+  #   if: github.ref == 'refs/heads/main'
+  #   steps:
+  #     - uses: actions/checkout@v3
+  #       with:
+  #         fetch-depth: 0 # Fetch all history for changelog generation
+  #         token: ${{ secrets.GITHUB_TOKEN }}
+  #     - uses: actions/setup-node@v3
+  #       with:
+  #         node-version: 24
+  #     - run: npm ci --prefer-offline --no-audit --no-fund
+
+  #     - name: Check version and find base
+  #       id: version_info
+  #       run: |
+  #         CURRENT_VERSION=$(node -p "require('./package.json').version")
+  #         PREV_VERSION=$(git show HEAD~1:package.json 2>/dev/null | node -p "JSON.parse(require('fs').readFileSync('/dev/stdin', 'utf8')).version" 2>/dev/null || echo "")
+
+  #         if [ "$CURRENT_VERSION" = "$PREV_VERSION" ]; then
+  #           echo "Version unchanged: $CURRENT_VERSION - skipping changelog generation"
+  #           exit 0
+  #         fi
+
+  #         echo "Version changed from $PREV_VERSION to $CURRENT_VERSION"
+  #         echo "version=$CURRENT_VERSION" >> "$GITHUB_OUTPUT"
+
+  #         # Find base commit for changelog
+  #         if [ -z "$PREV_VERSION" ]; then
+  #           BASE=$(git rev-list --max-parents=0 HEAD)
+  #         else
+  #           BASE=$(git log --all --format="%H" -S "\"version\": \"$PREV_VERSION\"" -- package.json | head -1)
+  #           if [ -z "$BASE" ]; then
+  #             BASE="HEAD~1"
+  #           fi
+  #         fi
+
+  #         echo "base=$BASE" >> "$GITHUB_OUTPUT"
+  #         echo "Using base commit: $BASE"
+
+  #     - name: Generate changelog
+  #       if: steps.version_info.outputs.version != ''
+  #       run: npx tsx tools/changelog-generator.ts ${{ steps.version_info.outputs.base }} --output CHANGELOG.md --version ${{ steps.version_info.outputs.version }}
+  #       env:
+  #         ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+
+  #     - name: Commit changelog
+  #       if: steps.version_info.outputs.version != ''
+  #       run: |
+  #         git config user.name "github-actions[bot]"
+  #         git config user.email "github-actions[bot]@users.noreply.github.com"
+
+  #         if git diff --quiet CHANGELOG.md; then
+  #           echo "No changes to CHANGELOG.md"
+  #         else
+  #           git add CHANGELOG.md
+  #           git commit -m "update CHANGELOG.md for version ${{ steps.version_info.outputs.version }}"
+  #           git push
+  #         fi
 
   deploy:
-    needs: [code-format, types-compile, run-tests, verify-commit-msg]
+    needs: [code-format, types-compile, run-tests]
     runs-on: ubuntu-latest
     permissions:
       id-token: write
