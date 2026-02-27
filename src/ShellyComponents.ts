@@ -174,6 +174,12 @@ import {
   shelly_pm1_type_t,
 } from './components/PM1.js';
 import {
+  shelly_presencezone_config_t,
+  shelly_presencezone_key_t,
+  shelly_presencezone_status_t,
+  shelly_presencezone_type_t,
+} from './components/PresenceZone.js';
+import {
   shelly_script_config_t,
   shelly_script_key_t,
   shelly_script_status_t,
@@ -400,6 +406,7 @@ export type shelly_component_key_t =
   | shelly_pluguk_ui_key_t
   | shelly_plusrgbw_key_t
   | shelly_pm1_key_t
+  | shelly_presencezone_key_t
   | shelly_rgb_key_t
   | shelly_rgbw_key_t
   | shelly_rgbcct_key_t
@@ -662,6 +669,12 @@ export type shelly_component_status_map_t =
       shelly_pm1_type_t,
       shelly_pm1_config_t,
       shelly_pm1_status_t
+    >
+  | component_entry_t<
+      shelly_presencezone_key_t,
+      shelly_presencezone_type_t,
+      shelly_presencezone_config_t,
+      shelly_presencezone_status_t
     >
   | component_entry_t<
       shelly_devicepower_key_t,
