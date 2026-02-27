@@ -14,6 +14,7 @@ export type shelly_blutrv_status_t = shelly_bthomedevice_status_t & {
   target_C: number;
   current_C: number;
   pos: number;
+  errors: string[];
   paired: boolean;
   rpc: boolean;
   rsv: number;
@@ -62,12 +63,27 @@ export type shelly_blutrv_rpc_method_map_t = {
     result: null;
   };
   'BluTrv.CheckForUpdates': {
-    params: {
-      id: shelly_component_id_t;
-    };
     result: {
       fw_id: string;
     };
+  };
+  'BluTrv.GetRemoteStatus': {
+    params: {
+      id: shelly_component_id_t;
+    };
+    result: unknown;
+  };
+  'BluTrv.GetRemoteConfig': {
+    params: {
+      id: shelly_component_id_t;
+    };
+    result: unknown;
+  };
+  'BluTrv.GetRemoteDeviceInfo': {
+    params: {
+      id: shelly_component_id_t;
+    };
+    result: unknown;
   };
   //XXX:
   'BluTrv.Call': {

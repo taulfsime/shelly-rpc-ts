@@ -62,6 +62,7 @@ import { shelly_plusrgbw_rpc_method_map_t } from './components/PlusRGBW.js';
 import { shelly_ui_rpc_method_map_t } from './components/UI.js';
 import { shelly_blugw_rpc_method_map_t } from './components/BluGw.js';
 import { shelly_blutrv_rpc_method_map_t } from './components/BluTrv.js';
+import { shelly_blumcb_rpc_method_map_t } from './components/BluMCB.js';
 import { shelly_xmod_rpc_method_map_t } from './components/XMOD.js';
 import { shelly_lora_rpc_method_map_t } from './components/LoRa.js';
 import { shelly_sensor_addon_rpc_method_map_t } from './components/SensorAddon.js';
@@ -76,6 +77,7 @@ type shelly_rpc_method_map_t = shelly_device_rpc_method_map_t &
   shelly_ble_rpc_method_map_t &
   shelly_blugw_rpc_method_map_t &
   shelly_blutrv_rpc_method_map_t &
+  shelly_blumcb_rpc_method_map_t &
   shelly_boolean_rpc_method_map_t &
   shelly_bthome_rpc_method_map_t &
   shelly_bthomecontrol_rpc_method_map_t &
