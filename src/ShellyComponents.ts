@@ -96,6 +96,12 @@ import {
   shelly_ethernet_type_t,
 } from './components/Ethernet.js';
 import {
+  shelly_flood_config_t,
+  shelly_flood_key_t,
+  shelly_flood_status_t,
+  shelly_flood_type_t,
+} from './components/Flood.js';
+import {
   shelly_group_config_t,
   shelly_group_key_t,
   shelly_group_status_t,
@@ -370,6 +376,7 @@ export type shelly_component_key_t =
   | shelly_emdata_key_t
   | shelly_enum_key_t
   | shelly_ethernet_key_t
+  | shelly_flood_key_t
   | shelly_group_key_t
   | shelly_ht_ui_key_t
   | shelly_humidity_key_t
@@ -462,6 +469,12 @@ export type shelly_component_status_map_t =
       shelly_ethernet_type_t,
       shelly_ethernet_config_t,
       shelly_ethernet_status_t
+    >
+  | component_entry_t<
+      shelly_flood_key_t,
+      shelly_flood_type_t,
+      shelly_flood_config_t,
+      shelly_flood_status_t
     >
   | component_entry_t<
       shelly_ble_key_t,
