@@ -158,6 +158,13 @@ export {
   shelly_bm_webhook_event_t,
 } from './components/BM.js';
 export {
+  shelly_cb_config_t,
+  shelly_cb_status_t,
+  shelly_cb_key_t,
+  shelly_cb_type_t,
+  shelly_cb_webhook_event_t,
+} from './components/CB.js';
+export {
   shelly_cloud_config_t,
   shelly_cloud_status_t,
   shelly_cloud_key_t,
