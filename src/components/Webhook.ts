@@ -1,4 +1,5 @@
 import { shelly_component_id_t } from '../ShellyComponents.js';
+import { shelly_bm_webhook_event_t } from './BM.js';
 import { shelly_blutrv_webhook_event_t } from './BluTrv.js';
 import { shelly_bthomedevice_webhook_event_t } from './BTHomeComponents/BTHomeDevice.js';
 import { shelly_bthomesensor_webhook_event_t } from './BTHomeComponents/BTHomeSensor.js';
@@ -44,7 +45,8 @@ export type shelly_webhook_event_t =
   | shelly_number_webhook_event_t
   | shelly_text_webhook_event_t
   | shelly_voltmeter_webhook_event_t
-  | shelly_blutrv_webhook_event_t;
+  | shelly_blutrv_webhook_event_t
+  | shelly_bm_webhook_event_t;
 
 type shelly_webhook_hook_id_t = number;
 export type shelly_webhook_rev_t = number;
