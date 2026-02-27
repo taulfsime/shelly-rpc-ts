@@ -145,6 +145,12 @@ export {
   shelly_presencezone_webhook_event_t,
 } from './components/PresenceZone.js';
 export {
+  shelly_presence_config_t,
+  shelly_presence_status_t,
+  shelly_presence_key_t,
+  shelly_presence_type_t,
+} from './components/Presence.js';
+export {
   shelly_devicepower_config_t,
   shelly_devicepower_status_t,
   shelly_devicepower_key_t,
