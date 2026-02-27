@@ -5,11 +5,32 @@ import {
   shelly_device_update_stage_t,
 } from './Shelly.js';
 
-type shelly_lora_status_flags_t = 'duty_cycle_limit';
+type shelly_lora_status_flags_t =
+  | 'duty_cycle_limit' // recommended transmission time reached in last 60 min, EU868
+  | 'send_blocked' // back-off sending period active, US915 and BR915-928
+  | 'lp_mode'; // low power mode is active
 type shelly_lora_status_errors_t =
   | 'ota_update_failed'
   | 'addon_update_required'
   | 'limit_reached';
+
+type shelly_lora_band_plan_t = 'EU868' | 'US915' | 'BR915-928';
+
+type shelly_lora_config_fh_t = {
+  enable: boolean;
+  freqs: number[];
+};
+
+type shelly_lora_config_shelr_accept_t = 'user';
+
+type shelly_lora_config_shelr_t = {
+  lr_addr: string;
+  tx_key: number;
+  key1: string | null;
+  key2: string | null;
+  key3: string | null;
+  accept: shelly_lora_config_shelr_accept_t[] | null;
+};
 
 export type shelly_lora_type_t = 'lora';
 export type shelly_lora_key_t =
@@ -18,6 +39,7 @@ export type shelly_lora_addon_config_type_t = 'LoRa';
 
 export type shelly_lora_config_t = {
   id: shelly_component_id_t;
+  band_plan: shelly_lora_band_plan_t;
   freq: number;
   bw: number;
   dr: 7 | 8 | 9 | 10 | 11 | 12;
@@ -25,6 +47,8 @@ export type shelly_lora_config_t = {
   plen: number;
   txp: number;
   rx_enable: boolean;
+  fh: shelly_lora_config_fh_t;
+  shelr: shelly_lora_config_shelr_t;
 };
 
 export type shelly_lora_status_t = {
@@ -75,4 +99,18 @@ export type shelly_lora_rpc_method_map_t = {
     };
     result: null;
   };
+  'Lora.Send': {
+    params: {
+      id: shelly_component_id_t;
+      lr_addr: string;
+      tx_key?: string;
+      tx_key_id?: number;
+      data: string;
+    };
+    result: null;
+  };
 };
+
+export type shelly_lora_webhook_event_t =
+  | 'lora' // raw data received over LoRa RF (from LoRa.SendBytes)
+  | 'user_rx'; // SheLR data received (from LoRa.Send)

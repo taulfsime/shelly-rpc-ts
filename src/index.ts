@@ -324,6 +324,7 @@ export {
   shelly_lora_type_t,
   shelly_lora_status_t,
   shelly_lora_config_t,
+  shelly_lora_webhook_event_t,
 } from './components/LoRa.js';
 export {
   shelly_sensor_addon_peripheral_type_t,
