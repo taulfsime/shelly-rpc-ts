@@ -10,6 +10,7 @@ import { shelly_flood_webhook_event_t } from './Flood.js';
 import { shelly_em_webhook_event_t } from './EM.js';
 import { shelly_em1_webhook_event_t } from './EM1.js';
 import { shelly_humidity_webhook_event_t } from './Humidity.js';
+import { shelly_illuminance_webhook_event_t } from './Illuminance.js';
 import { shelly_input_webhook_event_t } from './Input.js';
 import { shelly_light_webhook_event_t } from './Light.js';
 import { shelly_pm1_webhook_event_t } from './PM1.js';
@@ -35,6 +36,7 @@ export type shelly_webhook_event_t =
   | shelly_em_webhook_event_t
   | shelly_em1_webhook_event_t
   | shelly_humidity_webhook_event_t
+  | shelly_illuminance_webhook_event_t
   | shelly_input_webhook_event_t
   | shelly_light_webhook_event_t
   | shelly_pm1_webhook_event_t

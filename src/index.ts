@@ -98,6 +98,13 @@ export {
   shelly_humidity_type_t,
 } from './components/Humidity.js';
 export {
+  shelly_illuminance_config_t,
+  shelly_illuminance_status_t,
+  shelly_illuminance_key_t,
+  shelly_illuminance_type_t,
+  shelly_illuminance_webhook_event_t,
+} from './components/Illuminance.js';
+export {
   shelly_input_config_t,
   shelly_input_status_t,
   shelly_input_key_t,
