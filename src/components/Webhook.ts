@@ -14,6 +14,7 @@ import { shelly_light_webhook_event_t } from './Light.js';
 import { shelly_pm1_webhook_event_t } from './PM1.js';
 import { shelly_rgb_webhook_event_t } from './RGB.js';
 import { shelly_rgbw_webhook_event_t } from './RGBW.js';
+import { shelly_rgbcct_webhook_event_t } from './RGBCCT.js';
 import { shelly_smoke_webhook_event_t } from './Smoke.js';
 import { shelly_switch_webhook_event_t } from './Switch.js';
 import { shelly_temperature_webhook_event_t } from './Temperature.js';
@@ -37,6 +38,7 @@ export type shelly_webhook_event_t =
   | shelly_pm1_webhook_event_t
   | shelly_rgb_webhook_event_t
   | shelly_rgbw_webhook_event_t
+  | shelly_rgbcct_webhook_event_t
   | shelly_smoke_webhook_event_t
   | shelly_switch_webhook_event_t
   | shelly_temperature_webhook_event_t

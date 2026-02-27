@@ -253,6 +253,12 @@ import {
   shelly_rgbw_type_t,
 } from './components/RGBW.js';
 import {
+  shelly_rgbcct_config_t,
+  shelly_rgbcct_key_t,
+  shelly_rgbcct_status_t,
+  shelly_rgbcct_type_t,
+} from './components/RGBCCT.js';
+import {
   shelly_button_config_t,
   shelly_button_key_t,
   shelly_button_status_t,
@@ -382,6 +388,7 @@ export type shelly_component_key_t =
   | shelly_pm1_key_t
   | shelly_rgb_key_t
   | shelly_rgbw_key_t
+  | shelly_rgbcct_key_t
   | shelly_script_key_t
   | shelly_service_key_t
   | shelly_smoke_key_t
@@ -689,6 +696,12 @@ export type shelly_component_status_map_t =
       shelly_rgbw_type_t,
       shelly_rgbw_config_t,
       shelly_rgbw_status_t
+    >
+  | component_entry_t<
+      shelly_rgbcct_key_t,
+      shelly_rgbcct_type_t,
+      shelly_rgbcct_config_t,
+      shelly_rgbcct_status_t
     >
   | component_entry_t<
       shelly_plugs_ui_key_t,

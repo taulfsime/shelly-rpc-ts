@@ -56,6 +56,7 @@ import { shelly_em1data_rpc_method_map_t } from './components/EM1Data.js';
 import { shelly_http_rpc_method_map_t } from './components/HTTP.js';
 import { shelly_rgb_rpc_method_map_t } from './components/RGB.js';
 import { shelly_rgbw_rpc_method_map_t } from './components/RGBW.js';
+import { shelly_rgbcct_rpc_method_map_t } from './components/RGBCCT.js';
 import { shelly_plugs_ui_rpc_method_map_t } from './components/PlugS_UI.js';
 import { shelly_pluguk_ui_rpc_method_map_t } from './components/PlugUK_UI.js';
 import { shelly_ht_ui_rpc_method_map_t } from './components/HT_UI.js';
@@ -120,6 +121,7 @@ type shelly_rpc_method_map_t = shelly_device_rpc_method_map_t &
   shelly_pro_output_addon_rpc_method_map_t &
   shelly_rgb_rpc_method_map_t &
   shelly_rgbw_rpc_method_map_t &
+  shelly_rgbcct_rpc_method_map_t &
   shelly_schedule_rpc_method_map_t &
   shelly_script_rpc_method_map_t &
   shelly_sensor_addon_rpc_method_map_t &
