@@ -318,7 +318,15 @@ export {
   shelly_blutrv_type_t,
   shelly_blutrv_status_t,
   shelly_blutrv_config_t,
+  shelly_blutrv_webhook_event_t,
 } from './components/BluTrv.js';
+export {
+  shelly_blumcb_key_t,
+  shelly_blumcb_type_t,
+  shelly_blumcb_status_t,
+  shelly_blumcb_config_t,
+  shelly_blumcb_webhook_event_t,
+} from './components/BluMCB.js';
 export {
   shelly_lora_key_t,
   shelly_lora_type_t,
