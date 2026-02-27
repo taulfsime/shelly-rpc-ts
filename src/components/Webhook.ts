@@ -14,6 +14,7 @@ import { shelly_illuminance_webhook_event_t } from './Illuminance.js';
 import { shelly_input_webhook_event_t } from './Input.js';
 import { shelly_light_webhook_event_t } from './Light.js';
 import { shelly_pm1_webhook_event_t } from './PM1.js';
+import { shelly_presencezone_webhook_event_t } from './PresenceZone.js';
 import { shelly_rgb_webhook_event_t } from './RGB.js';
 import { shelly_rgbw_webhook_event_t } from './RGBW.js';
 import { shelly_rgbcct_webhook_event_t } from './RGBCCT.js';
@@ -40,6 +41,7 @@ export type shelly_webhook_event_t =
   | shelly_input_webhook_event_t
   | shelly_light_webhook_event_t
   | shelly_pm1_webhook_event_t
+  | shelly_presencezone_webhook_event_t
   | shelly_rgb_webhook_event_t
   | shelly_rgbw_webhook_event_t
   | shelly_rgbcct_webhook_event_t

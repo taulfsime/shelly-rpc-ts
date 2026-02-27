@@ -138,6 +138,13 @@ export {
   shelly_pm1_type_t,
 } from './components/PM1.js';
 export {
+  shelly_presencezone_config_t,
+  shelly_presencezone_status_t,
+  shelly_presencezone_key_t,
+  shelly_presencezone_type_t,
+  shelly_presencezone_webhook_event_t,
+} from './components/PresenceZone.js';
+export {
   shelly_devicepower_config_t,
   shelly_devicepower_status_t,
   shelly_devicepower_key_t,
