@@ -1,0 +1,9 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "mcp": {
+    "shelly-api-docs-next": {
+      "type": "remote",
+      "url": "https://shelly-api-docs.mcp.shelly.link/mcp"
+    }
+  }
+}
