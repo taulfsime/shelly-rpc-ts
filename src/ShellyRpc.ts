@@ -8,6 +8,7 @@ import { shelly_cover_rpc_method_map_t } from './components/Cover.js';
 import { shelly_enum_rpc_method_map_t } from './components/VirtualComponents/Enum.js';
 import { shelly_group_rpc_method_map_t } from './components/VirtualComponents/Group.js';
 import { shelly_humidity_rpc_method_map_t } from './components/Humidity.js';
+import { shelly_illuminance_rpc_method_map_t } from './components/Illuminance.js';
 import { shelly_input_rpc_method_map_t } from './components/Input.js';
 import { shelly_light_rpc_method_map_t } from './components/Light.js';
 import { shelly_mqtt_rpc_method_map_t } from './components/MQTT.js';
@@ -106,6 +107,7 @@ type shelly_rpc_method_map_t = shelly_device_rpc_method_map_t &
   shelly_ht_ui_rpc_method_map_t &
   shelly_http_rpc_method_map_t &
   shelly_humidity_rpc_method_map_t &
+  shelly_illuminance_rpc_method_map_t &
   shelly_input_rpc_method_map_t &
   shelly_knx_rpc_method_map_t &
   shelly_kvs_rpc_method_map_t &

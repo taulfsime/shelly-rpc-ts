@@ -114,6 +114,12 @@ import {
   shelly_humidity_type_t,
 } from './components/Humidity.js';
 import {
+  shelly_illuminance_config_t,
+  shelly_illuminance_key_t,
+  shelly_illuminance_status_t,
+  shelly_illuminance_type_t,
+} from './components/Illuminance.js';
+import {
   shelly_input_config_t,
   shelly_input_key_t,
   shelly_input_status_t,
@@ -380,6 +386,7 @@ export type shelly_component_key_t =
   | shelly_group_key_t
   | shelly_ht_ui_key_t
   | shelly_humidity_key_t
+  | shelly_illuminance_key_t
   | shelly_input_key_t
   | shelly_knx_key_t
   | shelly_light_key_t
@@ -637,6 +644,12 @@ export type shelly_component_status_map_t =
       shelly_humidity_type_t,
       shelly_humidity_config_t,
       shelly_humidity_status_t
+    >
+  | component_entry_t<
+      shelly_illuminance_key_t,
+      shelly_illuminance_type_t,
+      shelly_illuminance_config_t,
+      shelly_illuminance_status_t
     >
   | component_entry_t<
       shelly_input_key_t,
