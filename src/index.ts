@@ -276,6 +276,13 @@ export {
   shelly_rgbw_type_t,
 } from './components/RGBW.js';
 export {
+  shelly_rgbcct_status_t,
+  shelly_rgbcct_config_t,
+  shelly_rgbcct_key_t,
+  shelly_rgbcct_type_t,
+  shelly_rgbcct_webhook_event_t,
+} from './components/RGBCCT.js';
+export {
   shelly_virtual_component_key_t,
   shelly_virtual_component_status_source_t,
   shelly_virtual_attrs_t,
