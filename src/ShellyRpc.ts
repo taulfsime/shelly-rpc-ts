@@ -1,4 +1,5 @@
 import { shelly_bm_rpc_method_map_t } from './components/BM.js';
+import { shelly_cb_rpc_method_map_t } from './components/CB.js';
 import { shelly_boolean_rpc_method_map_t } from './components/VirtualComponents/Boolean.js';
 import { shelly_bthomedevice_rpc_method_map_t } from './components/BTHomeComponents/BTHomeDevice.js';
 import { shelly_bthomesensor_rpc_method_map_t } from './components/BTHomeComponents/BTHomeSensor.js';
@@ -77,6 +78,7 @@ import { shelly_cury_rpc_method_map_t } from './components/Cury.js';
 type shelly_rpc_method_map_t = shelly_device_rpc_method_map_t &
   shelly_ble_rpc_method_map_t &
   shelly_bm_rpc_method_map_t &
+  shelly_cb_rpc_method_map_t &
   shelly_blugw_rpc_method_map_t &
   shelly_blutrv_rpc_method_map_t &
   shelly_blumcb_rpc_method_map_t &
