@@ -5,6 +5,12 @@ import {
   shelly_ble_type_t,
 } from './components/BLE.js';
 import {
+  shelly_bm_config_t,
+  shelly_bm_key_t,
+  shelly_bm_status_t,
+  shelly_bm_type_t,
+} from './components/BM.js';
+import {
   shelly_boolean_config_t,
   shelly_boolean_key_t,
   shelly_boolean_status_t,
@@ -331,6 +337,7 @@ export type shelly_component_id_t = number;
 
 export type shelly_component_key_t =
   | shelly_ble_key_t
+  | shelly_bm_key_t
   | shelly_blugw_key_t
   | shelly_blutrv_key_t
   | shelly_blumcb_key_t
@@ -447,6 +454,12 @@ export type shelly_component_status_map_t =
       shelly_ble_type_t,
       shelly_ble_config_t,
       shelly_ble_status_t
+    >
+  | component_entry_t<
+      shelly_bm_key_t,
+      shelly_bm_type_t,
+      shelly_bm_config_t,
+      shelly_bm_status_t
     >
   | component_entry_t<
       shelly_cloud_key_t,

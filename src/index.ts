@@ -151,6 +151,13 @@ export {
   shelly_ble_client_single_result_t,
 } from './components/BLE.js';
 export {
+  shelly_bm_config_t,
+  shelly_bm_status_t,
+  shelly_bm_key_t,
+  shelly_bm_type_t,
+  shelly_bm_webhook_event_t,
+} from './components/BM.js';
+export {
   shelly_cloud_config_t,
   shelly_cloud_status_t,
   shelly_cloud_key_t,
