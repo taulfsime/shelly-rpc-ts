@@ -6,6 +6,7 @@ import { shelly_bthomedevice_webhook_event_t } from './BTHomeComponents/BTHomeDe
 import { shelly_bthomesensor_webhook_event_t } from './BTHomeComponents/BTHomeSensor.js';
 import { shelly_cct_webhook_event_t } from './CCT.js';
 import { shelly_cover_webhook_event_t } from './Cover.js';
+import { shelly_flood_webhook_event_t } from './Flood.js';
 import { shelly_em_webhook_event_t } from './EM.js';
 import { shelly_em1_webhook_event_t } from './EM1.js';
 import { shelly_humidity_webhook_event_t } from './Humidity.js';
@@ -30,6 +31,7 @@ export type shelly_webhook_event_t =
   | shelly_bthomesensor_webhook_event_t
   | shelly_cct_webhook_event_t
   | shelly_cover_webhook_event_t
+  | shelly_flood_webhook_event_t
   | shelly_em_webhook_event_t
   | shelly_em1_webhook_event_t
   | shelly_humidity_webhook_event_t
