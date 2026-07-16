@@ -168,6 +168,12 @@ import {
   shelly_object_type_t,
 } from './components/VirtualComponents/Object.js';
 import {
+  shelly_occupancy_config_t,
+  shelly_occupancy_key_t,
+  shelly_occupancy_status_t,
+  shelly_occupancy_type_t,
+} from './components/Occupancy.js';
+import {
   shelly_pm1_config_t,
   shelly_pm1_key_t,
   shelly_pm1_status_t,
@@ -408,6 +414,7 @@ export type shelly_component_key_t =
   | shelly_mqtt_key_t
   | shelly_number_key_t
   | shelly_object_key_t
+  | shelly_occupancy_key_t
   | shelly_plugs_ui_key_t
   | shelly_pluguk_ui_key_t
   | shelly_plusrgbw_key_t
@@ -670,6 +677,12 @@ export type shelly_component_status_map_t =
       shelly_input_type_t,
       shelly_input_config_t,
       shelly_input_status_t
+    >
+  | component_entry_t<
+      shelly_occupancy_key_t,
+      shelly_occupancy_type_t,
+      shelly_occupancy_config_t,
+      shelly_occupancy_status_t
     >
   | component_entry_t<
       shelly_pm1_key_t,

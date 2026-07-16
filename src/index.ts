@@ -132,6 +132,13 @@ export {
   shelly_object_type_t,
 } from './components/VirtualComponents/Object.js';
 export {
+  shelly_occupancy_config_t,
+  shelly_occupancy_status_t,
+  shelly_occupancy_key_t,
+  shelly_occupancy_type_t,
+  shelly_occupancy_webhook_event_t,
+} from './components/Occupancy.js';
+export {
   shelly_pm1_config_t,
   shelly_pm1_status_t,
   shelly_pm1_key_t,
