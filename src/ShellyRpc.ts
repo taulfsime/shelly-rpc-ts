@@ -11,6 +11,7 @@ import { shelly_humidity_rpc_method_map_t } from './components/Humidity.js';
 import { shelly_illuminance_rpc_method_map_t } from './components/Illuminance.js';
 import { shelly_input_rpc_method_map_t } from './components/Input.js';
 import { shelly_light_rpc_method_map_t } from './components/Light.js';
+import { shelly_motion_rpc_method_map_t } from './components/Motion.js';
 import { shelly_mqtt_rpc_method_map_t } from './components/MQTT.js';
 import { shelly_number_rpc_method_map_t } from './components/VirtualComponents/Number.js';
 import { shelly_script_rpc_method_map_t } from './components/Script.js';
@@ -117,6 +118,7 @@ type shelly_rpc_method_map_t = shelly_device_rpc_method_map_t &
   shelly_lora_rpc_method_map_t &
   shelly_matter_rpc_method_map_t &
   shelly_modbus_rpc_method_map_t &
+  shelly_motion_rpc_method_map_t &
   shelly_mqtt_rpc_method_map_t &
   shelly_number_rpc_method_map_t &
   shelly_object_rpc_method_map_t &

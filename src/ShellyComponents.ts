@@ -150,6 +150,12 @@ import {
   shelly_modbus_type_t,
 } from './components/Modbus.js';
 import {
+  shelly_motion_config_t,
+  shelly_motion_key_t,
+  shelly_motion_status_t,
+  shelly_motion_type_t,
+} from './components/Motion.js';
+import {
   shelly_mqtt_config_t,
   shelly_mqtt_key_t,
   shelly_mqtt_status_t,
@@ -405,6 +411,7 @@ export type shelly_component_key_t =
   | shelly_lora_key_t
   | shelly_matter_key_t
   | shelly_modbus_key_t
+  | shelly_motion_key_t
   | shelly_mqtt_key_t
   | shelly_number_key_t
   | shelly_object_key_t
@@ -478,6 +485,12 @@ export type shelly_component_status_map_t =
       shelly_wifi_type_t,
       shelly_wifi_config_t,
       shelly_wifi_status_t
+    >
+  | component_entry_t<
+      shelly_motion_key_t,
+      shelly_motion_type_t,
+      shelly_motion_config_t,
+      shelly_motion_status_t
     >
   | component_entry_t<
       shelly_mqtt_key_t,
