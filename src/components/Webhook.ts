@@ -19,6 +19,8 @@ import { shelly_rgb_webhook_event_t } from './RGB.js';
 import { shelly_rgbw_webhook_event_t } from './RGBW.js';
 import { shelly_rgbcct_webhook_event_t } from './RGBCCT.js';
 import { shelly_smoke_webhook_event_t } from './Smoke.js';
+import { shelly_sprinklersequence_webhook_event_t } from './SprinklerSequence.js';
+import { shelly_sprinklerzone_webhook_event_t } from './SprinklerZone.js';
 import { shelly_switch_webhook_event_t } from './Switch.js';
 import { shelly_temperature_webhook_event_t } from './Temperature.js';
 import { shelly_boolean_webhook_event_t } from './VirtualComponents/Boolean.js';
@@ -46,6 +48,8 @@ export type shelly_webhook_event_t =
   | shelly_rgbw_webhook_event_t
   | shelly_rgbcct_webhook_event_t
   | shelly_smoke_webhook_event_t
+  | shelly_sprinklersequence_webhook_event_t
+  | shelly_sprinklerzone_webhook_event_t
   | shelly_switch_webhook_event_t
   | shelly_temperature_webhook_event_t
   | shelly_boolean_webhook_event_t

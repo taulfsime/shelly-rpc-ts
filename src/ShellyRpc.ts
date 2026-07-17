@@ -44,6 +44,9 @@ import { shelly_matter_rpc_method_map_t } from './components/Matter.js';
 import { shelly_modbus_rpc_method_map_t } from './components/Modbus.js';
 import { shelly_voltmeter_rpc_method_map_t } from './components/Voltmeter.js';
 import { shelly_smoke_rpc_method_map_t } from './components/Smoke.js';
+import { shelly_sprinkler_rpc_method_map_t } from './components/Sprinkler.js';
+import { shelly_sprinklersequence_rpc_method_map_t } from './components/SprinklerSequence.js';
+import { shelly_sprinklerzone_rpc_method_map_t } from './components/SprinklerZone.js';
 import { shelly_dali_rpc_method_map_t } from './components/DALI.js';
 import { shelly_cct_rpc_method_map_t } from './components/CCT.js';
 import { shelly_zigbee_rpc_method_map_t } from './components/Zigbee.js';
@@ -135,6 +138,9 @@ type shelly_rpc_method_map_t = shelly_device_rpc_method_map_t &
   shelly_sensor_addon_rpc_method_map_t &
   shelly_service_rpc_method_map_t &
   shelly_smoke_rpc_method_map_t &
+  shelly_sprinkler_rpc_method_map_t &
+  shelly_sprinklersequence_rpc_method_map_t &
+  shelly_sprinklerzone_rpc_method_map_t &
   shelly_switch_rpc_method_map_t &
   shelly_sys_rpc_method_map_t &
   shelly_temperature_rpc_method_map_t &

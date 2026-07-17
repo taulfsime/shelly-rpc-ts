@@ -204,6 +204,24 @@ import {
   shelly_smoke_type_t,
 } from './components/Smoke.js';
 import {
+  shelly_sprinkler_config_t,
+  shelly_sprinkler_key_t,
+  shelly_sprinkler_status_t,
+  shelly_sprinkler_type_t,
+} from './components/Sprinkler.js';
+import {
+  shelly_sprinklersequence_config_t,
+  shelly_sprinklersequence_key_t,
+  shelly_sprinklersequence_status_t,
+  shelly_sprinklersequence_type_t,
+} from './components/SprinklerSequence.js';
+import {
+  shelly_sprinklerzone_config_t,
+  shelly_sprinklerzone_key_t,
+  shelly_sprinklerzone_status_t,
+  shelly_sprinklerzone_type_t,
+} from './components/SprinklerZone.js';
+import {
   shelly_switch_config_t,
   shelly_switch_key_t,
   shelly_switch_status_t,
@@ -420,6 +438,9 @@ export type shelly_component_key_t =
   | shelly_script_key_t
   | shelly_service_key_t
   | shelly_smoke_key_t
+  | shelly_sprinkler_key_t
+  | shelly_sprinklersequence_key_t
+  | shelly_sprinklerzone_key_t
   | shelly_switch_key_t
   | shelly_sys_key_t
   | shelly_temperature_key_t
@@ -706,6 +727,24 @@ export type shelly_component_status_map_t =
       shelly_smoke_type_t,
       shelly_smoke_config_t,
       shelly_smoke_status_t
+    >
+  | component_entry_t<
+      shelly_sprinkler_key_t,
+      shelly_sprinkler_type_t,
+      shelly_sprinkler_config_t,
+      shelly_sprinkler_status_t
+    >
+  | component_entry_t<
+      shelly_sprinklersequence_key_t,
+      shelly_sprinklersequence_type_t,
+      shelly_sprinklersequence_config_t,
+      shelly_sprinklersequence_status_t
+    >
+  | component_entry_t<
+      shelly_sprinklerzone_key_t,
+      shelly_sprinklerzone_type_t,
+      shelly_sprinklerzone_config_t,
+      shelly_sprinklerzone_status_t
     >
   | component_entry_t<
       shelly_cct_key_t,

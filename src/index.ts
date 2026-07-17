@@ -228,6 +228,28 @@ export {
   shelly_smoke_type_t,
 } from './components/Smoke.js';
 export {
+  shelly_sprinkler_status_t,
+  shelly_sprinkler_config_t,
+  shelly_sprinkler_key_t,
+  shelly_sprinkler_type_t,
+  shelly_sprinkler_sequence_step_t,
+} from './components/Sprinkler.js';
+export {
+  shelly_sprinklerzone_status_t,
+  shelly_sprinklerzone_config_t,
+  shelly_sprinklerzone_key_t,
+  shelly_sprinklerzone_type_t,
+  shelly_sprinklerzone_source_t,
+  shelly_sprinklerzone_webhook_event_t,
+} from './components/SprinklerZone.js';
+export {
+  shelly_sprinklersequence_status_t,
+  shelly_sprinklersequence_config_t,
+  shelly_sprinklersequence_key_t,
+  shelly_sprinklersequence_type_t,
+  shelly_sprinklersequence_webhook_event_t,
+} from './components/SprinklerSequence.js';
+export {
   shelly_dali_status_t,
   shelly_dali_config_t,
   shelly_dali_key_t,
