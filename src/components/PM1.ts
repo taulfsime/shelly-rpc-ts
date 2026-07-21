@@ -1,5 +1,9 @@
 import { shelly_component_id_t } from '../ShellyComponents.js';
-import { shelly_output_component_status_counter_t } from './common.js';
+import {
+  shelly_alarms_config_t,
+  shelly_alarms_status_flags_t,
+  shelly_output_component_status_counter_t,
+} from './common.js';
 import { optional_recursive_t } from './helpers.js';
 
 type shelly_pm1_status_errors_t =
@@ -16,6 +20,7 @@ export type shelly_pm1_config_t = {
   id: shelly_component_id_t;
   name: string | null;
   reverse: boolean;
+  alarms: shelly_alarms_config_t | null;
 };
 
 export type shelly_pm1_status_t = {
@@ -29,6 +34,7 @@ export type shelly_pm1_status_t = {
   aenergy: shelly_output_component_status_counter_t;
   ret_aenergy: shelly_output_component_status_counter_t;
   errors?: shelly_pm1_status_errors_t[];
+  flags?: shelly_alarms_status_flags_t[];
 };
 
 export type shelly_pm1_rpc_method_map_t = {
@@ -72,4 +78,16 @@ export type shelly_pm1_rpc_method_map_t = {
 export type shelly_pm1_webhook_event_t =
   | 'pm1.voltage_change'
   | 'pm1.current_change'
-  | 'pm1.apower_change';
+  | 'pm1.apower_change'
+  | 'pm1.alarm_undervoltage'
+  | 'pm1.alarm_undervoltage_clear'
+  | 'pm1.alarm_overvoltage'
+  | 'pm1.alarm_overvoltage_clear'
+  | 'pm1.alarm_undercurrent'
+  | 'pm1.alarm_undercurrent_clear'
+  | 'pm1.alarm_overcurrent'
+  | 'pm1.alarm_overcurrent_clear'
+  | 'pm1.alarm_underpower'
+  | 'pm1.alarm_underpower_clear'
+  | 'pm1.alarm_overpower'
+  | 'pm1.alarm_overpower_clear';

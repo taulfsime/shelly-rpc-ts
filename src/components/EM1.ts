@@ -1,4 +1,8 @@
 import { shelly_component_id_t } from '../ShellyComponents.js';
+import {
+  shelly_alarms_config_t,
+  shelly_alarms_status_flags_t,
+} from './common.js';
 import { shelly_em_config_ct_type_t } from './EM.js';
 import { optional_recursive_t } from './helpers.js';
 
@@ -9,7 +13,9 @@ type shelly_em1_status_errors_t =
   | 'out_of_range:voltage'
   | 'out_of_range:current'
   | 'ct_type_not_set';
-type shelly_em1_status_flags_t = 'count_disabled';
+type shelly_em1_status_flags_t =
+  | 'count_disabled'
+  | shelly_alarms_status_flags_t;
 
 export type shelly_em1_type_t = 'em1';
 export type shelly_em1_key_t = `${shelly_em1_type_t}:${shelly_component_id_t}`;
@@ -19,6 +25,7 @@ export type shelly_em1_config_t = {
   name: string | null;
   reverse: boolean;
   ct_type: shelly_em_config_ct_type_t;
+  alarms: shelly_alarms_config_t | null;
 };
 
 export type shelly_em1_status_t = {
@@ -31,7 +38,7 @@ export type shelly_em1_status_t = {
   freq: number | null;
   calibration: 'factory' | shelly_em1_key_t;
   errors?: shelly_em1_status_errors_t[];
-  status?: shelly_em1_status_flags_t[];
+  flags?: shelly_em1_status_flags_t[];
 };
 
 export type shelly_em1_rpc_method_map_t = {
@@ -86,4 +93,16 @@ export type shelly_em1_rpc_method_map_t = {
 export type shelly_em1_webhook_event_t =
   | 'em1.voltage_change'
   | 'em1.current_change'
-  | 'em1.active_power_change';
+  | 'em1.active_power_change'
+  | 'em1.alarm_undervoltage'
+  | 'em1.alarm_undervoltage_clear'
+  | 'em1.alarm_overvoltage'
+  | 'em1.alarm_overvoltage_clear'
+  | 'em1.alarm_undercurrent'
+  | 'em1.alarm_undercurrent_clear'
+  | 'em1.alarm_overcurrent'
+  | 'em1.alarm_overcurrent_clear'
+  | 'em1.alarm_underpower'
+  | 'em1.alarm_underpower_clear'
+  | 'em1.alarm_overpower'
+  | 'em1.alarm_overpower_clear';

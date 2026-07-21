@@ -61,3 +61,19 @@ export type shelly_output_component_status_counter_t = {
 };
 
 export type shelly_light_config_fade_rate_t = 1 | 2 | 3 | 4 | 5;
+
+type shelly_alarm_threshold_t = [number | null, number | null] | null;
+
+export type shelly_alarms_config_t = {
+  voltage: shelly_alarm_threshold_t;
+  current: shelly_alarm_threshold_t;
+  power: shelly_alarm_threshold_t;
+};
+
+export type shelly_alarms_status_flags_t =
+  | 'undervoltage'
+  | 'overvoltage'
+  | 'undercurrent'
+  | 'overcurrent'
+  | 'underpower'
+  | 'overpower';
