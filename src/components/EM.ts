@@ -1,4 +1,8 @@
 import { shelly_component_id_t } from '../ShellyComponents.js';
+import {
+  shelly_alarms_config_t,
+  shelly_alarms_status_flags_t,
+} from './common.js';
 import { optional_recursive_t } from './helpers.js';
 
 type shelly_em_status_errors_t =
@@ -37,6 +41,11 @@ export type shelly_em_config_t = {
     c: boolean;
   };
   ct_type: shelly_em_config_ct_type_t;
+  alarms: {
+    a?: shelly_alarms_config_t;
+    b?: shelly_alarms_config_t;
+    c?: shelly_alarms_config_t;
+  } | null;
 };
 
 export type shelly_em_status_t = {
@@ -48,6 +57,7 @@ export type shelly_em_status_t = {
   a_pf: number | null;
   a_freq: number | null;
   a_errors?: shelly_em_status_errors_phase_t[];
+  a_flags?: shelly_alarms_status_flags_t[];
 
   b_current: number | null;
   b_voltage: number | null;
@@ -56,6 +66,7 @@ export type shelly_em_status_t = {
   b_pf: number | null;
   b_freq: number | null;
   b_errors?: shelly_em_status_errors_phase_t[];
+  b_flags?: shelly_alarms_status_flags_t[];
 
   c_current: number | null;
   c_voltage: number | null;
@@ -64,6 +75,7 @@ export type shelly_em_status_t = {
   c_pf: number | null;
   c_freq: number | null;
   c_errors?: shelly_em_status_errors_phase_t[];
+  c_flags?: shelly_alarms_status_flags_t[];
 
   n_current: number | null;
   n_errors?: shelly_em_status_errors_neutral_t[];
@@ -133,4 +145,16 @@ export type shelly_em_webhook_event_t =
   | 'em.active_power_change'
   | 'em.total_active_power_change'
   | 'em.total_apparent_power_change'
-  | 'em.total_current_change';
+  | 'em.total_current_change'
+  | 'em.alarm_undervoltage'
+  | 'em.alarm_undervoltage_clear'
+  | 'em.alarm_overvoltage'
+  | 'em.alarm_overvoltage_clear'
+  | 'em.alarm_undercurrent'
+  | 'em.alarm_undercurrent_clear'
+  | 'em.alarm_overcurrent'
+  | 'em.alarm_overcurrent_clear'
+  | 'em.alarm_underpower'
+  | 'em.alarm_underpower_clear'
+  | 'em.alarm_overpower'
+  | 'em.alarm_overpower_clear';
