@@ -40,7 +40,7 @@ export type shelly_em1data_rpc_method_map_t = {
   'EM1Data.GetRecords': {
     params: {
       id: shelly_component_id_t;
-      ts: number;
+      ts?: number;
     };
     result: {
       data_blocks: {
@@ -54,8 +54,8 @@ export type shelly_em1data_rpc_method_map_t = {
     params: {
       id: shelly_component_id_t;
       ts: number;
-      end_ts: number;
-      add_keys: boolean;
+      end_ts?: number;
+      add_keys?: boolean;
     };
     result: {
       keys?: [
@@ -98,9 +98,9 @@ export type shelly_em1data_rpc_method_map_t = {
     params: {
       id: shelly_component_id_t;
       ts: number;
-      end_ts: number;
+      end_ts?: number;
       period: 300 | 900 | 1800 | 3600;
-      add_keys: boolean;
+      add_keys?: boolean;
     };
     result: {
       keys?: ['net_act_energy'];

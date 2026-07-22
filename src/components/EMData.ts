@@ -38,6 +38,9 @@ export type shelly_emdata_rpc_method_map_t = {
       id: shelly_component_id_t;
       config: optional_recursive_t<shelly_emdata_config_t>;
     };
+    result: {
+      restart_required: boolean;
+    };
   };
   'EMData.GetConfig': {
     params: {
@@ -48,7 +51,7 @@ export type shelly_emdata_rpc_method_map_t = {
   'EMData.GetRecords': {
     params: {
       id: shelly_component_id_t;
-      ts: number;
+      ts?: number;
     };
     result: {
       data_blocks: {
@@ -62,8 +65,8 @@ export type shelly_emdata_rpc_method_map_t = {
     params: {
       id: shelly_component_id_t;
       ts: number;
-      end_ts: number;
-      add_key: boolean;
+      end_ts?: number;
+      add_keys?: boolean;
     };
     result: {
       keys?: [
@@ -143,9 +146,9 @@ export type shelly_emdata_rpc_method_map_t = {
     params: {
       id: shelly_component_id_t;
       ts: number;
-      end_ts: number;
+      end_ts?: number;
       period: 300 | 900 | 1800 | 3600;
-      add_keys: boolean;
+      add_keys?: boolean;
     };
     result: {
       keys?: ['a_net_act_energy', 'b_net_act_energy', 'c_net_act_energy'];
