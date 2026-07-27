@@ -26,6 +26,7 @@ import {
   shelly_device_rpc_method_map_t,
 } from './components/Shelly.js';
 import { shelly_object_rpc_method_map_t } from './components/VirtualComponents/Object.js';
+import { shelly_occupancy_rpc_method_map_t } from './components/Occupancy.js';
 import {
   shelly_component_id_t,
   shelly_component_key_t,
@@ -122,6 +123,7 @@ type shelly_rpc_method_map_t = shelly_device_rpc_method_map_t &
   shelly_mqtt_rpc_method_map_t &
   shelly_number_rpc_method_map_t &
   shelly_object_rpc_method_map_t &
+  shelly_occupancy_rpc_method_map_t &
   shelly_plugs_ui_rpc_method_map_t &
   shelly_pluguk_ui_rpc_method_map_t &
   shelly_plusrgbw_rpc_method_map_t &
