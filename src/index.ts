@@ -13,6 +13,13 @@ export {
   shelly_wifi_ap_client_single_result_t,
 } from './components/WiFi.js';
 export {
+  shelly_motion_config_t,
+  shelly_motion_status_t,
+  shelly_motion_key_t,
+  shelly_motion_type_t,
+  shelly_motion_webhook_event_t,
+} from './components/Motion.js';
+export {
   shelly_mqtt_config_t,
   shelly_mqtt_status_t,
   shelly_mqtt_key_t,
