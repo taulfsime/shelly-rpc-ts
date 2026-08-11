@@ -103,6 +103,12 @@ export type shelly_light_rpc_method_map_t = {
       restart_required: boolean;
     };
   };
+  'Light.GetConfig': {
+    params: {
+      id: shelly_component_id_t;
+    };
+    result: shelly_light_config_t;
+  };
   'Light.Set': {
     params: {
       id: shelly_component_id_t;
@@ -147,6 +153,21 @@ export type shelly_light_rpc_method_map_t = {
       toggle_after?: number;
       offset?: number;
       transition_duration?: number;
+    };
+  };
+  'Light.SetMany': {
+    params: {
+      ids: shelly_component_id_t[];
+      transition_duration?: number;
+      toggle_after?: number;
+      tag?: string | null;
+    } & at_least_one_prop_t<{
+      on?: boolean;
+      brightness?: number;
+      offset?: number;
+    }>;
+    result: {
+      results: (null | { code: number; message: string })[];
     };
   };
   'Light.Calibrate': {
