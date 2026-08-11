@@ -23,6 +23,12 @@ import {
   shelly_boolean_type_t,
 } from './components/VirtualComponents/Boolean.js';
 import {
+  shelly_bthomecontrol_config_t,
+  shelly_bthomecontrol_key_t,
+  shelly_bthomecontrol_status_t,
+  shelly_bthomecontrol_type_t,
+} from './components/BTHomeComponents/BTHomeControl.js';
+import {
   shelly_bthomedevice_attrs_t,
   shelly_bthomedevice_config_t,
   shelly_bthomedevice_key_t,
@@ -386,6 +392,7 @@ export type shelly_component_key_t =
   | shelly_blumcb_key_t
   | shelly_boolean_key_t
   | shelly_bthome_key_t
+  | shelly_bthomecontrol_key_t
   | shelly_bthomedevice_key_t
   | shelly_bthomesensor_key_t
   | shelly_button_key_t
@@ -617,6 +624,12 @@ export type shelly_component_status_map_t =
       shelly_bthomedevice_config_t,
       shelly_bthomedevice_status_t,
       shelly_bthomedevice_attrs_t
+    >
+  | component_entry_t<
+      shelly_bthomecontrol_key_t,
+      shelly_bthomecontrol_type_t,
+      shelly_bthomecontrol_config_t,
+      shelly_bthomecontrol_status_t
     >
   | component_entry_t<
       shelly_group_key_t,
