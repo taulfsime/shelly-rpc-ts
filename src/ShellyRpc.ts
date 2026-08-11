@@ -16,6 +16,7 @@ import { shelly_number_rpc_method_map_t } from './components/VirtualComponents/N
 import { shelly_script_rpc_method_map_t } from './components/Script.js';
 import { shelly_serial_rpc_method_map_t } from './components/Serial.js';
 import { shelly_service_rpc_method_map_t } from './components/Service.js';
+import { shelly_shelr_rpc_method_map_t } from './components/SheLr.js';
 import { shelly_switch_rpc_method_map_t } from './components/Switch.js';
 import { shelly_sys_rpc_method_map_t } from './components/Sys.js';
 import { shelly_temperature_rpc_method_map_t } from './components/Temperature.js';
@@ -144,6 +145,7 @@ type shelly_rpc_method_map_t = shelly_device_rpc_method_map_t &
   shelly_sensor_addon_rpc_method_map_t &
   shelly_serial_rpc_method_map_t &
   shelly_service_rpc_method_map_t &
+  shelly_shelr_rpc_method_map_t &
   shelly_smoke_rpc_method_map_t &
   shelly_switch_rpc_method_map_t &
   shelly_sys_rpc_method_map_t &
