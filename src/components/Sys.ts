@@ -117,6 +117,15 @@ export type shelly_sys_status_t = {
   ch?: shelly_component_key_t[];
 };
 
+export type shelly_sys_backup_manifest_t = {
+  created_at: number;
+  fw_ver: string;
+  model: string;
+  app_name: string;
+  device_name: string;
+  encrypt: boolean;
+};
+
 export type shelly_sys_rpc_method_map_t = {
   'Sys.GetStatus': {
     params?: {};
@@ -137,6 +146,73 @@ export type shelly_sys_rpc_method_map_t = {
   'Sys.SetTime': {
     params: {
       unixtime: number;
+    };
+    result: null;
+  };
+  'Sys.CreateBackup': {
+    params?: {
+      encrypt?: boolean;
+    };
+    result: {
+      key?: string;
+      restart_required: boolean;
+    };
+  };
+  'Sys.DownloadBackup': {
+    params: {
+      offset: number;
+      len: number;
+    };
+    result: {
+      data: string;
+      left: number;
+    };
+  };
+  'Sys.UploadBackup': {
+    params: {
+      offset: number;
+      data: string;
+      final?: boolean;
+    };
+    result: null | {
+      manifest: shelly_sys_backup_manifest_t;
+    };
+  };
+  'Sys.RestoreBackup': {
+    params: {
+      key?: string;
+    };
+    result: null;
+  };
+  'Sys.CreateDefaultConfig': {
+    params: {
+      password: string;
+    };
+    result: {
+      restart_required: boolean;
+    };
+  };
+  'Sys.UploadDefaultConfig': {
+    params: {
+      password: string;
+      offset: number;
+      data: string;
+      final?: boolean;
+    };
+    result: null | {
+      manifest: shelly_sys_backup_manifest_t;
+    };
+  };
+  'Sys.ApplyDefaultConfig': {
+    params: {
+      password: string;
+      key?: string;
+    };
+    result: null;
+  };
+  'Sys.ClearDefaultConfig': {
+    params: {
+      password: string;
     };
     result: null;
   };
