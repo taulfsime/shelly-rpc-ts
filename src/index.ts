@@ -154,6 +154,12 @@ export {
   shelly_occupancy_webhook_event_t,
 } from './components/Occupancy.js';
 export {
+  shelly_pill_config_t,
+  shelly_pill_status_t,
+  shelly_pill_key_t,
+  shelly_pill_type_t,
+} from './components/Pill.js';
+export {
   shelly_pilotwire_config_t,
   shelly_pilotwire_status_t,
   shelly_pilotwire_key_t,
