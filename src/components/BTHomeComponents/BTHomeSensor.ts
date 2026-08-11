@@ -32,13 +32,13 @@ export type shelly_bthomesensor_config_t = {
 };
 
 export type shelly_bthomesensor_rpc_method_map_t = {
-  'BthomeSensor.GetStatus': {
+  'BTHomeSensor.GetStatus': {
     params: {
       id: shelly_component_id_t;
     };
     result: shelly_bthomesensor_status_t;
   };
-  'BthomeSensor.SetConfig': {
+  'BTHomeSensor.SetConfig': {
     params: {
       id: shelly_component_id_t;
       config: optional_recursive_t<shelly_bthomesensor_config_t>;
@@ -47,7 +47,7 @@ export type shelly_bthomesensor_rpc_method_map_t = {
       restart_required: boolean;
     };
   };
-  'BthomeSensor.GetConfig': {
+  'BTHomeSensor.GetConfig': {
     params: {
       id: shelly_component_id_t;
     };
