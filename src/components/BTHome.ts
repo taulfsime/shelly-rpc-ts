@@ -13,7 +13,10 @@ import {
 } from './BTHomeComponents/BTHomeSensor.js';
 import { optional_recursive_t } from './helpers.js';
 
-type shelly_bthome_status_errors_t = 'bluetooth_disabled';
+type shelly_bthome_status_errors_t =
+  | 'bluetooth_disabled'
+  | 'encryption_counter_near_limit'
+  | 'encryption_counter_exhausted';
 
 export type shelly_bthome_type_t = 'bthome';
 export type shelly_bthome_key_t = shelly_bthome_type_t;
@@ -106,5 +109,9 @@ export type shelly_bthome_rpc_method_map_t = {
         unit: string;
       }[];
     };
+  };
+  'BTHome.ResetEncryptionCounter': {
+    params?: {};
+    result: null;
   };
 };
