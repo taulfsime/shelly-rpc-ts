@@ -86,6 +86,14 @@ export {
   shelly_script_key_t,
 } from './components/Script.js';
 export {
+  shelly_serial_config_t,
+  shelly_serial_status_t,
+  shelly_serial_type_t,
+  shelly_serial_key_t,
+  shelly_serial_attrs_t,
+  shelly_serial_mode_t,
+} from './components/Serial.js';
+export {
   shelly_temperature_config_t,
   shelly_temperature_status_t,
   shelly_temperature_key_t,

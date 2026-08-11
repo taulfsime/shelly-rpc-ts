@@ -216,6 +216,13 @@ import {
   shelly_script_type_t,
 } from './components/Script.js';
 import {
+  shelly_serial_attrs_t,
+  shelly_serial_config_t,
+  shelly_serial_key_t,
+  shelly_serial_status_t,
+  shelly_serial_type_t,
+} from './components/Serial.js';
+import {
   shelly_service_config_t,
   shelly_service_key_t,
   shelly_service_status_t,
@@ -446,6 +453,7 @@ export type shelly_component_key_t =
   | shelly_rgbw_key_t
   | shelly_rgbcct_key_t
   | shelly_script_key_t
+  | shelly_serial_key_t
   | shelly_service_key_t
   | shelly_smoke_key_t
   | shelly_switch_key_t
@@ -686,6 +694,13 @@ export type shelly_component_status_map_t =
       shelly_script_type_t,
       shelly_script_config_t,
       shelly_script_status_t
+    >
+  | component_entry_t<
+      shelly_serial_key_t,
+      shelly_serial_type_t,
+      shelly_serial_config_t,
+      shelly_serial_status_t,
+      shelly_serial_attrs_t
     >
   | component_entry_t<
       shelly_temperature_key_t,

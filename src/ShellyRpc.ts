@@ -14,6 +14,7 @@ import { shelly_light_rpc_method_map_t } from './components/Light.js';
 import { shelly_mqtt_rpc_method_map_t } from './components/MQTT.js';
 import { shelly_number_rpc_method_map_t } from './components/VirtualComponents/Number.js';
 import { shelly_script_rpc_method_map_t } from './components/Script.js';
+import { shelly_serial_rpc_method_map_t } from './components/Serial.js';
 import { shelly_service_rpc_method_map_t } from './components/Service.js';
 import { shelly_switch_rpc_method_map_t } from './components/Switch.js';
 import { shelly_sys_rpc_method_map_t } from './components/Sys.js';
@@ -139,6 +140,7 @@ type shelly_rpc_method_map_t = shelly_device_rpc_method_map_t &
   shelly_schedule_rpc_method_map_t &
   shelly_script_rpc_method_map_t &
   shelly_sensor_addon_rpc_method_map_t &
+  shelly_serial_rpc_method_map_t &
   shelly_service_rpc_method_map_t &
   shelly_smoke_rpc_method_map_t &
   shelly_switch_rpc_method_map_t &
