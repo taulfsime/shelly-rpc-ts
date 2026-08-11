@@ -235,6 +235,12 @@ import {
   shelly_service_type_t,
 } from './components/Service.js';
 import {
+  shelly_shelr_config_t,
+  shelly_shelr_key_t,
+  shelly_shelr_status_t,
+  shelly_shelr_type_t,
+} from './components/SheLr.js';
+import {
   shelly_smoke_config_t,
   shelly_smoke_key_t,
   shelly_smoke_status_t,
@@ -462,6 +468,7 @@ export type shelly_component_key_t =
   | shelly_script_key_t
   | shelly_serial_key_t
   | shelly_service_key_t
+  | shelly_shelr_key_t
   | shelly_smoke_key_t
   | shelly_switch_key_t
   | shelly_sys_key_t
@@ -695,6 +702,12 @@ export type shelly_component_status_map_t =
       shelly_service_type_t,
       shelly_service_config_t,
       shelly_service_status_t
+    >
+  | component_entry_t<
+      shelly_shelr_key_t,
+      shelly_shelr_type_t,
+      shelly_shelr_config_t,
+      shelly_shelr_status_t
     >
   | component_entry_t<
       shelly_script_key_t,

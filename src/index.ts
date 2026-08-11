@@ -94,6 +94,14 @@ export {
   shelly_serial_mode_t,
 } from './components/Serial.js';
 export {
+  shelly_shelr_config_t,
+  shelly_shelr_config_set_t,
+  shelly_shelr_status_t,
+  shelly_shelr_type_t,
+  shelly_shelr_key_t,
+  shelly_shelr_webhook_event_t,
+} from './components/SheLr.js';
+export {
   shelly_temperature_config_t,
   shelly_temperature_status_t,
   shelly_temperature_key_t,
