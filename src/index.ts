@@ -146,6 +146,13 @@ export {
   shelly_occupancy_webhook_event_t,
 } from './components/Occupancy.js';
 export {
+  shelly_pilotwire_config_t,
+  shelly_pilotwire_status_t,
+  shelly_pilotwire_key_t,
+  shelly_pilotwire_type_t,
+  shelly_pilotwire_webhook_event_t,
+} from './components/PilotWire.js';
+export {
   shelly_pm1_config_t,
   shelly_pm1_status_t,
   shelly_pm1_key_t,
