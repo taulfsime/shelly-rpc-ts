@@ -117,13 +117,29 @@ export type shelly_webhook_rpc_method_map_t = {
       types: Record<
         shelly_webhook_event_t,
         {
-          attrs?: {
-            name: string;
-            type: 'number' | 'boolean' | 'string';
-            desc: string;
-          }[];
+          attrs?: shelly_webhook_event_attr_t[];
         }
       >;
     };
   };
+  'Webhook.ListAllSupported': {
+    params?: {
+      offset?: number;
+    };
+    result: {
+      types: {
+        [K in shelly_webhook_event_t]?: {
+          attrs?: shelly_webhook_event_attr_t[];
+        };
+      }[];
+      offset: number;
+      total: number;
+    };
+  };
+};
+
+type shelly_webhook_event_attr_t = {
+  name: string;
+  type: 'number' | 'boolean' | 'string';
+  desc: string;
 };
