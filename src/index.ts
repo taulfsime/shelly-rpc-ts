@@ -126,6 +126,13 @@ export {
   shelly_bthomedevice_attrs_t,
 } from './components/BTHomeComponents/BTHomeDevice.js';
 export {
+  shelly_bthomecontrol_config_t,
+  shelly_bthomecontrol_status_t,
+  shelly_bthomecontrol_key_t,
+  shelly_bthomecontrol_type_t,
+  shelly_bthomecontrol_mapping_t,
+} from './components/BTHomeComponents/BTHomeControl.js';
+export {
   shelly_object_config_t,
   shelly_object_status_t,
   shelly_object_key_t,
