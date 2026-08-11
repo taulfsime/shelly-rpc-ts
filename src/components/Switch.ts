@@ -11,6 +11,18 @@ type shelly_switch_status_errors_t =
   | 'overvoltage'
   | 'undervoltage';
 
+type shelly_switch_counter_type_t =
+  | 'aenergy'
+  | 'ret_aenergy'
+  | 'on_time'
+  | 'switch_on'
+  | 'on_above_thr';
+
+type shelly_switch_set_error_t = {
+  code: number;
+  message: string;
+};
+
 export type shelly_switch_type_t = 'switch';
 export type shelly_switch_key_t =
   `${shelly_switch_type_t}:${shelly_component_id_t}`;
@@ -18,6 +30,7 @@ export type shelly_switch_key_t =
 export type shelly_switch_status_t = {
   id: shelly_component_id_t;
   source: shelly_output_component_status_source_t;
+  tag?: string | null;
   output: boolean;
   timer_started_at?: number;
   timer_duration?: number;
@@ -28,6 +41,14 @@ export type shelly_switch_status_t = {
   freq?: number;
   aenergy?: shelly_output_component_status_counter_t;
   ret_aenergy?: shelly_output_component_status_counter_t;
+  counts?: {
+    on_time: number;
+    on_time_rst_ts: number;
+    switch_on: number;
+    switch_on_rst_ts: number;
+    on_above_thr: number;
+    on_above_thr_rst_ts: number;
+  };
   temperature?: {
     tC: null | number;
     tF: null | number;
@@ -52,6 +73,10 @@ export type shelly_switch_config_t = {
   undervoltage_limit?: number;
   current_limit?: number;
   reverse?: boolean;
+  counts?: {
+    enable: boolean;
+    power_thr: number;
+  };
 };
 
 export type shelly_switch_rpc_method_map_t = {
@@ -81,6 +106,7 @@ export type shelly_switch_rpc_method_map_t = {
       id: shelly_component_id_t;
       on: boolean;
       toggle_after?: number;
+      tag?: string | null;
     };
     result: {
       was_on: boolean;
@@ -89,24 +115,46 @@ export type shelly_switch_rpc_method_map_t = {
   'Switch.Toggle': {
     params: {
       id: shelly_component_id_t;
+      tag?: string | null;
     };
     result: {
       was_on: boolean;
     };
   };
+  'Switch.SetAll': {
+    params: {
+      on: boolean;
+      toggle_after?: number;
+      tag?: string | null;
+    };
+    result: null | {
+      results: (null | shelly_switch_set_error_t)[];
+    };
+  };
+  'Switch.SetMany': {
+    params: {
+      ids: shelly_component_id_t[];
+      on: boolean;
+      toggle_after?: number;
+      tag?: string | null;
+    };
+    result: {
+      results: (null | shelly_switch_set_error_t)[];
+    };
+  };
   'Switch.ResetCounters': {
     params: {
       id: shelly_component_id_t;
-      type?: ('aenergy' | 'ret_aenergy')[];
+      type?: shelly_switch_counter_type_t[];
     };
-    result: {
-      aenergy: {
-        total: number;
-      };
-      ret_aenergy: {
-        total: number;
-      };
-    };
+    result: Partial<
+      Record<
+        shelly_switch_counter_type_t,
+        {
+          total: number;
+        }
+      >
+    >;
   };
 };
 
