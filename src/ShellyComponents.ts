@@ -168,6 +168,12 @@ import {
   shelly_light_type_t,
 } from './components/Light.js';
 import {
+  shelly_lnm_config_t,
+  shelly_lnm_key_t,
+  shelly_lnm_status_t,
+  shelly_lnm_type_t,
+} from './components/LNM.js';
+import {
   shelly_matter_config_t,
   shelly_matter_key_t,
   shelly_matter_status_t,
@@ -474,6 +480,7 @@ export type shelly_component_key_t =
   | shelly_irdevice_key_t
   | shelly_knx_key_t
   | shelly_light_key_t
+  | shelly_lnm_key_t
   | shelly_lora_key_t
   | shelly_matter_key_t
   | shelly_mbrtuclient_key_t
@@ -959,6 +966,12 @@ export type shelly_component_status_map_t =
       shelly_blumcb_type_t,
       shelly_blumcb_config_t,
       shelly_blumcb_status_t
+    >
+  | component_entry_t<
+      shelly_lnm_key_t,
+      shelly_lnm_type_t,
+      shelly_lnm_config_t,
+      shelly_lnm_status_t
     >
   | component_entry_t<
       shelly_lora_key_t,

@@ -15,6 +15,7 @@ import { shelly_illuminance_webhook_event_t } from './Illuminance.js';
 import { shelly_input_webhook_event_t } from './Input.js';
 import { shelly_ircode_webhook_event_t } from './IRComponents/IRCode.js';
 import { shelly_light_webhook_event_t } from './Light.js';
+import { shelly_lnm_webhook_event_t } from './LNM.js';
 import { shelly_occupancy_webhook_event_t } from './Occupancy.js';
 import { shelly_pilotwire_webhook_event_t } from './PilotWire.js';
 import { shelly_pm1_webhook_event_t } from './PM1.js';
@@ -47,6 +48,7 @@ export type shelly_webhook_event_t =
   | shelly_input_webhook_event_t
   | shelly_ircode_webhook_event_t
   | shelly_light_webhook_event_t
+  | shelly_lnm_webhook_event_t
   | shelly_occupancy_webhook_event_t
   | shelly_pilotwire_webhook_event_t
   | shelly_pm1_webhook_event_t
