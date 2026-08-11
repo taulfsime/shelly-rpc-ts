@@ -14,6 +14,7 @@ import { shelly_ir_rpc_method_map_t } from './components/IRComponents/IR.js';
 import { shelly_ircode_rpc_method_map_t } from './components/IRComponents/IRCode.js';
 import { shelly_irdevice_rpc_method_map_t } from './components/IRComponents/IRDevice.js';
 import { shelly_light_rpc_method_map_t } from './components/Light.js';
+import { shelly_lnm_rpc_method_map_t } from './components/LNM.js';
 import { shelly_mqtt_rpc_method_map_t } from './components/MQTT.js';
 import { shelly_number_rpc_method_map_t } from './components/VirtualComponents/Number.js';
 import { shelly_script_rpc_method_map_t } from './components/Script.js';
@@ -128,6 +129,7 @@ type shelly_rpc_method_map_t = shelly_device_rpc_method_map_t &
   shelly_knx_rpc_method_map_t &
   shelly_kvs_rpc_method_map_t &
   shelly_light_rpc_method_map_t &
+  shelly_lnm_rpc_method_map_t &
   shelly_lora_rpc_method_map_t &
   shelly_matter_rpc_method_map_t &
   shelly_mbrtuclient_rpc_method_map_t &

@@ -451,6 +451,13 @@ export {
   shelly_blumcb_webhook_event_t,
 } from './components/BluMCB.js';
 export {
+  shelly_lnm_key_t,
+  shelly_lnm_type_t,
+  shelly_lnm_status_t,
+  shelly_lnm_config_t,
+  shelly_lnm_webhook_event_t,
+} from './components/LNM.js';
+export {
   shelly_lora_key_t,
   shelly_lora_type_t,
   shelly_lora_status_t,
