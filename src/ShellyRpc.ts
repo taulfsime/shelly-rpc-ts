@@ -47,6 +47,7 @@ import { shelly_ble_rpc_method_map_t } from './components/BLE.js';
 import { shelly_cloud_rpc_method_map_t } from './components/Cloud.js';
 import { shelly_ws_rpc_method_map_t } from './components/WS.js';
 import { shelly_matter_rpc_method_map_t } from './components/Matter.js';
+import { shelly_mbrtuclient_rpc_method_map_t } from './components/MbRtuClient.js';
 import { shelly_modbus_rpc_method_map_t } from './components/Modbus.js';
 import { shelly_voltmeter_rpc_method_map_t } from './components/Voltmeter.js';
 import { shelly_smoke_rpc_method_map_t } from './components/Smoke.js';
@@ -123,6 +124,7 @@ type shelly_rpc_method_map_t = shelly_device_rpc_method_map_t &
   shelly_light_rpc_method_map_t &
   shelly_lora_rpc_method_map_t &
   shelly_matter_rpc_method_map_t &
+  shelly_mbrtuclient_rpc_method_map_t &
   shelly_modbus_rpc_method_map_t &
   shelly_mqtt_rpc_method_map_t &
   shelly_number_rpc_method_map_t &

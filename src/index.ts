@@ -260,6 +260,12 @@ export {
   shelly_matter_type_t,
 } from './components/Matter.js';
 export {
+  shelly_mbrtuclient_config_t,
+  shelly_mbrtuclient_status_t,
+  shelly_mbrtuclient_key_t,
+  shelly_mbrtuclient_type_t,
+} from './components/MbRtuClient.js';
+export {
   shelly_modbus_status_t,
   shelly_modbus_config_t,
   shelly_modbus_key_t,

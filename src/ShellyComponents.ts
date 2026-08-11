@@ -156,6 +156,12 @@ import {
   shelly_matter_type_t,
 } from './components/Matter.js';
 import {
+  shelly_mbrtuclient_config_t,
+  shelly_mbrtuclient_key_t,
+  shelly_mbrtuclient_status_t,
+  shelly_mbrtuclient_type_t,
+} from './components/MbRtuClient.js';
+import {
   shelly_modbus_config_t,
   shelly_modbus_key_t,
   shelly_modbus_status_t,
@@ -449,6 +455,7 @@ export type shelly_component_key_t =
   | shelly_light_key_t
   | shelly_lora_key_t
   | shelly_matter_key_t
+  | shelly_mbrtuclient_key_t
   | shelly_modbus_key_t
   | shelly_mqtt_key_t
   | shelly_number_key_t
@@ -588,6 +595,12 @@ export type shelly_component_status_map_t =
       shelly_matter_type_t,
       shelly_matter_config_t,
       shelly_matter_status_t
+    >
+  | component_entry_t<
+      shelly_mbrtuclient_key_t,
+      shelly_mbrtuclient_type_t,
+      shelly_mbrtuclient_config_t,
+      shelly_mbrtuclient_status_t
     >
   | component_entry_t<
       shelly_modbus_key_t,
