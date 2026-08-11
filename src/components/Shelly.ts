@@ -195,6 +195,33 @@ export type shelly_device_rpc_method_map_t = {
       len: number;
     };
   };
+  'Shelly.PutHTTPServerCert': {
+    params: {
+      data: string | null;
+      append: boolean;
+    };
+    result: {
+      len: number;
+    };
+  };
+  'Shelly.PutHTTPServerKey': {
+    params: {
+      data: string | null;
+      append: boolean;
+    };
+    result: {
+      len: number;
+    };
+  };
+  'Shelly.PutHTTPServerCABundle': {
+    params: {
+      data: string | null;
+      append: boolean;
+    };
+    result: {
+      len: number;
+    };
+  };
   'Shelly.GetComponents': {
     params?: {
       offset?: number;
