@@ -138,6 +138,24 @@ import {
   shelly_input_type_t,
 } from './components/Input.js';
 import {
+  shelly_ir_config_t,
+  shelly_ir_key_t,
+  shelly_ir_status_t,
+  shelly_ir_type_t,
+} from './components/IRComponents/IR.js';
+import {
+  shelly_ircode_config_t,
+  shelly_ircode_key_t,
+  shelly_ircode_status_t,
+  shelly_ircode_type_t,
+} from './components/IRComponents/IRCode.js';
+import {
+  shelly_irdevice_config_t,
+  shelly_irdevice_key_t,
+  shelly_irdevice_status_t,
+  shelly_irdevice_type_t,
+} from './components/IRComponents/IRDevice.js';
+import {
   shelly_knx_config_t,
   shelly_knx_key_t,
   shelly_knx_status_t,
@@ -451,6 +469,9 @@ export type shelly_component_key_t =
   | shelly_humidity_key_t
   | shelly_illuminance_key_t
   | shelly_input_key_t
+  | shelly_ir_key_t
+  | shelly_ircode_key_t
+  | shelly_irdevice_key_t
   | shelly_knx_key_t
   | shelly_light_key_t
   | shelly_lora_key_t
@@ -758,6 +779,24 @@ export type shelly_component_status_map_t =
       shelly_input_type_t,
       shelly_input_config_t,
       shelly_input_status_t
+    >
+  | component_entry_t<
+      shelly_ir_key_t,
+      shelly_ir_type_t,
+      shelly_ir_config_t,
+      shelly_ir_status_t
+    >
+  | component_entry_t<
+      shelly_irdevice_key_t,
+      shelly_irdevice_type_t,
+      shelly_irdevice_config_t,
+      shelly_irdevice_status_t
+    >
+  | component_entry_t<
+      shelly_ircode_key_t,
+      shelly_ircode_type_t,
+      shelly_ircode_config_t,
+      shelly_ircode_status_t
     >
   | component_entry_t<
       shelly_occupancy_key_t,
