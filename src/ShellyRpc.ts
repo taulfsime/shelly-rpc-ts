@@ -33,6 +33,7 @@ import {
   shelly_component_status_t,
   shelly_component_type_t,
 } from './ShellyComponents.js';
+import { shelly_pill_rpc_method_map_t } from './components/Pill.js';
 import { shelly_pilotwire_rpc_method_map_t } from './components/PilotWire.js';
 import { shelly_pm1_rpc_method_map_t } from './components/PM1.js';
 import { shelly_presencezone_rpc_method_map_t } from './components/PresenceZone.js';
@@ -129,6 +130,7 @@ type shelly_rpc_method_map_t = shelly_device_rpc_method_map_t &
   shelly_plugs_ui_rpc_method_map_t &
   shelly_pluguk_ui_rpc_method_map_t &
   shelly_plusrgbw_rpc_method_map_t &
+  shelly_pill_rpc_method_map_t &
   shelly_pilotwire_rpc_method_map_t &
   shelly_pm1_rpc_method_map_t &
   shelly_presencezone_rpc_method_map_t &

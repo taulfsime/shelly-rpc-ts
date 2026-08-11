@@ -186,6 +186,12 @@ import {
   shelly_occupancy_type_t,
 } from './components/Occupancy.js';
 import {
+  shelly_pill_config_t,
+  shelly_pill_key_t,
+  shelly_pill_status_t,
+  shelly_pill_type_t,
+} from './components/Pill.js';
+import {
   shelly_pilotwire_config_t,
   shelly_pilotwire_key_t,
   shelly_pilotwire_status_t,
@@ -442,6 +448,7 @@ export type shelly_component_key_t =
   | shelly_number_key_t
   | shelly_object_key_t
   | shelly_occupancy_key_t
+  | shelly_pill_key_t
   | shelly_pilotwire_key_t
   | shelly_plugs_ui_key_t
   | shelly_pluguk_ui_key_t
@@ -731,6 +738,12 @@ export type shelly_component_status_map_t =
       shelly_occupancy_type_t,
       shelly_occupancy_config_t,
       shelly_occupancy_status_t
+    >
+  | component_entry_t<
+      shelly_pill_key_t,
+      shelly_pill_type_t,
+      shelly_pill_config_t,
+      shelly_pill_status_t
     >
   | component_entry_t<
       shelly_pilotwire_key_t,
