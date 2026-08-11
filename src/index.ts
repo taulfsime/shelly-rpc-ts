@@ -178,6 +178,13 @@ export {
   shelly_eth_dhcp_client_single_result_t,
 } from './components/Ethernet.js';
 export {
+  shelly_fan_config_t,
+  shelly_fan_status_t,
+  shelly_fan_key_t,
+  shelly_fan_type_t,
+  shelly_fan_webhook_event_t,
+} from './components/Fan.js';
+export {
   shelly_flood_config_t,
   shelly_flood_status_t,
   shelly_flood_key_t,

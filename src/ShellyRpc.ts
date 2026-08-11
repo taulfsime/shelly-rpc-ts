@@ -37,6 +37,7 @@ import { shelly_presencezone_rpc_method_map_t } from './components/PresenceZone.
 import { shelly_presence_rpc_method_map_t } from './components/Presence.js';
 import { shelly_devicepower_rpc_method_map_t } from './components/DevicePower.js';
 import { shelly_ethernet_rpc_method_map_t } from './components/Ethernet.js';
+import { shelly_fan_rpc_method_map_t } from './components/Fan.js';
 import { shelly_flood_rpc_method_map_t } from './components/Flood.js';
 import { shelly_ble_rpc_method_map_t } from './components/BLE.js';
 import { shelly_cloud_rpc_method_map_t } from './components/Cloud.js';
@@ -105,6 +106,7 @@ type shelly_rpc_method_map_t = shelly_device_rpc_method_map_t &
   shelly_emdata_rpc_method_map_t &
   shelly_enum_rpc_method_map_t &
   shelly_ethernet_rpc_method_map_t &
+  shelly_fan_rpc_method_map_t &
   shelly_flood_rpc_method_map_t &
   shelly_group_rpc_method_map_t &
   shelly_ht_ui_rpc_method_map_t &
