@@ -127,6 +127,25 @@ export {
   shelly_input_type_t,
 } from './components/Input.js';
 export {
+  shelly_ir_config_t,
+  shelly_ir_status_t,
+  shelly_ir_key_t,
+  shelly_ir_type_t,
+} from './components/IRComponents/IR.js';
+export {
+  shelly_irdevice_config_t,
+  shelly_irdevice_status_t,
+  shelly_irdevice_key_t,
+  shelly_irdevice_type_t,
+} from './components/IRComponents/IRDevice.js';
+export {
+  shelly_ircode_config_t,
+  shelly_ircode_status_t,
+  shelly_ircode_key_t,
+  shelly_ircode_type_t,
+  shelly_ircode_webhook_event_t,
+} from './components/IRComponents/IRCode.js';
+export {
   shelly_bthomesensor_config_t,
   shelly_bthomesensor_status_t,
   shelly_bthomesensor_key_t,

@@ -10,6 +10,9 @@ import { shelly_group_rpc_method_map_t } from './components/VirtualComponents/Gr
 import { shelly_humidity_rpc_method_map_t } from './components/Humidity.js';
 import { shelly_illuminance_rpc_method_map_t } from './components/Illuminance.js';
 import { shelly_input_rpc_method_map_t } from './components/Input.js';
+import { shelly_ir_rpc_method_map_t } from './components/IRComponents/IR.js';
+import { shelly_ircode_rpc_method_map_t } from './components/IRComponents/IRCode.js';
+import { shelly_irdevice_rpc_method_map_t } from './components/IRComponents/IRDevice.js';
 import { shelly_light_rpc_method_map_t } from './components/Light.js';
 import { shelly_mqtt_rpc_method_map_t } from './components/MQTT.js';
 import { shelly_number_rpc_method_map_t } from './components/VirtualComponents/Number.js';
@@ -119,6 +122,9 @@ type shelly_rpc_method_map_t = shelly_device_rpc_method_map_t &
   shelly_humidity_rpc_method_map_t &
   shelly_illuminance_rpc_method_map_t &
   shelly_input_rpc_method_map_t &
+  shelly_ir_rpc_method_map_t &
+  shelly_ircode_rpc_method_map_t &
+  shelly_irdevice_rpc_method_map_t &
   shelly_knx_rpc_method_map_t &
   shelly_kvs_rpc_method_map_t &
   shelly_light_rpc_method_map_t &
