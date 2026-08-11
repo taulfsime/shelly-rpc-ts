@@ -12,24 +12,14 @@ type shelly_lora_status_flags_t =
 type shelly_lora_status_errors_t =
   | 'ota_update_failed'
   | 'addon_update_required'
-  | 'limit_reached';
+  | 'limit_reached'
+  | 'addon_unavailable';
 
-type shelly_lora_band_plan_t = 'EU868' | 'US915' | 'BR915-928';
+type shelly_lora_band_plan_t = 'EU868' | 'US915' | 'BR915-928' | 'AU915-928';
 
 type shelly_lora_config_fh_t = {
   enable: boolean;
   freqs: number[];
-};
-
-type shelly_lora_config_shelr_accept_t = 'user';
-
-type shelly_lora_config_shelr_t = {
-  lr_addr: string;
-  tx_key: number;
-  key1: string | null;
-  key2: string | null;
-  key3: string | null;
-  accept: shelly_lora_config_shelr_accept_t[] | null;
 };
 
 export type shelly_lora_type_t = 'lora';
@@ -48,7 +38,6 @@ export type shelly_lora_config_t = {
   txp: number;
   rx_enable: boolean;
   fh: shelly_lora_config_fh_t;
-  shelr: shelly_lora_config_shelr_t;
 };
 
 export type shelly_lora_status_t = {
@@ -57,6 +46,11 @@ export type shelly_lora_status_t = {
   bytes_recd: number;
   air_time_hr_ms: number;
   send_fails: number;
+  max_payload_size: number;
+  notx?: {
+    started_at: number;
+    duration: number;
+  };
   fw_version: string;
   available_updates: Partial<
     Record<
@@ -85,6 +79,9 @@ export type shelly_lora_rpc_method_map_t = {
       id: shelly_component_id_t;
       config: optional_recursive_t<shelly_lora_config_t>;
     };
+    result: {
+      restart_required: boolean;
+    };
   };
   'LoRa.GetConfig': {
     params: {
@@ -99,18 +96,6 @@ export type shelly_lora_rpc_method_map_t = {
     };
     result: null;
   };
-  'LoRa.Send': {
-    params: {
-      id: shelly_component_id_t;
-      lr_addr: string;
-      tx_key?: string;
-      tx_key_id?: number;
-      data: string;
-    };
-    result: null;
-  };
 };
 
-export type shelly_lora_webhook_event_t =
-  | 'lora' // raw data received over LoRa RF (from LoRa.SendBytes)
-  | 'user_rx'; // SheLR data received (from LoRa.Send)
+export type shelly_lora_webhook_event_t = 'lora_received';
