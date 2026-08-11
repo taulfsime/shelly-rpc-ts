@@ -51,4 +51,15 @@ export type shelly_schedule_rpc_method_map_t = {
       rev: shelly_schedule_rev_t;
     };
   };
+  'Schedule.Eval': {
+    params: {
+      timespec: string;
+      now?: number;
+    };
+    result: {
+      now: number;
+      next?: number;
+      prev?: number;
+    };
+  };
 };
