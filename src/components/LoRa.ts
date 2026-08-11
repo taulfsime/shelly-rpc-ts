@@ -74,32 +74,32 @@ export type shelly_lora_status_t = {
 };
 
 export type shelly_lora_rpc_method_map_t = {
-  'Lora.GetStatus': {
+  'LoRa.GetStatus': {
     params: {
       id: shelly_component_id_t;
     };
     result: shelly_lora_status_t;
   };
-  'Lora.SetConfig': {
+  'LoRa.SetConfig': {
     params: {
       id: shelly_component_id_t;
       config: optional_recursive_t<shelly_lora_config_t>;
     };
   };
-  'Lora.GetConfig': {
+  'LoRa.GetConfig': {
     params: {
       id: shelly_component_id_t;
     };
     result: shelly_lora_config_t;
   };
-  'Lora.SendBytes': {
+  'LoRa.SendBytes': {
     params: {
       id: shelly_component_id_t;
       data: string;
     };
     result: null;
   };
-  'Lora.Send': {
+  'LoRa.Send': {
     params: {
       id: shelly_component_id_t;
       lr_addr: string;
