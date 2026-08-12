@@ -1,5 +1,48 @@
 # Changelog
 
+[0.8.1] 2026-08-12
+
+Added
+
+- LNM: added new component type with GetStatus, SetConfig, GetConfig, Create, Delete, and Call RPC methods, plus webhook events
+- IR, IRDevice, IRCode: added new IR component types with full RPC method support and webhook events
+- MbRtuClient: added Modbus RTU client component with read/write register RPC methods
+- SheLr: added new SheLr component type with Send, Call, Notify, and ResetRxCounter RPC methods plus webhook events
+- Pill: added new Pill component type with mode and pin configuration support
+- Serial: added new Serial component type supporting disabled, jsuart, mb_server, and mb_client modes
+- PilotWire: added new PilotWire component type with mode control and webhook events
+- Fan: added new Fan component type with speed/mode control and webhook events
+- BTHomeControl: added config/status types, GetStatus, SetConfig, GetConfig, Create, Update, and Enumerate RPC methods; updated light actions and mapping types
+- EM, EM1, PM1: Added alarms config (voltage/current/power thresholds), status flags (undervoltage, overvoltage, undercurrent, overcurrent, underpower, overpower), and corresponding webhook events
+- Occupancy: Added TypeScript types for config, status, RPC methods, and webhook events
+- Presence: Added TypeScript types for config, status, and RPC methods (including zone management and live tracking)
+- PresenceZone: Added TypeScript types for config, status, RPC methods, and webhook events
+- Illuminance: Added TypeScript types for config, status, RPC methods, and webhook events
+- Flood: Added TypeScript types for config, status, RPC methods, and webhook events
+- RGBCCT: Added TypeScript types for config, status, RPC methods, and webhook events
+- CB (Circuit Breaker): Added TypeScript types for config, status, RPC methods, and webhook events
+- BM (Battery Monitor): Added TypeScript types for config, status, RPC methods, and webhook events
+- BluMCB: Added TypeScript types for config, status, RPC methods, and webhook events
+- Project: Added AI agent configuration and MCP server link to Shelly API docs
+
+Changed
+
+- LoRa: renamed RPC methods from Lora.* to LoRa.*, added AU915-928 band plan, addon_unavailable error, max_payload_size and notx status fields, restart_required result for SetConfig; removed shelr config and LoRa.Send method; updated webhook event to lora_received
+- Switch: added tag support for Set/Toggle/SetAll/SetMany, added counts status and config fields, added SetAll and SetMany RPC methods, expanded ResetCounters to support additional counter types
+- Sys: added backup and default config RPC methods (CreateBackup, DownloadBackup, UploadBackup, RestoreBackup, CreateDefaultConfig, UploadDefaultConfig, ApplyDefaultConfig, ClearDefaultConfig)
+- BLE: updated config structure, added status fields (addr, flags, pairing), added pairing, paired device management, AdvertiseOnce, and SendBTHomeCommand RPC methods
+- Shelly: added PutHTTPServerCert, PutHTTPServerKey, and PutHTTPServerCABundle RPC methods
+- Light: added GetConfig RPC method, added SetMany RPC method with multi-id support and tag parameter
+- Webhook: added Webhook.ListAllSupported RPC method; extracted shelly_webhook_event_attr_t type
+- Schedule: added Schedule.Eval RPC method for timespec evaluation
+- BTHome: added encryption_counter_near_limit and encryption_counter_exhausted error types; added BTHome.ResetEncryptionCounter RPC method
+- BluTrv: Added errors field to status, added GetRemoteStatus/GetRemoteConfig/GetRemoteDeviceInfo RPC methods, exported webhook event type
+- LoRa: Added band_plan, fh, and shelr config fields; added Lora.Send RPC method; added webhook event type; expanded status flags
+
+Fixed
+
+- BTHomeSensor: corrected RPC method casing from BthomeSensor.* to BTHomeSensor.*
+
 [0.7.1] 2026-01-06
 
 Fixed
