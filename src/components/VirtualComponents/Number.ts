@@ -44,7 +44,7 @@ export type shelly_number_rpc_method_map_t = {
       | {
           role: shelly_service_role_t;
           owner: shelly_service_key_t;
-          config: shelly_number_config_t;
+          config: optional_recursive_t<shelly_number_config_t>;
         };
     result: {
       restart_required: boolean;

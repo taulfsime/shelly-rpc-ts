@@ -97,6 +97,7 @@ export type shelly_rgb_rpc_method_map_t = {
       transition_duration?: number;
       toggle_after?: number;
       offset?: number;
+      tag?: string | null;
     } & at_least_one_prop_t<{
       on?: boolean;
       brightness?: number;
@@ -106,6 +107,7 @@ export type shelly_rgb_rpc_method_map_t = {
   'RGB.Toggle': {
     params: {
       id: shelly_component_id_t;
+      tag?: string | null;
     };
     result: null;
   };

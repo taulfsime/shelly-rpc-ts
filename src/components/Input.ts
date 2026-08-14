@@ -108,7 +108,7 @@ export type shelly_input_rpc_method_map_t = {
   'Input.Trigger': {
     params: {
       id: shelly_component_id_t;
-      event: shelly_input_event_t;
+      event_type: shelly_input_event_t;
     };
     result: null;
   };

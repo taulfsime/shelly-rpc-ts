@@ -68,6 +68,7 @@ type shelly_cover_rpc_go_to_position_params_t = (
       only_one_prop_t<{ slat_pos: number; slat_rel: number }>)
 ) & {
   id: shelly_component_id_t;
+  tag?: string | null;
 };
 
 export type shelly_cover_config_t = {
@@ -144,6 +145,7 @@ export type shelly_cover_rpc_method_map_t = {
     params: {
       id: shelly_component_id_t;
       duration?: number;
+      tag?: string | null;
     };
     result: null;
   };
@@ -151,12 +153,14 @@ export type shelly_cover_rpc_method_map_t = {
     params: {
       id: shelly_component_id_t;
       duration?: number;
+      tag?: string | null;
     };
     result: null;
   };
   'Cover.Stop': {
     params: {
       id: shelly_component_id_t;
+      tag?: string | null;
     };
     result: null;
   };

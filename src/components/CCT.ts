@@ -95,6 +95,7 @@ export type shelly_cct_rpc_method_map_t = {
       toggle_after?: number;
       transition_duration?: number;
       offset?: number;
+      tag?: string | null;
     } & at_least_one_prop_t<{
       on?: boolean;
       brightness?: number;
@@ -105,6 +106,7 @@ export type shelly_cct_rpc_method_map_t = {
   'CCT.Toggle': {
     params: {
       id: shelly_component_id_t;
+      tag?: string | null;
     };
     result: null;
   };

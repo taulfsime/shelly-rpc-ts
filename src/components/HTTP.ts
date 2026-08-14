@@ -10,10 +10,10 @@ type shelly_http_request_params_base_t = Omit<
   'content_type'
 > & {
   method: 'GET' | 'POST' | 'PUT' | 'HEAD' | 'DELETE';
-  headaers?: {
-    'User-Agent': never;
-    'Content-Length': never;
-    [key: string]: string;
+  headers?: {
+    'User-Agent'?: never;
+    'Content-Length'?: never;
+    [key: string]: string | undefined;
   };
 };
 
@@ -30,7 +30,7 @@ export type shelly_http_rpc_method_map_t = {
     params: {
       url: string;
       timeout?: number;
-      ssl_ca: '*' | 'user_ca.pem' | null;
+      ssl_ca?: '*' | 'user_ca.pem' | null;
     };
     result: shelly_http_result_t;
   };
