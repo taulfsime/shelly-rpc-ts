@@ -61,6 +61,7 @@ export type shelly_rgbw_rpc_method_map_t = {
   'RGBW.Set': {
     params: NonNullable<shelly_rgb_rpc_method_map_t['RGB.Set']>['params'] & {
       white?: number;
+      offset_white?: number;
     };
     result: null;
   };

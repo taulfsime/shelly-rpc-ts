@@ -49,8 +49,11 @@ export type shelly_voltmeter_rpc_method_map_t = {
   };
   'Voltmeter.CheckExpression': {
     params: {
-      inputs: (null | shelly_component_id_t)[];
       expr: string;
+      inputs: (number | null)[];
+    };
+    result: {
+      results: ([number, number | null] | [number, number | null, string])[];
     };
   };
 };

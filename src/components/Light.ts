@@ -112,8 +112,10 @@ export type shelly_light_rpc_method_map_t = {
   'Light.Set': {
     params: {
       id: shelly_component_id_t;
+      transition_duration?: number;
       toggle_after?: number;
       offset?: number;
+      tag?: string | null;
     } & at_least_one_prop_t<{
       on?: boolean;
       brightness?: number;
@@ -123,6 +125,7 @@ export type shelly_light_rpc_method_map_t = {
   'Light.Toggle': {
     params: {
       id: shelly_component_id_t;
+      tag?: string | null;
     };
     result: null;
   };
@@ -148,11 +151,16 @@ export type shelly_light_rpc_method_map_t = {
   };
   'Light.SetAll': {
     params: {
-      on?: boolean;
-      brightness?: number;
       toggle_after?: number;
       offset?: number;
       transition_duration?: number;
+      tag?: string | null;
+    } & at_least_one_prop_t<{
+      on?: boolean;
+      brightness?: number;
+    }>;
+    result: null | {
+      results: (null | { code: number; message: string })[];
     };
   };
   'Light.SetMany': {

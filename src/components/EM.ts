@@ -113,8 +113,8 @@ export type shelly_em_rpc_method_map_t = {
   'EM.PhaseToPhaseCalib': {
     params: {
       id: shelly_component_id_t;
-      from: 'a' | 'b' | 'c';
-      to: 'a' | 'b' | 'c';
+      from: 'a' | 'b' | 'c' | 'n';
+      to: 'a' | 'b' | 'c' | 'n';
     };
     result: {
       restart_required: boolean;
@@ -123,7 +123,7 @@ export type shelly_em_rpc_method_map_t = {
   'EM.PhaseToPhaseCalibReset': {
     params: {
       id: shelly_component_id_t;
-      phase: 'a' | 'b' | 'c';
+      phase: 'a' | 'b' | 'c' | 'n';
     };
     result: {
       restart_required: boolean;

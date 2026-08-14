@@ -45,8 +45,8 @@ export type shelly_ethernet_rpc_method_map_t = {
     result: shelly_ethernet_config_t;
   };
   'Eth.ListClients': {
-    params: {
-      offset: number;
+    params?: {
+      offset?: number;
     };
     result: {
       ts: number;

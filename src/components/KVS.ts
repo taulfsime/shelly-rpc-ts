@@ -31,8 +31,8 @@ export type shelly_kvs_rpc_method_map_t = {
     };
   };
   'KVS.List': {
-    params: {
-      match: string;
+    params?: {
+      match?: string;
     };
     result: {
       keys: Record<
@@ -54,9 +54,9 @@ export type shelly_kvs_rpc_method_map_t = {
     };
   };
   'KVS.GetMany': {
-    params: {
-      match: string;
-      offset: number;
+    params?: {
+      match?: string;
+      offset?: number;
     };
     result: {
       items: {

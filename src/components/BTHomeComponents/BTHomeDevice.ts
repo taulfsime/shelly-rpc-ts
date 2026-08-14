@@ -74,7 +74,7 @@ export type shelly_bthomedevice_rpc_method_map_t = {
         obj_id: number;
         idx: number;
         component: shelly_bthomesensor_key_t | null;
-      };
+      }[];
     };
   };
 };

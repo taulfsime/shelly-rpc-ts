@@ -62,7 +62,7 @@ export type shelly_cb_rpc_method_map_t = {
   'CB.Set': {
     params: {
       id: shelly_component_id_t;
-      output: false;
+      output: boolean;
     };
     result: {
       was_on: boolean;
