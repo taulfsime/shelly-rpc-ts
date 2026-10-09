@@ -45,7 +45,7 @@
     "prettier": "^3.5.3",
     "tsx": "^4.21.0",
     "typescript": "^5.9.3",
-    "vitest": "^4.1.10"
+    "vitest": "^4.1.11"
   },
   "publishConfig": {
     "access": "public",
