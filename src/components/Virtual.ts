@@ -41,6 +41,15 @@ export type shelly_virtual_component_status_source_t =
   | 'sys'
   | 'err';
 
+export type shelly_virtual_component_meta_t<
+  T extends Record<string, unknown> = {},
+> = null | {
+  ui?: {
+    view?: string;
+  } & T;
+  [key: string]: unknown;
+};
+
 export type shelly_virtual_component_key_t =
   | shelly_boolean_key_t
   | shelly_button_key_t

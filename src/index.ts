@@ -4,6 +4,10 @@ export {
   shelly_sys_status_t,
   shelly_sys_key_t,
   shelly_sys_type_t,
+  shelly_sys_backup_manifest_t,
+  shelly_sys_discovery_result_t,
+  shelly_sys_discovery_results_event_t,
+  shelly_sys_discovery_done_event_t,
 } from './components/Sys.js';
 export {
   shelly_wifi_config_t,
@@ -245,6 +249,7 @@ export {
   shelly_ble_key_t,
   shelly_ble_type_t,
   shelly_ble_client_single_result_t,
+  shelly_ble_paired_device_t,
 } from './components/BLE.js';
 export {
   shelly_bm_config_t,
@@ -387,6 +392,7 @@ export {
 export {
   shelly_virtual_component_key_t,
   shelly_virtual_component_status_source_t,
+  shelly_virtual_component_meta_t,
   shelly_virtual_attrs_t,
   shelly_virtual_attrs_t as shelly_number_attrs_t,
   shelly_virtual_attrs_t as shelly_boolean_attrs_t,
@@ -551,4 +557,6 @@ export {
 export {
   ShellyTransportBase,
   shelly_transport_rpc_options_t,
+  shelly_listener_event_t,
+  shelly_listener_params_t,
 } from './transport/ShellyTransportBase.js';

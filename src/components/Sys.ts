@@ -115,6 +115,46 @@ export type shelly_sys_status_t = {
   reset_reason?: number;
   utc_offset: number;
   ch?: shelly_component_key_t[];
+  backup?:
+    | {
+        href: string;
+        created: number;
+      }
+    | {
+        error: string;
+      }
+    | {};
+  default_config?: {
+    exists: boolean;
+    created?: number;
+  };
+  discovery?: {
+    started_at: number;
+    duration: number;
+  };
+};
+
+export type shelly_sys_discovery_result_t = {
+  name?: string;
+  host?: string;
+  iface?: string;
+  ipv4?: string[];
+  ipv6?: string[];
+  attrs: Record<string, string | number>; // TXT record, all-digit values as numbers
+};
+
+export type shelly_sys_discovery_results_event_t = {
+  component: shelly_sys_key_t;
+  event: 'discovery_results';
+  results: shelly_sys_discovery_result_t[];
+  ts: number;
+};
+
+export type shelly_sys_discovery_done_event_t = {
+  component: shelly_sys_key_t;
+  event: 'discovery_done';
+  result_count: number;
+  ts: number;
 };
 
 export type shelly_sys_backup_manifest_t = {
@@ -214,6 +254,16 @@ export type shelly_sys_rpc_method_map_t = {
     params: {
       password: string;
     };
+    result: null;
+  };
+  'Sys.StartDiscovery': {
+    params?: {
+      duration?: number; // seconds, 5-60, default 10
+    };
+    result: null;
+  };
+  'Sys.StopDiscovery': {
+    params?: {};
     result: null;
   };
 };

@@ -6,6 +6,7 @@ export type shelly_ethernet_key_t = shelly_ethernet_type_t;
 export type shelly_ethernet_status_t = {
   ip: string | null;
   ip6: string[] | null;
+  dhcp_client_count?: number;
 };
 
 //: TODO: more detailed type per server and ipv4 modes

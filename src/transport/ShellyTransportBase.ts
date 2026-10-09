@@ -12,7 +12,7 @@ import {
   shelly_rpc_notification_notify_status_t,
 } from '../ShellyRpc.js';
 
-type shelly_listener_event_t =
+export type shelly_listener_event_t =
   | shelly_rpc_notification_method_t
   | '_StateChanged'
   | '_DebugLog';
@@ -25,7 +25,7 @@ export const ShellyDebugLogLevel = {
   VERBOSE: 4,
 } as const;
 
-type shelly_listener_params_t = {
+export type shelly_listener_params_t = {
   NotifyStatus: shelly_rpc_notification_notify_status_t['params'];
   NotifyFullStatus: shelly_rpc_notification_notify_status_t['params'];
   NotifyEvent: shelly_rpc_notification_notify_event_t['params'];

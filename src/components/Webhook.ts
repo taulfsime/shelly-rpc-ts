@@ -95,7 +95,8 @@ export type shelly_webhook_rpc_method_map_t = {
     };
   };
   'Webhook.Create': {
-    params: Omit<shelly_component_id_t, 'id'>;
+    params: Pick<shelly_webhook_hook_t, 'cid' | 'event' | 'urls'> &
+      Partial<Omit<shelly_webhook_hook_t, 'id' | 'cid' | 'event' | 'urls'>>;
     result: {
       id: shelly_webhook_hook_id_t;
       rev: shelly_webhook_rev_t;

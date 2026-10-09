@@ -90,6 +90,7 @@ import { shelly_bthomecontrol_rpc_method_map_t } from './components/BTHomeCompon
 import { shelly_media_rpc_method_map_t } from './components/Media.js';
 import { shelly_thermostat_rpc_method_map_t } from './components/Thermostat.js';
 import { shelly_cury_rpc_method_map_t } from './components/Cury.js';
+import { shelly_ota_rpc_method_map_t } from './components/OTA.js';
 
 type shelly_rpc_method_map_t = shelly_device_rpc_method_map_t &
   shelly_ble_rpc_method_map_t &
@@ -173,7 +174,8 @@ type shelly_rpc_method_map_t = shelly_device_rpc_method_map_t &
   shelly_zigbee_rpc_method_map_t &
   shelly_media_rpc_method_map_t &
   shelly_thermostat_rpc_method_map_t &
-  shelly_cury_rpc_method_map_t;
+  shelly_cury_rpc_method_map_t &
+  shelly_ota_rpc_method_map_t;
 
 export type shelly_rpc_method_t = keyof shelly_rpc_method_map_t;
 

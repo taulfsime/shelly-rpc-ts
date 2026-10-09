@@ -34,7 +34,7 @@ export type shelly_schedule_rpc_method_map_t = {
   };
   'Schedule.List': {
     result: {
-      job: shelly_schedule_job_t[];
+      jobs: shelly_schedule_job_t[];
       rev: shelly_schedule_rev_t;
     };
   };

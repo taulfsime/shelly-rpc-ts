@@ -1,5 +1,8 @@
 import { shelly_component_id_t } from '../../ShellyComponents.js';
-import { shelly_virtual_component_status_source_t } from '../Virtual.js';
+import {
+  shelly_virtual_component_status_source_t,
+  shelly_virtual_component_meta_t,
+} from '../Virtual.js';
 import { shelly_service_key_t, shelly_service_role_t } from '../Service.js';
 import { optional_recursive_t } from '../helpers.js';
 
@@ -18,7 +21,10 @@ export type shelly_number_config_t = {
   name: string | null;
   persisted: boolean;
   default_value: number;
-  meta: null | Record<string, unknown>;
+  meta: shelly_virtual_component_meta_t<{
+    unit?: string;
+    step?: number;
+  }>;
   min: number;
   max: number;
 };

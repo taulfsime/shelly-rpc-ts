@@ -1,6 +1,7 @@
 import { shelly_component_id_t } from '../../ShellyComponents.js';
 import { optional_recursive_t } from '../helpers.js';
 import { shelly_service_key_t, shelly_service_role_t } from '../Service.js';
+import { shelly_virtual_component_meta_t } from '../Virtual.js';
 
 export type shelly_button_type_t = 'button';
 export type shelly_button_key_t =
@@ -17,7 +18,7 @@ export type shelly_button_status_t = {};
 export type shelly_button_config_t = {
   id: shelly_component_id_t;
   name: string | null;
-  meta: null | Record<string, unknown>;
+  meta: shelly_virtual_component_meta_t;
 };
 
 export type shelly_button_rpc_method_map_t = {

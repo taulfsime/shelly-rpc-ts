@@ -1,5 +1,8 @@
 import { shelly_component_id_t } from '../../ShellyComponents.js';
-import { shelly_virtual_component_status_source_t } from '../Virtual.js';
+import {
+  shelly_virtual_component_status_source_t,
+  shelly_virtual_component_meta_t,
+} from '../Virtual.js';
 import { shelly_service_key_t, shelly_service_role_t } from '../Service.js';
 import { optional_recursive_t } from '../helpers.js';
 
@@ -21,7 +24,9 @@ export type shelly_enum_config_t = {
   persisted: boolean;
   options: shelly_enum_option_t[];
   default_value: shelly_enum_option_t | null;
-  meta: null | Record<string, unknown>;
+  meta: shelly_virtual_component_meta_t<{
+    titles?: Record<shelly_enum_option_t, string | null>;
+  }>;
 };
 
 export type shelly_enum_rpc_method_map_t = {

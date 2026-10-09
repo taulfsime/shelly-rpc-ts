@@ -1,5 +1,8 @@
 import { shelly_component_id_t } from '../../ShellyComponents.js';
-import { shelly_virtual_component_status_source_t } from '../Virtual.js';
+import {
+  shelly_virtual_component_status_source_t,
+  shelly_virtual_component_meta_t,
+} from '../Virtual.js';
 import { shelly_service_key_t, shelly_service_role_t } from '../Service.js';
 import { optional_recursive_t } from '../helpers.js';
 
@@ -16,7 +19,7 @@ export type shelly_object_status_t = {
 export type shelly_object_config_t = {
   id: shelly_component_id_t;
   name: string | null;
-  meta: null | Record<string, unknown>;
+  meta: shelly_virtual_component_meta_t;
 };
 
 export type shelly_object_rpc_method_map_t = {

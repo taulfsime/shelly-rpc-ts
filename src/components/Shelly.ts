@@ -165,6 +165,7 @@ export type shelly_device_rpc_method_map_t = {
       user: shelly_device_auth_user_t;
       realm: shelly_device_auth_realm_t;
       ha1: shelly_device_auth_ha1_t;
+      ha1_md5?: shelly_device_auth_ha1_t;
     };
     result: null;
   };
@@ -240,6 +241,16 @@ export type shelly_device_rpc_method_map_t = {
     params: {
       stage: shelly_device_update_stage_t;
       app: shelly_device_app_t;
+    };
+    result: null;
+  };
+  'Shelly.ListAlternatives': {
+    params?: {};
+    result: Record<shelly_device_app_t, string>;
+  };
+  'Shelly.SetAlternative': {
+    params: {
+      name: shelly_device_app_t;
     };
     result: null;
   };
