@@ -99,6 +99,33 @@ describe('ShellyTransportBase', () => {
     expect(listener).toHaveBeenCalledTimes(1);
   });
 
+  it('should call _StateChanged listeners once per change', () => {
+    const listener = vi.fn();
+    transport.on('_StateChanged', listener);
+
+    transport.state = 'connected';
+    transport.state = 'connected';
+    transport.state = 'disconnected';
+
+    expect(listener.mock.calls).toEqual([['connected'], ['disconnected']]);
+  });
+
+  it('should call _DebugLog listeners', () => {
+    const listener = vi.fn();
+    const line = { data: 'hello', ts: 1, level: 2 as const, fd: 1 };
+    transport.on('_DebugLog', listener);
+
+    (
+      transport as unknown as { _emitDebugLog: (d: typeof line) => void }
+    )._emitDebugLog(line);
+
+    expect(listener).toHaveBeenCalledWith(line);
+  });
+
+  it('should allow unsubscribing an event nobody listened to', () => {
+    expect(() => transport.off('NotifyFullStatus', vi.fn())).not.toThrow();
+  });
+
   it('should handle request retries and fail after retries', async () => {
     transport.sendResult = false; // _onSend will fail
     const promise = transport.rpcRequest(
