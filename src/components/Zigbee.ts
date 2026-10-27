@@ -19,6 +19,7 @@ export type shelly_zigbee_rpc_method_map_t = {
   'Zigbee.SetConfig': {
     params: {
       config: optional_recursive_t<shelly_zigbee_config_t>;
+      reboot?: boolean; // restarts right after saving
     };
     result: {
       restart_required: boolean;

@@ -79,19 +79,22 @@ export type shelly_bthomecontrol_type_t = 'bthomecontrol';
 export type shelly_bthomecontrol_key_t =
   `${shelly_bthomecontrol_type_t}:${shelly_component_id_t}`;
 
+// {} unless the output is a cover
 export type shelly_bthomecontrol_config_t = {
-  id: shelly_component_id_t;
+  id?: shelly_component_id_t;
   blu_remote_cover_mode?: 0 | 1;
 };
 
+export type shelly_bthomecontrol_learning_t = {
+  stage: shelly_bthomecontrol_learning_stage_t;
+  err: shelly_bthomecontrol_learning_err_t | null;
+  ts: number;
+  duration: number | null;
+};
+
+// the firmware sends no id; learning is null once pairing ends
 export type shelly_bthomecontrol_status_t = {
-  id: shelly_component_id_t;
-  learning?: {
-    stage: shelly_bthomecontrol_learning_stage_t;
-    err: shelly_bthomecontrol_learning_err_t | null;
-    ts: number;
-    duration: number | null;
-  };
+  learning?: shelly_bthomecontrol_learning_t | null;
 };
 
 export type shelly_bthomecontrol_rpc_method_map_t = {
@@ -138,10 +141,12 @@ export type shelly_bthomecontrol_rpc_method_map_t = {
       id: shelly_component_id_t;
       offset?: number;
     };
+    // inputs come in pages; offset counts the remotes already sent
     result: {
       id: shelly_component_id_t;
       offset: number;
       total: number;
+      blu_remote_cover_mode?: 0 | 1; // cover outputs only
     } & shelly_bthomecontrol_mapping_t;
   };
   'BTHomeControl.Create': {

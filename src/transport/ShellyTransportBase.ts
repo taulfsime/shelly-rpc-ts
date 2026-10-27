@@ -25,6 +25,17 @@ export const ShellyDebugLogLevel = {
   VERBOSE: 4,
 } as const;
 
+export type shelly_debug_log_level_t =
+  (typeof ShellyDebugLogLevel)[keyof typeof ShellyDebugLogLevel];
+
+export type shelly_debug_log_msg_t = {
+  seq: number; // lossy: gaps mean dropped lines
+  data: string;
+  ts: number;
+  level: shelly_debug_log_level_t;
+  fd: number;
+};
+
 export type shelly_listener_params_t = {
   NotifyStatus: shelly_rpc_notification_notify_status_t['params'];
   NotifyFullStatus: shelly_rpc_notification_notify_status_t['params'];
@@ -32,12 +43,7 @@ export type shelly_listener_params_t = {
 
   _StateChanged: 'connected' | 'disconnected' | 'initial';
 
-  _DebugLog: {
-    data: string;
-    ts: number;
-    level: (typeof ShellyDebugLogLevel)[keyof typeof ShellyDebugLogLevel];
-    fd: number;
-  };
+  _DebugLog: shelly_debug_log_msg_t;
 };
 
 type shelly_listener_t<M extends shelly_listener_event_t> = (

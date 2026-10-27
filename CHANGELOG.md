@@ -2,10 +2,56 @@
 
 [Unreleased]
 
+Added
+
+- Camera, CameraZone, Storage: new component types with config, status, RPC methods (Camera.Set, CaptureImage, StartRecording, StopRecording, PlaySound, AddZone, DeleteZone, GetCapabilities; Storage.List, Delete, Eject, Format, UploadSound, ListSounds, DeleteSound) and webhook events
+- Streamer: Streamer.GetAnswer, SetStreamSource and StopStream RPC methods (camera live video)
+- LedStrip: new component type with config, status and Set, AddEffect, RemoveEffect, NextEffect, ResetEffect RPC methods
+- ProRGBWWPM: new component type (hf_mode config)
+- Uni: Uni.\* RPC methods (Plus Uni), typed as their SensorAddon.\* counterparts
+- Shelly: Shelly.ZigbeeClear RPC method; CheckForUpdate src param and alt result; Update commit_delay/commit_timeout params; 'matter' update stage; nsteps and svc0 in update info; enhanced_security in device info; exported shelly_device_update_stage_t, shelly_device_update_info_t, shelly_device_update_alt_t
+- Sys: device.enhanced_security and device.tls_check_cert_validity_time config; nsteps in available_updates; component_added/component_removed and ota\_\* event types
+- NotifyEvent: shelly_rpc_event_t (one event, with the event's own fields) and shelly_rpc_known_event_t (sys, OTA, discovery, BTHome discovery, EMData/EM1Data data events)
+- BTHome: AddDevice attrs param; StartDeviceDiscovery rssi_thr and auto_add_models params; device_discovered and discovery_done event types
+- Light: gamma and warmup config, attrs (inputs, transition limits); null gamma in SetConfig restores the default
+- Switch: power_restore_delay_enable and power_restore_delay config, attrs (inputs)
+- Cover, RGB, RGBW, CCT: attrs (inputs)
+- Ethernet: nameserver config
+- MQTT: enable_rpc config, pass in SetConfig
+- Matter: presence config; reboot param for SetConfig
+- Zigbee, KNX: reboot param for SetConfig and KNX.SetComponentConfig
+- KNX: shelly_knx_component_config_t
+- Script: type param for Script.Create
+- Schedule: origin on job calls
+- SensorAddon: io in OneWireScan devices
+- Transport: exported ShellyDebugLogLevel, shelly_debug_log_msg_t (with seq) and shelly_debug_log_level_t
+
+Changed
+
+- Virtual.Add: config is optional and partial
+- BTHome.AddSensor: name and meta are optional; BTHome.StartDeviceDiscovery params are optional
+- HTTP.GET: ssl_ca is optional
+- EM.PhaseToPhaseCalib: to takes 'n' (neutral)
+- Light, RGB, CCT, RGBCCT: night_mode.active_between can be [] (all day)
+- KNX.SetConfig: ia and routing.addr take null (restores the default)
+- KNX.SetComponentConfig: config is partial, group address lists take null
+- Breaking: NotifyEvent events are shelly_rpc_event_t, id is optional (sys events have none)
+- Breaking: Sys config device.name, rpc_udp.dst_addr and sntp.server are nullable
+- Breaking: BTHomeDevice attrs has model_idname, flags is optional
+- Breaking: BTHomeControl status has no id and learning can be null; config id is optional
+
 Fixed
 
 - ShellyTransportBase: listeners are kept in a Map, so a minifier that renames properties (terser mangle.properties) no longer breaks \_StateChanged / \_DebugLog; off() on an event nobody listened to is a no-op
 - ShellyTransportBase: the in-flight count no longer drops below zero after a response to a request that had already timed out, or after a request that could not be sent ran out of retries (both disabled the requestsInFlight limit)
+- Breaking: MQTT config username renamed to user (as the firmware sends it); use_client_cert is optional
+- Breaking: Input.Trigger param event renamed to event_type
+- Breaking: Input.CheckExpression and Voltmeter.CheckExpression take numbers as inputs and return numbers ([input, output, error?]); Voltmeter.CheckExpression has a result
+- Breaking: BTHomeDevice.GetKnownObjects objects is a list
+- Breaking: KNX.ListComponents result is a page of components
+- Breaking: SheLr key1..key3 moved from the config to the status
+- Breaking: AddOn.CheckForUpdate result is under available_updates, null without an update
+- RGBW: night_mode is the RGB night mode plus white (was typed as the whole RGB config with 'while')
 
 [0.8.1] 2026-08-12
 

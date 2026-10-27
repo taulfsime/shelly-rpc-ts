@@ -83,15 +83,12 @@ export type shelly_input_rpc_method_map_t = {
   };
   'Input.CheckExpression': {
     params: {
-      inputs: (null | shelly_component_id_t)[];
+      inputs: (number | null)[]; // up to 5 values to try the expression on
       expr: string;
     };
     result: {
-      results: [
-        string, // input
-        string | null, // output
-        string | undefined, // error message
-      ][];
+      // one per input: [input, output, error message]; null where not a number
+      results: [number | null, number | null, string?][];
     };
   };
   'Input.ResetCounters': {
@@ -108,7 +105,7 @@ export type shelly_input_rpc_method_map_t = {
   'Input.Trigger': {
     params: {
       id: shelly_component_id_t;
-      event: shelly_input_event_t;
+      event_type: shelly_input_event_t;
     };
     result: null;
   };

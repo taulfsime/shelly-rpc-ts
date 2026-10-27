@@ -31,6 +31,32 @@ export type shelly_bthome_status_t = {
   errors?: shelly_bthome_status_errors_t[];
 };
 
+export type shelly_bthome_discovered_device_t = {
+  addr: string;
+  local_name: string;
+  rssi: number;
+  encrypted: boolean;
+  shelly_mfdata: {
+    flags: number;
+    model_id: number;
+    mac: string;
+  };
+};
+
+export type shelly_bthome_device_discovered_event_t = {
+  component: shelly_bthome_key_t;
+  event: 'device_discovered';
+  device: shelly_bthome_discovered_device_t;
+  ts: number;
+};
+
+export type shelly_bthome_discovery_done_event_t = {
+  component: shelly_bthome_key_t;
+  event: 'discovery_done';
+  device_count: number;
+  ts: number;
+};
+
 export type shelly_bthome_component_type_t =
   | shelly_bthomedevice_type_t
   | shelly_bthomesensor_type_t;
@@ -61,6 +87,10 @@ export type shelly_bthome_rpc_method_map_t = {
         >]?: shelly_bthomedevice_config_t[key];
       };
       id?: shelly_component_id_t;
+      attrs?: {
+        model_id: number;
+        model_idname?: string;
+      };
     };
     result: {
       added: shelly_bthomedevice_key_t;
@@ -74,7 +104,8 @@ export type shelly_bthome_rpc_method_map_t = {
   };
   'BTHome.AddSensor': {
     params: {
-      config: Omit<shelly_bthomesensor_config_t, 'id'>;
+      config: Pick<shelly_bthomesensor_config_t, 'addr' | 'obj_id' | 'idx'> &
+        Partial<Pick<shelly_bthomesensor_config_t, 'name' | 'meta'>>;
       id?: shelly_component_id_t;
     };
     result: {
@@ -88,8 +119,10 @@ export type shelly_bthome_rpc_method_map_t = {
     result: null;
   };
   'BTHome.StartDeviceDiscovery': {
-    params: {
-      duration: number;
+    params?: {
+      duration?: number; // seconds
+      rssi_thr?: number; // dBm, negative
+      auto_add_models?: number[]; // model ids added as they are found
     };
     result: null;
   };

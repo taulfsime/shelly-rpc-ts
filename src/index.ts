@@ -8,6 +8,8 @@ export {
   shelly_sys_discovery_result_t,
   shelly_sys_discovery_results_event_t,
   shelly_sys_discovery_done_event_t,
+  shelly_sys_component_event_t,
+  shelly_ota_event_t,
 } from './components/Sys.js';
 export {
   shelly_wifi_config_t,
@@ -39,7 +41,9 @@ export {
   shelly_light_status_t,
   shelly_light_key_t,
   shelly_light_type_t,
+  shelly_light_attrs_t,
 } from './components/Light.js';
+export { shelly_output_component_attrs_t } from './components/common.js';
 export {
   shelly_service_config_t,
   shelly_service_status_t,
@@ -170,6 +174,7 @@ export {
   shelly_bthomecontrol_key_t,
   shelly_bthomecontrol_type_t,
   shelly_bthomecontrol_mapping_t,
+  shelly_bthomecontrol_learning_t,
 } from './components/BTHomeComponents/BTHomeControl.js';
 export {
   shelly_object_config_t,
@@ -364,6 +369,8 @@ export {
   shelly_emdata_config_t,
   shelly_emdata_key_t,
   shelly_emdata_type_t,
+  shelly_emdata_record_t,
+  shelly_emdata_data_event_t,
 } from './components/EMData.js';
 export { shelly_schedule_job_t } from './components/Schedule.js';
 export {
@@ -379,18 +386,23 @@ export {
   shelly_knx_status_t,
   shelly_knx_key_t,
   shelly_knx_type_t,
+  shelly_knx_component_config_t,
 } from './components/KNX.js';
 export {
   shelly_bthome_status_t,
   shelly_bthome_config_t,
   shelly_bthome_key_t,
   shelly_bthome_type_t,
+  shelly_bthome_discovered_device_t,
+  shelly_bthome_device_discovered_event_t,
+  shelly_bthome_discovery_done_event_t,
 } from './components/BTHome.js';
 export {
   shelly_em1data_status_t,
   shelly_em1data_config_t,
   shelly_em1data_key_t,
   shelly_em1data_type_t,
+  shelly_em1data_data_event_t,
 } from './components/EM1Data.js';
 export {
   shelly_rgb_status_t,
@@ -535,10 +547,58 @@ export {
   shelly_cury_vial_info_t,
 } from './components/Cury.js';
 
+export {
+  shelly_camera_type_t,
+  shelly_camera_key_t,
+  shelly_camera_status_t,
+  shelly_camera_config_t,
+  shelly_camera_webhook_event_t,
+  shelly_camera_resolution_t,
+  shelly_camera_sensitivity_t,
+  shelly_camera_streamer_state_t,
+  shelly_camera_stream_config_t,
+  shelly_camera_trigger_t,
+  shelly_camera_recording_t,
+  shelly_camera_capabilities_t,
+} from './components/Camera.js';
+export {
+  shelly_camerazone_type_t,
+  shelly_camerazone_key_t,
+  shelly_camerazone_status_t,
+  shelly_camerazone_config_t,
+  shelly_camerazone_webhook_event_t,
+  shelly_camerazone_zone_type_t,
+  shelly_camerazone_coordinates_t,
+  shelly_camerazone_color_t,
+} from './components/CameraZone.js';
+export {
+  shelly_storage_type_t,
+  shelly_storage_key_t,
+  shelly_storage_status_t,
+  shelly_storage_config_t,
+  shelly_storage_media_t,
+} from './components/Storage.js';
+export {
+  shelly_prorgbwwpm_type_t,
+  shelly_prorgbwwpm_key_t,
+  shelly_prorgbwwpm_status_t,
+  shelly_prorgbwwpm_config_t,
+} from './components/ProRGBWWPM.js';
+export {
+  shelly_ledstrip_type_t,
+  shelly_ledstrip_key_t,
+  shelly_ledstrip_status_t,
+  shelly_ledstrip_config_t,
+  shelly_ledstrip_effect_t,
+} from './components/LedStrip.js';
+
 // Shelly device types
 export {
   shelly_device_info_data_t,
   shelly_device_profile_t,
+  shelly_device_update_stage_t,
+  shelly_device_update_info_t,
+  shelly_device_update_alt_t,
 } from './components/Shelly.js';
 
 // Shelly RPC-related types
@@ -556,6 +616,8 @@ export {
   shelly_rpc_msg_response_t,
   shelly_rpc_notification_method_t,
   shelly_rpc_notification_notify_event_t,
+  shelly_rpc_event_t,
+  shelly_rpc_known_event_t,
   shelly_rpc_notification_notify_status_t,
   shelly_rpc_notification_t,
   isRpcAuthResponse,
@@ -578,7 +640,10 @@ export {
 
 export {
   ShellyTransportBase,
+  ShellyDebugLogLevel,
   shelly_transport_rpc_options_t,
   shelly_listener_event_t,
   shelly_listener_params_t,
+  shelly_debug_log_msg_t,
+  shelly_debug_log_level_t,
 } from './transport/ShellyTransportBase.js';

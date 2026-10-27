@@ -22,14 +22,15 @@ export type shelly_shelr_config_t = {
   name: string | null;
   addr: string | null;
   tx_key_id: 1 | 2 | 3;
-  key1: boolean;
-  key2: boolean;
-  key3: boolean;
   accept: shelly_shelr_accept_t[] | null;
 };
 
+// the keys are write-only: the status says only whether each is set
 export type shelly_shelr_status_t = {
   id: shelly_component_id_t;
+  key1: boolean;
+  key2: boolean;
+  key3: boolean;
 };
 
 type shelly_shelr_tx_key_params_t =

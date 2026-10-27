@@ -6,6 +6,7 @@ import {
 type shelly_schedule_call_t<K extends shelly_rpc_method_t> = {
   method: K;
   params: shelly_rpc_method_params_t<K>;
+  origin?: string; // kept with the job, not used by the device
 };
 
 type shelly_schedule_id_t = number;

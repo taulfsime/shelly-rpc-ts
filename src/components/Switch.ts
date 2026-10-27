@@ -66,6 +66,8 @@ export type shelly_switch_config_t = {
   auto_on_delay: number;
   auto_off: boolean;
   auto_off_delay: number;
+  power_restore_delay_enable?: boolean; // waits before the power-on state
+  power_restore_delay?: number; // seconds
   autorecover_voltage_errors: boolean;
   input_id?: 0 | 1;
   power_limit?: number;
@@ -89,7 +91,11 @@ export type shelly_switch_rpc_method_map_t = {
   'Switch.SetConfig': {
     params: {
       id: shelly_component_id_t;
-      config: optional_recursive_t<shelly_switch_config_t>;
+      config: optional_recursive_t<
+        Omit<shelly_switch_config_t, 'power_restore_delay'>
+      > & {
+        power_restore_delay?: number | null; // null restores the default
+      };
     };
     result: {
       restart_required: boolean;

@@ -161,3 +161,18 @@ export type shelly_emdata_rpc_method_map_t = {
     };
   };
 };
+
+export type shelly_emdata_record_t = {
+  ts: number;
+  period: number; // seconds
+  values: number[][]; // one row per period, the columns as in GetData keys
+};
+
+// sent every minute with the record just stored
+export type shelly_emdata_data_event_t = {
+  component: shelly_emdata_key_t;
+  id: shelly_component_id_t;
+  event: 'data';
+  ts: number;
+  data: shelly_emdata_record_t;
+};

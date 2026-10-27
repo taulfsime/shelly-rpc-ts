@@ -1,3 +1,5 @@
+import { shelly_component_id_t } from '../ShellyComponents.js';
+
 export type shelly_output_component_status_source_t =
   | 'activate' // state change by related input (activate mode)
   | 'analog' // state change by related input (analog mode)
@@ -58,6 +60,10 @@ export type shelly_output_component_status_counter_t = {
   total: number;
   by_minute?: [number, number, number];
   minute_ts: number;
+};
+
+export type shelly_output_component_attrs_t = {
+  inputs?: shelly_component_id_t[]; // the linked inputs
 };
 
 export type shelly_light_config_fade_rate_t = 1 | 2 | 3 | 4 | 5;

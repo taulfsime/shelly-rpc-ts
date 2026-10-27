@@ -11,12 +11,13 @@ export type shelly_mqtt_config_t = {
   enable: boolean;
   server: string | null;
   client_id: string | null;
-  username: string | null;
+  user: string | null;
   ssl_ca: null | '*' | 'user_ca.pem' | 'ca.pem';
   topic_prefix: string | null;
   rpc_ntf: boolean;
   status_ntf: boolean;
-  use_client_cert: boolean;
+  use_client_cert?: boolean; // only on devices that take a user CA
+  enable_rpc: boolean;
   enable_control: boolean;
 };
 
@@ -31,7 +32,9 @@ export type shelly_mqtt_rpc_method_map_t = {
   };
   'MQTT.SetConfig': {
     params: {
-      config: optional_recursive_t<shelly_mqtt_config_t>;
+      config: optional_recursive_t<shelly_mqtt_config_t> & {
+        pass?: string | null; // write-only
+      };
     };
     result: {
       restart_required: boolean;

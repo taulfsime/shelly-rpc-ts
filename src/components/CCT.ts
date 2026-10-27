@@ -24,7 +24,7 @@ export type shelly_cct_config_t = {
     enable: boolean;
     brightness: number | null;
     ct: number | null;
-    active_between: [string, string];
+    active_between: [string, string] | []; // []: all day
   };
   button_fade_rate: shelly_light_config_fade_rate_t;
   button_presets?: {

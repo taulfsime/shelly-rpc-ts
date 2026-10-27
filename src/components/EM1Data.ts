@@ -1,5 +1,6 @@
 import { shelly_component_id_t } from '../ShellyComponents.js';
 import { optional_recursive_t } from './helpers.js';
+import { shelly_emdata_record_t } from './EMData.js';
 
 type shelly_em1data_status_errors_t = 'database_error' | 'ct_type_not_set';
 
@@ -112,4 +113,13 @@ export type shelly_em1data_rpc_method_map_t = {
       next_record_ts: number;
     };
   };
+};
+
+// sent every minute with the record just stored
+export type shelly_em1data_data_event_t = {
+  component: shelly_em1data_key_t;
+  id: shelly_component_id_t;
+  event: 'data';
+  ts: number;
+  data: shelly_emdata_record_t;
 };

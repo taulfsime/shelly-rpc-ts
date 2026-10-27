@@ -19,14 +19,17 @@ export type shelly_uart_addon_rpc_method_map_t = {
   };
   'AddOn.CheckForUpdate': {
     params?: {};
+    // null without an update
     result: {
-      type: shelly_uart_addon_types_t;
-    } & Partial<
-      Record<
-        shelly_device_update_stage_t,
-        Pick<shelly_device_update_info_t, 'version'>
-      >
-    >;
+      available_updates: {
+        type: shelly_uart_addon_types_t;
+      } & Partial<
+        Record<
+          shelly_device_update_stage_t,
+          Pick<shelly_device_update_info_t, 'version'>
+        >
+      >;
+    } | null;
   };
   'AddOn.Update': {
     params: {
