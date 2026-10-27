@@ -126,6 +126,46 @@ describe('ShellyTransportBase', () => {
     expect(() => transport.off('NotifyFullStatus', vi.fn())).not.toThrow();
   });
 
+  it('should keep one request in flight after a late response', async () => {
+    const late = transport.rpcRequest(
+      'Switch.Set',
+      { id: 0, on: true },
+      { timeout: 10 }
+    );
+    await expect(late).rejects.toThrow('timed out');
+    // the device answers after the request was given up on
+    transport.simulateResponse(transport.sentRequests[0].id, {});
+
+    transport.rpcRequest('Switch.Set', { id: 1, on: true });
+    transport.rpcRequest('Switch.Set', { id: 2, on: true });
+
+    // the second waits for the first's response
+    expect(transport.sentRequests.map(r => r.params)).toEqual([
+      { id: 0, on: true },
+      { id: 1, on: true },
+    ]);
+  });
+
+  it('should keep one request in flight after a request failed to send', async () => {
+    transport.sendResult = false;
+    await expect(
+      transport.rpcRequest(
+        'Switch.Set',
+        { id: 0, on: true },
+        { numberOfRetries: 1 }
+      )
+    ).rejects.toThrow('Request failed after retries');
+
+    transport.sendResult = true;
+    transport.sentRequests = [];
+    transport.rpcRequest('Switch.Set', { id: 1, on: true });
+    transport.rpcRequest('Switch.Set', { id: 2, on: true });
+
+    expect(transport.sentRequests.map(r => r.params)).toEqual([
+      { id: 1, on: true },
+    ]);
+  });
+
   it('should handle request retries and fail after retries', async () => {
     transport.sendResult = false; // _onSend will fail
     const promise = transport.rpcRequest(

@@ -203,10 +203,13 @@ export abstract class ShellyTransportBase {
           >;
           onResponse.forEach(callback => callback(result));
         }
+
+        // its slot is free: a response to a request already given up on
+        // (timed out) freed it then, and must not free another
+        this.msgInFlight--;
       }
 
       // on message response, continue processing the queue
-      this.msgInFlight--;
       this._handleQueue();
       return true;
     } else if (isRpcNotification(data)) {
@@ -317,7 +320,7 @@ export abstract class ShellyTransportBase {
         reqData.onError.forEach(callback => callback(error));
         this.responsesMap.delete(request.id);
         clearTimeout(reqData.timeoutId);
-        this.msgInFlight--;
+        // never sent, so it never took a slot
         this._handleQueue();
         return;
       }
