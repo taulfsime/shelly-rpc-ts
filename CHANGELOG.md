@@ -1,5 +1,12 @@
 # Changelog
 
+[Unreleased]
+
+Fixed
+
+- ShellyTransportBase: listeners are kept in a Map, so a minifier that renames properties (terser mangle.properties) no longer breaks \_StateChanged / \_DebugLog; off() on an event nobody listened to is a no-op
+- ShellyTransportBase: the in-flight count no longer drops below zero after a response to a request that had already timed out, or after a request that could not be sent ran out of retries (both disabled the requestsInFlight limit)
+
 [0.8.1] 2026-08-12
 
 Added
