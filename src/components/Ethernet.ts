@@ -17,6 +17,7 @@ export type shelly_ethernet_config_t = {
   ip?: string | null;
   netmask?: string | null;
   gw?: string | null;
+  nameserver?: string | null;
   dhcp_start?: string;
   dhcp_end?: string;
 };

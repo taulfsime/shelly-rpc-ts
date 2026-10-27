@@ -54,6 +54,7 @@ export type shelly_script_rpc_method_map_t = {
   'Script.Create': {
     params: {
       name?: string;
+      type?: 'general' | 'led_strip_effect'; // firmware with script types only
     };
     result: {
       id: shelly_component_id_t;

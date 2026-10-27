@@ -53,7 +53,7 @@ export type shelly_rgbcct_config_t = {
     rgb: [number, number, number] | null;
     ct: number | null;
     mode: shelly_rgbcct_mode_t | null;
-    active_between: [string, string];
+    active_between: [string, string] | []; // []: all day
   };
 };
 

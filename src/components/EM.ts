@@ -114,7 +114,7 @@ export type shelly_em_rpc_method_map_t = {
     params: {
       id: shelly_component_id_t;
       from: 'a' | 'b' | 'c';
-      to: 'a' | 'b' | 'c';
+      to: 'a' | 'b' | 'c' | 'n'; // n: neutral
     };
     result: {
       restart_required: boolean;

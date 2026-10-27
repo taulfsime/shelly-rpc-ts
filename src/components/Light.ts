@@ -2,6 +2,7 @@ import { shelly_component_id_t } from '../ShellyComponents.js';
 import {
   shelly_light_config_fade_rate_t,
   shelly_output_component_status_counter_t,
+  shelly_output_component_attrs_t,
   shelly_output_component_status_source_t,
 } from './common.js';
 import { at_least_one_prop_t, optional_recursive_t } from './helpers.js';
@@ -72,7 +73,7 @@ export type shelly_light_config_t = {
   night_mode: {
     enable: boolean;
     brightness: number;
-    active_between: [string, string];
+    active_between: [string, string] | []; // []: all day
   };
   button_fade_rate: shelly_light_config_fade_rate_t;
   button_presets: {
@@ -81,10 +82,22 @@ export type shelly_light_config_t = {
     };
   };
   range_map?: [number, number];
+  gamma?: number; // 0.4..4, only where the firmware has it
+  warmup?: {
+    enable: boolean;
+    time_ms: number;
+    brightness: number;
+  };
   power_limit?: number;
   voltage_limit?: number;
   undervoltage_limit?: number;
   current_limit?: number;
+};
+
+export type shelly_light_attrs_t = shelly_output_component_attrs_t & {
+  limits?: {
+    transition: [number, number]; // seconds
+  };
 };
 
 export type shelly_light_rpc_method_map_t = {
@@ -97,7 +110,9 @@ export type shelly_light_rpc_method_map_t = {
   'Light.SetConfig': {
     params: {
       id: shelly_component_id_t;
-      config: optional_recursive_t<shelly_light_config_t>;
+      config: optional_recursive_t<Omit<shelly_light_config_t, 'gamma'>> & {
+        gamma?: number | null; // null restores the default
+      };
     };
     result: {
       restart_required: boolean;

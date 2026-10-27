@@ -21,8 +21,8 @@ export type shelly_rgbw_status_t = shelly_rgb_status_t & {
 };
 
 export type shelly_rgbw_config_t = shelly_rgb_config_t & {
-  night_mode: shelly_rgb_config_t & {
-    while: number | null;
+  night_mode: shelly_rgb_config_t['night_mode'] & {
+    white?: number | null; // only with a white channel
   };
 
   button_presets: {

@@ -40,7 +40,7 @@ export type shelly_sys_key_t = shelly_sys_type_t;
 
 export type shelly_sys_config_t = {
   device: {
-    name: string;
+    name: string | null;
     eco_mode: boolean;
     mac: shelly_device_mac_t;
     fw_id: string; //XXX: Make specific type
@@ -48,6 +48,8 @@ export type shelly_sys_config_t = {
     discoverable: boolean;
     addon_type?: shelly_addon_type_t;
     sys_btn_toggle?: boolean;
+    tls_check_cert_validity_time?: boolean; // only without enhanced_security
+    enhanced_security: boolean; // can only be turned on; applies after a restart
   };
   location: shelly_device_location_t;
   debug: {
@@ -66,11 +68,11 @@ export type shelly_sys_config_t = {
   };
   ui_data: Record<string, unknown>;
   rpc_udp: {
-    dst_addr: string;
+    dst_addr: string | null;
     listen_port: number | null;
   };
   sntp: {
-    server: string;
+    server: string | null; // null sets the default server
   };
   cfg_rev: number;
 };
@@ -96,7 +98,9 @@ export type shelly_sys_status_t = {
   available_updates: Partial<
     Record<
       shelly_device_update_stage_t,
-      Pick<shelly_device_update_info_t, 'version'>
+      Pick<shelly_device_update_info_t, 'version' | 'nsteps'> & {
+        svc0?: Pick<NonNullable<shelly_device_update_info_t['svc0']>, 'ver'>;
+      }
     >
   >;
   alt?: {
@@ -156,6 +160,32 @@ export type shelly_sys_discovery_done_event_t = {
   result_count: number;
   ts: number;
 };
+
+// a dynamic component or a script was added or removed
+export type shelly_sys_component_event_t = {
+  component: shelly_sys_key_t;
+  event: 'component_added' | 'component_removed';
+  target: shelly_component_key_t;
+  restart_required: boolean;
+  ts: number;
+  cfg_rev: number;
+};
+
+// a firmware update of the device (component sys) or of a component
+export type shelly_ota_event_t =
+  | {
+      component: shelly_component_key_t;
+      event: 'ota_begin' | 'ota_success' | 'ota_error';
+      msg: string;
+      ts: number;
+    }
+  | {
+      component: shelly_component_key_t;
+      event: 'ota_progress';
+      msg: string;
+      progress_percent: number;
+      ts: number;
+    };
 
 export type shelly_sys_backup_manifest_t = {
   created_at: number;

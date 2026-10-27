@@ -100,8 +100,16 @@ export type shelly_sensor_addon_rpc_method_map_t = {
       devices: {
         type: shelly_sensor_addon_peripheral_ds18b20_t | 'unknown';
         addr: string;
+        io: number; // the 1-Wire bus
         component: shelly_temperature_key_t | null;
       }[];
     };
   };
+};
+
+// Shelly Plus Uni: the same methods and params as the Sensor Add-on
+export type shelly_uni_rpc_method_map_t = {
+  [K in keyof shelly_sensor_addon_rpc_method_map_t as K extends `SensorAddon.${infer M}`
+    ? `Uni.${M}`
+    : never]: shelly_sensor_addon_rpc_method_map_t[K];
 };

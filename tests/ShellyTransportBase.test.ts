@@ -112,7 +112,7 @@ describe('ShellyTransportBase', () => {
 
   it('should call _DebugLog listeners', () => {
     const listener = vi.fn();
-    const line = { data: 'hello', ts: 1, level: 2 as const, fd: 1 };
+    const line = { seq: 1, data: 'hello', ts: 1, level: 2 as const, fd: 1 };
     transport.on('_DebugLog', listener);
 
     (

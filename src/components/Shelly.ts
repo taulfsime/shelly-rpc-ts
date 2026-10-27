@@ -39,6 +39,7 @@ export type shelly_device_info_data_t = {
   fw_sbits?: string;
   jti?: string;
   jwt?: shelly_xmod_info;
+  enhanced_security?: boolean;
 } & {
   [k: `svc${shelly_component_id_t}`]: {
     type: shelly_service_identifier_type_t;
@@ -59,11 +60,24 @@ export type shelly_device_location_t = {
   lon: number | null;
 };
 
-export type shelly_device_update_stage_t = 'beta' | 'stable' | 'test';
+export type shelly_device_update_stage_t =
+  | 'beta'
+  | 'stable'
+  | 'test'
+  | 'matter'; // devices with Matter only
 export type shelly_device_update_info_t = {
   version: string;
   build_id: string;
+  nsteps?: number; // the update installs in this many steps
+  svc0?: {
+    ver: string;
+    build_id: string;
+  };
 };
+export type shelly_device_update_alt_t = {
+  name?: string;
+  desc?: string;
+} & Partial<Record<shelly_device_update_stage_t, shelly_device_update_info_t>>;
 
 export type shelly_device_id_t = string;
 export type shelly_device_auth_user_t = 'admin';
@@ -131,19 +145,27 @@ export type shelly_device_rpc_method_map_t = {
     result: shelly_device_location_t;
   };
   'Shelly.CheckForUpdate': {
-    params?: {};
+    params?: {
+      src?: string; // sent to the update server, default "rpc"
+    };
     result: Partial<
       Record<shelly_device_update_stage_t, shelly_device_update_info_t>
-    >;
+    > & {
+      alt?: Record<shelly_device_app_t, shelly_device_update_alt_t>;
+    };
   };
   'Shelly.Update': {
-    params:
+    params: (
       | {
           stage: shelly_device_update_stage_t;
         }
       | {
           url: string;
-        };
+        }
+    ) & {
+      commit_delay?: number;
+      commit_timeout?: number;
+    };
     result: null;
   };
   'Shelly.FactoryReset': {
@@ -247,6 +269,10 @@ export type shelly_device_rpc_method_map_t = {
   'Shelly.ListAlternatives': {
     params?: {};
     result: Record<shelly_device_app_t, string>;
+  };
+  'Shelly.ZigbeeClear': {
+    params?: {};
+    result: {};
   };
   'Shelly.SetAlternative': {
     params: {

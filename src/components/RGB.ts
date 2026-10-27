@@ -54,7 +54,7 @@ export type shelly_rgb_config_t = {
     enable: boolean;
     brightness: number | null;
     rgb: [number, number, number] | null;
-    active_between: [string, string];
+    active_between: [string, string] | []; // []: all day
   };
   button_fade_rate: shelly_light_config_fade_rate_t;
   button_presets: {

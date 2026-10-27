@@ -163,6 +163,7 @@ import {
 } from './components/KNX.js';
 import {
   shelly_light_config_t,
+  shelly_light_attrs_t,
   shelly_light_key_t,
   shelly_light_status_t,
   shelly_light_type_t,
@@ -440,7 +441,38 @@ import {
   shelly_cury_type_t,
   shelly_cury_vial_info_t,
 } from './components/Cury.js';
+import {
+  shelly_camera_config_t,
+  shelly_camera_key_t,
+  shelly_camera_status_t,
+  shelly_camera_type_t,
+} from './components/Camera.js';
+import {
+  shelly_camerazone_config_t,
+  shelly_camerazone_key_t,
+  shelly_camerazone_status_t,
+  shelly_camerazone_type_t,
+} from './components/CameraZone.js';
+import {
+  shelly_storage_config_t,
+  shelly_storage_key_t,
+  shelly_storage_status_t,
+  shelly_storage_type_t,
+} from './components/Storage.js';
+import {
+  shelly_prorgbwwpm_config_t,
+  shelly_prorgbwwpm_key_t,
+  shelly_prorgbwwpm_status_t,
+  shelly_prorgbwwpm_type_t,
+} from './components/ProRGBWWPM.js';
+import {
+  shelly_ledstrip_config_t,
+  shelly_ledstrip_key_t,
+  shelly_ledstrip_status_t,
+  shelly_ledstrip_type_t,
+} from './components/LedStrip.js';
 import { shelly_virtual_attrs_t } from './components/Virtual.js';
+import { shelly_output_component_attrs_t } from './components/common.js';
 
 export type shelly_component_id_t = number;
 
@@ -517,7 +549,12 @@ export type shelly_component_key_t =
   | shelly_zigbee_key_t
   | shelly_media_key_t
   | shelly_thermostat_key_t
-  | shelly_cury_key_t;
+  | shelly_cury_key_t
+  | shelly_camera_key_t
+  | shelly_camerazone_key_t
+  | shelly_storage_key_t
+  | shelly_prorgbwwpm_key_t
+  | shelly_ledstrip_key_t;
 
 export type shelly_component_helper_key_to_type_t<
   T extends shelly_component_key_t,
@@ -724,19 +761,22 @@ export type shelly_component_status_map_t =
       shelly_switch_key_t,
       shelly_switch_type_t,
       shelly_switch_config_t,
-      shelly_switch_status_t
+      shelly_switch_status_t,
+      shelly_output_component_attrs_t
     >
   | component_entry_t<
       shelly_cover_key_t,
       shelly_cover_type_t,
       shelly_cover_config_t,
-      shelly_cover_status_t
+      shelly_cover_status_t,
+      shelly_output_component_attrs_t
     >
   | component_entry_t<
       shelly_light_key_t,
       shelly_light_type_t,
       shelly_light_config_t,
-      shelly_light_status_t
+      shelly_light_status_t,
+      shelly_light_attrs_t
     >
   | component_entry_t<
       shelly_service_key_t,
@@ -863,7 +903,8 @@ export type shelly_component_status_map_t =
       shelly_cct_key_t,
       shelly_cct_type_t,
       shelly_cct_config_t,
-      shelly_cct_status_t
+      shelly_cct_status_t,
+      shelly_output_component_attrs_t
     >
   | component_entry_t<
       shelly_em_key_t,
@@ -893,13 +934,15 @@ export type shelly_component_status_map_t =
       shelly_rgb_key_t,
       shelly_rgb_type_t,
       shelly_rgb_config_t,
-      shelly_rgb_status_t
+      shelly_rgb_status_t,
+      shelly_output_component_attrs_t
     >
   | component_entry_t<
       shelly_rgbw_key_t,
       shelly_rgbw_type_t,
       shelly_rgbw_config_t,
-      shelly_rgbw_status_t
+      shelly_rgbw_status_t,
+      shelly_output_component_attrs_t
     >
   | component_entry_t<
       shelly_rgbcct_key_t,
@@ -997,6 +1040,36 @@ export type shelly_component_status_map_t =
       shelly_cury_config_t,
       shelly_cury_status_t,
       shelly_cury_vial_info_t
+    >
+  | component_entry_t<
+      shelly_camera_key_t,
+      shelly_camera_type_t,
+      shelly_camera_config_t,
+      shelly_camera_status_t
+    >
+  | component_entry_t<
+      shelly_camerazone_key_t,
+      shelly_camerazone_type_t,
+      shelly_camerazone_config_t,
+      shelly_camerazone_status_t
+    >
+  | component_entry_t<
+      shelly_storage_key_t,
+      shelly_storage_type_t,
+      shelly_storage_config_t,
+      shelly_storage_status_t
+    >
+  | component_entry_t<
+      shelly_prorgbwwpm_key_t,
+      shelly_prorgbwwpm_type_t,
+      shelly_prorgbwwpm_config_t,
+      shelly_prorgbwwpm_status_t
+    >
+  | component_entry_t<
+      shelly_ledstrip_key_t,
+      shelly_ledstrip_type_t,
+      shelly_ledstrip_config_t,
+      shelly_ledstrip_status_t
     >;
 
 export type shelly_component_status_t<T extends shelly_component_type_t> =

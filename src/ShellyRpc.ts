@@ -22,7 +22,13 @@ import { shelly_serial_rpc_method_map_t } from './components/Serial.js';
 import { shelly_service_rpc_method_map_t } from './components/Service.js';
 import { shelly_shelr_rpc_method_map_t } from './components/SheLr.js';
 import { shelly_switch_rpc_method_map_t } from './components/Switch.js';
-import { shelly_sys_rpc_method_map_t } from './components/Sys.js';
+import {
+  shelly_ota_event_t,
+  shelly_sys_component_event_t,
+  shelly_sys_discovery_done_event_t,
+  shelly_sys_discovery_results_event_t,
+  shelly_sys_rpc_method_map_t,
+} from './components/Sys.js';
 import { shelly_temperature_rpc_method_map_t } from './components/Temperature.js';
 import { shelly_text_rpc_method_map_t } from './components/VirtualComponents/Text.js';
 import { shelly_wifi_rpc_method_map_t } from './components/WiFi.js';
@@ -60,14 +66,24 @@ import { shelly_cct_rpc_method_map_t } from './components/CCT.js';
 import { shelly_zigbee_rpc_method_map_t } from './components/Zigbee.js';
 import { shelly_em_rpc_method_map_t } from './components/EM.js';
 import { shelly_em1_rpc_method_map_t } from './components/EM1.js';
-import { shelly_emdata_rpc_method_map_t } from './components/EMData.js';
+import {
+  shelly_emdata_data_event_t,
+  shelly_emdata_rpc_method_map_t,
+} from './components/EMData.js';
 import { shelly_schedule_rpc_method_map_t } from './components/Schedule.js';
 import { shelly_webhook_rpc_method_map_t } from './components/Webhook.js';
 import { shelly_kvs_rpc_method_map_t } from './components/KVS.js';
 import { shelly_knx_rpc_method_map_t } from './components/KNX.js';
 import { shelly_virtual_rpc_method_map_t } from './components/Virtual.js';
-import { shelly_bthome_rpc_method_map_t } from './components/BTHome.js';
-import { shelly_em1data_rpc_method_map_t } from './components/EM1Data.js';
+import {
+  shelly_bthome_device_discovered_event_t,
+  shelly_bthome_discovery_done_event_t,
+  shelly_bthome_rpc_method_map_t,
+} from './components/BTHome.js';
+import {
+  shelly_em1data_data_event_t,
+  shelly_em1data_rpc_method_map_t,
+} from './components/EM1Data.js';
 import { shelly_http_rpc_method_map_t } from './components/HTTP.js';
 import { shelly_rgb_rpc_method_map_t } from './components/RGB.js';
 import { shelly_rgbw_rpc_method_map_t } from './components/RGBW.js';
@@ -83,7 +99,10 @@ import { shelly_blutrv_rpc_method_map_t } from './components/BluTrv.js';
 import { shelly_blumcb_rpc_method_map_t } from './components/BluMCB.js';
 import { shelly_xmod_rpc_method_map_t } from './components/XMOD.js';
 import { shelly_lora_rpc_method_map_t } from './components/LoRa.js';
-import { shelly_sensor_addon_rpc_method_map_t } from './components/SensorAddon.js';
+import {
+  shelly_sensor_addon_rpc_method_map_t,
+  shelly_uni_rpc_method_map_t,
+} from './components/SensorAddon.js';
 import { shelly_pro_output_addon_rpc_method_map_t } from './components/ProOutputAddon.js';
 import { shelly_uart_addon_rpc_method_map_t } from './components/UartAddon.js';
 import { shelly_bthomecontrol_rpc_method_map_t } from './components/BTHomeComponents/BTHomeControl.js';
@@ -91,6 +110,12 @@ import { shelly_media_rpc_method_map_t } from './components/Media.js';
 import { shelly_thermostat_rpc_method_map_t } from './components/Thermostat.js';
 import { shelly_cury_rpc_method_map_t } from './components/Cury.js';
 import { shelly_ota_rpc_method_map_t } from './components/OTA.js';
+import { shelly_camera_rpc_method_map_t } from './components/Camera.js';
+import { shelly_camerazone_rpc_method_map_t } from './components/CameraZone.js';
+import { shelly_storage_rpc_method_map_t } from './components/Storage.js';
+import { shelly_prorgbwwpm_rpc_method_map_t } from './components/ProRGBWWPM.js';
+import { shelly_ledstrip_rpc_method_map_t } from './components/LedStrip.js';
+import { shelly_streamer_rpc_method_map_t } from './components/Streamer.js';
 
 type shelly_rpc_method_map_t = shelly_device_rpc_method_map_t &
   shelly_ble_rpc_method_map_t &
@@ -154,6 +179,7 @@ type shelly_rpc_method_map_t = shelly_device_rpc_method_map_t &
   shelly_schedule_rpc_method_map_t &
   shelly_script_rpc_method_map_t &
   shelly_sensor_addon_rpc_method_map_t &
+  shelly_uni_rpc_method_map_t &
   shelly_serial_rpc_method_map_t &
   shelly_service_rpc_method_map_t &
   shelly_shelr_rpc_method_map_t &
@@ -175,7 +201,13 @@ type shelly_rpc_method_map_t = shelly_device_rpc_method_map_t &
   shelly_media_rpc_method_map_t &
   shelly_thermostat_rpc_method_map_t &
   shelly_cury_rpc_method_map_t &
-  shelly_ota_rpc_method_map_t;
+  shelly_ota_rpc_method_map_t &
+  shelly_camera_rpc_method_map_t &
+  shelly_camerazone_rpc_method_map_t &
+  shelly_storage_rpc_method_map_t &
+  shelly_prorgbwwpm_rpc_method_map_t &
+  shelly_ledstrip_rpc_method_map_t &
+  shelly_streamer_rpc_method_map_t;
 
 export type shelly_rpc_method_t = keyof shelly_rpc_method_map_t;
 
@@ -275,17 +307,34 @@ export type shelly_rpc_notification_notify_status_t =
     };
   };
 
+/**
+ * One event of a NotifyEvent. The fields after `event` depend on the event;
+ * the known ones are typed in `shelly_rpc_known_event_t`.
+ */
+export type shelly_rpc_event_t = {
+  ts: number;
+  component: shelly_component_key_t;
+  id?: shelly_component_id_t; // missing on components without an id (sys)
+  event: string;
+  [key: string]: unknown;
+};
+
+export type shelly_rpc_known_event_t =
+  | shelly_sys_component_event_t
+  | shelly_ota_event_t
+  | shelly_sys_discovery_results_event_t
+  | shelly_sys_discovery_done_event_t
+  | shelly_bthome_device_discovered_event_t
+  | shelly_bthome_discovery_done_event_t
+  | shelly_emdata_data_event_t
+  | shelly_em1data_data_event_t;
+
 export type shelly_rpc_notification_notify_event_t =
   shelly_rpc_notification_base_t & {
     method: 'NotifyEvent';
     params: {
       ts: number;
-      events: {
-        ts: number;
-        component: shelly_component_key_t;
-        id: shelly_component_id_t;
-        event: string; // XXX:
-      }[];
+      events: shelly_rpc_event_t[];
     };
   };
 

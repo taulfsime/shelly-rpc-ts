@@ -4,6 +4,8 @@ import { shelly_cb_webhook_event_t } from './CB.js';
 import { shelly_blutrv_webhook_event_t } from './BluTrv.js';
 import { shelly_bthomedevice_webhook_event_t } from './BTHomeComponents/BTHomeDevice.js';
 import { shelly_bthomesensor_webhook_event_t } from './BTHomeComponents/BTHomeSensor.js';
+import { shelly_camera_webhook_event_t } from './Camera.js';
+import { shelly_camerazone_webhook_event_t } from './CameraZone.js';
 import { shelly_cct_webhook_event_t } from './CCT.js';
 import { shelly_cover_webhook_event_t } from './Cover.js';
 import { shelly_fan_webhook_event_t } from './Fan.js';
@@ -37,6 +39,8 @@ import { shelly_voltmeter_webhook_event_t } from './Voltmeter.js';
 export type shelly_webhook_event_t =
   | shelly_bthomedevice_webhook_event_t
   | shelly_bthomesensor_webhook_event_t
+  | shelly_camera_webhook_event_t
+  | shelly_camerazone_webhook_event_t
   | shelly_cct_webhook_event_t
   | shelly_cover_webhook_event_t
   | shelly_fan_webhook_event_t
