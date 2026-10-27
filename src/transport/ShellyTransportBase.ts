@@ -80,15 +80,13 @@ export abstract class ShellyTransportBase {
     shelly_rpc_msg_request_id_t,
     shelly_transport_response_map_t
   > = new Map();
-  private listeners: {
-    [M in shelly_listener_event_t]: shelly_listener_t<M>[];
-  } = {
-    NotifyStatus: [],
-    NotifyFullStatus: [],
-    NotifyEvent: [],
-    _StateChanged: [],
-    _DebugLog: [],
-  };
+  // a Map, keyed by the event name as a string: a minifier that renames
+  // properties (e.g. terser's mangle.properties) can't rename a key away from
+  // the name it is looked up by, as it could an object's (`_StateChanged`)
+  private listeners: Map<
+    shelly_listener_event_t,
+    shelly_listener_t<shelly_listener_event_t>[]
+  > = new Map();
   private rpcDefaultOptions: Required<
     Pick<shelly_transport_rpc_options_t, 'timeout' | 'numberOfRetries'>
   > = {
@@ -212,20 +210,7 @@ export abstract class ShellyTransportBase {
       this._handleQueue();
       return true;
     } else if (isRpcNotification(data)) {
-      if (!this.listeners[data.method]) {
-        return true; // no listeners for this method, ignore
-      }
-
-      if (data.method === 'NotifyEvent') {
-        for (const listener of this.listeners[data.method]) {
-          listener(data.params);
-        }
-      } else {
-        for (const listener of this.listeners[data.method]) {
-          listener(data.params);
-        }
-      }
-
+      this.emit(data.method, data.params);
       return true;
     }
 
@@ -236,16 +221,30 @@ export abstract class ShellyTransportBase {
     method: M,
     listener: shelly_listener_t<M>
   ): void {
-    this.listeners[method].push(listener);
+    const list = this.listeners.get(method) ?? [];
+    list.push(listener as shelly_listener_t<shelly_listener_event_t>);
+    this.listeners.set(method, list);
   }
 
   off<M extends shelly_listener_event_t>(
     method: M,
     listener: shelly_listener_t<M>
   ): void {
-    this.listeners[method] = this.listeners[method].filter(
-      l => l !== listener
-    ) as (typeof this.listeners)[M];
+    const list = this.listeners.get(method);
+    if (!list) return;
+    this.listeners.set(
+      method,
+      list.filter(l => l !== listener)
+    );
+  }
+
+  private emit<M extends shelly_listener_event_t>(
+    method: M,
+    params: shelly_listener_params_t[M]
+  ): void {
+    for (const listener of this.listeners.get(method) ?? []) {
+      listener(params);
+    }
   }
 
   set state(state: shelly_listener_params_t['_StateChanged']) {
@@ -255,9 +254,7 @@ export abstract class ShellyTransportBase {
 
     this._state = state;
 
-    for (const listener of this.listeners['_StateChanged']) {
-      listener(state);
-    }
+    this.emit('_StateChanged', state);
   }
 
   get state() {
@@ -350,9 +347,7 @@ export abstract class ShellyTransportBase {
   }
 
   protected _emitDebugLog(data: shelly_listener_params_t['_DebugLog']): void {
-    for (const listener of this.listeners['_DebugLog']) {
-      listener(data);
-    }
+    this.emit('_DebugLog', data);
   }
 
   /**
