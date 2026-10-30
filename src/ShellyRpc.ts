@@ -29,6 +29,7 @@ import {
   shelly_sys_discovery_results_event_t,
   shelly_sys_rpc_method_map_t,
 } from './components/Sys.js';
+import { shelly_t1s_rpc_method_map_t } from './components/T1S.js';
 import { shelly_temperature_rpc_method_map_t } from './components/Temperature.js';
 import { shelly_text_rpc_method_map_t } from './components/VirtualComponents/Text.js';
 import { shelly_wifi_rpc_method_map_t } from './components/WiFi.js';
@@ -50,6 +51,7 @@ import { shelly_pm1_rpc_method_map_t } from './components/PM1.js';
 import { shelly_presencezone_rpc_method_map_t } from './components/PresenceZone.js';
 import { shelly_presence_rpc_method_map_t } from './components/Presence.js';
 import { shelly_devicepower_rpc_method_map_t } from './components/DevicePower.js';
+import { shelly_doorwindow_rpc_method_map_t } from './components/DoorWindow.js';
 import { shelly_ethernet_rpc_method_map_t } from './components/Ethernet.js';
 import { shelly_fan_rpc_method_map_t } from './components/Fan.js';
 import { shelly_flood_rpc_method_map_t } from './components/Flood.js';
@@ -59,6 +61,7 @@ import { shelly_ws_rpc_method_map_t } from './components/WS.js';
 import { shelly_matter_rpc_method_map_t } from './components/Matter.js';
 import { shelly_mbrtuclient_rpc_method_map_t } from './components/MbRtuClient.js';
 import { shelly_modbus_rpc_method_map_t } from './components/Modbus.js';
+import { shelly_motion_rpc_method_map_t } from './components/Motion.js';
 import { shelly_voltmeter_rpc_method_map_t } from './components/Voltmeter.js';
 import { shelly_smoke_rpc_method_map_t } from './components/Smoke.js';
 import { shelly_sprinkler_rpc_method_map_t } from './components/Sprinkler.js';
@@ -138,6 +141,7 @@ type shelly_rpc_method_map_t = shelly_device_rpc_method_map_t &
   shelly_cover_rpc_method_map_t &
   shelly_dali_rpc_method_map_t &
   shelly_devicepower_rpc_method_map_t &
+  shelly_doorwindow_rpc_method_map_t &
   shelly_em_rpc_method_map_t &
   shelly_em1_rpc_method_map_t &
   shelly_em1data_rpc_method_map_t &
@@ -163,6 +167,7 @@ type shelly_rpc_method_map_t = shelly_device_rpc_method_map_t &
   shelly_matter_rpc_method_map_t &
   shelly_mbrtuclient_rpc_method_map_t &
   shelly_modbus_rpc_method_map_t &
+  shelly_motion_rpc_method_map_t &
   shelly_mqtt_rpc_method_map_t &
   shelly_number_rpc_method_map_t &
   shelly_object_rpc_method_map_t &
@@ -192,6 +197,7 @@ type shelly_rpc_method_map_t = shelly_device_rpc_method_map_t &
   shelly_sprinklerzone_rpc_method_map_t &
   shelly_switch_rpc_method_map_t &
   shelly_sys_rpc_method_map_t &
+  shelly_t1s_rpc_method_map_t &
   shelly_temperature_rpc_method_map_t &
   shelly_text_rpc_method_map_t &
   shelly_uart_addon_rpc_method_map_t &

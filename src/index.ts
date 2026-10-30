@@ -25,6 +25,14 @@ export {
   shelly_mqtt_type_t,
 } from './components/MQTT.js';
 export {
+  shelly_motion_config_t,
+  shelly_motion_status_t,
+  shelly_motion_key_t,
+  shelly_motion_type_t,
+  shelly_motion_sensitivity_t,
+  shelly_motion_webhook_event_t,
+} from './components/Motion.js';
+export {
   shelly_switch_config_t,
   shelly_switch_status_t,
   shelly_switch_key_t,
@@ -109,6 +117,15 @@ export {
   shelly_shelr_key_t,
   shelly_shelr_webhook_event_t,
 } from './components/SheLr.js';
+export {
+  shelly_t1s_config_t,
+  shelly_t1s_status_t,
+  shelly_t1s_key_t,
+  shelly_t1s_type_t,
+  shelly_t1s_plca_role_t,
+  shelly_t1s_plca_coord_state_t,
+  shelly_t1s_peer_t,
+} from './components/T1S.js';
 export {
   shelly_temperature_config_t,
   shelly_temperature_status_t,
@@ -227,6 +244,14 @@ export {
   shelly_devicepower_key_t,
   shelly_devicepower_type_t,
 } from './components/DevicePower.js';
+export {
+  shelly_doorwindow_config_t,
+  shelly_doorwindow_status_t,
+  shelly_doorwindow_key_t,
+  shelly_doorwindow_type_t,
+  shelly_doorwindow_attrs_t,
+  shelly_doorwindow_webhook_event_t,
+} from './components/DoorWindow.js';
 export {
   shelly_ethernet_config_t,
   shelly_ethernet_status_t,

@@ -72,6 +72,13 @@ import {
   shelly_devicepower_type_t,
 } from './components/DevicePower.js';
 import {
+  shelly_doorwindow_attrs_t,
+  shelly_doorwindow_config_t,
+  shelly_doorwindow_key_t,
+  shelly_doorwindow_status_t,
+  shelly_doorwindow_type_t,
+} from './components/DoorWindow.js';
+import {
   shelly_em_config_t,
   shelly_em_key_t,
   shelly_em_status_t,
@@ -193,6 +200,12 @@ import {
   shelly_modbus_type_t,
 } from './components/Modbus.js';
 import {
+  shelly_motion_config_t,
+  shelly_motion_key_t,
+  shelly_motion_status_t,
+  shelly_motion_type_t,
+} from './components/Motion.js';
+import {
   shelly_mqtt_config_t,
   shelly_mqtt_key_t,
   shelly_mqtt_status_t,
@@ -307,6 +320,12 @@ import {
   shelly_sys_status_t,
   shelly_sys_type_t,
 } from './components/Sys.js';
+import {
+  shelly_t1s_config_t,
+  shelly_t1s_key_t,
+  shelly_t1s_status_t,
+  shelly_t1s_type_t,
+} from './components/T1S.js';
 import {
   shelly_temperature_config_t,
   shelly_temperature_key_t,
@@ -512,6 +531,7 @@ export type shelly_component_key_t =
   | shelly_cover_key_t
   | shelly_dali_key_t
   | shelly_devicepower_key_t
+  | shelly_doorwindow_key_t
   | shelly_em_key_t
   | shelly_em1_key_t
   | shelly_em1data_key_t
@@ -535,6 +555,7 @@ export type shelly_component_key_t =
   | shelly_matter_key_t
   | shelly_mbrtuclient_key_t
   | shelly_modbus_key_t
+  | shelly_motion_key_t
   | shelly_mqtt_key_t
   | shelly_number_key_t
   | shelly_object_key_t
@@ -560,6 +581,7 @@ export type shelly_component_key_t =
   | shelly_sprinklerzone_key_t
   | shelly_switch_key_t
   | shelly_sys_key_t
+  | shelly_t1s_key_t
   | shelly_temperature_key_t
   | shelly_text_key_t
   | shelly_ui_key_t
@@ -615,6 +637,12 @@ export type shelly_component_status_map_t =
       shelly_sys_type_t,
       shelly_sys_config_t,
       shelly_sys_status_t
+    >
+  | component_entry_t<
+      shelly_t1s_key_t,
+      shelly_t1s_type_t,
+      shelly_t1s_config_t,
+      shelly_t1s_status_t
     >
   | component_entry_t<
       shelly_wifi_key_t,
@@ -693,6 +721,12 @@ export type shelly_component_status_map_t =
       shelly_modbus_type_t,
       shelly_modbus_config_t,
       shelly_modbus_status_t
+    >
+  | component_entry_t<
+      shelly_motion_key_t,
+      shelly_motion_type_t,
+      shelly_motion_config_t,
+      shelly_motion_status_t
     >
   | component_entry_t<
       shelly_dali_key_t,
@@ -907,6 +941,13 @@ export type shelly_component_status_map_t =
       shelly_devicepower_type_t,
       shelly_devicepower_config_t,
       shelly_devicepower_status_t
+    >
+  | component_entry_t<
+      shelly_doorwindow_key_t,
+      shelly_doorwindow_type_t,
+      shelly_doorwindow_config_t,
+      shelly_doorwindow_status_t,
+      shelly_doorwindow_attrs_t
     >
   | component_entry_t<
       shelly_voltmeter_key_t,
