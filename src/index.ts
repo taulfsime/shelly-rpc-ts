@@ -25,6 +25,14 @@ export {
   shelly_mqtt_type_t,
 } from './components/MQTT.js';
 export {
+  shelly_motion_config_t,
+  shelly_motion_status_t,
+  shelly_motion_key_t,
+  shelly_motion_type_t,
+  shelly_motion_sensitivity_t,
+  shelly_motion_webhook_event_t,
+} from './components/Motion.js';
+export {
   shelly_switch_config_t,
   shelly_switch_status_t,
   shelly_switch_key_t,
