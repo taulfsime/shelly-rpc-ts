@@ -72,6 +72,13 @@ import {
   shelly_devicepower_type_t,
 } from './components/DevicePower.js';
 import {
+  shelly_doorwindow_attrs_t,
+  shelly_doorwindow_config_t,
+  shelly_doorwindow_key_t,
+  shelly_doorwindow_status_t,
+  shelly_doorwindow_type_t,
+} from './components/DoorWindow.js';
+import {
   shelly_em_config_t,
   shelly_em_key_t,
   shelly_em_status_t,
@@ -518,6 +525,7 @@ export type shelly_component_key_t =
   | shelly_cover_key_t
   | shelly_dali_key_t
   | shelly_devicepower_key_t
+  | shelly_doorwindow_key_t
   | shelly_em_key_t
   | shelly_em1_key_t
   | shelly_em1data_key_t
@@ -920,6 +928,13 @@ export type shelly_component_status_map_t =
       shelly_devicepower_type_t,
       shelly_devicepower_config_t,
       shelly_devicepower_status_t
+    >
+  | component_entry_t<
+      shelly_doorwindow_key_t,
+      shelly_doorwindow_type_t,
+      shelly_doorwindow_config_t,
+      shelly_doorwindow_status_t,
+      shelly_doorwindow_attrs_t
     >
   | component_entry_t<
       shelly_voltmeter_key_t,

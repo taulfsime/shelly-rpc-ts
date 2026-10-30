@@ -236,6 +236,14 @@ export {
   shelly_devicepower_type_t,
 } from './components/DevicePower.js';
 export {
+  shelly_doorwindow_config_t,
+  shelly_doorwindow_status_t,
+  shelly_doorwindow_key_t,
+  shelly_doorwindow_type_t,
+  shelly_doorwindow_attrs_t,
+  shelly_doorwindow_webhook_event_t,
+} from './components/DoorWindow.js';
+export {
   shelly_ethernet_config_t,
   shelly_ethernet_status_t,
   shelly_ethernet_key_t,
