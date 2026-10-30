@@ -29,6 +29,7 @@ import {
   shelly_sys_discovery_results_event_t,
   shelly_sys_rpc_method_map_t,
 } from './components/Sys.js';
+import { shelly_t1s_rpc_method_map_t } from './components/T1S.js';
 import { shelly_temperature_rpc_method_map_t } from './components/Temperature.js';
 import { shelly_text_rpc_method_map_t } from './components/VirtualComponents/Text.js';
 import { shelly_wifi_rpc_method_map_t } from './components/WiFi.js';
@@ -196,6 +197,7 @@ type shelly_rpc_method_map_t = shelly_device_rpc_method_map_t &
   shelly_sprinklerzone_rpc_method_map_t &
   shelly_switch_rpc_method_map_t &
   shelly_sys_rpc_method_map_t &
+  shelly_t1s_rpc_method_map_t &
   shelly_temperature_rpc_method_map_t &
   shelly_text_rpc_method_map_t &
   shelly_uart_addon_rpc_method_map_t &

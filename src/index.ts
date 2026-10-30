@@ -118,6 +118,15 @@ export {
   shelly_shelr_webhook_event_t,
 } from './components/SheLr.js';
 export {
+  shelly_t1s_config_t,
+  shelly_t1s_status_t,
+  shelly_t1s_key_t,
+  shelly_t1s_type_t,
+  shelly_t1s_plca_role_t,
+  shelly_t1s_plca_coord_state_t,
+  shelly_t1s_peer_t,
+} from './components/T1S.js';
+export {
   shelly_temperature_config_t,
   shelly_temperature_status_t,
   shelly_temperature_key_t,

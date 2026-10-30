@@ -321,6 +321,12 @@ import {
   shelly_sys_type_t,
 } from './components/Sys.js';
 import {
+  shelly_t1s_config_t,
+  shelly_t1s_key_t,
+  shelly_t1s_status_t,
+  shelly_t1s_type_t,
+} from './components/T1S.js';
+import {
   shelly_temperature_config_t,
   shelly_temperature_key_t,
   shelly_temperature_status_t,
@@ -575,6 +581,7 @@ export type shelly_component_key_t =
   | shelly_sprinklerzone_key_t
   | shelly_switch_key_t
   | shelly_sys_key_t
+  | shelly_t1s_key_t
   | shelly_temperature_key_t
   | shelly_text_key_t
   | shelly_ui_key_t
@@ -630,6 +637,12 @@ export type shelly_component_status_map_t =
       shelly_sys_type_t,
       shelly_sys_config_t,
       shelly_sys_status_t
+    >
+  | component_entry_t<
+      shelly_t1s_key_t,
+      shelly_t1s_type_t,
+      shelly_t1s_config_t,
+      shelly_t1s_status_t
     >
   | component_entry_t<
       shelly_wifi_key_t,
